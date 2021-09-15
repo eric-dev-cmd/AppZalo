@@ -57,5 +57,5 @@ app.use(passport.session());
 route(app);
 
 app.listen(port, () => {
-    console.log(`App running on ${port}...`)
+    console.log(`App running on http://localhost:${port}...`)
 });
