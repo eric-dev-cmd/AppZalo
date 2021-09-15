@@ -377,3 +377,6 @@ body > .app .nav-tab-left {
   padding: 4px 5px;
   border: 1px solid #aba9a9;
   cursor: pointer; }
+
+.no-drop {
+  cursor: no-drop; }
