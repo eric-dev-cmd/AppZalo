@@ -76,18 +76,26 @@ function loadDay() {
             if ((gtNam % 4 == 0) && ((gtNam % 100 != 0) || (gtNam % 400 == 0))) {
                 // La nam nhuan
                 SoNgay = 29;
-            }
-            else {
+            } else {
                 // Khong la nam nhuan
                 SoNgay = 28;
             }
             break;
-        // Truong hop cac thang 1, 3, 5, 7, 8, 10, 12
-        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            // Truong hop cac thang 1, 3, 5, 7, 8, 10, 12
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
             SoNgay = 31;
             break;
-        // Truong hop cac thang 4, 6, 9, 11
-        case 4: case 6: case 9: case 11:
+            // Truong hop cac thang 4, 6, 9, 11
+        case 4:
+        case 6:
+        case 9:
+        case 11:
             SoNgay = 30;
             break;
     }
@@ -116,27 +124,54 @@ function loadBirthday() {
 function preview_image(event) {
     var reader = new FileReader();
     var fileData = event.target.files[0];
-    if(fileData['type'].split('/')[0] !== 'image'){
+    if (fileData['type'].split('/')[0] !== 'image') {
         //alertify.notify('Không đúng định dạng', 'error', 7);
-         alert('Không đúng định dạng');
-         fileData=null;
-         return false;
-    }
-    if(fileData['size'] > 1048576){ //1MB
-        alert('Kích cỡ file phải nhỏ hơn 1MB');
-        fileData=null;
+        alert('Không đúng định dạng');
+        fileData = null;
         return false;
     }
-    else{
-        reader.onload = function () {
-            document.getElementById('avatar').src = reader.result;
-         }
-         let userAvatar = null;
-         let formData = new FormData();
-         formData.append('avatar', fileData);
-         userAvatar = formData;
-         console.log(userAvatar)
-         const file = reader.readAsDataURL(fileData);    
+
+    if (fileData['size'] > 1048576) {
+
+        if (fileData['size'] > 1048576) { //1MB
+            alert('Kích cỡ file phải nhỏ hơn 1MB');
+            fileData = null;
+            return false;
+        } else {
+            reader.onload = function () {
+                document.getElementById('avatar').src = reader.result;
+            }
+        }
+        const file = reader.readAsDataURL(fileData);
     }
-    
+    let userAvatar = null;
+    let formData = new FormData();
+    formData.append('avatar', fileData);
+    userAvatar = formData;
+    console.log(userAvatar)
+    const file = reader.readAsDataURL(fileData);
+}
+
+// console.log(editorParent.style)
+const editorName = document.querySelector('.txt-name-default');
+const editorParent = document.querySelector('#editor-name-parent');
+editorName.onclick = function () {
+    var input = editorName.innerHTML
+    // console.log(input)
+    var preEntry = input.substring(0, input.indexOf("<span> ") + 7)
+    // console.log(preEntry)
+    var entry = input.substring(input.indexOf("<span> ") + 6, input.indexOf("</span>"))
+    // console.log(entry)
+    var
+        postEntry = input.substring(input.indexOf("</span>"));
+    editorParent.innerHTML = ('<input name="txt-name" type="text" value="' +
+        entry + '">' +
+        postEntry);
+
+    Object.assign(editorParent.style, {
+        textAlign: "center",
+        marginTop: "10px",
+        fontSize: "18px",
+        fontWeight: "bold"
+    })
 }

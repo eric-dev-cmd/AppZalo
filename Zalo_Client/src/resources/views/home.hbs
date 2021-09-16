@@ -355,12 +355,19 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-12 p-0" id="editor-name">
 
-                        <div class="col-12 p-0">
-                            <h2 class="text-center border-bottom mb-0 p-4">{{user.userName}}<span><i
-                                        class="fal fa-edit fs-14 ms-4 cursor-point"></i></span></h2>
+                            <div id="editor-name-parent">
+                                <h2 class="text-center border-bottom mb-0 p-4 txt-name-default">
+                                    <span> {{user.userName}}</span><i
+                                        class="fal fa-edit fs-14 ms-4 cursor-point edit"></i>
+                                </h2>
+
+                            </div>
+
                         </div>
-                        <div class="col-12 border-end border-bottom p-5">
+
+                        <div class="col-12 border-end border-bottom border-start p-5">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-3 fs-14">
@@ -385,34 +392,38 @@
                                         value="{{user.birthday}}" onchange="loadBirthday()" />
 
                                 </div>
-                                <input type="hidden" name="id" value="{{user._id}}">
-                                <input type="hidden" id="gender" value="{{user.gender}}">
-                                <div class="col-12 fs-14">
-                                    <div>
-                                        <label for="" class="pb-2">Gender</label>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="radio1" name="gender" class="custom-control-input"
-                                                value="male">
-                                            <label class="custom-control-label" for="radio1">Male</label>
+                                <div class="col-md-12">
+                                    <input type="hidden" name="id" value="{{user._id}}">
+                                    <input type="hidden" id="gender" value="{{user.gender}}">
+                                    <div class="col-12 fs-14">
+                                        <div>
+                                            <label for="" class="pb-2">Gender</label>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="radio1" name="gender"
+                                                    class="custom-control-input" value="male">
+                                                <label class="custom-control-label" for="radio1">Male</label>
 
-                                            <input type="radio" id="radio2" name="gender" class="custom-control-input"
-                                                value="female">
-                                            <label class="custom-control-label" for="radio2">Female</label>
+                                                <input type="radio" id="radio2" name="gender"
+                                                    class="custom-control-input" value="female">
+                                                <label class="custom-control-label" for="radio2">Female</label>
+                                            </div>
+
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
 
                         <div class="col-md-12">
                             <div class="modal-footer d-block">
                                 <button type="submit" class="btn btn-danger form-control form-control-sm fs-14
-                                                text-white text-uppercase" onclick="loadBirthday()">Save</button>
+                                                                        text-white text-uppercase"
+                                    onclick="loadBirthday()">Save</button>
                             </div>
                         </div>
-
-                    </div>
                 </form>
             </div>
         </div>
