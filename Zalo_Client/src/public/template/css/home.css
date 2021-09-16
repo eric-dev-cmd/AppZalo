@@ -470,3 +470,125 @@ body>.app .nav-tab-left {
     border: 1px solid #aba9a9;
     cursor: pointer;
 }
+
+.mg-15 {
+    margin: -15px
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-box .input-wrapper {
+    width: 82%;
+    padding: 11px;
+    background-color: #36404a;
+}
+
+.search-box .input-wrapper input {
+    width: 83%;
+    margin-left: 10px;
+    border: none;
+    background: #36404a;
+    color: #a6a8ba
+}
+
+.search-box .input-wrapper i {
+    color: #a6a8ba;
+
+}
+
+.search-box .input-wrapper input::placeholder {
+    background: #36404a;
+    border: none
+}
+
+.search-box .input-wrapper input:focus {
+    outline: none;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.select-box .marked-hover:hover {
+    color: rgb(75, 99, 233) !important
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+
+.item .avatar-online {
+    background-color: #36404a;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    display: block;
+    display: inline-block;
+    width: 75px;
+    height: 55px;
+    margin-top: 25px;
+}
+
+.item .avatar-online .chat-user-img {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    right: 0;
+}
+
+.item .avatar-online .bg-online {
+    background: #06d6a0 !important;
+}
+
+.item .avatar-online .bg-offline {
+    background: red;
+}
+
+.item .avatar-online .user-status {
+    width: 10px;
+    height: 10px;
+    background-color: #9aa1b9;
+    border-radius: 50%;
+    border: 2px solid #262e35;
+    border-top-color: rgb(38, 46, 53);
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-right-color: rgb(38, 46, 53);
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-bottom-color: rgb(38, 46, 53);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-left-color: rgb(38, 46, 53);
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    position: absolute;
+    right: 0;
+    left: auto;
+    bottom: 0;
+
+}
+
+.avatar-online .chat-user-img img {
+    display: block;
+    width: 100%;
+}
+
+.item .avatar-online .avatar-xs {
+    width: 50px;
+    height: 50px
+}
+
+.txt-name {
+    color: #e1e9f1
+}
