@@ -1,14 +1,13 @@
 const passport = require('passport');
 const passportLocal = require('passport-local');
 const axios = require('axios');
+const http = require('./http');
 const {
     transErrors,
     transSuccess
 } = require('../../lang/vi');
 
 const LocalStrategy = passportLocal.Strategy;
-
-const http = "http://localhost:3018";
 
 /**
  * Kiem tra tai khoan

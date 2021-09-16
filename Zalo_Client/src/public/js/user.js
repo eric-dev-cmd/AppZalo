@@ -28,11 +28,11 @@ function loadYear() {
         var optNam = document.createElement('option');
         // Gan thuoc tinh cho tag <option> ten optNam
         // Text: Du lieu hien thi tren ddl
-       
+
         optNam.text = iNam;
         // Value: Gia tri cua du lieu tren
         optNam.value = iNam;
-        if(iNam == year){
+        if (iNam == year) {
             optNam.selected = true;
         }
         // Them tag <option> ten optNam vao tag <select> ten Nam
@@ -49,7 +49,7 @@ function loadMonth() {
         var optThang = document.createElement('option');
         optThang.text = iThang;
         optThang.value = iThang;
-        if(iThang == month){
+        if (iThang == month) {
             optThang.selected = true;
         }
         Thang.options.add(optThang);
@@ -57,7 +57,7 @@ function loadMonth() {
 }
 // Load Ngay
 function loadDay() {
-    var Ngay = document.getElementById('ddlNgay');
+    const Ngay = document.getElementById('ddlNgay');
     const Thang = document.getElementById('ddlThang');
     const Nam = document.getElementById('ddlNam');
     Ngay.length = 0;
@@ -70,15 +70,16 @@ function loadDay() {
         // Truong hop thang 2
         case 2:
             // Lay gia tri Nam dang duoc chon trong ddlNam
-            var gtNam = parseInt(Nam.selectedIndex);
+            var gtNam = parseInt(Nam.value);
+            console.log(gtNam)
             // Thuat toan tinh nam nhuan
             if ((gtNam % 4 == 0) && ((gtNam % 100 != 0) || (gtNam % 400 == 0))) {
                 // La nam nhuan
-                SoNgay = 28;
+                SoNgay = 29;
             }
             else {
                 // Khong la nam nhuan
-                SoNgay = 29;
+                SoNgay = 28;
             }
             break;
         // Truong hop cac thang 1, 3, 5, 7, 8, 10, 12
@@ -95,10 +96,42 @@ function loadDay() {
         var optNgay = document.createElement('option');
         optNgay.text = iNgay;
         optNgay.value = iNgay;
-        if(iNgay == day){
+        if (iNgay == day) {
             optNgay.selected = true;
         }
         Ngay.options.add(optNgay);
     }
+}
+
+//load ngay truyen vao view
+function loadBirthday() {
+    const Ngay = document.getElementById('ddlNgay');
+    const Thang = document.getElementById('ddlThang');
+    const Nam = document.getElementById('ddlNam');
+    const updateBirthday = Ngay.value + '/' + Thang.value + '/' + Nam.value;
+    document.getElementById("birthday").value = updateBirthday;
+}
+
+//thay doi avatar
+function preview_image(event) {
+    var reader = new FileReader();
+    var fileData = event.target.files[0];
+    if(fileData['type'].split('/')[0] !== 'image'){
+        //alertify.notify('Không đúng định dạng', 'error', 7);
+         alert('Không đúng định dạng');
+         fileData=null;
+         return false;
+    }
+    if(fileData['size'] > 1048576){
+        alert('Kích cỡ file phải nhỏ hơn 1MB');
+        fileData=null;
+        return false;
+    }
+    else{
+        reader.onload = function () {
+            document.getElementById('avatar').src = reader.result;
+         }
+    }
+    const file = reader.readAsDataURL(fileData);
     
 }
