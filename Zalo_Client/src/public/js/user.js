@@ -130,18 +130,28 @@ function preview_image(event) {
         fileData = null;
         return false;
     }
-    if (fileData['size'] > 1048576) {
-        alert('Kích cỡ file phải nhỏ hơn 1MB');
-        fileData = null;
-        return false;
-    } else {
-        reader.onload = function () {
-            document.getElementById('avatar').src = reader.result;
-        }
-    }
-    const file = reader.readAsDataURL(fileData);
 
+    if (fileData['size'] > 1048576) {
+
+        if (fileData['size'] > 1048576) { //1MB
+            alert('Kích cỡ file phải nhỏ hơn 1MB');
+            fileData = null;
+            return false;
+        } else {
+            reader.onload = function () {
+                document.getElementById('avatar').src = reader.result;
+            }
+        }
+        const file = reader.readAsDataURL(fileData);
+    }
+    let userAvatar = null;
+    let formData = new FormData();
+    formData.append('avatar', fileData);
+    userAvatar = formData;
+    console.log(userAvatar)
+    const file = reader.readAsDataURL(fileData);
 }
+
 // console.log(editorParent.style)
 const editorName = document.querySelector('.txt-name-default');
 const editorParent = document.querySelector('#editor-name-parent');

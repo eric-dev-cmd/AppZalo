@@ -318,7 +318,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="padding: 0 14px;">
-                <form action="home/updateProfile" method="POST">
+                <form action="updateProfile" method="POST" enctype='multipart/form-data'>
                     <div class="container shadow">
                         <div class="row">
                             <div class="col-12 p-0">
@@ -335,91 +335,96 @@
                                     <div class="rel" style="text-align: center; margin: -47px 0px 0px;">
                                         <img src="images/{{user.avatar}}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
                                             cursor: pointer; position: relative" id="avatar">
-                                        <div class="position-absolute avatar-camera cursor-point">
-                                            <label for="choose-image">
-                                                <i class="far fa-camera-alt">
-                                                </i>
-                                            </label>
-                                            <input type="file" accept="image/*" onchange="preview_image(event)"
-                                                id="choose-image" class="input-hidden">
-                                        </div>
 
                                     </div>
                                 </div>
+                                <div class="position-absolute avatar-camera cursor-point">
+                                    <label for="choose-image">
+                                        <i class="far fa-camera-alt">
+                                        </i>
+                                    </label>
+                                    <input type="file" accept="image/*" onchange="preview_image(event)"
+                                        id="choose-image" class="input-hidden" name="avatar">
+                                </div>
+
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 p-0" id="editor-name">
 
-                            <div class="row">
-
-                                <div class="col-12 p-0" id="editor-name">
-
-                                    <div id="editor-name-parent">
-                                        <h2 class="text-center border-bottom mb-0 p-4 txt-name-default">
-                                            <span> {{user.userName}}</span><i
-                                                class="fal fa-edit fs-14 ms-4 cursor-point edit"></i>
-                                        </h2>
-
-                                    </div>
-
-                                </div>
-                                <div class="col-12 border-end border-bottom p-5">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3 fs-14">
-                                                <label for="" class="pb-2">Phone registered</label>
-                                                <input type="text" class="form-control fs-14 no-drop" id="phone"
-                                                    name="phone" placeholder="{{user.local.phone}}" readonly />
-                                            </div>
-                                        </div>
-                                        <label for="" class="pb-2 fs-14">Birthday</label>
-                                        <div class="col-3">
-                                            <select class="form-select mb-3 fs-14" id="ddlNgay">
-                                            </select>
-                                        </div>
-                                        <div class="col-3">
-                                            <select class="form-select mb-3 fs-14" id="ddlThang" onchange="loadDay()">
-                                            </select>
-                                        </div>
-                                        <div class="col-3">
-                                            <select class="form-select mb-3 fs-14" id="ddlNam" onchange="loadDay()">
-                                            </select>
-                                            <input type="hidden" class="form-control fs-14" id="birthday"
-                                                name="birthday" value="{{user.birthday}}" onchange="loadBirthday()" />
-
-                                        </div>
-                                        <input type="hidden" name="id" value="{{user._id}}">
-                                        <input type="hidden" id="gender" value="{{user.gender}}">
-                                        <div class="col-12 fs-14">
-                                            <div>
-                                                <label for="" class="pb-2">Gender</label>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="radio1" name="gender"
-                                                        class="custom-control-input" value="male">
-                                                    <label class="custom-control-label" for="radio1">Male</label>
-
-                                                    <input type="radio" id="radio2" name="gender"
-                                                        class="custom-control-input" value="female">
-                                                    <label class="custom-control-label" for="radio2">Female</label>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="modal-footer d-block">
-                                        <button type="submit" class="btn btn-danger form-control form-control-sm fs-14
-                                                text-white text-uppercase" onclick="loadBirthday()">Save</button>
-                                    </div>
-                                </div>
+                            <div id="editor-name-parent">
+                                <h2 class="text-center border-bottom mb-0 p-4 txt-name-default">
+                                    <span> {{user.userName}}</span><i
+                                        class="fal fa-edit fs-14 ms-4 cursor-point edit"></i>
+                                </h2>
 
                             </div>
 
                         </div>
-                    </div>
+
+                        <div class="col-12 border-end border-bottom p-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3 fs-14">
+                                        <label for="" class="pb-2">Phone registered</label>
+                                        <input type="text" class="form-control fs-14 no-drop" id="phone"
+                                            placeholder="{{user.local.phone}}" readonly />
+                                    </div>
+                                </div>
+                                <label for="" class="pb-2 fs-14">Birthday</label>
+                                <div class="col-3">
+                                    <select class="form-select mb-3 fs-14" id="ddlNgay">
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <select class="form-select mb-3 fs-14" id="ddlThang" onchange="loadDay()">
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <select class="form-select mb-3 fs-14" id="ddlNam" onchange="loadDay()">
+                                    </select>
+                                    <input type="hidden" class="form-control fs-14" id="birthday" name="birthday"
+                                        value="{{user.birthday}}" onchange="loadBirthday()" />
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-md-12">
+                            <input type="hidden" name="id" value="{{user._id}}">
+                            <input type="hidden" id="gender" value="{{user.gender}}">
+                            <div class="col-12 fs-14">
+                                <div>
+                                    <label for="" class="pb-2">Gender</label>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio1" name="gender" class="custom-control-input"
+                                            value="male">
+                                        <label class="custom-control-label" for="radio1">Male</label>
+
+                                        <input type="radio" id="radio2" name="gender" class="custom-control-input"
+                                            value="female">
+                                        <label class="custom-control-label" for="radio2">Female</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="modal-footer d-block">
+                                <button type="submit" class="btn btn-danger form-control form-control-sm fs-14
+                                                                        text-white text-uppercase"
+                                    onclick="loadBirthday()">Save</button>
+                            </div>
+                        </div>
                 </form>
             </div>
         </div>
+
     </div>
+</div>
+</div>
 </div>
 </div>
