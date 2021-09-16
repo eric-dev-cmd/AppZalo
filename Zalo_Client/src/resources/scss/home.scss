@@ -313,3 +313,19 @@ body > .app .nav-tab-left {
 .dropdown-toggle:empty::after {
   display: none;
 }
+
+.avatar-camera {
+  right: 284px;
+  top: 32%;
+  font-size: 16px;
+  color: gray;
+  background: white;
+  padding: 0px;
+  border-radius: 50%;
+  padding: 4px 5px;
+  border: 1px solid #aba9a9;
+  cursor: pointer;
+}
+.no-drop {
+  cursor: no-drop;
+}

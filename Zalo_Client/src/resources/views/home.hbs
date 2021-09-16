@@ -339,22 +339,25 @@
                                         src="https://s120-ava-talk.zadn.vn/0/d/3/0/9/120/1b000c3d1edecee9e0fd6c2ceca6616c.jpg"
                                         style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
                                             cursor: pointer; position: relative">
+                                    <div class="position-absolute avatar-camera">
+                                        <i class="far fa-camera-alt"></i>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <form action="home/updateProfile" method="POST">
                                     <div class="col-12 p-0">
-                                        <h2 class="text-center border-bottom mb-0 p-4">{{user.userName}}</h2>
+                                        <h2 class="text-center border-bottom mb-0 p-4">{{user.userName}}<span><i
+                                                    class="fal fa-edit fs-14 ms-4 cursor-point"></i></span></h2>
                                     </div>
                                     <div class="col-12 border-end border-bottom p-5">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="mb-3 fs-14">
                                                     <label for="" class="pb-2">Phone registered</label>
-                                                    <input type="text" class="form-control fs-14" id="phone"
-                                                        name="phone" value="{{user.local.phone}}"
-                                                        placeholder="{{user.local.phone}}" readonly />
+                                                    <input type="text" class="form-control fs-14 no-drop" id="phone"
+                                                        name="phone" placeholder="{{user.local.phone}}" readonly />
                                                 </div>
                                             </div>
                                             <label for="" class="pb-2 fs-14">Birthday</label>
@@ -370,11 +373,12 @@
                                             <div class="col-3">
                                                 <select class="form-select mb-3 fs-14" id="ddlNam" onchange="loadDay()">
                                                 </select>
-                                                <input type="hidden" class="form-control fs-14" id="birthday" name="birthday"
-                                                     value="{{user.birthday}}" onchange="loadBirthday()"/>
+                                                <input type="hidden" class="form-control fs-14" id="birthday"
+                                                    name="birthday" value="{{user.birthday}}"
+                                                    onchange="loadBirthday()" />
 
                                             </div>
-                                             <input type="hidden" name="id" value="{{user._id}}">
+                                            <input type="hidden" name="id" value="{{user._id}}">
                                             <input type="hidden" id="gender" value="{{user.gender}}">
                                             <div class="col-12 fs-14">
                                                 <div>
@@ -382,13 +386,11 @@
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="radio1" name="gender"
                                                             class="custom-control-input" value="male">
-                                                        <label class="custom-control-label"
-                                                            for="radio1">Male</label>
+                                                        <label class="custom-control-label" for="radio1">Male</label>
 
                                                         <input type="radio" id="radio2" name="gender"
                                                             class="custom-control-input" value="female">
-                                                        <label class="custom-control-label"
-                                                            for="radio2">Female</label>
+                                                        <label class="custom-control-label" for="radio2">Female</label>
                                                     </div>
 
                                                 </div>
