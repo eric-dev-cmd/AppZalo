@@ -380,3 +380,7 @@ body > .app .nav-tab-left {
 
 .no-drop {
   cursor: no-drop; }
+
+.input-hidden {
+  display: none;
+  visibility: hidden; }
