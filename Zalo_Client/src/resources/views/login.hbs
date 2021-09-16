@@ -17,10 +17,9 @@
             <span class="form-message"></span>
         </div>
 
-        {{#if errors}}
-        {{errors}}
+        {{#if message}}
+        <div class="alert alert-danger">{{message}}</div>
         {{/if}}
-
         <button class="form-submit">Đăng nhập</button>
         <div class="form-group mt-2">
             <span><a href="#" class="text-decoration-none">Quên mật khẩu</a></span>

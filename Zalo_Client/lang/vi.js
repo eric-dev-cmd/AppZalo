@@ -4,7 +4,8 @@ const  transErrors = {
 };
 
 const transSuccess = {
-    login_success: 'Đăng nhập thành công.'
+    login_success: 'Đăng nhập thành công.',
+    update_profile_success: 'Cập nhật thông tin thành công.'
 };
 
 module.exports = {transErrors, transSuccess};
