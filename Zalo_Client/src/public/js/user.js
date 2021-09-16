@@ -133,5 +133,4 @@ function preview_image(event) {
          }
     }
     const file = reader.readAsDataURL(fileData);
-    
 }
