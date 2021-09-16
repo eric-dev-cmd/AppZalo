@@ -341,20 +341,23 @@
                                             cursor: pointer; position: relative">
                                 </div>
                             </div>
-                            <div class="col-12 p-0">
-                                <h2 class="text-center border-bottom mb-0 p-4">{{user.userName}}</h2>
-                            </div>
+
                             <div class="row">
-                                <form>
+                                <form action="home/updateProfile" method="POST">
+                                    <div class="col-12 p-0">
+                                        <h2 class="text-center border-bottom mb-0 p-4">{{user.userName}}</h2>
+                                    </div>
                                     <div class="col-12 border-end border-bottom p-5">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="mb-3 fs-14">
                                                     <label for="" class="pb-2">Phone registered</label>
                                                     <input type="text" class="form-control fs-14" id="phone"
-                                                        name="phone" placeholder="{{user.local.phone}}" readonly />
+                                                        name="phone" value="{{user.local.phone}}"
+                                                        placeholder="{{user.local.phone}}" readonly />
                                                 </div>
                                             </div>
+                                            <label for="" class="pb-2 fs-14">Birthday</label>
                                             <div class="col-3">
                                                 <select class="form-select mb-3 fs-14" id="ddlNgay">
                                                 </select>
@@ -367,23 +370,25 @@
                                             <div class="col-3">
                                                 <select class="form-select mb-3 fs-14" id="ddlNam" onchange="loadDay()">
                                                 </select>
-                                                <input type="hidden" class="form-control fs-14" id="birthday"
-                                                    value="{{user.birthday}}" />
+                                                <input type="hidden" class="form-control fs-14" id="birthday" name="birthday"
+                                                     value="{{user.birthday}}" onchange="loadBirthday()"/>
+
                                             </div>
+                                             <input type="hidden" name="id" value="{{user._id}}">
                                             <input type="hidden" id="gender" value="{{user.gender}}">
                                             <div class="col-12 fs-14">
                                                 <div>
+                                                    <label for="" class="pb-2">Gender</label>
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="radio1" name="gender"
-                                                            class="custom-control-input">
+                                                            class="custom-control-input" value="male">
                                                         <label class="custom-control-label"
-                                                            for="customRadio1">Male</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
+                                                            for="radio1">Male</label>
+
                                                         <input type="radio" id="radio2" name="gender"
-                                                            class="custom-control-input">
+                                                            class="custom-control-input" value="female">
                                                         <label class="custom-control-label"
-                                                            for="customRadio2">Female</label>
+                                                            for="radio2">Female</label>
                                                     </div>
 
                                                 </div>
@@ -394,7 +399,7 @@
                                     <div class="col-md-12">
                                         <div class="modal-footer d-block">
                                             <button type="submit" class="btn btn-danger form-control form-control-sm fs-14
-                                                text-white text-uppercase">Save</button>
+                                                text-white text-uppercase" onclick="loadBirthday()">Save</button>
                                         </div>
                                     </div>
                                 </form>

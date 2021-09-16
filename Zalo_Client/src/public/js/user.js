@@ -57,7 +57,7 @@ function loadMonth() {
 }
 // Load Ngay
 function loadDay() {
-    var Ngay = document.getElementById('ddlNgay');
+    const Ngay = document.getElementById('ddlNgay');
     const Thang = document.getElementById('ddlThang');
     const Nam = document.getElementById('ddlNam');
     Ngay.length = 0;
@@ -70,15 +70,16 @@ function loadDay() {
         // Truong hop thang 2
         case 2:
             // Lay gia tri Nam dang duoc chon trong ddlNam
-            var gtNam = parseInt(Nam.selectedIndex);
+            var gtNam = parseInt(Nam.value);
+            console.log(gtNam)
             // Thuat toan tinh nam nhuan
             if ((gtNam % 4 == 0) && ((gtNam % 100 != 0) || (gtNam % 400 == 0))) {
                 // La nam nhuan
-                SoNgay = 28;
+                SoNgay = 29;
             }
             else {
                 // Khong la nam nhuan
-                SoNgay = 29;
+                SoNgay = 28;
             }
             break;
         // Truong hop cac thang 1, 3, 5, 7, 8, 10, 12
@@ -100,5 +101,11 @@ function loadDay() {
         }
         Ngay.options.add(optNgay);
     }
-    
+}
+function loadBirthday() {
+    const Ngay = document.getElementById('ddlNgay');
+    const Thang = document.getElementById('ddlThang');
+    const Nam = document.getElementById('ddlNam');
+    const updateBirthday = Ngay.value + '/' +Thang.value + '/' + Nam.value ;
+    document.getElementById("birthday").value = updateBirthday;
 }
