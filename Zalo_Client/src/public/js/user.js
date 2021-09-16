@@ -164,7 +164,7 @@ editorName.onclick = function () {
     // console.log(entry)
     var
         postEntry = input.substring(input.indexOf("</span>"));
-    editorParent.innerHTML = ('<input name="txt-name" type="text" value="' +
+    editorParent.innerHTML = ('<input name="userName" type="text" value="' +
         entry + '">' +
         postEntry);
 
