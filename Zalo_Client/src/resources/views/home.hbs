@@ -318,7 +318,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="padding: 0 14px;">
-                <form action="home/updateProfile" method="POST">
+                <form action="home/updateProfile" method="POST" enctype='multipart/form-data'>
                     <div class="container shadow">
                         <div class="row">
                             <div class="col-12 p-0">
@@ -344,7 +344,7 @@
                                         </i>
                                     </label>
                                     <input type="file" accept="image/*" onchange="preview_image(event)"
-                                        id="choose-image" class="input-hidden">
+                                        id="choose-image" class="input-hidden" name="avatar">
                                 </div>
 
                             </div>
@@ -361,7 +361,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3 fs-14">
                                         <label for="" class="pb-2">Phone registered</label>
-                                        <input type="text" class="form-control fs-14 no-drop" id="phone" name="phone"
+                                        <input type="text" class="form-control fs-14 no-drop" id="phone"
                                             placeholder="{{user.local.phone}}" readonly />
                                     </div>
                                 </div>

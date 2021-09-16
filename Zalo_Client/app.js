@@ -10,6 +10,7 @@ const dotenv = require('dotenv')
 const port = process.env.PORT || 3017
 const db = require('./src/config/db')
 const configSession = require('./src/config/session');
+const upload = require('express-fileupload');
 
 dotenv.config({
     path: './config.env'
@@ -54,6 +55,8 @@ app.use(passport.session());
 /**
  * TODO: Route init
  */
+
+app.use(upload());
 route(app);
 
 app.listen(port, () => {

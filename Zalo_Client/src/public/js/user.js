@@ -122,7 +122,7 @@ function preview_image(event) {
          fileData=null;
          return false;
     }
-    if(fileData['size'] > 1048576){
+    if(fileData['size'] > 1048576){ //1MB
         alert('Kích cỡ file phải nhỏ hơn 1MB');
         fileData=null;
         return false;
@@ -131,6 +131,12 @@ function preview_image(event) {
         reader.onload = function () {
             document.getElementById('avatar').src = reader.result;
          }
+         let userAvatar = null;
+         let formData = new FormData();
+         formData.append('avatar', fileData);
+         userAvatar = formData;
+         console.log(userAvatar)
+         const file = reader.readAsDataURL(fileData);    
     }
-    const file = reader.readAsDataURL(fileData);
+    
 }
