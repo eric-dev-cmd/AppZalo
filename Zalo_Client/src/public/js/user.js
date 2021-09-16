@@ -130,20 +130,18 @@ function preview_image(event) {
         fileData = null;
         return false;
     }
-
-    if (fileData['size'] > 1048576) {
-
-        if (fileData['size'] > 1048576) { //1MB
-            alert('Kích cỡ file phải nhỏ hơn 1MB');
-            fileData = null;
-            return false;
-        } else {
-            reader.onload = function () {
-                document.getElementById('avatar').src = reader.result;
-            }
+    if (fileData['size'] > 1048576) { //1MB
+        alert('Kích cỡ file phải nhỏ hơn 1MB');
+        fileData = null;
+        return false;
+    } else {
+        reader.onload = function () {
+            document.getElementById('avatar').src = reader.result;
         }
         const file = reader.readAsDataURL(fileData);
     }
+
+
     let userAvatar = null;
     let formData = new FormData();
     formData.append('avatar', fileData);
@@ -164,7 +162,7 @@ editorName.onclick = function () {
     // console.log(entry)
     var
         postEntry = input.substring(input.indexOf("</span>"));
-    editorParent.innerHTML = ('<input name="txt-name" type="text" value="' +
+    editorParent.innerHTML = ('<input name="userName" type="text" value="' +
         entry + '">' +
         postEntry);
 
