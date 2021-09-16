@@ -1,11 +1,11 @@
 class LoginController {
     showLogin(req, res) {
+        res.locals.message = req.flash('errors');
         res.render('login');
     }
 
     getLogout(req, res) {
         req.logout();
-        //req.flash()
         return res.redirect('/login-register');
 
     }

@@ -21,14 +21,12 @@ function initPassportLocal() {
         try {
             const user = await axios.get(http + '/users/searchPhone/' + phone);
             if (!user.data.user) {
-                return done(null, false, {
-                    message: 'The email you entered is incorrect'
-                });
+                return done(null, false, req.flash('errors', transErrors.login_failed));
             }
             if (!(user.data.user.local.password === password)) {
                 return done(null, false, req.flash('errors', transErrors.login_failed));
             }
-            return done(null, user, req.flash('success', transSuccess.login_success));
+            return done(null, user);
         } catch (error) {
             console.log(error);
             return done(null, false);
