@@ -1,15 +1,17 @@
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+let sessionStore = MongoStore.create({
+    mongoUrl: 'mongodb://localhost:27017/appzalo',
+    autoRemove: 'native'
+})
+
+
 function configSession(app) {
     app.use(session({
         key: 'express.sid',
         secret: 'mySecret',
-        store: MongoStore.create({
-            mongoUrl: 'mongodb://localhost:27017/appzalo',
-            //mongoUrl: 'mongodb+srv://admin:DHKTPM14@cluster0.lxnwb.mongodb.net/appzalo?retryWrites=true&w=majority',
-            autoRemove: 'native'
-        }),
+        store: sessionStore,
         resave: true,
         saveUninitialized: false,
         cookie: {
@@ -18,4 +20,8 @@ function configSession(app) {
     }));
 }
 
-module.exports = configSession;
+
+module.exports = {
+    configSession: configSession,
+    sessionStore: sessionStore
+}

@@ -2,15 +2,27 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const app = express();
 const route = require('./src/routes/index');
 const passport = require('passport');
 const connectFlash = require('connect-flash');
 const dotenv = require('dotenv')
 const port = process.env.PORT || 3017
 const db = require('./src/config/db')
-const configSession = require('./src/config/session');
+const session = require('./src/config/session');
 const upload = require('express-fileupload');
+const http = require('http');
+const socketIo = require('socket.io');
+const initSockets = require('./src/sockets/index');
+const passportSocketIo = require('passport.socketio');
+const cookieParser = require('cookie-parser');
+const { fail } = require('assert');
+
+//init app
+const app = express();
+
+//init server with socket.io and http
+const server = http.createServer(app);
+const io = socketIo(server);
 
 dotenv.config({
     path: './config.env'
@@ -19,7 +31,7 @@ dotenv.config({
 
 db.connect();
 
-configSession(app);
+session.configSession(app);
 
 /**
  * TODO: HTTP logger
@@ -46,6 +58,8 @@ app.use(express.json());
  */
 app.use(connectFlash());
 
+// user cookie parser
+app.use(cookieParser());
 
 /**
  * Config passport
@@ -57,8 +71,20 @@ app.use(passport.session());
  */
 
 app.use(upload());
+
+//init route
 route(app);
 
-app.listen(port, () => {
+io.use(passportSocketIo.authorize({
+    cookieParser: cookieParser,
+    key: 'express.sid',
+    secret: 'mySecret',
+    store: session.sessionStore
+}))
+
+//intit socket
+initSockets(io);
+
+server.listen(port, () => {
     console.log(`App running on http://localhost:${port}...`)
 });
