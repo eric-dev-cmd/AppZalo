@@ -4,6 +4,10 @@ const messageRouter = require('./messagesRouter');
 const notificationRouter = require('./notificationsRouter');
 const chatGroupRouter = require('./chatGroupsRouter');
 function route(app){
+    app.use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*');
+        next();
+      });
     app.use('/contacts', contactsRouter);
     app.use('/users', userRouter);
     app.use('/messages', messageRouter);

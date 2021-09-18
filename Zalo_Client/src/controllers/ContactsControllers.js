@@ -1,6 +1,13 @@
+const axios = require('axios');
+const http = require('./http');
+
 class ContactController {
-    index(req, res) {
-        res.render('home');
+    search(req, res, next) {
+        axios.get(http + '/users/searchPhone/' + req.query.phone)
+        .then(user => {
+            res.render('home', {user: user.data.user})
+        })
+        .catch(next);
     }
 }
 
