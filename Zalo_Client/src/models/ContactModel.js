@@ -19,10 +19,5 @@ const Contact = new Schema(
     },
 );
 
-ContactStatic = {
-    createNew(item) {
-        return this.create(item);
-    },
-};
 
 module.exports = mongoose.model('contact', Contact);

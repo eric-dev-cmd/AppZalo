@@ -3,16 +3,32 @@ const Contact = require('../models/contactModel');
 class ContactsController {
     getAPI(req, res, next){
         Contact.find({})
-            .then(apis => {
-                res.json(apis)
+            .then(contacts => {
+                res.json({contacts})
+            })
+            .catch(next);
+    }
+
+    getAPIByUserId(req, res, next){
+        Contact.findOne({'userId': req.params.userId})
+            .then(contacts => {
+                res.json({contacts})
+            })
+            .catch(next);
+    }
+
+    getAPIByContactId(req, res, next){
+        Contact.findOne({'contactId': req.params.contactId})
+            .then(contacts => {
+                res.json({contacts})
             })
             .catch(next);
     }
 
     getAPIById(req, res, next) {
         Contact.findById(req.params.id)
-            .then(api => {
-                res.json({api});
+            .then(contact => {
+                res.json({contact});
             })
             .catch(next);
     }
@@ -20,8 +36,8 @@ class ContactsController {
     postAPI(req, res, next) {
         const contact = new Contact(req.body);
         contact.save()
-            .then(api => {
-                res.json({api});
+            .then(contact => {
+                res.json({contact});
             })
             .catch(next);
     }
@@ -29,16 +45,16 @@ class ContactsController {
     putAPI(req, res, next) {
         const data = req.body;
         Contact.findByIdAndUpdate(req.params.id, data)
-            .then(api => {
-                res.json({api});
+            .then(contact => {
+                res.json({contact});
             })
             .catch(next)
     }
 
     deleteAPI(req, res, next) {
         Contact.findByIdAndRemove(req.params.id)
-            .then(api => {
-                res.json(api);
+            .then(contact => {
+                res.json(contact);
             })
             .catch(next);
     }
