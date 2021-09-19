@@ -1,4 +1,10 @@
 /* Add friend */
+.bg-white {
+  background: white;
+}
+.txt-black {
+  color: black !important;
+}
 .list-addfriend-wrapper {
   width: 100%;
   height: 55px;
@@ -70,11 +76,16 @@
 
 .btn-add-friend {
   font-size: 13px;
-  padding: 3px 8px;
+  // padding: 3px 8px;
   background: #c5c3d626;
   color: #0068ff;
   border-color: #3989ff !important;
   border-radius: 3px;
+  width: 70px;
+  min-width: 100%;
+  text-align: center;
+  padding: 2px 8px;
+  color: black;
 }
 
 #more {

@@ -4,13 +4,13 @@
   box-sizing: border-box;
 }
 
-html {
-  color: #333;
-  font-size: 62.5%;
-  overflow: hidden;
-}
+// html {
+//   color: #333;
+//   font-size: 62.5%;
+//   overflow: hidden;
+// }
 body {
-  display: flex;
+  // display: flex;
   font-family: 'Poppins', sans-serif;
 }
 .fs-24 {
@@ -29,4 +29,7 @@ body {
 
 .fs-13 {
   font-size: 13px;
+}
+.cursor-point {
+  cursor: pointer;
 }
