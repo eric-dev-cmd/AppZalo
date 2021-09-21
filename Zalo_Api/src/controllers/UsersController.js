@@ -54,9 +54,9 @@ class UsersController {
             .then(user => {
                 res.status(200).json({
                     status: 'Success',
-                    result: data.length,
+                    result: user.length,
                     data: {
-                        data,
+                        user,
                     }
                 });
             })

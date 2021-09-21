@@ -1,26 +1,49 @@
 const Contact = require('../models/contactModel');
 
 class ContactsController {
-    getAPI(req, res, next){
+    getAPI(req, res, next) {
         Contact.find({})
             .then(contacts => {
-                res.json({contacts})
+                res.json({ contacts })
             })
             .catch(next);
     }
 
-    getAPIByUserId(req, res, next){
-        Contact.findOne({'userId': req.params.userId})
+    getAPIByUserId(req, res, next) {
+        Contact.findOne({ 'userId': req.params.userId })
             .then(contacts => {
-                res.json({contacts})
+                res.json({ contacts })
             })
             .catch(next);
     }
 
-    getAPIByContactId(req, res, next){
-        Contact.findOne({'contactId': req.params.contactId})
+    getAPIByContactId(req, res, next) {
+        Contact.findOne({ 'contactId': req.params.contactId })
             .then(contacts => {
-                res.json({contacts})
+                res.json({ contacts })
+            })
+            .catch(next);
+    }
+
+    getAPIByUserIdAndContactId(req, res, next) {
+        Contact.find({
+            '$or': [{
+                '$and':
+                    [
+                        { 'userId': req.params.userid },
+                        { 'contactId': req.params.contactid }
+                    ]
+            },
+            {
+                '$and':
+                    [
+                        { 'userId': req.params.contactid },
+                        { 'contactId': req.params.userid }
+                    ]
+            }]
+        })
+            .then(contact => {
+                res.json({ contact })
             })
             .catch(next);
     }
@@ -28,7 +51,7 @@ class ContactsController {
     getAPIById(req, res, next) {
         Contact.findById(req.params.id)
             .then(contact => {
-                res.json({contact});
+                res.json({ contact });
             })
             .catch(next);
     }
@@ -37,7 +60,7 @@ class ContactsController {
         const contact = new Contact(req.body);
         contact.save()
             .then(contact => {
-                res.json({contact});
+                res.json({ contact });
             })
             .catch(next);
     }
@@ -46,7 +69,7 @@ class ContactsController {
         const data = req.body;
         Contact.findByIdAndUpdate(req.params.id, data)
             .then(contact => {
-                res.json({contact});
+                res.json({ contact });
             })
             .catch(next)
     }

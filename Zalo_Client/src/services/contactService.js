@@ -6,7 +6,7 @@ class ContactService {
         return new Promise(async (resolve, reject) => {
             const findContactByUserId = await this.findContactByUserId(currentUserId);   
             const findContactByContactId = await this.findContactByContactId(contactId); 
-            const findContactByUserId1 = await this.findContactByUserId(contactId);  
+            const findContactByUserId1 = await this.findContactByUserId(contactId); 
             const findContactByContactId1 = await this.findContactByContactId(currentUserId);
             /**
              * phia gui yeu cau
@@ -17,7 +17,7 @@ class ContactService {
              * 
              * 
              */
-            if ((findContactByUserId != null && findContactByContactId != null) || (findContactByUserId1 != null && findContactByContactId1 != null)) {
+            if ((findContactByUserId !== null && findContactByContactId !== null) || (findContactByUserId1 !== null && findContactByContactId1 !== null)) {
                 return reject(false);
             } else {
                 const newContactItem = {
@@ -25,7 +25,7 @@ class ContactService {
                     contactId: contactId
                 };
                 const newContact = await axios.post(http + '/contacts', newContactItem);
-                resolve(newContact);
+                return resolve(newContact);
             }
         })
     }
@@ -36,24 +36,22 @@ class ContactService {
             const contactByContactId = await this.findContactByContactId(contactId);
             const removeContactByUserId = await axios.delete(http + '/contacts/' + contactByUserId._id);
             const removeContactByContactId = await axios.delete(http + '/contacts/' + contactByContactId._id);
-            if(removeContactByUserId.data == null || removeContactByContactId.data == null){
-                resolve(true);
+            if(removeContactByUserId.data === null || removeContactByContactId.data === null){
+                return  resolve(true);
             }else{
-                reject(false);
+                return  reject(false);
             }
         })
     }
 
     async findContactByUserId(userId) {
-        const existUser = await axios.get(http + '/contacts/searchUserId/' + userId);
-        return existUser.data.contacts;
-
+       let findContactByUserId = await axios.get(http + '/contacts/searchUserId/' + userId);
+        return findContactByUserId.data.contacts;
     }
     async findContactByContactId(contactId) {
-        const existUser = await axios.get(http + '/contacts/searchContactId/' + contactId);
-        return existUser.data.contacts;
+        let findContactByContactId = await axios.get(http + '/contacts/searchContactId/' + contactId)
+        return findContactByContactId.data.contacts;
     }
-
 }
 
 module.exports = new ContactService;
