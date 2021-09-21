@@ -70,6 +70,7 @@ function btnAddRemoveContact(contactId) {
             if (data.success) {
                 $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
                 $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
+                removeRequestContact(contactId);
                 socket.emit('add-new-contact', {
                     contactId: contactId
                 });
