@@ -26,7 +26,7 @@ class ContactsController {
     }
 
     getAPIByUserIdAndContactId(req, res, next) {
-        Contact.find({
+        Contact.findOne({
             '$or': [{
                 '$and':
                     [
@@ -42,10 +42,10 @@ class ContactsController {
                     ]
             }]
         })
-            .then(contact => {
-                res.json({ contact })
-            })
-            .catch(next);
+        .then(contact => {
+            res.status(200).json({contact});
+        })
+        .catch(next);
     }
 
     getAPIById(req, res, next) {
@@ -68,17 +68,13 @@ class ContactsController {
     putAPI(req, res, next) {
         const data = req.body;
         Contact.findByIdAndUpdate(req.params.id, data)
-            .then(contact => {
-                res.json({ contact });
-            })
+            .then(contact => true)
             .catch(next)
     }
 
     deleteAPI(req, res, next) {
         Contact.findByIdAndRemove(req.params.id)
-            .then(contact => {
-                res.json(contact);
-            })
+            .then(res.status(200).send(true))
             .catch(next);
     }
 }

@@ -1,23 +1,20 @@
-
 const http = `http://localhost:4000`;
 
 
-(function ($) {
-    $(document).ready(function () {
-        $('#show-modal').on('click', function () {
-            $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide()
-        });
-    });
-})(jQuery);
 
-(function ($) {
-    $(document).ready(function () {
-        $("#searchPhone").on("keyup", function () {    //khi nhap vao o tim kiem	
-            search(this.value);
-            $('#btn-add-cancel-friend').find('#btn-add-friend').hide()
-        });
+$(document).ready(function () {
+    $('#show-modal').on('click', function () {
+        $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide()
     });
-})(jQuery);
+});
+
+$(document).ready(function () {
+    $("#searchPhone").on("keyup", function () { //khi nhap vao o tim kiem	
+        search(this.value);
+        $('#btn-add-cancel-friend').find('#btn-add-friend').hide()
+    });
+});
+
 
 //tim kiem theo url
 function search(phone) {
@@ -36,54 +33,71 @@ function search(phone) {
 
 //render du lieu 
 function render(user) {
-    (function ($) {
-        $('#name-search').html('');
-        $('#phone-search').html('');
-        $('#image-search').html('');
+    $('#name-search').html('');
+    $('#phone-search').html('');
+    $('#image-search').html('');
 
-        $.each(user, (i, user) => {
-            const { local, userName, avatar, _id } = user;
+    $.each(user, (i, user) => {
+        const {local, userName, avatar, _id} = user;
             $('<strong>' + userName + '</strong>').appendTo($('#name-search')),
-                $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search')),
-                $('<img src="images/' + avatar + '">').appendTo($('#image-search')),
+            $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search')),
+            $('<img src="images/' + avatar + '">').appendTo($('#image-search'))
 
-                $.get(http + `/contacts/searchContactId/${_id}`, function (data) {
-                    console.log(data);
-                    if (data.contacts !== null) {
-                        $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block')
-                    } else {
+            btnAddRemoveContact(_id);
+    });
+}
+
+//xu ly btn-add-remove-friend
+function btnAddRemoveContact(contactId) {
+    $.get(http + `/contacts/searchContactId/${contactId}`, function (data) {
+        console.log(data);
+        if (data.contacts !== null) {
+            $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
+            removeRequestContact(contactId);
+        } else {
+            $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block');
+            addNewContact(contactId);
+        }
+    })
+}
+
+ //xu ly yeu cau ket ban
+ function addNewContact(contactId) {
+    $('#btn-add-friend').on('click', function () {
+        $.post('/contact/add-new', {
+            uid: contactId
+        }, function (data) {
+            if (data.success) {
+                $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
+                $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
+                socket.emit('add-new-contact', {
+                    contactId: contactId
+                });
+            }
+        })
+    });
+ }
+
+ //xu ly huy yeu cau ket ban
+function removeRequestContact(contactId) {
+    $('#btn-cancel-friend').on('click', function () {
+        $.ajax({
+            url: '/contact/remove',
+            type: 'delete',
+            data: {
+                uid: contactId
+            },
+            success: function (data) {
+                if (data.success) {
+                    $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide(),
                         $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block')
-                    }
-                })
-
-
-            //xu ly yeu cau ket ban
-            $('#btn-add-friend').on('click', function () {
-                $.post('/contact/add-new', { uid: _id }, function (data) {
-                    if (data.success) {
-                        $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
-                        $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
-                        socket.emit('add-new-contact', { contactId: _id });
-                    }
-                })
-            });
-            //xu ly huy yeu cau ket ban
-            $('#btn-cancel-friend').on('click', function () {
-                $.ajax({
-                    url: '/contact/remove',
-                    type: 'delete',
-                    data: { uid: _id },
-                    success: function (data) {
-                        if (data.success) {
-                            $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide(),
-                                $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block')
-                            socket.emit('remove-request-contact', { contactId: _id });
-                        }
-                    }
-                })
-            });
-        });
-    })(jQuery);
+                    socket.emit('remove-request-contact', {
+                        contactId: contactId
+                    });
+                }
+            }
+        })
+    });
 }
 
 //lắng nghe socket response-add-new-contact từ server
