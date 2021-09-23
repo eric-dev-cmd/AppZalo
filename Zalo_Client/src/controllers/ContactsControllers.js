@@ -4,11 +4,12 @@ const http = require('./http');
 const contactService = require('../services/contactService');
 
 class ContactController {
-     addNew(req, res) {
+    async addNew(req, res) {
         try {
             const currentUserId = req.user.data.user._id; // id cua user dang nhap
             const contactId = req.body.uid; // id cua user muon ket ban
-            const newContact = contactService.addNew(currentUserId, contactId);
+
+            const newContact = await contactService.addNew(currentUserId, contactId);
             return res.status(200).send({ success: !!newContact });
         } catch (error) {
             return res.status(500).send(error);

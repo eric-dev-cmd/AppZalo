@@ -43,6 +43,9 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'src/public')));
 app.engine('hbs', exphbs({
     extname: '.hbs',
+    helpers: {
+        id_notification: (a,b) => a+b,
+    }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'src/resources/views'));

@@ -2,18 +2,10 @@ const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 
 const Notification= new Schema({
-      sender: {
-        id: String,
-        userName: String, 
-        avatar: String
-    },
-    receiver: {
-        id: String,
-        userName: String, 
-        avatar: String
-    },
+    senderId: String,
+    receiverId: String,
     type: String,
-    content: String,
+    content: {type: String, default: null},
     isRead: {type: Boolean, default: false},
     createAt: {type: Number, default: Date.now},
 });

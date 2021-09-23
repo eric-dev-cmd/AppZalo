@@ -176,7 +176,7 @@
                                                                         <span>Kết bạn</span>
                                                                     </div>
                                                                     <div class="border btn-add-friend"
-                                                                        id="btn-cancel-friend">
+                                                                        id="btn-cancel-friend" style="display: none;">
                                                                         <span>Huỷ yêu cầu</span>
                                                                     </div>
                                                                 </div>
@@ -2306,8 +2306,21 @@
 
                                                 <ul class="list-unstyled chat-list chat-user-list"
                                                     id="notification-contact">
-
+                                                    <script>
+                                                        let id_notification = 0;
+                                                        let test;
+                                                    </script>
                                                     {{!-- notification --}}
+                                                    {{#each notifications}}                              
+                                                    <input type="hidden" id="id_{{id_notification @index 1}}"
+                                                        value="{{this}}">
+                                                    <script>
+                                                        id_notification += 1;
+                                                        console.log(document.getElementById(`id_${id_notification}`).value)
+                                                        test = document.getElementById("notification-contact");
+                                                        test.innerHTML = document.getElementById(`id_${id_notification}`).value;
+                                                    </script>
+                                                    {{/each}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -3812,7 +3825,7 @@
 
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="hidden" name="id" value="{{user._id}}">
+                                    <input type="hidden" name="id" id="id" value="{{user._id}}">
                                     <input type="hidden" id="gender" value="{{user.gender}}">
                                     <div class="col-12 fs-14">
                                         <div>
