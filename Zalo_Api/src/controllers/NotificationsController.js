@@ -9,6 +9,29 @@ class NotificationsController {
             .catch(next);
     }
 
+    getAPIBySenderIdAndReceiverIdAndType(req, res, next){
+        Notification.findOne({
+            '$and': [
+                { 'senderId': req.params.senderId },
+                { 'receiverId': req.params.receiverId },
+                { 'type': req.params.type }
+            ]})
+            .then(notification => {
+                res.json({notification})
+            })
+            .catch(next);
+    }
+
+    getAPIByReceiverIdAndLimit(req, res, next){
+        Notification.find({'receiverId': req.params.receiverid})
+            .sort({'createAt' : -1})
+            .limit(req.params.limit).exec()
+            .then(notifications => {
+                res.json(notifications)
+            })
+            .catch(next);
+    }
+
     getAPIById(req, res, next) {
         Notification.findById(req.params.id)
             .then(api => {
@@ -20,9 +43,7 @@ class NotificationsController {
     postAPI(req, res, next) {
         const notification = new Notification(req.body);
         notification.save()
-            .then(api => {
-                res.json({api});
-            })
+            .then(res.status(200).send(true))
             .catch(next);
 
     }
@@ -38,9 +59,7 @@ class NotificationsController {
 
     deleteAPI(req, res, next) {
         Notification.findByIdAndRemove(req.params.id)
-            .then(api => {
-                res.json(api);
-            })
+            .then(res.status(200).send(true))
             .catch(next);
     }
 }

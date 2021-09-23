@@ -1,13 +1,5 @@
 const http = `http://localhost:4000`;
 
-
-
-$(document).ready(function () {
-    $('#show-modal').on('click', function () {
-        $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide()
-    });
-});
-
 $(document).ready(function () {
     $("#searchPhone").on("keyup", function () { //khi nhap vao o tim kiem	
         search(this.value);
@@ -21,37 +13,26 @@ function search(phone) {
     const phoneCurrent = document.getElementById('phone').placeholder;
     if (phoneCurrent !== phone) {
         const url = http + `/users/searchPhone/${phone}`;
-        (function ($) {
-            $.get(url, function (user, status) {
+            $.get(url, function (data, status) {
                 if (status === 'success') {
-                    render(user);
+                    const {local, userName, avatar, _id} = data.user;
+                    $('#name-search').html('');
+                    $('#phone-search').html('');
+                    $('#image-search').html('');
+                    $('<strong>' + userName + '</strong>').appendTo($('#name-search')),
+                    $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search')),
+                    $('<img src="images/' + avatar + '">').appendTo($('#image-search'))
+                    btnAddRemoveContact(_id);
                 }
             })
-        })(jQuery);
     }
-}
-
-//render du lieu 
-function render(user) {
-    $('#name-search').html('');
-    $('#phone-search').html('');
-    $('#image-search').html('');
-
-    $.each(user, (i, user) => {
-        const {local, userName, avatar, _id} = user;
-            $('<strong>' + userName + '</strong>').appendTo($('#name-search')),
-            $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search')),
-            $('<img src="images/' + avatar + '">').appendTo($('#image-search'))
-
-            btnAddRemoveContact(_id);
-    });
 }
 
 //xu ly btn-add-remove-friend
 function btnAddRemoveContact(contactId) {
-    $.get(http + `/contacts/searchContactId/${contactId}`, function (data) {
-        console.log(data);
-        if (data.contacts !== null) {
+    const userId = document.getElementById('id').value;
+    $.get(http + `/contacts/search/${userId}/${contactId}`, function (data) {
+        if (data.contact !== null) {
             $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
             removeRequestContact(contactId);
         } else {

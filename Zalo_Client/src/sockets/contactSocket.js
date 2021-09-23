@@ -25,6 +25,7 @@ class ContactSocket{
                     avatar: socket.request.user.data.user.avatar
                 }
                if(clients[data.contactId]){
+                   console.log(data.contactId);
                 clients[data.contactId].forEach(socketId => {
                     io.to(socketId).emit('response-add-new-contact', currentUser);
                 });
