@@ -1473,7 +1473,7 @@
                                         <div class="modal-content" style="background: white">
                                             <div class="modal-header">
                                                 <h5 class="modal-title fs-14 text-uppercase txt-black">Thêm
-                                                    bạn</h5>
+                                                    bạn </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -1659,7 +1659,6 @@
                                                 </div>
 
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -1687,7 +1686,8 @@
 
                                                     <script>
                                                         let id_notification = 0;
-                                                        let test;
+                                                        let test = document.getElementById("notification-contact");
+                                                        let notification;
                                                     </script>
                                                     {{!-- notification --}}
                                                     {{#each notifications}}
@@ -1695,9 +1695,8 @@
                                                         value="{{this}}">
                                                     <script>
                                                         id_notification += 1;
-                                                        console.log(document.getElementById(`id_${id_notification}`).value)
-                                                        test = document.getElementById("notification-contact");
-                                                        test.innerHTML = document.getElementById(`id_${id_notification}`).value;
+                                                        notification = document.getElementById(`id_${id_notification}`).value;
+                                                        test.insertAdjacentHTML('beforeend', notification);
                                                     </script>
                                                     {{/each}}
 
