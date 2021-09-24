@@ -53,24 +53,27 @@ function addNewContact(contactId) {
   $('#btn-add-friend').one('click', function (e) {
     var me = $(this);
     e.preventDefault();
+
     if (me.data('requestRunning')) {
       return;
     }
+
     me.data('requestRunning', true);
+
     $.ajax({
-      type: 'post',
+      type: 'POST',
       url: '/contact/add-new',
       data: {
         uid: contactId,
       },
       success: function (data) {
         if (data.success) {
-          $('#btn-add-cancel-friend').find('#btn-add-friend').hide(),
-            $('#btn-add-cancel-friend')
-              .find('#btn-cancel-friend')
-              .css('display', 'inline-block');
+          $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
+          $('#btn-add-cancel-friend')
+            .find('#btn-cancel-friend')
+            .css('display', 'inline-block');
           removeRequestContact(contactId);
-          socket.emit('remove-request-contact', {
+          socket.emit('add-new-contact', {
             contactId: contactId,
           });
         }
@@ -79,21 +82,13 @@ function addNewContact(contactId) {
         me.data('requestRunning', false);
       },
     });
-
   });
 }
 
 //xu ly huy yeu cau ket ban
 function removeRequestContact(contactId) {
   $('#btn-cancel-friend').one('click', function (e) {
-    var me = $(this);
     e.preventDefault();
-
-    if (me.data('requestRunning')) {
-      return;
-    }
-
-    me.data('requestRunning', true);
     $.ajax({
       url: '/contact/remove',
       type: 'delete',
@@ -112,61 +107,43 @@ function removeRequestContact(contactId) {
           });
         }
       },
-      complete: function () {
-        me.data('requestRunning', false);
-      },
     });
   });
 }
 
 //lắng nghe socket response-add-new-contact từ server
+
 socket.on('response-add-new-contact', function (user) {
   let notification = `<li class="position-relative" data-uid = '${user.id}'>
-    <a href="javascript:void(0)" style="width: 90%;">
-        <div class="d-flex">
-            <div
-                class="chat-user-img away align-self-center me-3 ms-0">
-                <img src="images/${user.avatar}"
-                    class="rounded-circle avatar-xs" alt="">
-                <span class="user-status"></span>
+        <a href="javascript:void(0)" style="width: 100%;">
+            <div class="d-flex">
+                <div
+                    class="chat-user-img away align-self-center me-3 ms-0">
+                    <img src="images/${user.avatar}"
+                        class="rounded-circle avatar-xs" alt="">
+                    <span class="user-status"></span>
+                </div>
+                <div class="flex-1 overflow-hidden">
+                    <h5 class="text-truncate font-size-15 mb-1">
+                    ${user.userName}</h5>
+                    <p class="chat-user-message text-truncate mb-0">
+                        Muốn kết bạn. "Xin chào, tôi là <span>${user.userName}.
+                    </p>
+    
+    
+                </div>
             </div>
-            <div class="flex-1 overflow-hidden">
-                <h5 class="text-truncate font-size-15 mb-1">
-                ${user.userName}</h5>
-                <p class="chat-user-message text-truncate mb-0">
-                    Muốn kết bạn. "Xin chào, tôi là <span>Bảo Anh.
-                </p>
-
-
-            </div>
-        </div>
-    </a>
-    <div style="float: right;position: absolute;
-top: 14px;
-right: 0;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-flex: 1;
-width: 14%;">
-        <div class="fs-13 pb-1">
-            <a href="javascript:void(0)"
-                class="text-decoration-none cursor-point" style="    position: static;
-padding: 0;
-display: inline-block;">Bỏ qua</a>
-        </div>
-        <div class="fs-13">
-            <a href="javascript:void(0)"
-                class="text-decoration-none cursor-point" style="    position: static;
-padding: 0;
-display: inline-block;">Đồng ý</a>
-        </div>
-    </div>
-</li>`;
+        </a>
+         <div class="d-flex justify-content-around">
+                                                            <a href="/skipadd">Bỏ qua</a>
+                                                            <a href="/aggreed">Đồng ý</a>
+                                                        </div>
+    </li>`;
   $('#notification-contact').prepend(notification);
 });
 
 //lắng nghe socket response-remove-request-contact từ server
+
 socket.on('response-remove-request-contact', function (user) {
   $('#notification-contact').find(`li[data-uid = ${user.id}]`).remove();
 });
