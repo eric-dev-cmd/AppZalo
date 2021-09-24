@@ -13,18 +13,23 @@ function search(phone) {
     const phoneCurrent = document.getElementById('phone').placeholder;
     if (phoneCurrent !== phone) {
         const url = http + `/users/searchPhone/${phone}`;
-            $.get(url, function (data, status) {
-                if (status === 'success') {
-                    const {local, userName, avatar, _id} = data.user;
-                    $('#name-search').html('');
-                    $('#phone-search').html('');
-                    $('#image-search').html('');
-                    $('<strong>' + userName + '</strong>').appendTo($('#name-search')),
+        $.get(url, function (data, status) {
+            if (status === 'success') {
+                const {
+                    local,
+                    userName,
+                    avatar,
+                    _id
+                } = data.user;
+                $('#name-search').html('');
+                $('#phone-search').html('');
+                $('#image-search').html('');
+                $('<strong>' + userName + '</strong>').appendTo($('#name-search')),
                     $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search')),
                     $('<img src="images/' + avatar + '">').appendTo($('#image-search'))
-                    btnAddRemoveContact(_id);
-                }
-            })
+                btnAddRemoveContact(_id);
+            }
+        })
     }
 }
 
@@ -42,27 +47,45 @@ function btnAddRemoveContact(contactId) {
     })
 }
 
- //xu ly yeu cau ket ban
- function addNewContact(contactId) {
-    $('#btn-add-friend').on('click', function () {
-        $.post('/contact/add-new', {
-            uid: contactId
-        }, function (data) {
-            if (data.success) {
-                $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
-                $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
-                removeRequestContact(contactId);
-                socket.emit('add-new-contact', {
-                    contactId: contactId
-                });
-            }
-        })
-    });
- }
+//xu ly yeu cau ket ban
+function addNewContact(contactId) {
+    $('#btn-add-friend').one('click', function (e) {
+        var me = $(this);
+        e.preventDefault();
 
- //xu ly huy yeu cau ket ban
+        if (me.data('requestRunning')) {
+            return;
+        }
+
+        me.data('requestRunning', true);
+
+        $.ajax({
+            type: "POST",
+            url: "/contact/add-new",
+            data: {
+                uid: contactId
+            },
+            success: function (data) {
+                if (data.success) {
+                    $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
+                    $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
+                    removeRequestContact(contactId);
+                    socket.emit('add-new-contact', {
+                        contactId: contactId
+                    });
+                }
+            },
+            complete: function () {
+                me.data('requestRunning', false);
+            }
+        });
+    });
+}
+
+//xu ly huy yeu cau ket ban
 function removeRequestContact(contactId) {
-    $('#btn-cancel-friend').on('click', function () {
+    $('#btn-cancel-friend').one('click', function (e) {
+        e.preventDefault();
         $.ajax({
             url: '/contact/remove',
             type: 'delete',
@@ -73,6 +96,7 @@ function removeRequestContact(contactId) {
                 if (data.success) {
                     $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide(),
                         $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block')
+                    addNewContact(contactId);
                     socket.emit('remove-request-contact', {
                         contactId: contactId
                     });
@@ -83,53 +107,56 @@ function removeRequestContact(contactId) {
 }
 
 //lắng nghe socket response-add-new-contact từ server
-socket.on('response-add-new-contact', function (user) {
-    let notification = `<li class="position-relative" data-uid = '${user.id}'>
-    <a href="javascript:void(0)" style="width: 90%;">
-        <div class="d-flex">
-            <div
-                class="chat-user-img away align-self-center me-3 ms-0">
-                <img src="images/${user.avatar}"
-                    class="rounded-circle avatar-xs" alt="">
-                <span class="user-status"></span>
-            </div>
-            <div class="flex-1 overflow-hidden">
-                <h5 class="text-truncate font-size-15 mb-1">
-                ${user.userName}</h5>
-                <p class="chat-user-message text-truncate mb-0">
-                    Muốn kết bạn. "Xin chào, tôi là <span>Bảo Anh.
-                </p>
 
-
+    socket.on('response-add-new-contact', function (user) {
+        let notification = `<li class="position-relative" data-uid = '${user.id}'>
+        <a href="javascript:void(0)" style="width: 90%;">
+            <div class="d-flex">
+                <div
+                    class="chat-user-img away align-self-center me-3 ms-0">
+                    <img src="images/${user.avatar}"
+                        class="rounded-circle avatar-xs" alt="">
+                    <span class="user-status"></span>
+                </div>
+                <div class="flex-1 overflow-hidden">
+                    <h5 class="text-truncate font-size-15 mb-1">
+                    ${user.userName}</h5>
+                    <p class="chat-user-message text-truncate mb-0">
+                        Muốn kết bạn. "Xin chào, tôi là <span>Bảo Anh.
+                    </p>
+    
+    
+                </div>
+            </div>
+        </a>
+        <div style="float: right;position: absolute;
+    top: 14px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    width: 14%;">
+            <div class="fs-13 pb-1">
+                <a href="javascript:void(0)"
+                    class="text-decoration-none cursor-point" style="    position: static;
+    padding: 0;
+    display: inline-block;">Bỏ qua</a>
+            </div>
+            <div class="fs-13">
+                <a href="javascript:void(0)"
+                    class="text-decoration-none cursor-point" style="    position: static;
+    padding: 0;
+    display: inline-block;">Đồng ý</a>
             </div>
         </div>
-    </a>
-    <div style="float: right;position: absolute;
-top: 14px;
-right: 0;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-flex: 1;
-width: 14%;">
-        <div class="fs-13 pb-1">
-            <a href="javascript:void(0)"
-                class="text-decoration-none cursor-point" style="    position: static;
-padding: 0;
-display: inline-block;">Bỏ qua</a>
-        </div>
-        <div class="fs-13">
-            <a href="javascript:void(0)"
-                class="text-decoration-none cursor-point" style="    position: static;
-padding: 0;
-display: inline-block;">Đồng ý</a>
-        </div>
-    </div>
-</li>`;
-    $('#notification-contact').prepend(notification);
-})
+    </li>`;
+        $('#notification-contact').prepend(notification);
+    });
+
 
 //lắng nghe socket response-remove-request-contact từ server
-socket.on('response-remove-request-contact', function (user) {
-    $('#notification-contact').find(`li[data-uid = ${user.id}]`).remove();
-})
+
+    socket.on('response-remove-request-contact', function (user) {
+        $('#notification-contact').find(`li[data-uid = ${user.id}]`).remove();
+    })
