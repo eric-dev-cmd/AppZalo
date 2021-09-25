@@ -8,7 +8,7 @@ class NotificationUtil {
         if (notification_type === NOTIFICATION_TYPES.ADD_CONTACT) {
 
             html += `<li class="position-relative" data-uid = '${userId}'>
-            <a href="javascript:void(0)" style="width: 90%;">
+            <a  style="width: 90%;">
                 <div class="d-flex">
                     <div
                         class="chat-user-img away align-self-center me-3 ms-0">
@@ -36,13 +36,13 @@ class NotificationUtil {
         flex: 1;
         width: 14%;">
                 <div class="fs-13 pb-1">
-                    <a href="javascript:void(0)"
+                    <a  id="btn-cancel-friend-receiver"  data-uid = '${userId}'
                         class="text-decoration-none cursor-point" style="    position: static;
         padding: 0;
         display: inline-block;">Bỏ qua</a>
                 </div>
                 <div class="fs-13">
-                    <a href="javascript:void(0)"
+                    <a  id="btn-accept-friend" data-uid = '${userId}'
                         class="text-decoration-none cursor-point" style="    position: static;
         padding: 0;
         display: inline-block;">Đồng ý</a>

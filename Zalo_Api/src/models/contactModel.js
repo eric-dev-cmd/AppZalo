@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 
 const Contact= new Schema({
-    userId: String,
-    contactId: String,
+    senderId: String,
+    receiverId: String,
     status: {type: Boolean, default: false},
     createAt: {type: Number, default: Date.now},
     updateAt: {type: Number, default: null},

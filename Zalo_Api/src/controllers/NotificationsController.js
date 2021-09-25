@@ -51,9 +51,7 @@ class NotificationsController {
     putAPI(req, res, next) {
         const data = req.body;
         Notification.findByIdAndUpdate(req.params.id, data)
-            .then(api => {
-                res.json({api});
-            })
+            .then(res.status(200).send(true))
             .catch(next)
     }
 

@@ -26,7 +26,6 @@ class UsersController {
     getAPIById(req, res, next) {
         User.findById(req.params.id)
             .then(user => {
-                
                 res.status(200).json({user});
             })
             .catch(next);
