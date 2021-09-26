@@ -198,3 +198,10 @@ btnAddFriend.forEach((e) => {
     }
   });
 });
+// Modal Profile
+function toggle() {
+  let blur = document.getElementById('blur');
+  blur.classList.toggle('active');
+  let popupProfile = document.getElementById('popup-tv');
+  popupProfile.classList.toggle('active');
+}
