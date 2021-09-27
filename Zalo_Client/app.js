@@ -5,9 +5,9 @@ const path = require('path');
 const route = require('./src/routes/index');
 const passport = require('passport');
 const connectFlash = require('connect-flash');
-const dotenv = require('dotenv')
-const port = process.env.PORT || 4002
-const db = require('./src/config/db')
+const dotenv = require('dotenv');
+const port = process.env.PORT || 4002;
+const db = require('./src/config/db');
 const session = require('./src/config/session');
 const upload = require('express-fileupload');
 const http = require('http');
@@ -25,9 +25,8 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 dotenv.config({
-    path: './config.env'
-})
-
+  path: './config.env',
+});
 
 db.connect();
 
@@ -41,18 +40,21 @@ app.use(morgan('dev'));
  * TODO: Template Engine
  */
 app.use(express.static(path.join(__dirname, 'src/public')));
-app.engine('hbs', exphbs({
+app.engine(
+  'hbs',
+  exphbs({
     extname: '.hbs',
     helpers: {
-        id_notification: (a,b) => a+b,
-    }
-}));
+      id_notification: (a, b) => a + b,
+    },
+  })
+);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'src/resources/views'));
 app.use(
-    express.urlencoded({
-        extended: true,
-    }),
+  express.urlencoded({
+    extended: true,
+  })
 );
 app.use(express.json());
 
@@ -78,16 +80,18 @@ app.use(upload());
 //init route
 route(app);
 
-io.use(passportSocketIo.authorize({
+io.use(
+  passportSocketIo.authorize({
     cookieParser: cookieParser,
     key: 'express.sid',
     secret: 'mySecret',
-    store: session.sessionStore
-}))
+    store: session.sessionStore,
+  })
+);
 
 //intit socket
 initSockets(io);
 
 server.listen(port, () => {
-    console.log(`App running on http://localhost:${port}...`)
+  console.log(`App running on http://localhost:${port}...`);
 });
