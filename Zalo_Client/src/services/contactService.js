@@ -32,7 +32,6 @@ class ContactService {
         return new Promise(async (resolve, reject) => {
             let findContact = await this.checkExistsContact(senderId, receiverId);
             let findNotification = await this.checkExistsNotification(senderId, receiverId, NotificationUtil.NOTIFICATION_TYPES.ADD_CONTACT)
-
             if (findContact !== null && findNotification !== null) {
                 await axios.delete(http + '/notifications/' + findNotification._id)
                 await axios.delete(http + '/contacts/' + findContact._id)
@@ -40,6 +39,7 @@ class ContactService {
                     .catch(reject(false));
             }
             if (findContact !== null && findContact.status === true) {
+
                 await axios.delete(http + '/contacts/' + findContact._id)
                     .then(resolve(true))
                     .catch(reject(false));
