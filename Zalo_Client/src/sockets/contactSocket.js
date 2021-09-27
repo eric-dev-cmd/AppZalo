@@ -30,6 +30,7 @@ class ContactSocket {
                 if (clients[data.receiverId]) {
                     emitEventToArray(clients, data.receiverId, io, 'response-add-new-contact', currentUser);
                 };
+                console.log(data.receiverId);
             });
              //xóa id socket mỗi khi socket disconnect
             socket.on('disconnect', () => {

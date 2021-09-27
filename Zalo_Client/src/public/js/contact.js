@@ -1,7 +1,7 @@
 const http = `http://localhost:4000`;
 
 $(document).ready(function () {
-    $("#searchPhone").on("keyup", function () { //khi nhap vao o tim kiem	
+    $("#searchPhone").bind("keyup", function () { //khi nhap vao o tim kiem	
         search(this.value);
         $('#btn-add-cancel-friend').find('#btn-add-friend').hide()
     });
@@ -50,17 +50,17 @@ function btnAddRemoveContact(receiverId) {
 }
 
 //xu ly yeu cau ket ban
-function addNewContact(receiverId) {
+function addNewContact(receiverIda) {
     $('#btn-add-friend').one('click', function (e) {
         var me = $(this);
+       
         e.preventDefault();
-
         if (me.data('requestRunning')) {
             return;
         }
-
         me.data('requestRunning', true);
-
+        var receiverId = $('#btn-add-friend').attr('data-uid');
+        console.log(receiverId);
         $.ajax({
             type: "POST",
             url: "/contact/add-new",

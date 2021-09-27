@@ -23,7 +23,6 @@ class ContactController {
             const receiverId = req.body.uid;
             const removeRequest = await contactService.remove(senderId, receiverId);
             return res.status(200).send({ success: !!removeRequest });
-
         } catch (error) {
             return res.status(500).send(error);
         }
