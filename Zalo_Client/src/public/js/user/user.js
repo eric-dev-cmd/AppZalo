@@ -180,11 +180,11 @@ let readLess = document.querySelector('#read');
 function read() {
   if (!i) {
     readMore.style.display = 'inline';
-    readLess.innerHTML = 'Less';
+    readLess.innerHTML = 'Ít hơn';
     i = 1;
   } else {
     readMore.style.display = 'none';
-    readLess.innerHTML = 'More';
+    readLess.innerHTML = 'Thêm';
     i = 0;
   }
 }
@@ -198,7 +198,6 @@ btnAddFriend.forEach((e) => {
     }
   });
 });
-
 // // Modal Profile
 // function toggle() {
 //   let blur = document.getElementById('blur');

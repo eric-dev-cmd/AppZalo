@@ -356,3 +356,14 @@ body {
 
 .mg-15 {
   margin: -15px; }
+
+#seachByPhone {
+  width: 19%;
+  margin-left: 5px;
+  padding: 7px 0;
+  background: #800040;
+  color: white;
+  border: 1px solid #800040; }
+  #seachByPhone:hover {
+    background: #9c1458;
+    border-color: #9c1458; }
