@@ -1157,7 +1157,8 @@
                         <h4 class="mb-4">Contacts</h4>
 
                         <!-- Start Information Profile -->
-                        <div class="modal fade" id="addContact-exampleModal" tabindex="-1" role="dialog"
+                        {{#each contacts}}
+                        <div class="modal fade" id="modal_{{this._id}}" tabindex="-1" role="dialog"
                             aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -1179,7 +1180,7 @@
                                                             style="min-width: 100%;">
                                                             <div class="popup-body-avatar-wrapper">
                                                                 <img class="avatar-profile cursor-point"
-                                                                    src="https://s120-ava-talk.zadn.vn/2/1/c/7/13/120/10e6b4db2255ee6bbf106de6f1261b69.jpg"
+                                                                    src="images/{{this.avatar}}"
                                                                     alt="">
                                                             </div>
                                                             <img class="avatar-banner"
@@ -1208,17 +1209,17 @@
                                                         <div
                                                             class="d-flex align-items-center justify-content-start fs-14">
                                                             <div class="pe-5" style="min-width: 167px">Điện thoại</div>
-                                                            <div>+84333021348</div>
+                                                            <div>{{this.local.phone}}</div>
                                                         </div>
                                                         <div
                                                             class="d-flex align-items-center justify-content-start fs-14">
                                                             <div class="pe-5" style="min-width: 167px">Giới tính</div>
-                                                            <div>Nam</div>
+                                                            <div>{{this.gender}}</div>
                                                         </div>
                                                         <div
                                                             class="d-flex align-items-center justify-content-start fs-14">
                                                             <div class="pe-5" style="min-width: 167px">Ngày sinh</div>
-                                                            <div>24/11</div>
+                                                            <div>{{this.birthday}}</div>
                                                         </div>
                                                     </div>
                                                     <div class="pt-4">
@@ -1253,6 +1254,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{/each}}
                         <!-- End Add contact Modal -->
 
                         <div class="search-box chat-search-box">
@@ -1313,11 +1315,11 @@
                                                                     </div> --}}
 
                                                                     <div>
-                                                                        <a data-uid="{{this._id}}" onclick="toggle()"
+                                                                        <a data-uid="{{this._id}}"
                                                                             id="id_contact_profile"
                                                                             class="dropdown-item d-flex align-items-center justify-content-between"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#addContact-exampleModal"><span>Profile</span>
+                                                                            data-bs-target="#modal_{{this._id}}"><span>Profile</span>
                                                                             <i
                                                                                 class="fal fa-user-circle float-end text-muted"></i>
                                                                         </a>
