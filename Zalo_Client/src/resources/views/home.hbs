@@ -1244,8 +1244,8 @@
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-end">
                                                                     <div>
-                                                                        <a onclick="toggle()"
-                                                                            class="dropdown-item d-flex align-items-center justify-content-between"><span>Profile</span>
+                                                                        <a data-uid="{{this._id}}" onclick="toggle()"  id="id_contact_profile"
+                                                                            class="dropdown-item d-flex align-items-center justify-content-between" ><span>Profile</span>
                                                                             <i
                                                                                 class="fal fa-user-circle float-end text-muted"></i>
                                                                         </a>
@@ -2765,6 +2765,7 @@
 </div>
 
 {{!-- Modal Contact --}}
+
 <div id="popup-tv">
     <div>
         <div class="row">
@@ -2791,7 +2792,7 @@
 
                     </div>
                     <div class="text-center fs-14 pt-5">
-                        <h3 style="color: black !important" class="mb-0">Trung Vinh</h3>
+                        <h3 style="color: black !important" class="mb-0">{{this.userName}}</h3>
                         <p class="mb-0">This is my des</p>
                         <span>
                             <button class="btn btn-sm btn-outline-info" style="min-width: 120px;width: 26%;">Nhắn
@@ -2842,6 +2843,7 @@
     </div>
 
 </div>
+
 
 <!-- Modal Account-->
 <div class="modal fade" id="modal-detail-about" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

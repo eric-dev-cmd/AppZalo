@@ -31,32 +31,32 @@ function search(phone) {
           $('<img src="images/' + avatar + '">').appendTo($('#image-search')),
           $('#btn-add-friend').attr('data-uid', `${_id}`);
         $('#btn-cancel-friend').attr('data-uid', `${_id}`);
-        btnAddRemoveContact(_id);
+        showBtnAddAndRemove(_id);
       }
     });
   }
 }
 
 //xu ly btn-add-remove-friend
-function btnAddRemoveContact(receiverId) {
+function showBtnAddAndRemove(receiverId) {
   const userId = document.getElementById('id').value;
   $.get(http + `/contacts/search/${userId}/${receiverId}`, function (data) {
-    if (data.contact !== null) {
-      $('#btn-add-cancel-friend')
-        .find('#btn-cancel-friend')
-        .css('display', 'inline-block');
-      removeRequestContact(receiverId);
-    } else {
-      $('#btn-add-cancel-friend')
-        .find('#btn-add-friend')
-        .css('display', 'inline-block');
-      addNewContact(receiverId);
+    if (data.contact !== null && data.contact.status === true) {
+      $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide();
+      $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
+    }
+    if (data.contact !== null && data.contact.status === false) {
+      $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
+      removeRequestContact();
+    } if (data.contact === null) {
+      $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block');
+      addNewContact();
     }
   });
 }
 
 //xu ly yeu cau ket ban
-function addNewContact(receiverId) {
+function addNewContact() {
   $('#btn-add-friend').one('click', function (e) {
     var me = $(this);
     e.preventDefault();
@@ -64,38 +64,7 @@ function addNewContact(receiverId) {
       return;
     }
     me.data('requestRunning', true);
-    //var receiverId = $('#btn-add-friend').attr('data-uid');
-    $.ajax({
-      type: "POST",
-      url: "/contact/add-new",
-      data: {
-        uid: receiverId
-      },
-      success: function (data) {
-        if (data.success) {
-          $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
-          $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
-          removeRequestContact(receiverId);
-          socket.emit('add-new-contact', {
-            receiverId: receiverId
-          });
-        }
-      },
-      complete: function () {
-        me.data('requestRunning', false);
-      }
-    });
-  });
-}
-
-function addNewContact(receiverId) {
-  $('#btn-add-friend').one('click', function (e) {
-    var me = $(this);
-    e.preventDefault();
-    if (me.data('requestRunning')) {
-      return;
-    }
-    me.data('requestRunning', true);
+    var receiverId = $('#btn-add-friend').attr('data-uid');
     $.ajax({
       type: 'POST',
       url: '/contact/add-new',
@@ -122,9 +91,15 @@ function addNewContact(receiverId) {
 }
 
 //xu ly huy yeu cau ket ban
-function removeRequestContact(receiverId) {
+function removeRequestContact() {
   $('#btn-cancel-friend').one('click', function (e) {
+    var me = $(this);
     e.preventDefault();
+    if (me.data('requestRunning')) {
+      return;
+    }
+    me.data('requestRunning', true);
+    var receiverId = $('#btn-add-friend').attr('data-uid');
     $.ajax({
       url: '/contact/remove',
       type: 'delete',
@@ -137,11 +112,14 @@ function removeRequestContact(receiverId) {
             $('#btn-add-cancel-friend')
             .find('#btn-add-friend')
             .css('display', 'inline-block');
-          addNewContact(receiverId);
+          addNewContact();
           socket.emit('remove-request-contact', {
             receiverId: receiverId,
           });
         }
+      },
+      complete: function () {
+        me.data('requestRunning', false);
       },
     });
   });
@@ -150,47 +128,31 @@ function removeRequestContact(receiverId) {
 //lắng nghe socket response-add-new-contact từ server
 socket.on('response-add-new-contact', function (user) {
   let notification = `<li class="position-relative" data-uid = '${user.id}'>
-        <a  style="width: 90%;">
-            <div class="d-flex">
-                <div
-                    class="chat-user-img away align-self-center me-3 ms-0">
-                    <img src="images/${user.avatar}"
-                        class="rounded-circle avatar-xs" alt="">
-                    <span class="user-status"></span>
-                </div>
-                <div class="flex-1 overflow-hidden">
-                    <h5 class="text-truncate font-size-15 mb-1">
-                    ${user.userName}</h5>
-                    <p class="chat-user-message text-truncate mb-0">
-                        Muốn kết bạn. "Xin chào, tôi là <span>Bảo Anh.
-                    </p>
-    
-    
-                </div>
-            </div>
-        </a>
-        <div style="float: right;position: absolute;
-    top: 14px;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: 1;
-    width: 14%;">
-            <div class="fs-13 pb-1">
-                <a  id="btn-cancel-friend-receiver" data-uid = '${user.id}'
-                    class="text-decoration-none cursor-point" style="    position: static;
-    padding: 0;
-    display: inline-block;" >Bỏ qua</a>
-            </div>
-            <div class="fs-13">
-                <a  id="btn-accept-friend" data-uid = '${user.id}'
-                    class="text-decoration-none cursor-point" style="    position: static;
-    padding: 0;
-    display: inline-block;">Đồng ý</a>
-            </div>
-        </div>
-    </li>`;
+  <a  style="width: 100%;">
+      <div class="d-flex">
+          <div
+              class="chat-user-img away align-self-center me-3 ms-0">
+              <img src="images/${user.avatar}"
+                  class="rounded-circle avatar-xs" alt="">
+              <span class="user-status"></span>
+          </div>
+          <div class="flex-1 overflow-hidden">
+              <h5 class="text-truncate font-size-15 mb-1">
+              ${user.userName}</h5>
+              <p class="chat-user-message text-truncate mb-0">
+              Muốn kết bạn. 
+                  "Xin chào, tôi là <span>${user.userName}"
+              </p>
+
+
+          </div>
+      </div>
+  </a>
+  <div class="d-flex justify-content-around">
+  <a class="cursor-point"  id="btn-cancel-friend-receiver"  data-uid = '${user.id}' >Bỏ qua</a>
+  <a class="cursor-point" id="btn-accept-friend" data-uid = '${user.id}' >Đồng ý</a>
+</div>
+</li>`;
   $('#notification-contact').prepend(notification);
   removeRequestContactReceiver();
   acceptRequestContact();
@@ -238,7 +200,7 @@ socket.on('response-remove-request-contact-receiver', function (user) {
     $('#btn-add-cancel-friend')
     .find(`div#btn-add-friend[data-uid = ${user.id}]`)
     .css('display', 'inline-block'),
-    addNewContact(user.id);
+    addNewContact();
 });
 
 $(document).ready(function () {
@@ -260,6 +222,7 @@ function acceptRequestContact() {
           $('#notification-contact')
             .find(`li[data-uid = ${senderId}]`)
             .remove();
+            showBtnAddAndRemove(senderId);
           $.get(http + `/users/${senderId}`, function (data, status) {
             if (status === 'success') {
               var sum = $('#sumOfContact').attr('data-sum');
@@ -269,6 +232,7 @@ function acceptRequestContact() {
                   $('#sumOfContact')
                 ),
                 $('#contact-list').prepend(contact(data.user));
+              
             }
           });
           socket.emit('accept-contact', {
@@ -325,4 +289,5 @@ socket.on('response-accept-contact', function (user) {
   $('#sumOfContact').html('');
   $('<span>Bạn bè(' + sum + ')</span>').appendTo($('#sumOfContact')),
     $('#contact-list').prepend(contact(user));
+    showBtnAddAndRemove(user.id);
 });
