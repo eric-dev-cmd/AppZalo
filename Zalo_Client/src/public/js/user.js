@@ -180,11 +180,11 @@ let readLess = document.querySelector('#read');
 function read() {
   if (!i) {
     readMore.style.display = 'inline';
-    readLess.innerHTML = 'Less';
+    readLess.innerHTML = 'Ít hơn';
     i = 1;
   } else {
     readMore.style.display = 'none';
-    readLess.innerHTML = 'More';
+    readLess.innerHTML = 'Thêm';
     i = 0;
   }
 }
@@ -200,7 +200,6 @@ btnAddFriend.forEach((e) => {
 });
 
 let id = document.getElementById('id_contact_profile').getAttribute('data-uid');
-
 
 // // Modal Profile
 // function toggle() {
