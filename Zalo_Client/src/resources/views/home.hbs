@@ -1284,7 +1284,10 @@
                                                     {{#each contacts}}
                                                     <li>
                                                         <div class="d-flex align-items-center">
-                                                            <div class="flex-1">
+                                                            <div class="flex-1 d-flex align-items-center">
+                                                                <img src="images/{{this.avatar}}"
+                                                                    class="rounded-circle avatar-xs me-3"
+                                                                    alt="{{this.userName}}">
                                                                 <h5 class="font-size-14 m-0">{{this.userName}}</h5>
                                                             </div>
                                                             <div class="dropdown">
@@ -1296,15 +1299,6 @@
                                                                         style="font-size: 20px; padding: 0 12px;"></i>
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                                    {{!-- <div>
-                                                                        <a data-uid="{{this._id}}" onclick="toggle()"
-                                                                            id="id_contact_profile"
-                                                                            class="dropdown-item d-flex align-items-center justify-content-between"><span>Profile</span>
-                                                                            <i
-                                                                                class="fal fa-user-circle float-end text-muted"></i>
-                                                                        </a>
-                                                                    </div> --}}
-
                                                                     <div>
                                                                         <a data-uid="{{this._id}}"
                                                                             id="id_contact_profile"
