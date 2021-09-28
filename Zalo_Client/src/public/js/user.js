@@ -198,11 +198,11 @@ btnAddFriend.forEach((e) => {
     }
   });
 });
-// Modal Profile
-function toggle() {
-  let blur = document.getElementById('blur');
-  blur.classList.toggle('active');
-  // let id = document.getElementById('id_contact_profile').getAttribute('data-uid')
-  let popupProfile = document.getElementById('popup-tv');
-  popupProfile.classList.toggle('active');
-}
+// // Modal Profile
+// function toggle() {
+//   let blur = document.getElementById('blur');
+//   blur.classList.toggle('active');
+//   // let id = document.getElementById('id_contact_profile').getAttribute('data-uid')
+//   let popupProfile = document.getElementById('popup-tv');
+//   popupProfile.classList.toggle('active');
+// }

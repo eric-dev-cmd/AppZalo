@@ -1149,47 +1149,107 @@
                                 data-bs-original-title="Add Contact">
                                 <!-- Button trigger modal -->
                                 <button type="button"
-                                    class="btn btn-link text-decoration-none text-muted font-size-18 py-0"
-                                    data-bs-toggle="modal" data-bs-target="#addContact-exampleModal">
+                                    class="btn btn-link text-decoration-none text-muted font-size-18 py-0">
                                     <i class="fal fa-user-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <h4 class="mb-4">Contacts</h4>
 
-                        <!-- Start Add contact Modal -->
+                        <!-- Start Information Profile -->
                         <div class="modal fade" id="addContact-exampleModal" tabindex="-1" role="dialog"
                             aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title font-size-16" id="addContact-exampleModalLabel">Thêm
-                                            liên hệ</h5>
+                                        <h5 class="modal-title font-size-16" id="addContact-exampleModalLabel">
+                                            INFORMATION PROFILE</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close">
                                         </button>
                                     </div>
                                     <div class="modal-body p-4">
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="addcontactemail-input" class="form-label">Số điện
-                                                    thoại</label>
-                                                <input type="tel" class="form-control" id="addcontactemail-input"
-                                                    placeholder="Nhập số điện thoại">
+                                        <div class="row">
+                                            <div class="border-top"></div>
+                                            <div class="col-12">
+                                                <div class="popup-body" style="min-height: 466px;">
+                                                    <div class="position-relative">
+
+                                                        <div class="popup-body-avatar position-relative d-table"
+                                                            style="min-width: 100%;">
+                                                            <div class="popup-body-avatar-wrapper">
+                                                                <img class="avatar-profile cursor-point"
+                                                                    src="https://s120-ava-talk.zadn.vn/2/1/c/7/13/120/10e6b4db2255ee6bbf106de6f1261b69.jpg"
+                                                                    alt="">
+                                                            </div>
+                                                            <img class="avatar-banner"
+                                                                src="https://cover-talk.zadn.vn/c/1/7/d/3/10e6b4db2255ee6bbf106de6f1261b69.jpg"
+                                                                alt="">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="text-center fs-14 pt-5">
+                                                        <h3 style="color: black !important" class="mb-0">
+                                                            {{this.userName}}</h3>
+                                                        <p class="mb-0 py-2">This is my des</p>
+                                                        <span>
+                                                            <button class="btn btn-sm btn-outline-info"
+                                                                style="min-width: 120px;width: 26%;">Nhắn
+                                                                tin</button>
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="text-start fs-14 pt-3 px-5 ms-1">
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-start fs-14">
+                                                            <div class="pe-5" style="min-width: 167px">Nhóm chung</div>
+                                                            <div>12 nhóm</div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-start fs-14">
+                                                            <div class="pe-5" style="min-width: 167px">Điện thoại</div>
+                                                            <div>+84333021348</div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-start fs-14">
+                                                            <div class="pe-5" style="min-width: 167px">Giới tính</div>
+                                                            <div>Nam</div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex align-items-center justify-content-start fs-14">
+                                                            <div class="pe-5" style="min-width: 167px">Ngày sinh</div>
+                                                            <div>24/11</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-4">
+                                                        <div class="d-flex align-content-center">
+
+                                                            <div class="border d-flex align-items-center flex-column cursor-point py-2"
+                                                                style="width: 33%">
+                                                                <span class="pt-1"><i
+                                                                        class="fal fa-trash-alt fs-18"></i></span>
+                                                                <span class="pt-1">Xoá</span>
+                                                            </div>
+                                                            <div class="py-2 border-top border-end border-bottom d-flex align-items-center flex-column cursor-point"
+                                                                style="flex: 1">
+                                                                <span class="pt-1"><i class="fal fa-lock"></i></span>
+                                                                <span class="pt-1">Chặn</span>
+                                                            </div>
+                                                            <div class="py-2 border-top border-end border-bottom d-flex align-items-center flex-column cursor-point"
+                                                                style="width: 33%">
+                                                                <span class="pt-1"><i
+                                                                        class="fal fa-exclamation-triangle"></i></span>
+                                                                <span class="pt-1">Báo xấu</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="addcontact-invitemessage-input" class="form-label">Tin
-                                                    nhắn</label>
-                                                <textarea class="form-control" id="addcontact-invitemessage-input"
-                                                    rows="3" placeholder="Nhập tin nhắn"></textarea>
-                                            </div>
-                                        </form>
+                                        </div>
+
+
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-link"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Invite Contact</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -1243,14 +1303,25 @@
                                                                         style="font-size: 20px; padding: 0 12px;"></i>
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-end">
+                                                                    {{!-- <div>
+                                                                        <a data-uid="{{this._id}}" onclick="toggle()"
+                                                                            id="id_contact_profile"
+                                                                            class="dropdown-item d-flex align-items-center justify-content-between"><span>Profile</span>
+                                                                            <i
+                                                                                class="fal fa-user-circle float-end text-muted"></i>
+                                                                        </a>
+                                                                    </div> --}}
+
                                                                     <div>
-                                                                        <a data-uid="{{this._id}}" onclick="toggle()"  id="id_contact_profile"
-                                                                            class="dropdown-item d-flex align-items-center justify-content-between" ><span>Profile</span>
+                                                                        <a data-uid="{{this._id}}" onclick="toggle()"
+                                                                            id="id_contact_profile"
+                                                                            class="dropdown-item d-flex align-items-center justify-content-between"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#addContact-exampleModal"><span>Profile</span>
                                                                             <i
                                                                                 class="fal fa-user-circle float-end text-muted"></i>
                                                                         </a>
                                                                     </div>
-
                                                                     <a class="dropdown-item"
                                                                         href="javascript:void(0)">Block
                                                                         <i
@@ -1269,6 +1340,7 @@
                                                 </ul>
                                                 {{!-- End --}}
                                             </div>
+
                                             <!-- end contact list A -->
 
                                         </div>
@@ -2764,85 +2836,6 @@
     </div>
 </div>
 
-{{!-- Modal Contact --}}
-
-<div id="popup-tv">
-    <div>
-        <div class="row">
-            <div class="col-12">
-                <div class="popup-header d-flex align-items-center justify-content-between py-3 px-3">
-                    <span class="fs-18 fw-bold">Thông tin</span>
-                    <i class="fal fa-times fs-18 cursor-point" onclick="toggle()"></i>
-                </div>
-            </div>
-            <div class="border-top"></div>
-            <div class="col-12">
-                <div class="popup-body" style="min-height: 466px;">
-                    <div class="position-relative">
-
-                        <div class="popup-body-avatar position-relative d-table" style="min-width: 100%;">
-                            <div class="popup-body-avatar-wrapper">
-                                <img class="avatar-profile cursor-point"
-                                    src="https://s120-ava-talk.zadn.vn/2/1/c/7/13/120/10e6b4db2255ee6bbf106de6f1261b69.jpg"
-                                    alt="">
-                            </div>
-                            <img class="avatar-banner"
-                                src="https://cover-talk.zadn.vn/c/1/7/d/3/10e6b4db2255ee6bbf106de6f1261b69.jpg" alt="">
-                        </div>
-
-                    </div>
-                    <div class="text-center fs-14 pt-5">
-                        <h3 style="color: black !important" class="mb-0">{{this.userName}}</h3>
-                        <p class="mb-0">This is my des</p>
-                        <span>
-                            <button class="btn btn-sm btn-outline-info" style="min-width: 120px;width: 26%;">Nhắn
-                                tin</button>
-                        </span>
-
-                    </div>
-                    <div class="text-start fs-14 pt-3 px-5 ms-1">
-                        <div class="d-flex align-items-center justify-content-start fs-14">
-                            <div class="pe-5" style="min-width: 167px">Nhóm chung</div>
-                            <div>12 nhóm</div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-start fs-14">
-                            <div class="pe-5" style="min-width: 167px">Điện thoại</div>
-                            <div>+84333021348</div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-start fs-14">
-                            <div class="pe-5" style="min-width: 167px">Giới tính</div>
-                            <div>Nam</div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-start fs-14">
-                            <div class="pe-5" style="min-width: 167px">Ngày sinh</div>
-                            <div>24/11</div>
-                        </div>
-                    </div>
-                    <div class="pt-4">
-                        <div class="d-flex align-content-center">
-
-                            <div class="border d-flex align-items-center flex-column cursor-point" style="width: 33%">
-                                <span class="pt-1"><i class="fal fa-trash-alt fs-18"></i></span>
-                                <span class="pt-1">Xoá</span>
-                            </div>
-                            <div class="border-top border-end d-flex align-items-center flex-column cursor-point"
-                                style="flex: 1">
-                                <span class="pt-1"><i class="fal fa-lock"></i></span>
-                                <span class="pt-1">Chặn</span>
-                            </div>
-                            <div class="border-top border-end d-flex align-items-center flex-column cursor-point"
-                                style="width: 33%">
-                                <span class="pt-1"><i class="fal fa-exclamation-triangle"></i></span>
-                                <span class="pt-1">Báo xấu</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 
 <!-- Modal Account-->
