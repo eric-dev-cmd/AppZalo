@@ -83,7 +83,7 @@ class ContactSocket {
             clients = pushSocketIdToArray(clients, receiverId, socket.id);
             socket.on('accept-contact', (data) => {
                 let currentUser = {
-                    id: receiverId,
+                    _id: receiverId,
                     userName: socket.request.user.data.user.userName,
                     avatar: socket.request.user.data.user.avatar 
                 };
@@ -93,6 +93,25 @@ class ContactSocket {
             });
             socket.on('disconnect', () => {
                 clients = removeSocketIdFromArray(clients, receiverId, socket);
+            });
+        });
+    }
+
+    removeFriend(io) {
+        let clients = {};
+        io.on('connection', (socket) => {
+            let senderId = socket.request.user.data.user._id;
+            clients = pushSocketIdToArray(clients, senderId, socket.id);
+            socket.on('remove-friend', (data) => {
+                let currentUser = {
+                    id: senderId
+                };
+                if (clients[data.receiverId]) {
+                    emitEventToArray(clients, data.receiverId, io, 'response-remove-friend', currentUser);
+                };
+            });
+            socket.on('disconnect', () => {
+                clients = removeSocketIdFromArray(clients,senderId, socket);
             });
         });
     }

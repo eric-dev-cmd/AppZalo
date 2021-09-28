@@ -199,9 +199,6 @@ btnAddFriend.forEach((e) => {
   });
 });
 
-let id = document.getElementById('id_contact_profile').getAttribute('data-uid');
-
-
 // // Modal Profile
 // function toggle() {
 //   let blur = document.getElementById('blur');

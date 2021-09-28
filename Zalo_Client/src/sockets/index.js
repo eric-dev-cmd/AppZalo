@@ -5,6 +5,7 @@ function initSockets(io) {
     contactSocket.removeRequestContact(io);
     contactSocket.removeRequestContactReceiver(io);
     contactSocket.acceptContact(io);
+    contactSocket.removeFriend(io);
 }
 
 module.exports = initSockets;

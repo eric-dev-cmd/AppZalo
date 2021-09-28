@@ -1157,8 +1157,7 @@
                         <h4 class="mb-4">Contacts</h4>
 
                         <!-- Start Information Profile -->
-                        {{#each contacts}}
-                        <div class="modal fade" id="modal_{{this._id}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="modal-show-profile" tabindex="-1" role="dialog"
                             aria-labelledby="addContact-exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -1180,8 +1179,8 @@
                                                             style="min-width: 100%;">
                                                             <div class="popup-body-avatar-wrapper">
                                                                 <img class="avatar-profile cursor-point"
-                                                                    src="images/{{this.avatar}}"
-                                                                    alt="">
+                                                                    id="avatar_profile" src="" alt="">
+                                                                {{!-- avatar profile --}}
                                                             </div>
                                                             <img class="avatar-banner"
                                                                 src="https://cover-talk.zadn.vn/c/1/7/d/3/10e6b4db2255ee6bbf106de6f1261b69.jpg"
@@ -1190,8 +1189,10 @@
 
                                                     </div>
                                                     <div class="text-center fs-14 pt-5">
-                                                        <h3 style="color: black !important" class="mb-0">
-                                                            {{this.userName}}</h3>
+                                                        <h3 style="color: black !important" class="mb-0"
+                                                            id="userName_profile">
+                                                            {{!-- userNAme profile --}}
+                                                        </h3>
                                                         <p class="mb-0 py-2">This is my des</p>
                                                         <span>
                                                             <button class="btn btn-sm btn-outline-info"
@@ -1209,17 +1210,17 @@
                                                         <div
                                                             class="d-flex align-items-center justify-content-start fs-14">
                                                             <div class="pe-5" style="min-width: 167px">Điện thoại</div>
-                                                            <div>{{this.local.phone}}</div>
+                                                            <div id="phone_profile"> {{!-- phone profile --}}</div>
                                                         </div>
                                                         <div
                                                             class="d-flex align-items-center justify-content-start fs-14">
                                                             <div class="pe-5" style="min-width: 167px">Giới tính</div>
-                                                            <div>{{this.gender}}</div>
+                                                            <div id="gender_profile">{{!-- gender profile --}}</div>
                                                         </div>
                                                         <div
                                                             class="d-flex align-items-center justify-content-start fs-14">
                                                             <div class="pe-5" style="min-width: 167px">Ngày sinh</div>
-                                                            <div>{{this.birthday}}</div>
+                                                            <div id="birthday_profile">{{!-- birthday profile --}}</div>
                                                         </div>
                                                     </div>
                                                     <div class="pt-4">
@@ -1254,7 +1255,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{/each}}
                         <!-- End Add contact Modal -->
 
                         <div class="search-box chat-search-box">
@@ -1284,14 +1284,14 @@
                                         <div class="simplebar-content" style="padding: 24px;">
 
                                             <div>
-                                                <div class="p-3 fw-bold text-primary" data-sum="{{sumOfContact}}"
-                                                    id="sumOfContact">
+                                                <div class="p-3 fw-bold text-primary" id="sumOfContact"
+                                                    data-sum="{{sumOfContact}}">
                                                     Bạn bè({{sumOfContact}})
                                                 </div>
                                                 <ul class="list-unstyled contact-list" id="contact-list">
 
                                                     {{#each contacts}}
-                                                    <li>
+                                                    <li data-uid='{{this._id}}'>
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-1">
                                                                 <h5 class="font-size-14 m-0">{{this.userName}}</h5>
@@ -1305,21 +1305,11 @@
                                                                         style="font-size: 20px; padding: 0 12px;"></i>
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                                    {{!-- <div>
-                                                                        <a data-uid="{{this._id}}" onclick="toggle()"
-                                                                            id="id_contact_profile"
-                                                                            class="dropdown-item d-flex align-items-center justify-content-between"><span>Profile</span>
-                                                                            <i
-                                                                                class="fal fa-user-circle float-end text-muted"></i>
-                                                                        </a>
-                                                                    </div> --}}
-
                                                                     <div>
-                                                                        <a data-uid="{{this._id}}"
-                                                                            id="id_contact_profile"
+                                                                        <a onclick="showDetailsProfile('{{this._id}}')"
                                                                             class="dropdown-item d-flex align-items-center justify-content-between"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#modal_{{this._id}}"><span>Profile</span>
+                                                                            data-bs-target="#modal-show-profile"><span>Profile</span>
                                                                             <i
                                                                                 class="fal fa-user-circle float-end text-muted"></i>
                                                                         </a>
@@ -1329,7 +1319,7 @@
                                                                         <i
                                                                             class="fal fa-ban float-end text-muted"></i></a>
                                                                     <a class="dropdown-item"
-                                                                        href="/contact/remove">Remove
+                                                                        onclick="removeFriend('{{this._id}}')">Remove
                                                                         <i
                                                                             class="fal fa-trash-alt float-end text-muted"></i></a>
                                                                 </div>

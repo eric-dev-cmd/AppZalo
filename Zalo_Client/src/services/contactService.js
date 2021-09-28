@@ -39,7 +39,6 @@ class ContactService {
                     .catch(reject(false));
             }
             if (findContact !== null && findContact.status === true) {
-
                 await axios.delete(http + '/contacts/' + findContact._id)
                     .then(resolve(true))
                     .catch(reject(false));
