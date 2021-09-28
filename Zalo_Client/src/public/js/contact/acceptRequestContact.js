@@ -47,7 +47,10 @@ function sumOfContactInc() {
 function contact(user) {
     let contact = `<li data-uid = '${user._id}'
     <div class="d-flex align-items-center">
-        <div class="flex-1">
+        <div class="flex-1 d-flex align-items-center">
+            <img src="/images/${user.avatar}"
+                class="rounded-circle avatar-xs me-3"
+                alt="${user.userName}">
             <h5 class="font-size-14 m-0">${user.userName}</h5>
         </div>
         <div class="dropdown">
@@ -60,13 +63,14 @@ function contact(user) {
             </a>
             <div class="dropdown-menu dropdown-menu-end">
                 <div>
-                    <a 
-                        class="dropdown-item d-flex align-items-center justify-content-between"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal_${user._id}"><span>Profile</span>
-                        <i
-                            class="fal fa-user-circle float-end text-muted"></i>
-                    </a>
+                <a onclick="showDetailsProfile('${user._id}')"
+                class="dropdown-item d-flex align-items-center justify-content-between"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-show-profile"><span>Hồ
+                    sơ</span>
+                <i
+                    class="fal fa-user-circle float-end text-muted"></i>
+            </a>
                 </div>
                 <a class="dropdown-item"
                     href="javascript:void(0)">Block
