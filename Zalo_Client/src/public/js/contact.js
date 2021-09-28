@@ -1,16 +1,16 @@
 const http = `http://localhost:4000`;
 
 $(document).ready(function () {
-  $('#searchPhone').on('keyup', function () {
-    //khi nhap vao o tim kiem
-    search(this.value);
-    $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
+  $('#seachByPhone').on('click', function () {
+    var phone = $('#searchPhone').val();
+    search(phone);
+    //$('#btn-add-cancel-friend').find('#btn-add-friend').hide();
   });
 });
 
 //tim kiem theo url
 function search(phone) {
-  const phoneCurrent = document.getElementById('phone').placeholder;
+  const phoneCurrent = $('#phone').attr('placeholder')
   if (phoneCurrent !== phone) {
     const url = http + `/users/searchPhone/${phone}`;
     $.get(url, function (data, status) {
@@ -25,9 +25,7 @@ function search(phone) {
         $('#phone-search').html('');
         $('#image-search').html('');
         $('<strong>' + userName + '</strong>').appendTo($('#name-search')),
-          $('<strong>' + local.phone + '</strong>').appendTo(
-            $('#phone-search')
-          ),
+          $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search')),
           $('<img src="images/' + avatar + '">').appendTo($('#image-search')),
           $('#btn-add-friend').attr('data-uid', `${_id}`);
         $('#btn-cancel-friend').attr('data-uid', `${_id}`);
@@ -46,9 +44,11 @@ function showBtnAddAndRemove(receiverId) {
       $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
     }
     if (data.contact !== null && data.contact.status === false) {
+      $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
       $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
       removeRequestContact();
     } if (data.contact === null) {
+      $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide();
       $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block');
       addNewContact();
     }
@@ -74,9 +74,7 @@ function addNewContact() {
       success: function (data) {
         if (data.success) {
           $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
-          $('#btn-add-cancel-friend')
-            .find('#btn-cancel-friend')
-            .css('display', 'inline-block');
+          $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
           removeRequestContact(receiverId);
           socket.emit('add-new-contact', {
             receiverId: receiverId,
@@ -109,9 +107,7 @@ function removeRequestContact() {
       success: function (data) {
         if (data.success) {
           $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide(),
-            $('#btn-add-cancel-friend')
-            .find('#btn-add-friend')
-            .css('display', 'inline-block');
+            $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block');
           addNewContact();
           socket.emit('remove-request-contact', {
             receiverId: receiverId,
