@@ -50,6 +50,7 @@ class ContactService {
         return new Promise(async (resolve, reject) => {
             let findContact = await this.checkExistsContact(senderId, receiverId);
             let contact = findContact;
+            findContact.updatedAt = Date.now();
             findContact.status = true;
             let findNotification = await this.checkExistsNotification(senderId, receiverId, NotificationUtil.NOTIFICATION_TYPES.ADD_CONTACT)
             if (findContact !== null && findNotification !== null) {
@@ -78,9 +79,11 @@ class ContactService {
                 let getContacts = contacts.data.map(async (contact) => {
                     if (contact.receiverId !== senderId) {
                         let user = await axios.get(http + '/users/' + contact.receiverId);
+                        user.data.user.updatedAt = contact.updatedAt;
                         return user.data.user;
                     } else {
                         let user = await axios.get(http + '/users/' + contact.senderId);
+                        user.data.user.updatedAt = contact.updatedAt;
                         return user.data.user;
                     }
                 });

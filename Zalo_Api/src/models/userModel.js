@@ -31,15 +31,15 @@ const User = new Schema({
         },
         password: String
     },
-    createAt: {
+    createdAt: {
         type: Number,
         default: Date.now
     },
-    updateAt: {
+    updatedAt: {
         type: Number,
         default: null
     },
-    deleteAt: {
+    deletedAt: {
         type: Number,
         default: null
     }

@@ -4,7 +4,7 @@ $(document).ready(function () {
   $('#seachByPhone').on('click', function () {
     var phone = $('#searchPhone').val();
     search(phone);
-    //$('#btn-add-cancel-friend').find('#btn-add-friend').hide();
+    $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
   });
 });
 
@@ -24,10 +24,10 @@ function search(phone) {
         $('#name-search').html('');
         $('#phone-search').html('');
         $('#image-search').html('');
-        $('<strong>' + userName + '</strong>').appendTo($('#name-search')),
-          $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search')),
-          $('<img src="images/' + avatar + '">').appendTo($('#image-search')),
-          $('#btn-add-friend').attr('data-uid', `${_id}`);
+        $('<strong>' + userName + '</strong>').appendTo($('#name-search'));
+        $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search'));
+        $('<img src="images/' + avatar + '">').appendTo($('#image-search'));
+        $('#btn-add-friend').attr('data-uid', `${_id}`);
         $('#btn-cancel-friend').attr('data-uid', `${_id}`);
         showBtnAddAndRemove(_id);
       }
@@ -47,7 +47,8 @@ function showBtnAddAndRemove(receiverId) {
       $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
       $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
       removeRequestContact();
-    } if (data.contact === null) {
+    }
+    if (data.contact === null) {
       $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide();
       $('#btn-add-cancel-friend').find('#btn-add-friend').css('display', 'inline-block');
       addNewContact();

@@ -6,9 +6,9 @@ const Contact= new Schema({
     senderId: String,
     receiverId: String,
     status: {type: Boolean, default: false},
-    createAt: {type: Number, default: Date.now},
-    updateAt: {type: Number, default: null},
-    deleteAt: {type: Number, default: null}
+    createdAt: {type: Number, default: Date.now},
+    updatedAt: {type: Number, default: null},
+    deletedAt: {type: Number, default: null}
 });
 
 ContactStatic = {

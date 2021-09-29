@@ -30,7 +30,3 @@ function sumOfContactDes() {
     $('#sumOfContact').html('');
     $('<span>Bạn bè(' + sum + ')</span>').appendTo($('#sumOfContact'));
 }
-
-$(document).ready(function () {
-    removeFriend();
-});

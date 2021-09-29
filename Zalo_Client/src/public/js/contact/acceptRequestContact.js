@@ -11,9 +11,7 @@ function acceptRequestContact() {
             },
             success: function (data) {
                 if (data.success) {
-                    $('#notification-contact')
-                        .find(`li[data-uid = ${senderId}]`)
-                        .remove();
+                    $('#notification-contact').find(`li[data-uid = ${senderId}]`).remove();
                     showBtnAddAndRemove(senderId);
                     $.get(http + `/users/${senderId}`, function (data, status) {
                         if (status === 'success') {
@@ -32,8 +30,8 @@ function acceptRequestContact() {
 
 socket.on('response-accept-contact', function (user) {
     sumOfContactInc();
+    showBtnAddAndRemove(user._id);
     $('#contact-list').prepend(contact(user));
-    showBtnAddAndRemove(user.id);
 });
 
 function sumOfContactInc() {

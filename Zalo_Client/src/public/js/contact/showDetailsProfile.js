@@ -8,6 +8,8 @@ function showDetailsProfile(id) {
 			$("#modal-show-profile #phone_profile").html(`<div>${local.phone}</div>`);
 			$("#modal-show-profile #gender_profile").html(`<div>${gender}</div>`);
 			$("#modal-show-profile #birthday_profile").html(`<div>${birthday}</div>`);
+			$("#modal-show-profile #remove-friend").attr('onclick', `removeFriend('${_id}')`);
+			
 		}
     });
 }

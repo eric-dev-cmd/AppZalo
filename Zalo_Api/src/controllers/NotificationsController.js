@@ -24,7 +24,7 @@ class NotificationsController {
 
     getAPIByReceiverIdAndLimit(req, res, next){
         Notification.find({'receiverId': req.params.receiverid})
-            .sort({'createAt' : -1})
+            .sort({'createdAt' : -1})
             .limit(req.params.limit).exec()
             .then(notifications => {
                 res.json(notifications)

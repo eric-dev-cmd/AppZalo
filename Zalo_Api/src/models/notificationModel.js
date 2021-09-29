@@ -7,7 +7,7 @@ const Notification= new Schema({
     type: String,
     content: {type: String, default: null},
     isRead: {type: Boolean, default: false},
-    createAt: {type: Number, default: Date.now},
+    createdAt: {type: Number, default: Date.now},
 });
 
 module.exports = mongoose.model('notification', Notification);
