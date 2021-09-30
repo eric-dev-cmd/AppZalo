@@ -60,6 +60,15 @@ socket.on('response-add-new-contact', function (user) {
   </div>
   </li>`;
     $('#notification-contact').prepend(notification);
+    sumOfNotificationInc();
     removeRequestContactReceiver();
     acceptRequestContact();
   });
+
+  function sumOfNotificationInc() {
+    let sum = $('#sumOfNotification').attr('data-sum');
+    sum++;
+    $('#sumOfNotification').attr('data-sum', sum);
+    $('#sumOfNotification').html('');
+    $('<span>(' + sum + ')</span>').appendTo($('#sumOfNotification'));
+  }

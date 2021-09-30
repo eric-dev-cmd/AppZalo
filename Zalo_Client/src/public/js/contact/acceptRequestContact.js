@@ -12,6 +12,7 @@ function acceptRequestContact() {
             success: function (data) {
                 if (data.success) {
                     $('#notification-contact').find(`li[data-uid = ${senderId}]`).remove();
+                    sumOfNotificationDes();
                     showBtnAddAndRemove(senderId);
                     $.get(http + `/users/${senderId}`, function (data, status) {
                         if (status === 'success') {
@@ -84,6 +85,14 @@ function contact(user) {
 </li>`;
     return contact;
 }
+
+function sumOfNotificationDes() {
+    let sum = $('#sumOfNotification').attr('data-sum');
+    sum = sum - 1;
+    $('#sumOfNotification').attr('data-sum', sum);
+    $('#sumOfNotification').html('');
+    $('<span>(' + sum + ')</span>').appendTo($('#sumOfNotification'));
+  }
 
 $(document).ready(function () {
     acceptRequestContact();

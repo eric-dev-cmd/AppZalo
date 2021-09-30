@@ -18,7 +18,8 @@ class HomeController {
 
     res.render('home', {
       user: req.user.data.user,
-      notifications: notifications,
+      notifications: notifications.getNotiContents,
+      sumOfNotification : notifications.sumOfNotification,
       contacts: sortJsonArray(contacts.getContacts, 'userName', 'asc'),
       sumOfContact: contacts.sumOfContact,
       allContacts: getAllContact,

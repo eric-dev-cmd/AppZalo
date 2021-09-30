@@ -11,10 +11,8 @@ function removeRequestContactReceiver() {
             },
             success: function (data) {
                 if (data.success) {
-                    $('#notification-contact')
-                        .find(`li[data-uid = ${senderId}]`)
-                        .remove();
-
+                    $('#notification-contact').find(`li[data-uid = ${senderId}]`).remove();
+                    sumOfNotificationDes();
                     socket.emit('remove-request-contact-receiver', {
                         senderId: senderId,
                     });
@@ -25,13 +23,9 @@ function removeRequestContactReceiver() {
 }
 
 socket.on('response-remove-request-contact-receiver', function (user) {
-    $('#btn-add-cancel-friend')
-        .find(`div#btn-cancel-friend[data-uid = ${user.id}]`)
-        .hide(),
-        $('#btn-add-cancel-friend')
-        .find(`div#btn-add-friend[data-uid = ${user.id}]`)
-        .css('display', 'inline-block'),
-        addNewContact();
+    $('#btn-add-cancel-friend').find(`div#btn-cancel-friend[data-uid = ${user.id}]`).hide();
+    $('#btn-add-cancel-friend').find(`div#btn-add-friend[data-uid = ${user.id}]`).css('display', 'inline-block');
+    addNewContact();
 });
 
 $(document).ready(function () {

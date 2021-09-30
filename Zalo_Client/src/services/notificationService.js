@@ -15,7 +15,14 @@ class Notification {
                     // lấy nội dung notification truyền vào thông tin của người gửi
                     return NotificationUtil.NotifitionUtil.getContent(notification.type, notification.isRead, sender.data.user._id, sender.data.user.userName, sender.data.user.avatar);
                 });
-                return resolve(await Promise.all(getNotiContents));
+                let sumOfNotification = 0;
+                for (let i = 0; i < getNotiContents.length; i++) {
+                    sumOfNotification += 1;
+                }
+                return resolve({
+                    getNotiContents: await Promise.all(getNotiContents),
+                    sumOfNotification: sumOfNotification
+                });
             } catch (error) {
                 return reject(error)
             }
