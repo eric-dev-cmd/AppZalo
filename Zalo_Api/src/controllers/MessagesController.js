@@ -1,7 +1,7 @@
 const Message = require('../models/messageModel');
 
 class MessagesController {
-    getAPI(req, res, next){
+    getAPI(req, res, next) {
         Message.find({})
             .then(apis => {
                 res.json(apis)
@@ -12,7 +12,37 @@ class MessagesController {
     getAPIById(req, res, next) {
         Message.findById(req.params.id)
             .then(api => {
-                res.json({api});
+                res.json(api);
+            })
+            .catch(next);
+    }
+
+    getAPIBySenderIdAndReceiverId(req, res, next) {
+        Message.find({
+                '$or': [{
+                        '$and': [{
+                                'senderId': req.params.senderid
+                            },
+                            {
+                                'receiverId': req.params.receiverid
+                            }
+                        ]
+                    },
+                    {
+                        '$and': [{
+                                'senderId': req.params.receiverid
+                            },
+                            {
+                                'receiverId': req.params.senderid
+                            }
+                        ]
+                    }
+                ]
+            }).sort({
+                'createdAt': -1
+            }).exec()
+            .then(api => {
+                res.json(api);
             })
             .catch(next);
     }
@@ -21,7 +51,7 @@ class MessagesController {
         const message = new Message(req.body);
         message.save()
             .then(api => {
-                res.json({api});
+                res.json(api);
             })
             .catch(next);
 
@@ -31,7 +61,7 @@ class MessagesController {
         const data = req.body;
         Message.findByIdAndUpdate(req.params.id, data)
             .then(api => {
-                res.json({api});
+                res.json(api);
             })
             .catch(next)
     }

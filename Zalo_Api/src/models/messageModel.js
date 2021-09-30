@@ -2,16 +2,10 @@ const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 
 const Message= new Schema({
-    sender: {
-        id: String,
-        userName: String, 
-        avatar: String
-    },
-    receiver: {
-        id: String,
-        userName: String, 
-        avatar: String
-    },
+    senderId: String,
+    receiverId: String,
+    chatType: String,
+    messageType: String,
     text: String,
     file: {data: Buffer, contentType: String, fileName: String},
     createdAt: {type: Number, default: Date.now},
