@@ -23,4 +23,8 @@ let removeSocketIdFromArray = (clients, userId, socket) => {
     return clients;
 }
 
-module.exports = {pushSocketIdToArray, emitEventToArray, removeSocketIdFromArray}
+module.exports = {
+    pushSocketIdToArray,
+    emitEventToArray,
+    removeSocketIdFromArray
+}

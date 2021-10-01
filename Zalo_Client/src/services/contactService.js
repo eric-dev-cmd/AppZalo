@@ -114,6 +114,26 @@ class ContactService {
             }
         });
     }
+
+    recentSearch(phone) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let user = await axios.get(http + '/users/searchPhone/' + phone);
+                if (user.data !== null) {
+                    // set vao storelocal của recentSeach
+                    searches.setRecentSearch(user.data.user._id, {
+                        _id: user.data.user._id,
+                        phone: user.data.user.local.phone,
+                        avatar: user.data.user.avatar,
+                        userName: user.data.user.userName
+                    });
+                }
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
 }
 
 module.exports = new ContactService;

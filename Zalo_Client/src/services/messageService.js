@@ -9,24 +9,24 @@ class MessageService {
         return new Promise(async (resolve, reject) => {
             try {
                 // lấy danh sách bạn bè
-                let users = await contactService.getContacts(senderId);
+                let userConversation = await contactService.getContacts(senderId);
                 //lấy ds groups
-                let groups = await  chatGroupService.getChatGroups(senderId);
+                let groupConversation = await  chatGroupService.getChatGroups(senderId);
                 //gom 2 mảng
-                let getAll = users.getContacts.concat(groups);
-                getAll = sortJsonArray(getAll, 'updatedAt', 'des');
+                let allConversation = userConversation.getContacts.concat(groupConversation);
+                allConversation = sortJsonArray(allConversation, 'updatedAt', 'des');
 
-                let getAllMessages = getAll.map(async (conversation) => {
+                let allConversationMessages = allConversation.map(async (conversation) => {
                     // tìm kiếm messages theo senderId và (receiverId hoặc groupId)
                     let getMessages = await axios.get(http + '/messages/SearchBySenderIdAndReceiverId/' + senderId + '/' + conversation._id);
                     conversation.messages = getMessages.data;
                     return conversation;
                 });
                 resolve({
-                    getAll: getAll,
-                    users: users,
-                    groups: groups,
-                    getAllMessages: await Promise.all(getAllMessages)
+                    allConversation: allConversation,
+                    userConversation: userConversation,
+                    groupConversation: groupConversation,
+                    allConversationMessages: await Promise.all(allConversationMessages)
                 });
             } catch (error) {
                 reject(error);
