@@ -13,7 +13,6 @@ class HomeController {
     let getUserConversation = getAllConversationItem.userConversation;
     let getGroupConversation = getAllConversationItem.groupConversation;
     let getAllConversationMessages = getAllConversationItem.allConversationMessages;
-    console.log(getAllConversationMessages);
 
     res.render('home', {
       user: req.user.data.user,

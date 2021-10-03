@@ -18,8 +18,13 @@ class MessageService {
 
                 let allConversationMessages = allConversation.map(async (conversation) => {
                     // tìm kiếm messages theo senderId và (receiverId hoặc groupId)
+                   if(conversation.members){
+                    let getMessages = await axios.get(http + '/messages/SearchByReceiverId/' + conversation._id);
+                    conversation.messages = getMessages.data;
+                   }else{
                     let getMessages = await axios.get(http + '/messages/SearchBySenderIdAndReceiverId/' + senderId + '/' + conversation._id);
                     conversation.messages = getMessages.data;
+                   }
                     return conversation;
                 });
                 resolve({
