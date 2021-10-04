@@ -3,6 +3,7 @@ function textAndEmojiChat() {
         if(element.which === 13){
             let messageVal = $('#write-chat').val();
             console.log(messageVal);
+            $.post()
         }
     })
 }

@@ -1,12 +1,12 @@
 const http = `http://localhost:4000`;
 
-$(document).ready(function () {
+function searchPhone() {
   $('#seachByPhone').on('click', function () {
     var phone = $('#searchPhone').val();
     search(phone);
     $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
   });
-});
+}
 
 //tim kiem theo url
 function search(phone) {
@@ -55,3 +55,5 @@ function showBtnAddAndRemove(receiverId) {
     }
   });
 }
+
+

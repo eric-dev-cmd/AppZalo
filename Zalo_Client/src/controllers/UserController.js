@@ -8,7 +8,7 @@ const {
 class UserController {
     updateProfile(req, res, next) {
         if (req.files) {
-            var file = req.files.avatar; //name view
+            var file = req.files.avatar; //file {avatar: {object}}
             var fileName = file.name;     
             if (file.mimetype.split('/')[0] === 'image' && file.size < 1048576) {                
                 file.mv('./src/public/images/' + fileName, function (error) {

@@ -1,6 +1,6 @@
 const socket = io();
 
-$(document).ready(function () {
+function enableEmojioneArea() {
     $("#write-chat").emojioneArea({
         events: {
             keyup: function (editor, event) {
@@ -11,4 +11,12 @@ $(document).ready(function () {
             }
         }
     })
+}
+
+$(document).ready(function () {
+    searchPhone();
+    enableEmojioneArea();
 });
+
+
+

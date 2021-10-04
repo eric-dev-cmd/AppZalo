@@ -19,7 +19,7 @@ class MessagesController {
 
     getAPIByReceiverId(req, res, next) {
         Message.find({'receiverId': req.params.receiverid}).sort({
-                'createdAt': -1
+                'createdAt': 1
             }).exec()
             .then(api => {
                 res.json(api);
@@ -49,7 +49,7 @@ class MessagesController {
                     }
                 ]
             }).sort({
-                'createdAt': -1
+                'createdAt': 1
             }).exec()
             .then(api => {
                 res.json(api);
