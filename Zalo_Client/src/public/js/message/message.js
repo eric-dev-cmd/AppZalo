@@ -5,6 +5,7 @@ async function showConversationGroup(id) {
     let sender = await $.get(http + `/users/${currentUserId}`);
     // lấy tin nhắn theo id nhóm
     let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
+    
     //hiển thị tên nhóm
     $('#name-conversation').html(`${group.name}`);
     //phía gửi: gán giá trị data-id = id hiện tại
@@ -13,10 +14,13 @@ async function showConversationGroup(id) {
     let rightId = $('#right-conversation').attr('data-id');
     $('#conversation').html('');
     messages.map(async (message) => {
+        //tìm người gửi cho user hiện tại
         let receiver = await $.get(http + `/users/${message.senderId}`);
+        //phía nhận: tạo nội dung nhận = null
         $('#conversation').append(leftConversationText(receiver, {
             text: null
         }));
+        //phía nhận: set id của người nhận
         $(`#left-conversation-${receiver.user._id}`).attr('data-id', `${receiver.user._id}`);
         if (message.messageType === 'text') {
             if (message.senderId === rightId) {
@@ -38,7 +42,7 @@ async function showConversationGroup(id) {
                 $('#conversation').find(`li[data-content = null]`).remove();
             }
         }
-        if(message.messageType === 'file'){
+        if (message.messageType === 'file') {
             if (message.senderId === rightId) {
                 $('#conversation').append(rightConversationFile(sender, message));
                 $('#conversation').find(`li[data-content = null]`).remove();
@@ -48,8 +52,8 @@ async function showConversationGroup(id) {
                 $('#conversation').find(`li[data-content = null]`).remove();
             }
         }
-
-    })
+    });
+    insertInput(id, true);
 }
 
 //hiển thị tin nhắn cá nhân
@@ -84,7 +88,7 @@ async function showConversationUser(id) {
                 $('#conversation').append(leftConversationImage(receiver, message));
             }
         }
-        if(message.messageType === 'file'){
+        if (message.messageType === 'file') {
             if (message.senderId === rightId) {
                 $('#conversation').append(rightConversationFile(sender, message));
             }
@@ -92,8 +96,23 @@ async function showConversationUser(id) {
                 $('#conversation').append(leftConversationFile(receiver, message));
             }
         }
-
     });
+    insertInput(id, false);
+}
+
+//Hiển thị thẻ input nhập tin nhắn
+function insertInput(id, isChatGroup) {
+    $('#write-chat').html('');
+    $(`<input type="text" style="display: none" id="write-chat-${id}">`).appendTo($('#write-chat'));
+    enableEmojioneArea(id, isChatGroup);
+}
+
+function renderTime(message) {
+    let time = new Date(message.createdAt);
+    let minute = ('0' + time.getMinutes()).slice(-2);
+    let hour = time.getHours();
+    var newTime = hour + ":" + minute;
+    return newTime;
 }
 
 //tạo tin nhắn text gửi đi
@@ -112,7 +131,7 @@ function rightConversationText(user, message) {
                     </p>
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">10:02</span></p>
+                            class="align-middle">${renderTime(message)}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -165,7 +184,7 @@ function leftConversationText(user, message) {
                     </p>
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">10:00</span></p>
+                            class="align-middle">${renderTime(message)}</span></p>
                 </div>
                 <div class="dropdown align-self-start">
                     <a class="dropdown-toggle" href="javascript:void(0)"
@@ -317,7 +336,7 @@ function rightConversationImage(user, message) {
                     </ul>
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">10:09</span></p>
+                            class="align-middle">${renderTime(message)}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -473,7 +492,7 @@ function leftConversationImage(user, message) {
                      </ul>
                      <p class="chat-time mb-0"><i
                              class="fal fa-clock align-middle"></i> <span
-                             class="align-middle">10:09</span></p>
+                             class="align-middle">${renderTime(message)}</span></p>
                  </div>
 
                  <div class="dropdown align-self-start">
@@ -583,7 +602,7 @@ function rightConversationFile(user, message) {
 
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">10:16</span></p>
+                            class="align-middle">${renderTime(message)}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -693,7 +712,7 @@ function leftConversationFile(user, message) {
 
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">10:16</span></p>
+                            class="align-middle">${renderTime(message)}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -730,4 +749,3 @@ function leftConversationFile(user, message) {
     </div>
 </li>`;
 }
-

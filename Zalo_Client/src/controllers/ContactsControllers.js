@@ -1,6 +1,3 @@
-const axios = require('axios');
-const http = require('./http');
-
 const contactService = require('../services/contactService');
 
 class ContactController {
@@ -8,7 +5,6 @@ class ContactController {
         try {
             const senderId = req.user.data.user._id; // id cua user dang nhap
             const receiverId = req.body.uid; // id cua user muon ket ban
-
             const newContact = await contactService.addNew(senderId, receiverId);
             return res.status(200).send({ success: !!newContact });
         } catch (error) {

@@ -4,7 +4,7 @@ const MESSAGE_CHAT_TYPES = {
 };
 
 const MESSAGE_TYPES = {
-    Text: 'text',
+    TEXT: 'text',
     IMAGE: 'image',
     FILE: 'file'
 };

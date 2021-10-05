@@ -93,11 +93,9 @@ class ContactService {
                     // id của người nhận != id đang đăng nhập (senderid) thì tìm theo receiverId
                     if (contact.receiverId !== senderId) {
                         let user = await axios.get(http + '/users/' + contact.receiverId);
-                        user.data.user.updatedAt = contact.updatedAt;
                         return user.data.user;
                     } else {
                         let user = await axios.get(http + '/users/' + contact.senderId);
-                        user.data.user.updatedAt = contact.updatedAt;
                         return user.data.user;
                     }
                 });
