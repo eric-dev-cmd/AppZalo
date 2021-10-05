@@ -8,7 +8,7 @@ class MessageController{
             let messageVal = req.body.messageVal; //tin nhắn từ client gửi 
             let isChatGroup = req.body.isChatGroup; // ktra phải nhóm hay ko?
             let newMessage = await messageService.addNewTextAndEmoji(senderId, receiverId, messageVal, isChatGroup);
-            return res.status(200).send({ success: !!newMessage });
+            return res.status(200).send(newMessage);
         } catch (error) {
             return res.status(500).send(error);
         }

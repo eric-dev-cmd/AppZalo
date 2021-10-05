@@ -42,7 +42,7 @@ class MessageService {
     addNewTextAndEmoji(senderId, receiverId, messageVal, isChatGroup) {
         return new Promise(async (resolve, reject) => {
             try {
-                if (isChatGroup === 'true') {
+                if (isChatGroup === 'true' && messageVal.length > 0) {
                     let newMessageItem = {
                         text: messageVal,
                         senderId: senderId,
@@ -61,8 +61,9 @@ class MessageService {
                     chatGroup.messageAmount = chatGroup.messageAmount + 1;
                     await axios.put(http + '/chatGroups/' + receiverId, chatGroup);
 
-                    return resolve(newMessage);
-                } else {
+                    return resolve(newMessage.data);
+                } 
+                if (isChatGroup === 'false' && messageVal.length > 0) {
                     let newMessageItem = {
                         text: messageVal,
                         senderId: senderId,
@@ -73,11 +74,15 @@ class MessageService {
                     };
                     let newMessage = await axios.post(http + '/messages', newMessageItem);
                     // cập nhật thời gian
+                    let getSender = await axios.get(http + '/users/' + senderId);
                     let getReceiver = await axios.get(http + '/users/' + receiverId);
-                    let receiver = getReceiver.data.user;
+                    let sender = getSender.data.user;
+                    let receiver = getReceiver.data.user
+                    sender.updatedAt = Date.now();
                     receiver.updatedAt = Date.now();
+                    await axios.put(http + '/users/' + senderId, sender);
                     await axios.put(http + '/users/' + receiverId, receiver);
-                    return resolve(newMessage);
+                    return resolve(newMessage.data);
                 }
             } catch (error) {
                 reject(error);

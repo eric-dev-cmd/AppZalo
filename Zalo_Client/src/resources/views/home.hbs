@@ -446,10 +446,10 @@
                                         <div class="simplebar-content-wrapper"
                                             style="height: 100%; overflow: hidden scroll;">
                                             <div class="simplebar-content" style="padding: 0px;">
-                                                <ul class="list-unstyled chat-list chat-user-list">
+                                                <ul class="list-unstyled chat-list chat-user-list" id="conversation-list">
                                                     {{#each allConversationMessages}}
                                                     {{#if this.members}}
-                                                    <li onclick="showConversationGroup('{{this._id}}')">
+                                                    <li onclick="showConversationGroup('{{this._id}}')" id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}">
                                                         <a>
                                                             <div class="d-flex">
                                                                 <div
@@ -470,7 +470,7 @@
                                                         </a>
                                                     </li>
                                                     {{else}}
-                                                    <li onclick="showConversationUser('{{this._id}}')">
+                                                    <li onclick="showConversationUser('{{this._id}}')" id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}">
                                                         <a>
                                                             <div class="d-flex">
                                                                 <div
