@@ -169,9 +169,9 @@ function insertInput(id, isChatGroup) {
 
 function renderTime(message) {
   let formatedTime = moment(message.createdAt).format('LT');
-  console.log(formatedTime);
   return formatedTime;
 }
+
 
 //tạo tin nhắn text gửi đi
 function rightConversationText(user, message) {
@@ -833,14 +833,3 @@ function leftConversationFile(user, message) {
     </div>
 </li>`;
 }
-// Time
-(function time() {
-  var messageTimeStamp = new Date();
-  var time = moment(messageTimeStamp).fromNow();
-  let i = 0;
-  setInterval(() => {
-    console.log(time);
-    console.log(moment().endOf('day').fromNow());
-    console.log(i++);
-  }, 1000);
-})();

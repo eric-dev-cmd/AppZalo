@@ -1,12 +1,3 @@
-function scrollMessageUserEnd() {
-  const listHeight = document.querySelector(
-    '.conversation-height'
-  ).clientHeight;
-  const mainLayoutBody = document.querySelector('.simplebar-content-height');
-  mainLayoutBody.scroll({
-    top: listHeight,
-  });
-}
 function enableEmojioneArea(id, isChatGroup) {
   $(`#write-chat-${id}`).emojioneArea({
     standalone: false,
@@ -138,9 +129,18 @@ function getLastMessageConversation() {
 }
 //tạo cuộc trò truyện mới
 async function addConversation(receiverId, isChatGroup) {
+  let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false) {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    return `<li onclick="showConversationUser('${receiver.user._id}')" id="receiver-${receiver.user._id}" data-updated="${receiver.user.updatedAt}">
+    let messages = await $.get(
+      http +
+        `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
+    );
+    return `<li onclick="showConversationUser('${
+      receiver.user._id
+    }')" id="receiver-${receiver.user._id}" data-updated="${
+      receiver.user.updatedAt
+    }">
         <a>
             <div class="d-flex">
                 <div
@@ -154,15 +154,23 @@ async function addConversation(receiverId, isChatGroup) {
                     <h5 class="text-truncate font-size-15 mb-1">
                         ${receiver.user.userName}</h5>
                     <p class="chat-user-message text-truncate mb-0">
-                        Hey! there I'm available</p>
+                        ${getLastEndMessageInConversation(messages)}</p>
                 </div>
-                <div class="font-size-11">05 min</div>
+                <div class="font-size-11">${renderTimeAgo(messages)}</div>
             </div>
         </a>
     </li>`;
   } else {
     let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
-    return `<li onclick="showConversationGroup('${groupReceiver._id}')" id="receiver-${groupReceiver._id}" data-updated="${groupReceiver.updatedAt}">
+    // lấy tin nhắn theo id nhóm
+    let messages = await $.get(
+      http + `/messages/SearchByReceiverId/${groupReceiver._id}`
+    );
+    return `<li onclick="showConversationGroup('${
+      groupReceiver._id
+    }')" id="receiver-${groupReceiver._id}" data-updated="${
+      groupReceiver.updatedAt
+    }">
         <a>
             <div class="d-flex">
                 <div
@@ -176,11 +184,44 @@ async function addConversation(receiverId, isChatGroup) {
                     <h5 class="text-truncate font-size-15 mb-1">
                         ${groupReceiver.name}</h5>
                     <p class="chat-user-message text-truncate mb-0">
-                        Hey! there I'm available</p>
+                        ${getLastEndMessageInConversationGroup(messages)}</p>
                 </div>
-                <div class="font-size-11">05 min</div>
+                <div class="font-size-11">${renderTimeAgoGroup(messages)}</div>
             </div>
         </a>
     </li>`;
   }
+}
+function renderTimeAgo(messages) {
+  let last = Object.keys(messages).pop();
+  let lastMessage = messages[last];
+  let formatedTimeAgo = moment(lastMessage.createdAt).fromNow();
+  return formatedTimeAgo;
+}
+function getLastEndMessageInConversation(messages) {
+  let last = Object.keys(messages).pop();
+  let lastMessage = messages[last];
+  console.log(lastMessage.text);
+  return lastMessage.text;
+}
+function renderTimeAgoGroup(messages) {
+  let last = Object.keys(messages).pop();
+  let lastMessage = messages[last];
+  let formatedTimeAgo = moment(lastMessage.createdAt).fromNow();
+  return formatedTimeAgo;
+}
+function getLastEndMessageInConversationGroup(messages) {
+  let last = Object.keys(messages).pop();
+  let lastMessage = messages[last];
+  console.log(lastMessage.text);
+  return lastMessage.text;
+}
+function scrollMessageUserEnd() {
+  const listHeight = document.querySelector(
+    '.conversation-height'
+  ).clientHeight;
+  const mainLayoutBody = document.querySelector('.simplebar-content-height');
+  mainLayoutBody.scroll({
+    top: listHeight,
+  });
 }
