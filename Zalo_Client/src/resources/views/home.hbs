@@ -450,7 +450,8 @@
                                                     id="conversation-list">
                                                     {{#each allConversationMessages}}
                                                     {{#if this.members}}
-                                                    <li onclick="showConversationGroup('{{this._id}}')"
+                                                    <li class="cursor-point"
+                                                        onclick="showConversationGroup('{{this._id}}')"
                                                         id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}">
                                                         <a>
                                                             <div class="d-flex">
@@ -464,15 +465,21 @@
                                                                 <div class="flex-1 overflow-hidden">
                                                                     <h5 class="text-truncate font-size-15 mb-1">
                                                                         {{this.name}}</h5>
-                                                                    <p class="chat-user-message chat-user-message-group text-truncate mb-0">
-                                                                        Hey! there I'm available</p>
+                                                                    <p
+                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0">
+                                                                        {{this.lastText}}
+                                                                    </p>
+
                                                                 </div>
-                                                                <div class="font-size-11 chat-user-time-group">05 min</div>
+                                                                <div class="font-size-11 chat-user-time-group">
+                                                                    {{this.time}}
+                                                                </div>
                                                             </div>
                                                         </a>
                                                     </li>
                                                     {{else}}
-                                                    <li onclick="showConversationUser('{{this._id}}')"
+                                                    <li class="cursor-point"
+                                                        onclick="showConversationUser('{{this._id}}')"
                                                         id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}">
                                                         <a>
                                                             <div class="d-flex">
@@ -487,9 +494,10 @@
                                                                     <h5 class="text-truncate font-size-15 mb-1">
                                                                         {{this.userName}}</h5>
                                                                     <p class="chat-user-message text-truncate mb-0">
-                                                                        Hey! there I'm available</p>
+                                                                        {{this.textUser}}
+                                                                    </p>
                                                                 </div>
-                                                                <div class="font-size-11">05 min</div>
+                                                                <div class="font-size-11">{{this.timeUser}}</div>
                                                             </div>
                                                         </a>
                                                     </li>

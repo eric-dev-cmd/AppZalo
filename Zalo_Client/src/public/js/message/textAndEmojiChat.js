@@ -201,7 +201,6 @@ function renderTimeAgo(messages) {
 function getLastEndMessageInConversation(messages) {
   let last = Object.keys(messages).pop();
   let lastMessage = messages[last];
-  console.log(lastMessage.text);
   return lastMessage.text;
 }
 function renderTimeAgoGroup(messages) {
@@ -213,7 +212,6 @@ function renderTimeAgoGroup(messages) {
 function getLastEndMessageInConversationGroup(messages) {
   let last = Object.keys(messages).pop();
   let lastMessage = messages[last];
-  console.log(lastMessage.text);
   return lastMessage.text;
 }
 function scrollMessageUserEnd() {
