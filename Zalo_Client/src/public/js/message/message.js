@@ -168,11 +168,9 @@ function insertInput(id, isChatGroup) {
 }
 
 function renderTime(message) {
-  let time = new Date(message.createdAt);
-  let minute = ('0' + time.getMinutes()).slice(-2);
-  let hour = time.getHours();
-  var newTime = hour + ':' + minute;
-  return newTime;
+  let formatedTime = moment(message.createdAt).format('LT');
+  console.log(formatedTime);
+  return formatedTime;
 }
 
 //tạo tin nhắn text gửi đi
