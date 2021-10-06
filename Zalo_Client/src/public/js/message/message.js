@@ -12,44 +12,44 @@ async function showConversationGroup(id) {
     $('#right-conversation').attr('data-id', `${currentUserId}`);
     //phía gửi: lấy id đã gán
     let rightId = $('#right-conversation').attr('data-id');
-    $('#conversation').html('');
+    //set id cho danh sách tin nhắn của cuộc trò truyện
+    $('.message-list').attr('id', `conversation-${id}`);
+    $(`#conversation-${id}`).html('');
     messages.map(async (message) => {
         //tìm người gửi cho user hiện tại
         let receiver = await $.get(http + `/users/${message.senderId}`);
         //phía nhận: tạo nội dung nhận = null
-        $('#conversation').append(leftConversationText(receiver, {
+        $(`#conversation-${id}`).append(leftConversationText(receiver, {
             text: null
         }));
-        //phía nhận: set id của người nhận
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id', `${receiver.user._id}`);
         if (message.messageType === 'text') {
             if (message.senderId === rightId) {
-                $('#conversation').append(rightConversationText(sender, message));
-                $('#conversation').find(`li[data-content = null]`).remove();
+                $(`#conversation-${id}`).append(rightConversationText(sender, message));
+                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-                $('#conversation').append(leftConversationText(receiver, message));
-                $('#conversation').find(`li[data-content = null]`).remove();
+                $(`#conversation-${id}`).append(leftConversationText(receiver, message));
+                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
         }
         if (message.messageType === 'image') {
             if (message.senderId === rightId) {
-                $('#conversation').append(rightConversationImage(sender, message));
-                $('#conversation').find(`li[data-content = null]`).remove();
+                $(`#conversation-${id}`).append(rightConversationImage(sender, message));
+                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-                $('#conversation').append(leftConversationImage(receiver, message));
-                $('#conversation').find(`li[data-content = null]`).remove();
+                $(`#conversation-${id}`).append(leftConversationImage(receiver, message));
+                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
         }
         if (message.messageType === 'file') {
             if (message.senderId === rightId) {
-                $('#conversation').append(rightConversationFile(sender, message));
-                $('#conversation').find(`li[data-content = null]`).remove();
+                $(`#conversation-${id}`).append(rightConversationFile(sender, message));
+                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-                $('#conversation').append(leftConversationFile(receiver, message));
-                $('#conversation').find(`li[data-content = null]`).remove();
+                $(`#conversation-${id}`).append(leftConversationFile(receiver, message));
+                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
         }
     });
@@ -58,42 +58,43 @@ async function showConversationGroup(id) {
 
 //hiển thị tin nhắn cá nhân
 async function showConversationUser(id) {
+
     let currentUserId = document.getElementById('id').value;
     let receiver = await $.get(http + `/users/${id}`);
     let sender = await $.get(http + `/users/${currentUserId}`);
     let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`);
     $('#name-conversation').html(`${receiver.user.userName}`);
     $('#right-conversation').attr('data-id', `${currentUserId}`);
-    $('#conversation').append(leftConversationText(receiver, {
+    $('.message-list').attr('id', `conversation-${id}`);
+    $(`#conversation-${id}`).append(leftConversationText(receiver, {
         text: ''
     }));
-    $(`#left-conversation-${receiver.user._id}`).attr('data-id', `${id}`);
     let rightId = $('#right-conversation').attr('data-id');
     let leftId = $(`#left-conversation-${receiver.user._id}`).attr('data-id');
-    $('#conversation').html('');
+    $(`#conversation-${id}`).html('');
     messages.forEach(message => {
         if (message.messageType === 'text') {
             if (message.senderId === rightId) {
-                $('#conversation').append(rightConversationText(sender, message));
+                $(`#conversation-${id}`).append(rightConversationText(sender, message));
             }
             if (message.senderId === leftId) {
-                $('#conversation').append(leftConversationText(receiver, message));
+                $(`#conversation-${id}`).append(leftConversationText(receiver, message));
             }
         }
         if (message.messageType === 'image') {
             if (message.senderId === rightId) {
-                $('#conversation').append(rightConversationImage(sender, message));
+                $(`#conversation-${id}`).append(rightConversationImage(sender, message));
             }
             if (message.senderId === leftId) {
-                $('#conversation').append(leftConversationImage(receiver, message));
+                $(`#conversation-${id}`).append(leftConversationImage(receiver, message));
             }
         }
         if (message.messageType === 'file') {
             if (message.senderId === rightId) {
-                $('#conversation').append(rightConversationFile(sender, message));
+                $(`#conversation-${id}`).append(rightConversationFile(sender, message));
             }
             if (message.senderId === leftId) {
-                $('#conversation').append(leftConversationFile(receiver, message));
+                $(`#conversation-${id}`).append(leftConversationFile(receiver, message));
             }
         }
     });

@@ -2,7 +2,7 @@ const axios = require('axios');
 const http = require('../controllers/http');
 
 class ChatGroupService {
-    // lấy ds groups theo theo id của người đăng nhập (senderId) (searchUserIdToArray)
+    // lấy ds groups theo id của người đăng nhập (senderId) (searchUserIdToArray)
     getChatGroups(senderId) {
         return new Promise(async (resolve, reject) => {
             try {

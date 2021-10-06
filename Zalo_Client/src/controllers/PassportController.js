@@ -6,6 +6,7 @@ const {
     transErrors,
     transSuccess
 } = require('../../lang/vi');
+const chatGroupService = require('../services/chatGroupService');
 
 const LocalStrategy = passportLocal.Strategy;
 
@@ -37,15 +38,21 @@ function initPassportLocal() {
     passport.serializeUser((user, done) => {
         done(null, user.data.user._id);
     });
-    //Luu UserId cho session
-    passport.deserializeUser((id, done) => {
-        axios.get(http + '/users/' + id)
-            .then(user => {
-                return done(null, user);
-            })
-            .catch(error => {
-                return done(error, null);
-            })
+
+    //lấy người đang đăng nhập (req.user)
+    passport.deserializeUser(async (id, done) => {
+        try {
+            let user = await axios.get(http + '/users/' + id);
+            let getChatGroups = await chatGroupService.getChatGroups(id);
+            let chatGroupIds = [];
+            getChatGroups.forEach(group => {
+                chatGroupIds.push(group._id);  
+            });
+            user.data.user.chatGroupIds = chatGroupIds;
+            return done(null, user);
+        } catch (error) {
+            return done(error, null);
+        }
     });
 }
 

@@ -7,12 +7,14 @@ class ContactSocket {
     addNewContact(io) {
         /**
          * đối tượng gồm key và value
-         * key: id của người dùng đang đăng nhập
+         * key: id của người dùng đang đăng nhập mỗi khi load trang
          * value: id của socket khi mỗi lần load trang
+         * mỗi socketid là 1 trang đăng nhập, nhiều trang thì sẽ có nhiều socketid
          */
         let clients = {};
         io.on('connection', (socket) => {
             let senderId = socket.request.user.data.user._id;
+            //push socket id vào đối tượng client có key là senderId: {'senderId' = [socketid]}
             clients = pushSocketIdToArray(clients, senderId, socket.id);
             /**
              * nếu đang đăng nhập => có sắn id của người dùng thì sẽ push id socket vào
