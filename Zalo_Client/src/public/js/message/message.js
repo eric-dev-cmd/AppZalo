@@ -1,124 +1,183 @@
+function scrollMessageUserEnd() {
+  const listHeight = document.querySelector(
+    '.conversation-height'
+  ).clientHeight;
+  const mainLayoutBody = document.querySelector('.simplebar-content-height');
+  mainLayoutBody.scroll({
+    top: listHeight,
+  });
+}
+function scrollMessageGroupEnd() {
+  let listHeight = document.querySelector(
+    '.conversation-height-group'
+  ).clientHeight;
+  const mainLayoutBody = document.querySelector('.simplebar-content-height');
+  mainLayoutBody.scroll({
+    top: listHeight,
+    behavior: 'smooth',
+  });
+}
 //hiển thị tin nhắn nhóm
 async function showConversationGroup(id) {
-    let group = await $.get(http + `/chatGroups/${id}`);
-    let currentUserId = document.getElementById('id').value;
-    let sender = await $.get(http + `/users/${currentUserId}`);
-    // lấy tin nhắn theo id nhóm
-    let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
-    
-    //hiển thị tên nhóm
-    $('#name-conversation').html(`${group.name}`);
-    //phía gửi: gán giá trị data-id = id hiện tại
-    $('#right-conversation').attr('data-id', `${currentUserId}`);
-    //phía gửi: lấy id đã gán
-    let rightId = $('#right-conversation').attr('data-id');
-    //set id cho danh sách tin nhắn của cuộc trò truyện
-    $('.message-list').attr('id', `conversation-${id}`);
-    $(`#conversation-${id}`).html('');
-    messages.map(async (message) => {
-        //tìm người gửi cho user hiện tại
-        let receiver = await $.get(http + `/users/${message.senderId}`);
-        //phía nhận: tạo nội dung nhận = null
-        $(`#conversation-${id}`).append(leftConversationText(receiver, {
-            text: null
-        }));
-        if (message.messageType === 'text') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationText(sender, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
-            }
-            if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-                $(`#conversation-${id}`).append(leftConversationText(receiver, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
-            }
-        }
-        if (message.messageType === 'image') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationImage(sender, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
-            }
-            if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-                $(`#conversation-${id}`).append(leftConversationImage(receiver, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
-            }
-        }
-        if (message.messageType === 'file') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationFile(sender, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
-            }
-            if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-                $(`#conversation-${id}`).append(leftConversationFile(receiver, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
-            }
-        }
-    });
-    insertInput(id, true);
+  let group = await $.get(http + `/chatGroups/${id}`);
+  let currentUserId = document.getElementById('id').value;
+  let sender = await $.get(http + `/users/${currentUserId}`);
+  // lấy tin nhắn theo id nhóm
+  let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
+
+  //hiển thị tên nhóm
+  $('#name-conversation').html(`${group.name}`);
+  //phía gửi: gán giá trị data-id = id hiện tại
+  $('#right-conversation').attr('data-id', `${currentUserId}`);
+  //phía gửi: lấy id đã gán
+  let rightId = $('#right-conversation').attr('data-id');
+  //set id cho danh sách tin nhắn của cuộc trò truyện
+  $('.message-list').attr('id', `conversation-${id}`);
+  $(`#conversation-${id}`).html('');
+  messages.map(async (message) => {
+    //tìm người gửi cho user hiện tại
+    let receiver = await $.get(http + `/users/${message.senderId}`);
+    //phía nhận: tạo nội dung nhận = null
+    let tv;
+    $(`#conversation-${id}`).append(
+      leftConversationText(receiver, {
+        text: null,
+      })
+    );
+    if (message.messageType === 'text') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationText(sender, message));
+        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+      }
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
+        $(`#conversation-${id}`).append(
+          leftConversationText(receiver, message)
+        );
+        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+      }
+      scrollMessageGroupEnd();
+    }
+    if (message.messageType === 'image') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(
+          rightConversationImage(sender, message)
+        );
+        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+      }
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
+        $(`#conversation-${id}`).append(
+          leftConversationImage(receiver, message)
+        );
+        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+      }
+      scrollMessageGroupEnd();
+    }
+    if (message.messageType === 'file') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationFile(sender, message));
+        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+      }
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
+        $(`#conversation-${id}`).append(
+          leftConversationFile(receiver, message)
+        );
+        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+      }
+      scrollMessageGroupEnd();
+    }
+  });
+  insertInput(id, true);
 }
 
 //hiển thị tin nhắn cá nhân
 async function showConversationUser(id) {
-
-    let currentUserId = document.getElementById('id').value;
-    let receiver = await $.get(http + `/users/${id}`);
-    let sender = await $.get(http + `/users/${currentUserId}`);
-    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`);
-    $('#name-conversation').html(`${receiver.user.userName}`);
-    $('#right-conversation').attr('data-id', `${currentUserId}`);
-    $('.message-list').attr('id', `conversation-${id}`);
-    $(`#conversation-${id}`).append(leftConversationText(receiver, {
-        text: ''
-    }));
-    let rightId = $('#right-conversation').attr('data-id');
-    let leftId = $(`#left-conversation-${receiver.user._id}`).attr('data-id');
-    $(`#conversation-${id}`).html('');
-    messages.forEach(message => {
-        if (message.messageType === 'text') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationText(sender, message));
-            }
-            if (message.senderId === leftId) {
-                $(`#conversation-${id}`).append(leftConversationText(receiver, message));
-            }
-        }
-        if (message.messageType === 'image') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationImage(sender, message));
-            }
-            if (message.senderId === leftId) {
-                $(`#conversation-${id}`).append(leftConversationImage(receiver, message));
-            }
-        }
-        if (message.messageType === 'file') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationFile(sender, message));
-            }
-            if (message.senderId === leftId) {
-                $(`#conversation-${id}`).append(leftConversationFile(receiver, message));
-            }
-        }
-    });
-    insertInput(id, false);
+  let currentUserId = document.getElementById('id').value;
+  let receiver = await $.get(http + `/users/${id}`);
+  let sender = await $.get(http + `/users/${currentUserId}`);
+  let messages = await $.get(
+    http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`
+  );
+  $('#name-conversation').html(`${receiver.user.userName}`);
+  $('#right-conversation').attr('data-id', `${currentUserId}`);
+  $('.message-list').attr('id', `conversation-${id}`);
+  $(`#conversation-${id}`).append(
+    leftConversationText(receiver, {
+      text: '',
+    })
+  );
+  let rightId = $('#right-conversation').attr('data-id');
+  let leftId = $(`#left-conversation-${receiver.user._id}`).attr('data-id');
+  $(`#conversation-${id}`).html('');
+  messages.forEach((message) => {
+    if (message.messageType === 'text') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationText(sender, message));
+      }
+      if (message.senderId === leftId) {
+        $(`#conversation-${id}`).append(
+          leftConversationText(receiver, message)
+        );
+      }
+    }
+    if (message.messageType === 'image') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(
+          rightConversationImage(sender, message)
+        );
+      }
+      if (message.senderId === leftId) {
+        $(`#conversation-${id}`).append(
+          leftConversationImage(receiver, message)
+        );
+      }
+    }
+    if (message.messageType === 'file') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationFile(sender, message));
+      }
+      if (message.senderId === leftId) {
+        $(`#conversation-${id}`).append(
+          leftConversationFile(receiver, message)
+        );
+      }
+    }
+  });
+  insertInput(id, false);
+  scrollMessageUserEnd();
 }
 
 //Hiển thị thẻ input nhập tin nhắn
 function insertInput(id, isChatGroup) {
-    $('#write-chat').html('');
-    $(`<input type="text" style="display: none" id="write-chat-${id}">`).appendTo($('#write-chat'));
-    enableEmojioneArea(id, isChatGroup);
+  $('#write-chat').html('');
+  $(`<input type="text" style="display: none" id="write-chat-${id}">`).appendTo(
+    $('#write-chat')
+  );
+  enableEmojioneArea(id, isChatGroup);
 }
 
 function renderTime(message) {
-    let time = new Date(message.createdAt);
-    let minute = ('0' + time.getMinutes()).slice(-2);
-    let hour = time.getHours();
-    var newTime = hour + ":" + minute;
-    return newTime;
+  let time = new Date(message.createdAt);
+  let minute = ('0' + time.getMinutes()).slice(-2);
+  let hour = time.getHours();
+  var newTime = hour + ':' + minute;
+  return newTime;
 }
 
 //tạo tin nhắn text gửi đi
 function rightConversationText(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${user.user._id}">
+  return `<li class="right" id="right-conversation" data-id="${user.user._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="images/${user.user.avatar}" alt="">
@@ -132,7 +191,9 @@ function rightConversationText(user, message) {
                     </p>
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">${renderTime(message)}</span></p>
+                            class="align-middle">${renderTime(
+                              message
+                            )}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -170,7 +231,9 @@ function rightConversationText(user, message) {
 
 //tạo tin nhắn text nhận
 function leftConversationText(user, message) {
-    return `<li id="left-conversation-${user.user._id}" data-id="${user.user._id}"  data-content="${message.text}">
+  return `<li id="left-conversation-${user.user._id}" data-id="${
+    user.user._id
+  }"  data-content="${message.text}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="images/${user.user.avatar}"
@@ -185,7 +248,9 @@ function leftConversationText(user, message) {
                     </p>
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">${renderTime(message)}</span></p>
+                            class="align-middle">${renderTime(
+                              message
+                            )}</span></p>
                 </div>
                 <div class="dropdown align-self-start">
                     <a class="dropdown-toggle" href="javascript:void(0)"
@@ -221,7 +286,7 @@ function leftConversationText(user, message) {
 
 //tạo tin nhắn image gửi đi
 function rightConversationImage(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${user.user._id}">
+  return `<li class="right" id="right-conversation" data-id="${user.user._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}"
@@ -237,7 +302,9 @@ function rightConversationImage(user, message) {
                                 <a class="popup-img d-inline-block m-1"
                                     href="./assets/img-1.jpg"
                                     title="Project 1">
-                                    <img src="/images/${message.file.fileName}" alt=""
+                                    <img src="/images/${
+                                      message.file.fileName
+                                    }" alt=""
                                         class="rounded border">
                                 </a>
                             </div>
@@ -288,7 +355,9 @@ function rightConversationImage(user, message) {
                                 <a class="popup-img d-inline-block m-1"
                                     href="./assets/img-2.jpg"
                                     title="Project 2">
-                                    <img src="/images/${message.file.fileName}" alt=""
+                                    <img src="/images/${
+                                      message.file.fileName
+                                    }" alt=""
                                         class="rounded border">
                                 </a>
                             </div>
@@ -337,7 +406,9 @@ function rightConversationImage(user, message) {
                     </ul>
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">${renderTime(message)}</span></p>
+                            class="align-middle">${renderTime(
+                              message
+                            )}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -377,7 +448,9 @@ function rightConversationImage(user, message) {
 
 //tạo tin nhắn image nhận
 function leftConversationImage(user, message) {
-    return `<li id="left-conversation-${user.user._id}" data-id="${user.user._id}" data-content="${message.text}">
+  return `<li id="left-conversation-${user.user._id}" data-id="${
+    user.user._id
+  }" data-content="${message.text}">
      <div class="conversation-list">
          <div class="chat-avatar">
              <img src="/images/${user.user.avatar}"
@@ -393,7 +466,9 @@ function leftConversationImage(user, message) {
                                  <a class="popup-img d-inline-block m-1"
                                      href="./assets/img-1.jpg"
                                      title="Project 1">
-                                     <img src="/images/${message.file.fileName}" alt=""
+                                     <img src="/images/${
+                                       message.file.fileName
+                                     }" alt=""
                                          class="rounded border">
                                  </a>
                              </div>
@@ -444,7 +519,9 @@ function leftConversationImage(user, message) {
                                  <a class="popup-img d-inline-block m-1"
                                      href="./assets/img-2.jpg"
                                      title="Project 2">
-                                     <img src="/images/${message.file.fileName}" alt=""
+                                     <img src="/images/${
+                                       message.file.fileName
+                                     }" alt=""
                                          class="rounded border">
                                  </a>
                              </div>
@@ -493,7 +570,9 @@ function leftConversationImage(user, message) {
                      </ul>
                      <p class="chat-time mb-0"><i
                              class="fal fa-clock align-middle"></i> <span
-                             class="align-middle">${renderTime(message)}</span></p>
+                             class="align-middle">${renderTime(
+                               message
+                             )}</span></p>
                  </div>
 
                  <div class="dropdown align-self-start">
@@ -533,7 +612,7 @@ function leftConversationImage(user, message) {
 
 //tạo tin nhắn file gửi đi
 function rightConversationFile(user, message) {
-    return `<li class="right"  id="right-conversation" data-id="${user.user._id}">
+  return `<li class="right"  id="right-conversation" data-id="${user.user._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}" alt="">
@@ -603,7 +682,9 @@ function rightConversationFile(user, message) {
 
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">${renderTime(message)}</span></p>
+                            class="align-middle">${renderTime(
+                              message
+                            )}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -643,7 +724,9 @@ function rightConversationFile(user, message) {
 
 //tạo tin nhắn file nhận
 function leftConversationFile(user, message) {
-    return `<li id="left-conversation-${user.user._id}" data-id="${user.user._id}" data-content="${message.text}">
+  return `<li id="left-conversation-${user.user._id}" data-id="${
+    user.user._id
+  }" data-content="${message.text}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}" alt="">
@@ -713,7 +796,9 @@ function leftConversationFile(user, message) {
 
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
-                            class="align-middle">${renderTime(message)}</span></p>
+                            class="align-middle">${renderTime(
+                              message
+                            )}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -750,3 +835,14 @@ function leftConversationFile(user, message) {
     </div>
 </li>`;
 }
+// Time
+(function time() {
+  var messageTimeStamp = new Date();
+  var time = moment(messageTimeStamp).fromNow();
+  let i = 0;
+  setInterval(() => {
+    console.log(time);
+    console.log(moment().endOf('day').fromNow());
+    console.log(i++);
+  }, 1000);
+})();
