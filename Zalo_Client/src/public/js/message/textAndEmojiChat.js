@@ -52,6 +52,7 @@ function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
             let receiverUpdated = $(`#receiver-${message.receiverId}`).attr('data-updated');
             //tìm kiếm cuộc trò cũ và xóa
             $('#conversation-list').find(`li[data-updated = ${receiverUpdated}]`).remove();
+            
 
             //gửi socket từ client đến server
             socket.emit('add-new-text-emoji', {

@@ -9,21 +9,16 @@ class HomeController {
     let notifications = await notificationService.getNotifications(req.user.data.user._id);
     let contacts = await contactService.getContacts(req.user.data.user._id);
     let getAllConversationItem = await messageService.getListItemContacts(req.user.data.user._id);
-    let getAllConversation = getAllConversationItem.allConversation;
-    let getUserConversation = getAllConversationItem.userConversation;
-    let getGroupConversation = getAllConversationItem.groupConversation;
     let getAllConversationMessages = getAllConversationItem.allConversationMessages;
-
+    let getLastElementMessage = getAllConversationItem.getLastElementMessage;
     res.render('home', {
       user: req.user.data.user,
       notifications: notifications.getNotiContents,
       sumOfNotification : notifications.sumOfNotification,
       contacts: sortJsonArray(contacts.getContacts, 'userName', 'asc'),
       sumOfContact: contacts.sumOfContact,
-      allConversation: getAllConversation,
-      userConversation: getUserConversation,
-      groupConversation: getGroupConversation,
-      allConversationMessages: getAllConversationMessages
+      allConversationMessages: getAllConversationMessages,
+      lastElementMessage: getLastElementMessage
     });
   }
 }

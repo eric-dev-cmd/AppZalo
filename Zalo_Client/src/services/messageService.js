@@ -27,11 +27,19 @@ class MessageService {
                     }
                     return conversation;
                 });
+                let getAllConversationMessages = await Promise.all(allConversationMessages);
+                // lấy tin nhắn cuối cùng của các cuộc trò truyện
+                let getLatsMessages = [];
+                getAllConversationMessages.forEach(conversation => {
+                    let message = conversation.messages[conversation.messages.length - 1];
+                    getLatsMessages.push(message);
+                });
                 resolve({
                     allConversation: allConversation,
                     userConversation: userConversation,
                     groupConversation: groupConversation,
-                    allConversationMessages: await Promise.all(allConversationMessages)
+                    allConversationMessages: getAllConversationMessages,
+                    getLastElementMessage: getLatsMessages
                 });
             } catch (error) {
                 reject(error);
@@ -62,7 +70,7 @@ class MessageService {
                     await axios.put(http + '/chatGroups/' + receiverId, chatGroup);
 
                     return resolve(newMessage.data);
-                } 
+                }
                 if (isChatGroup === 'false' && messageVal.length > 0) {
                     let newMessageItem = {
                         text: messageVal,
