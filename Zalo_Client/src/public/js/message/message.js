@@ -99,6 +99,7 @@ async function showConversationGroup(id) {
     }
   });
   insertInput(id, true);
+  insertInputFile(id, true);
 }
 
 //hiển thị tin nhắn cá nhân
@@ -155,10 +156,11 @@ async function showConversationUser(id) {
     }
   });
   insertInput(id, false);
+  insertInputFile(id, false);
   scrollMessageUserEnd();
 }
 
-//Hiển thị thẻ input nhập tin nhắn
+//Thêm thẻ input nhập tin nhắn
 function insertInput(id, isChatGroup) {
   $('#write-chat').html('');
   $(`<input type="text" style="display: none" id="write-chat-${id}">`).appendTo(
@@ -166,6 +168,15 @@ function insertInput(id, isChatGroup) {
   );
   enableEmojioneArea(id, isChatGroup);
 }
+
+//Thêm thẻ input file
+function insertInputFile(id, isChatGroup) {
+    $('#file-Chat').html('');
+    $(`<input id="fileChat-${id}" data-id="${id}" type="file" name="files" multiple>` ).appendTo(
+      $('#file-Chat')
+    );
+    fileChat(id, isChatGroup);
+  }
 
 function renderTime(message) {
   let formatedTime = moment(message.createdAt).format('LT');

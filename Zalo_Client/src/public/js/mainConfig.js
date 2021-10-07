@@ -1,6 +1,6 @@
 const socket = io();
 
-
+// cập nhật thời gian tin nhắn đã gửi của ds cuộc trò truyện
 socket.on('response-update-time', function (data) {
     let allConversation = data;
     allConversation.map((conversation) => {

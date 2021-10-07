@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1002.0",
     "axios": "^0.21.4",
     "concurrently": "^6.2.1",
     "connect-flash": "^0.1.1",
@@ -39,7 +40,8 @@
     "passport.socketio": "^3.7.0",
     "recent-searches": "^1.0.5",
     "socket.io": "^4.2.0",
-    "sort-json-array": "^0.1.7"
+    "sort-json-array": "^0.1.7",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "husky": "^7.0.2",

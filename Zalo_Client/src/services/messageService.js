@@ -4,6 +4,7 @@ const sortJsonArray = require('sort-json-array');
 const axios = require('axios');
 const http = require('../controllers/http');
 const messageUtil = require('../utils/message');
+const uploadFilesUtil = require('../utils/uploadFiles');
 const moment = require('moment');
 
 class MessageService {
@@ -121,6 +122,17 @@ class MessageService {
           await axios.put(http + '/users/' + receiverId, receiver);
           return resolve(newMessage.data);
         }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  uploadFiles(files) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let newFiles = await uploadFilesUtil.uploadFiles(files);
+        resolve(newFiles);
       } catch (error) {
         reject(error);
       }

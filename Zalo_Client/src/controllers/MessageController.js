@@ -13,5 +13,15 @@ class MessageController{
             return res.status(500).send(error);
         }
     }
+
+    async uploadFiles(req, res){
+        try {
+            let files = req.files.files; //req.files: {files: [{..}]}
+            let newFiles = await messageService.uploadFiles(files);
+            return res.status(200).send(newFiles);
+        } catch (error) {
+            return res.status(500).send(error);
+        }
+    }
 }
 module.exports = new MessageController;

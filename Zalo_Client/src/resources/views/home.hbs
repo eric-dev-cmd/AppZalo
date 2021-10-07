@@ -471,7 +471,9 @@
                                                                     </p>
 
                                                                 </div>
-                                                                <div class="font-size-11 chat-user-time-group" id="updated-time-{{this._id}}" data-uid="{{this._id}}">
+                                                                <div class="font-size-11 chat-user-time-group"
+                                                                    id="updated-time-{{this._id}}"
+                                                                    data-uid="{{this._id}}">
                                                                     {{this.time}}
                                                                 </div>
                                                             </div>
@@ -497,7 +499,8 @@
                                                                         {{this.textUser}}
                                                                     </p>
                                                                 </div>
-                                                                <div class="font-size-11" id="updated-time-{{this._id}}" data-uid="{{this._id}}">{{this.time}}</div>
+                                                                <div class="font-size-11" id="updated-time-{{this._id}}"
+                                                                    data-uid="{{this._id}}">{{this.time}}</div>
                                                             </div>
                                                         </a>
                                                     </li>
@@ -2384,6 +2387,13 @@
                                         title="" data-bs-original-title="Attached File">
                                         <button type="button"
                                             class="btn btn-link text-decoration-none font-size-16 btn-lg waves-effect">
+                                            <form method="post" action=""
+                                                enctype="multipart/form-data" id="form-File-Chat">
+                                                <div id="file-Chat">
+                                                    <input type="file" name="files" multiple>
+                                                </div>
+                                                <input type="button" value="gui file" id="send-file">
+                                            </form>
                                             <i class="fal fa-paperclip text-white"></i>
                                         </button>
                                     </li>
