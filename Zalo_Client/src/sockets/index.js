@@ -9,6 +9,7 @@ function initSockets(io) {
     contactSocket.removeFriend(io);
 
     messageSocket.addNewTextAndEmoji(io);
+    messageSocket.updateTime(io);
 
 }
 
