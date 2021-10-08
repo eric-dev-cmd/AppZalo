@@ -6,15 +6,21 @@ socket.on('response-update-time', function (data) {
     allConversation.map((conversation) => {
         //lấy id của các cuộc trò truyện
         let conversationId = $(`#updated-time-${conversation._id}`).attr('data-uid');
-        if(conversationId === conversation._id){
+        if (conversationId === conversation._id) {
             $(`#updated-time-${conversation._id}`).html(`${conversation.time}`);
-            console.log(conversation.time);
         }
     })
 })
 
+function getAllConversation() {
+    $('#conversation-list').each(function () {
+        var li = $(this).find('li')
+        let firstLiId = li.first().attr('id');
+        $(`#${firstLiId}`).click();
+    })
+}
 
 $(document).ready(function () {
     searchPhone();
-
+    getAllConversation()
 });

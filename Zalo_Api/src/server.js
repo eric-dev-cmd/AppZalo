@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const handlebars = require("express-handlebars");
 const app = express();
-const port = 5000;
+const port = 4000;
 
 const route = require("./routers");
 const db = require("./config/db");
