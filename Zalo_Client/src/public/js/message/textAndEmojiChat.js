@@ -66,7 +66,7 @@ function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
   });
 }
 
-//lắng nghe socket từ server đến client, nhận tin nhắn mới tài khoản người nhận
+//lắng nghe socket từ server đến client
 socket.on('response-add-new-text-emoji', async function (data) {
   let message = data.message;
   // lấy id người dùng hiện tại
@@ -75,18 +75,16 @@ socket.on('response-add-new-text-emoji', async function (data) {
   let receiver = await $.get(http + `/users/${message.senderId}`);
   // nếu là nhóm
   if (data.isChatGroup == true && message.senderId !== currentUserId) {
-    //thêm tin nhắn vừa gửi cho người nhận
+    //thêm tin nhắn vừa gửi cho nhóm nhận
     $(`#conversation-${message.receiverId}`).append(
       leftConversationText(receiver, message)
     );
     scrollMessageUserEnd();
-
     //tạo mới cuộc trò truyện trong danh sách trò truyện
-    addConversation(message.receiverId, data.isChatGroup).then(function (
-      result
-    ) {
-      $('#conversation-list').prepend(result);
-    });
+    addConversation(message.receiverId, data.isChatGroup)
+      .then(function (result) {
+        $('#conversation-list').prepend(result);
+      });
     // lấy data-updated từ danh sách cuộc trò truyện
     let receiverUpdated = $(`#receiver-${message.receiverId}`).attr(
       'data-updated'
@@ -102,7 +100,6 @@ socket.on('response-add-new-text-emoji', async function (data) {
       leftConversationText(receiver, message)
     );
     scrollMessageUserEnd();
-
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
@@ -120,7 +117,7 @@ function getLastMessageConversation() {
 //tạo cuộc trò truyện mới
 async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
-  if (isChatGroup === false) {
+  if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
     let messages = await $.get(
       http +
@@ -150,7 +147,9 @@ async function addConversation(receiverId, isChatGroup) {
             </div>
         </a>
     </li>`;
-  } else {
+  } 
+  if (isChatGroup === true || isChatGroup === 'true') {
+    
     let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
     // lấy tin nhắn theo id nhóm
     let messages = await $.get(
@@ -193,7 +192,14 @@ function renderTimeAgo(messages) {
 function getLastEndMessageInConversation(messages) {
   let last = Object.keys(messages).pop();
   let lastMessage = messages[last];
-  return lastMessage.text;
+  if (lastMessage.messageType === 'image') {
+    return '[Hình ảnh]'
+  }
+  if (lastMessage.messageType === 'file') {
+    return '[Tệp tin]'
+  } else {
+    return lastMessage.text;
+  }
 }
 
 function renderTimeAgoGroup(messages) {
@@ -206,7 +212,14 @@ function renderTimeAgoGroup(messages) {
 function getLastEndMessageInConversationGroup(messages) {
   let last = Object.keys(messages).pop();
   let lastMessage = messages[last];
-  return lastMessage.text;
+  if (lastMessage.messageType === 'image') {
+    return '[Hình ảnh]'
+  }
+  if (lastMessage.messageType === 'file') {
+    return '[Tệp tin]'
+  } else {
+    return lastMessage.text;
+  }
 }
 
 function scrollMessageUserEnd() {

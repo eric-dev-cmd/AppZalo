@@ -49,13 +49,27 @@ app.use(morgan('dev'));
  * TODO: Template Engine
  */
 app.use(express.static(path.join(__dirname, 'src/public')));
-app.engine(
-  'hbs',
+app.engine('hbs',
   exphbs({
     extname: '.hbs',
     helpers: {
       id_notification: (a, b) => a + b,
-    },
+      ifImage: function (image, options) {
+        if (image === 'image') {
+          return options.fn(this);
+        }
+      },
+      ifFile: function (file, options) {
+        if (file === 'file') {
+          return options.fn(this);
+        }
+      },
+      ifText: function (text, options) {
+        if (text === 'text') {
+          return options.fn(this);
+        }
+      },
+    }
   })
 );
 app.set('view engine', 'hbs');

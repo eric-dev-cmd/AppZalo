@@ -7,6 +7,7 @@ const Message= new Schema({
     chatType: String,
     messageType: String,
     text: String,
+    fileName: String,
     file: {data: Buffer, contentType: String, fileName: String},
     createdAt: {type: Number, default: Date.now},
     updatedAt: {type: Number, default: null},

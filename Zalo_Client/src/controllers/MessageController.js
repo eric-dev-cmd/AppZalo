@@ -17,8 +17,14 @@ class MessageController{
     async uploadFiles(req, res){
         try {
             let files = req.files.files; //req.files: {files: [{..}]}
-            let newFiles = await messageService.uploadFiles(files);
-            return res.status(200).send(newFiles);
+            let senderId = req.user.data.user._id;
+            let receiverId = req.body.receiverId;
+            let isChatGroup = req.body.isChatGroup
+            let newMessages = await messageService.uploadFiles(files, senderId, receiverId, isChatGroup);
+            return res.status(200).send({
+                messages: newMessages,
+                isChatGroup: isChatGroup
+            });
         } catch (error) {
             return res.status(500).send(error);
         }

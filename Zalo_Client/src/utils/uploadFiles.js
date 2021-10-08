@@ -1,6 +1,3 @@
-const {
-    v4: uuidv4
-} = require('uuid');
 const AWS = require('aws-sdk');
 
 const S3 = new AWS.S3({
@@ -8,22 +5,22 @@ const S3 = new AWS.S3({
     secretAccessKey: 'YmQQriBVtv3Z1bPrmOCpgmOzB3MvirkcIKFdRZWo'
 })
 
-function uploadFiles(files) {
+function uploadFiles(files, uuid) {
     if (files.length > 1) {
-        upload(files);
+        upload(files, uuid);
         return files;
     } else {
         let myFiles = [files];
-        upload(myFiles);
+        upload(myFiles, uuid);
         return myFiles;
     }
 }
 
-function upload(files) {
+function upload(files, uuid) {
     files.forEach((file) => {
         const params = {
             Bucket: process.env.AWSBUCKETNAME,
-            Key: `${uuidv4()}.${file.name}`,
+            Key: `${uuid}.${file.name}`,
             Body: file.data, //(buffer file)
             ACL: 'public-read'
         }

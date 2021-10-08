@@ -465,10 +465,25 @@
                                                                 <div class="flex-1 overflow-hidden">
                                                                     <h5 class="text-truncate font-size-15 mb-1">
                                                                         {{this.name}}</h5>
+                                                                    {{#ifFile this.messageType}}
+                                                                    <p
+                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0">
+                                                                        [Tệp tin]
+                                                                    </p>
+                                                                    {{/ifFile}}
+                                                                    {{#ifImage this.messageType}}
+                                                                    <p
+                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0">
+                                                                        [Hình ảnh]
+                                                                    </p>
+                                                                    {{/ifImage}}
+                                                                    {{#ifText this.messageType}}
                                                                     <p
                                                                         class="chat-user-message chat-user-message-group text-truncate mb-0">
                                                                         {{this.lastText}}
                                                                     </p>
+                                                                    {{/ifText}}
+
 
                                                                 </div>
                                                                 <div class="font-size-11 chat-user-time-group"
@@ -495,9 +510,21 @@
                                                                 <div class="flex-1 overflow-hidden">
                                                                     <h5 class="text-truncate font-size-15 mb-1">
                                                                         {{this.userName}}</h5>
+                                                                    {{#ifImage this.messageType}}
+                                                                    <p class="chat-user-message text-truncate mb-0">
+                                                                        [Hình ảnh]
+                                                                    </p>
+                                                                    {{/ifImage}}
+                                                                    {{#ifFile this.messageType}}
+                                                                    <p class="chat-user-message text-truncate mb-0">
+                                                                        [Tệp tin]
+                                                                    </p>
+                                                                    {{/ifFile}}
+                                                                    {{#ifText this.messageType}}
                                                                     <p class="chat-user-message text-truncate mb-0">
                                                                         {{this.textUser}}
                                                                     </p>
+                                                                    {{/ifText}}
                                                                 </div>
                                                                 <div class="font-size-11" id="updated-time-{{this._id}}"
                                                                     data-uid="{{this._id}}">{{this.time}}</div>
@@ -1969,59 +1996,7 @@
                                                                             </div>
                                                                         </li>
 
-                                                                        <li class="list-inline-item message-img-list">
-                                                                            <div>
-                                                                                <a class="popup-img d-inline-block m-1"
-                                                                                    href="./assets/img-2.jpg"
-                                                                                    title="Project 2">
-                                                                                    <img src="./assets/img-2.jpg" alt=""
-                                                                                        class="rounded border">
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="message-img-link">
-                                                                                <ul class="list-inline mb-0">
-                                                                                    <li class="list-inline-item">
-                                                                                        <a href="javascript:void(0)">
-                                                                                            <i
-                                                                                                class="fal fa-download"></i>
-                                                                                        </a>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="list-inline-item dropdown">
-                                                                                        <a class="dropdown-toggle"
-                                                                                            href="javascript:void(0)"
-                                                                                            role="button"
-                                                                                            data-bs-toggle="dropdown"
-                                                                                            aria-haspopup="true"
-                                                                                            aria-expanded="false">
-                                                                                            <i
-                                                                                                class="fal fa-ellipsis-h"></i>
-                                                                                        </a>
-                                                                                        <div
-                                                                                            class="dropdown-menu dropdown-menu-end">
-                                                                                            <a class="dropdown-item"
-                                                                                                href="javascript:void(0)">Sao
-                                                                                                chép
-                                                                                                <i
-                                                                                                    class="fal fa-copy float-end text-muted"></i></a>
-                                                                                            <a class="dropdown-item"
-                                                                                                href="javascript:void(0)">Lưu
-                                                                                                <i
-                                                                                                    class="fal fa-save float-end text-muted"></i></a>
-                                                                                            <a class="dropdown-item"
-                                                                                                href="javascript:void(0)">Chuyển
-                                                                                                tiếp
-                                                                                                <i
-                                                                                                    class="fal fa-share float-end text-muted"></i></a>
-                                                                                            <a class="dropdown-item"
-                                                                                                href="javascript:void(0)">Xoá
-                                                                                                <i
-                                                                                                    class="fal fa-trash-alt float-end text-muted"></i></a>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </li>
+
                                                                     </ul>
                                                                     <p class="chat-time mb-0"><i
                                                                             class="fal fa-clock align-middle"></i> <span
@@ -2387,8 +2362,8 @@
                                         title="" data-bs-original-title="Attached File">
                                         <button type="button"
                                             class="btn btn-link text-decoration-none font-size-16 btn-lg waves-effect">
-                                            <form method="post" action=""
-                                                enctype="multipart/form-data" id="form-File-Chat">
+                                            <form method="post" action="" enctype="multipart/form-data"
+                                                id="form-File-Chat">
                                                 <div id="file-Chat">
                                                     <input type="file" name="files" multiple>
                                                 </div>
