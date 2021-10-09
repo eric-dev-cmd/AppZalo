@@ -1,4 +1,4 @@
-//xu ly tu choi ket ban
+//xóa bạn bè( từ html)
 function removeFriend(id) {
     $.ajax({
         url: '/contact/remove',

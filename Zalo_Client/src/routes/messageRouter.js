@@ -5,5 +5,6 @@ const authController = require('../controllers/AuthController');
 
 router.post('/addNewTextAndEmoji', authController.checkLoggedIn, messageController.addNewTextAndEmoji);
 router.post('/uploadFiles', authController.checkLoggedIn, messageController.uploadFiles);
+router.delete('/deleteTextAndEmoji', authController.checkLoggedIn, messageController.deleteTextAndEmoji);
 
 module.exports = router;

@@ -74,7 +74,42 @@ class MessageSocket {
         //gửi socket đến cho client
         //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.messages[0].receiverId]) {
-          emitEventToArray( clients, data.messages[0].receiverId, io, 'response-add-new-file', response);
+          emitEventToArray(clients, data.messages[0].receiverId, io, 'response-add-new-file', response);
+        }
+      });
+      //xóa id socket mỗi khi socket disconnect
+      socket.on('disconnect', () => {
+        clients = removeSocketIdFromArray(clients, sender._id, socket);
+        sender.chatGroupIds.forEach((groupId) => {
+          clients = removeSocketIdFromArray(clients, groupId, socket.id);
+        });
+      });
+    });
+  }
+
+  deleteTextAndEmoji(io) {
+    let clients = {};
+    io.on('connection', (socket) => {
+      let sender = socket.request.user.data.user;
+      clients = pushSocketIdToArray(clients, sender._id, socket.id);
+      sender.chatGroupIds.forEach((groupId) => {
+        clients = pushSocketIdToArray(clients, groupId, socket.id);
+      });
+      //lắng nghe socket từ client gửi
+      socket.on('delete-text-emoji', (data) => {
+        let respone = {
+          message: data.message,
+        };
+        //gửi socket đến cho client
+        //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
+        if (clients[data.message.receiverId]) {
+          emitEventToArray(
+            clients,
+            data.message.receiverId,
+            io,
+            'response-delete-text-emoji',
+            respone
+          );
         }
       });
       //xóa id socket mỗi khi socket disconnect

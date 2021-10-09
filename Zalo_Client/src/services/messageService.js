@@ -6,7 +6,9 @@ const http = require('../controllers/http');
 const messageUtil = require('../utils/message');
 const uploadFilesUtil = require('../utils/uploadFiles');
 const moment = require('moment');
-const {v4: uuidv4} = require('uuid');
+const {
+  v4: uuidv4
+} = require('uuid');
 
 class MessageService {
   getListItemContacts(senderId) {
@@ -306,6 +308,14 @@ class MessageService {
       } catch (error) {
         reject(error);
       }
+    });
+  }
+
+  deleteTextAndEmoji(messageId) {
+    return new Promise(async (resolve, reject) => {
+      await axios.delete(http + '/messages/' + messageId)
+        .then(resolve(true))
+        .catch(reject(false));
     });
   }
 

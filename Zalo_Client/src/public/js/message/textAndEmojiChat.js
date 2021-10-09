@@ -55,6 +55,8 @@ function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
       let receiverUpdated = $(`#receiver-${message.receiverId}`).attr('data-updated');
       //tìm kiếm cuộc trò cũ và xóa
       $('#conversation-list').find(`li[data-updated = ${receiverUpdated}]`).remove();
+
+
       //gửi socket từ client đến server
       socket.emit('add-new-text-emoji', {
         message: message,
@@ -84,7 +86,9 @@ socket.on('response-add-new-text-emoji', async function (data) {
     addConversation(message.receiverId, data.isChatGroup)
       .then(function (result) {
         $('#conversation-list').prepend(result);
+      //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
       });
+
     // lấy data-updated từ danh sách cuộc trò truyện
     let receiverUpdated = $(`#receiver-${message.receiverId}`).attr(
       'data-updated'
@@ -103,11 +107,13 @@ socket.on('response-add-new-text-emoji', async function (data) {
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
+    //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
     });
     // lấy data-updated từ danh sách cuộc trò truyện
     let receiverUpdated = $(`#receiver-${message.senderId}`).attr('data-updated');
     //tìm kiếm cuộc trò cũ và xóa
     $('#conversation-list').find(`li[data-updated = ${receiverUpdated}]`).remove();
+
   }
 });
 
@@ -119,15 +125,9 @@ async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    let messages = await $.get(
-      http +
-      `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
-    );
-    return `<li onclick="showConversationUser('${
-      receiver.user._id
-    }')" id="receiver-${receiver.user._id}" data-updated="${
-      receiver.user.updatedAt
-    }">
+    let messages = await $.get(http +`/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
+    return `<li onclick="showConversationUser('${receiver.user._id}')" id="receiver-${receiver.user._id}" 
+    data-updated="${receiver.user.updatedAt}">
         <a>
             <div class="d-flex">
                 <div
@@ -140,21 +140,18 @@ async function addConversation(receiverId, isChatGroup) {
                 <div class="flex-1 overflow-hidden">
                     <h5 class="text-truncate font-size-15 mb-1">
                         ${receiver.user.userName}</h5>
-                    <p class="chat-user-message text-truncate mb-0">
+                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
                         ${getLastEndMessageInConversation(messages)}</p>
                 </div>
                 <div class="font-size-11" id="updated-time-${receiver.user._id}" data-uid="${receiver.user._id}">${renderTimeAgo(messages)}</div>
             </div>
         </a>
     </li>`;
-  } 
+  }
   if (isChatGroup === true || isChatGroup === 'true') {
-    
     let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
     // lấy tin nhắn theo id nhóm
-    let messages = await $.get(
-      http + `/messages/SearchByReceiverId/${groupReceiver._id}`
-    );
+    let messages = await $.get( http + `/messages/SearchByReceiverId/${groupReceiver._id}`);
     return `<li onclick="showConversationGroup('${
       groupReceiver._id
     }')" id="receiver-${groupReceiver._id}" data-updated="${
@@ -173,7 +170,7 @@ async function addConversation(receiverId, isChatGroup) {
                     <h5 class="text-truncate font-size-15 mb-1">
                         ${groupReceiver.name}</h5>
                     <p class="chat-user-message text-truncate mb-0">
-                        ${getLastEndMessageInConversationGroup(messages)}</p>
+                        ${getLastEndMessageInConversation(messages)}</p>
                 </div>
                 <div class="font-size-11" id="updated-time-${groupReceiver._id}" data-uid="${groupReceiver._id}">${renderTimeAgoGroup(messages)}</div>
             </div>
@@ -185,7 +182,7 @@ async function addConversation(receiverId, isChatGroup) {
 function renderTimeAgo(messages) {
   let last = Object.keys(messages).pop();
   let lastMessage = messages[last];
-  let formatedTimeAgo = moment(lastMessage.createdAt).fromNow();
+  let formatedTimeAgo = moment(lastMessage.createdAt).locale('vi').startOf('seconds').fromNow();
   return formatedTimeAgo;
 }
 
@@ -205,21 +202,8 @@ function getLastEndMessageInConversation(messages) {
 function renderTimeAgoGroup(messages) {
   let last = Object.keys(messages).pop();
   let lastMessage = messages[last];
-  let formatedTimeAgo = moment(lastMessage.createdAt).fromNow();
+  let formatedTimeAgo = moment(lastMessage.createdAt).locale('vi').startOf('seconds').fromNow();
   return formatedTimeAgo;
-}
-
-function getLastEndMessageInConversationGroup(messages) {
-  let last = Object.keys(messages).pop();
-  let lastMessage = messages[last];
-  if (lastMessage.messageType === 'image') {
-    return '[Hình ảnh]'
-  }
-  if (lastMessage.messageType === 'file') {
-    return '[Tệp tin]'
-  } else {
-    return lastMessage.text;
-  }
 }
 
 function scrollMessageUserEnd() {
