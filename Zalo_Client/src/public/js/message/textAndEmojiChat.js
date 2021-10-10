@@ -169,7 +169,7 @@ async function addConversation(receiverId, isChatGroup) {
                 <div class="flex-1 overflow-hidden">
                     <h5 class="text-truncate font-size-15 mb-1">
                         ${groupReceiver.name}</h5>
-                    <p class="chat-user-message text-truncate mb-0">
+                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
                         ${getLastEndMessageInConversation(messages)}</p>
                 </div>
                 <div class="font-size-11" id="updated-time-${groupReceiver._id}" data-uid="${groupReceiver._id}">${renderTimeAgoGroup(messages)}</div>
@@ -189,12 +189,14 @@ function renderTimeAgo(messages) {
 function getLastEndMessageInConversation(messages) {
   let last = Object.keys(messages).pop();
   let lastMessage = messages[last];
+ 
   if (lastMessage.messageType === 'image') {
     return '[Hình ảnh]'
   }
   if (lastMessage.messageType === 'file') {
     return '[Tệp tin]'
-  } else {
+  } 
+  if (lastMessage.messageType === 'text') {
     return lastMessage.text;
   }
 }

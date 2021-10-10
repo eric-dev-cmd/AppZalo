@@ -4,7 +4,7 @@ const sortJsonArray = require('sort-json-array');
 const axios = require('axios');
 const http = require('../controllers/http');
 const messageUtil = require('../utils/message');
-const uploadFilesUtil = require('../utils/uploadFiles');
+const FilesUtil = require('../utils/uploadAndDeleteFiles');
 const moment = require('moment');
 const {
   v4: uuidv4
@@ -160,7 +160,7 @@ class MessageService {
               }
             });
             //upload S3
-            let newFiles = await uploadFilesUtil.uploadFiles(files, uuid);
+            let newFiles = await FilesUtil.uploadFiles(files, uuid);
             return resolve({
               newMessages: await Promise.all(getNewMessages),
               newFiles: newFiles
@@ -203,7 +203,7 @@ class MessageService {
               }
             });
             //upload S3
-            let newFiles = await uploadFilesUtil.uploadFiles(files, uuid);
+            let newFiles = await FilesUtil.uploadFiles(files, uuid);
             return resolve({
               newMessages: await Promise.all(getNewMessages),
               newFiles: newFiles
@@ -231,7 +231,7 @@ class MessageService {
               //cập nhật thời gian
               this.updateTimeForGroup(receiverId);
               //upload S3
-              let newFiles = await uploadFilesUtil.uploadFiles(files, uuid);
+              let newFiles = await FilesUtil.uploadFiles(files, uuid);
               return resolve({
                 newMessages: newMessage.data,
                 newFiles: newFiles
@@ -252,7 +252,7 @@ class MessageService {
               //cập nhật thời gian
               this.updateTimeForGroup(receiverId);
               //upload S3
-              let newFiles = await uploadFilesUtil.uploadFiles(files, uuid);
+              let newFiles = await FilesUtil.uploadFiles(files, uuid);
               return resolve({
                 newMessages: newMessage.data,
                 newFiles: newFiles
@@ -276,7 +276,7 @@ class MessageService {
               //cập nhật thời gian
               this.updateTimeForUser(senderId, receiverId);
               //upload S3
-              let newFiles = await uploadFilesUtil.uploadFiles(files, uuid);
+              let newFiles = await FilesUtil.uploadFiles(files, uuid);
               return resolve({
                 newMessages: newMessage.data,
                 newFiles: newFiles
@@ -297,7 +297,7 @@ class MessageService {
               //cập nhật thời gian
               this.updateTimeForUser(senderId, receiverId);
               //upload S3
-              let newFiles = await uploadFilesUtil.uploadFiles(files, uuid);
+              let newFiles = await FilesUtil.uploadFiles(files, uuid);
               return resolve({
                 newMessages: newMessage.data,
                 newFiles: newFiles
@@ -316,6 +316,21 @@ class MessageService {
       await axios.delete(http + '/messages/' + messageId)
         .then(resolve(true))
         .catch(reject(false));
+    });
+  }
+
+  async deleteFile(messageId) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let getMessage = await axios.get(http + '/messages/' + messageId);
+        // xóa file S3
+        FilesUtil.deleteFile(getMessage.data.fileName);
+        // xóa tin nhắn trong db
+        await axios.delete(http + '/messages/' + messageId);
+        return resolve(true);
+      } catch (error) {
+        return reject(error);
+      }
     });
   }
 

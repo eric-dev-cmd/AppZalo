@@ -287,7 +287,7 @@ function leftConversationText(user, message) {
 
 //tạo tin nhắn image gửi đi
 function rightConversationImage(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${user.user._id}">
+    return `<li class="right" id="right-conversation" data-id="${user.user._id}"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}"
@@ -376,8 +376,8 @@ function rightConversationImage(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item"
-                            href="javascript:void(0)">Xoá
+                        <a class="dropdown-item" onclick="deleteFile('${message._id}')"
+                            href="javascript:void(0)">Xoá 
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
                     </div>
@@ -504,7 +504,7 @@ function leftConversationImage(user, message) {
 //tạo tin nhắn file gửi đi
 function rightConversationFile(user, message) {
     let fileName = message.fileName.split('.');
-    return `<li class="right"  id="right-conversation" data-id="${user.user._id}">
+    return `<li class="right"  id="right-conversation" data-id="${user.user._id}"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}" alt="">
@@ -598,7 +598,7 @@ function rightConversationFile(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item"
+                        <a class="dropdown-item" onclick="deleteFile('${message._id}')"
                             href="javascript:void(0)">Xoá
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
