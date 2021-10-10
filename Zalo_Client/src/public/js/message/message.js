@@ -91,12 +91,14 @@ async function showConversationGroup(id) {
             scrollMessageGroupEnd();
         }
     });
+    //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
     insertInput(id, true);
     insertInputFile(id, true);
 }
 
 //hiển thị tin nhắn cá nhân
 async function showConversationUser(id) {
+    // $('#conversation-list').find(`li[id = receiver-${id}]`).css('color', '#abb4d2');
     let currentUserId = document.getElementById('id').value;
     let receiver = await $.get(http + `/users/${id}`);
     let sender = await $.get(http + `/users/${currentUserId}`);
@@ -148,6 +150,7 @@ async function showConversationUser(id) {
             }
         }
     });
+   // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
     insertInput(id, false);
     insertInputFile(id, false);
     scrollMessageUserEnd();
@@ -179,7 +182,7 @@ function renderTime(message) {
 
 //tạo tin nhắn text gửi đi
 function rightConversationText(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${user.user._id}">
+    return `<li class="right" id="right-conversation" data-id="${user.user._id}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="images/${user.user.avatar}" alt="">
@@ -188,7 +191,7 @@ function rightConversationText(user, message) {
         <div class="user-chat-content">
             <div class="ctext-wrap">
                 <div class="ctext-wrap-content">
-                    <p class="mb-0" id="content-conversation">
+                    <p class="mb-0" >
                         ${message.text}
                     </p>
                     <p class="chat-time mb-0"><i
@@ -217,8 +220,8 @@ function rightConversationText(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item"
-                            href="javascript:void(0)">Xoá
+                        <a class="dropdown-item" onclick="deleteTextAndEmoji('${message._id}')"
+                            href="javascript:void(0)">Thu hồi
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
                     </div>
@@ -235,7 +238,7 @@ function rightConversationText(user, message) {
 function leftConversationText(user, message) {
     return `<li id="left-conversation-${user.user._id}" data-id="${
     user.user._id
-  }"  data-content="${message.text}">
+  }"  data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="images/${user.user.avatar}"
@@ -245,7 +248,7 @@ function leftConversationText(user, message) {
         <div class="user-chat-content">
             <div class="ctext-wrap">
                 <div class="ctext-wrap-content">
-                    <p class="mb-0" id="content-conversation">
+                    <p class="mb-0" >
                     ${message.text}
                     </p>
                     <p class="chat-time mb-0"><i
@@ -273,10 +276,6 @@ function leftConversationText(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item"
-                            href="javascript:void(0)">Xoá
-                            <i
-                                class="fal fa-trash-alt float-end text-muted"></i></a>
                     </div>
                 </div>
             </div>
@@ -288,7 +287,7 @@ function leftConversationText(user, message) {
 
 //tạo tin nhắn image gửi đi
 function rightConversationImage(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${user.user._id}">
+    return `<li class="right" id="right-conversation" data-id="${user.user._id}"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}"
@@ -377,8 +376,8 @@ function rightConversationImage(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item"
-                            href="javascript:void(0)">Xoá
+                        <a class="dropdown-item" onclick="deleteFile('${message._id}')"
+                            href="javascript:void(0)">Xoá 
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
                     </div>
@@ -505,7 +504,7 @@ function leftConversationImage(user, message) {
 //tạo tin nhắn file gửi đi
 function rightConversationFile(user, message) {
     let fileName = message.fileName.split('.');
-    return `<li class="right"  id="right-conversation" data-id="${user.user._id}">
+    return `<li class="right"  id="right-conversation" data-id="${user.user._id}"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}" alt="">
@@ -599,7 +598,7 @@ function rightConversationFile(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item"
+                        <a class="dropdown-item" onclick="deleteFile('${message._id}')"
                             href="javascript:void(0)">Xoá
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>

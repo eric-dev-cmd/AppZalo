@@ -29,5 +29,25 @@ class MessageController{
             return res.status(500).send(error);
         }
     }
+
+    async deleteTextAndEmoji(req, res){
+        try {
+            let messageId = req.body.messageId;
+            let deleteResquest = await messageService.deleteTextAndEmoji(messageId);
+            return res.status(200).send({ success: !!deleteResquest });
+        } catch (error) {
+            return res.status(500).send(error);
+        }
+    }
+
+    async deleteFile(req, res){
+        try {
+            let messageId = req.body.messageId;
+            let deleteResquest = await messageService.deleteFile(messageId);
+            return res.status(200).send({ success: !!deleteResquest });
+        } catch (error) {
+            return res.status(500).send(error);
+        }
+    }
 }
 module.exports = new MessageController;

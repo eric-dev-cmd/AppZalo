@@ -33,6 +33,18 @@ function upload(files, uuid) {
     });
 }
 
+function deleteFile(fileName) {
+    const params = {
+        Bucket: process.env.AWSBUCKETNAME,
+        Key: fileName
+    }
+    S3.deleteObject(params, function (err, data) {
+        if (err) console.log(err);
+        else data; 
+    });
+}
+
 module.exports = {
-    uploadFiles: uploadFiles
+    uploadFiles: uploadFiles,
+    deleteFile: deleteFile
 };

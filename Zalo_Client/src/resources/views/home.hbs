@@ -467,19 +467,19 @@
                                                                         {{this.name}}</h5>
                                                                     {{#ifFile this.messageType}}
                                                                     <p
-                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0">
+                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0" id="last-message-conversation">
                                                                         [Tệp tin]
                                                                     </p>
                                                                     {{/ifFile}}
                                                                     {{#ifImage this.messageType}}
                                                                     <p
-                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0">
+                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0" id="last-message-conversation">
                                                                         [Hình ảnh]
                                                                     </p>
                                                                     {{/ifImage}}
                                                                     {{#ifText this.messageType}}
                                                                     <p
-                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0">
+                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0" id="last-message-conversation">
                                                                         {{this.lastText}}
                                                                     </p>
                                                                     {{/ifText}}
@@ -511,17 +511,17 @@
                                                                     <h5 class="text-truncate font-size-15 mb-1">
                                                                         {{this.userName}}</h5>
                                                                     {{#ifImage this.messageType}}
-                                                                    <p class="chat-user-message text-truncate mb-0">
+                                                                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
                                                                         [Hình ảnh]
                                                                     </p>
                                                                     {{/ifImage}}
                                                                     {{#ifFile this.messageType}}
-                                                                    <p class="chat-user-message text-truncate mb-0">
+                                                                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
                                                                         [Tệp tin]
                                                                     </p>
                                                                     {{/ifFile}}
                                                                     {{#ifText this.messageType}}
-                                                                    <p class="chat-user-message text-truncate mb-0">
+                                                                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
                                                                         {{this.textUser}}
                                                                     </p>
                                                                     {{/ifText}}

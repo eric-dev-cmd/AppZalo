@@ -11,6 +11,7 @@ function initSockets(io) {
     messageSocket.addNewTextAndEmoji(io);
     messageSocket.addNewFile(io);
     messageSocket.updateTime(io);
+    messageSocket.deleteTextAndEmoji(io);
 
 }
 
