@@ -1,27 +1,35 @@
 class LoginController {
-    showLogin(req, res) {
-        res.locals.message = req.flash('errors');
-        res.render('login');
-    }
+  showLogin(req, res) {
+    res.locals.message = req.flash('errors');
+    res.render('login');
+  }
 
-    getLogout(req, res) {
-        req.logout();
-        return res.redirect('/login-register');
+  getLogout(req, res) {
+    req.logout();
+    return res.redirect('/login-register');
+  }
 
+  checkLoggedIn(req, res, next) {
+    if (!req.isAuthenticated()) {
+      return res.redirect('/login-register');
     }
+    next();
+  }
 
-    checkLoggedIn(req, res, next) {
-        if(!req.isAuthenticated()){
-            return res.redirect('/login-register');
-        }
-        next();
+  checkLoggedOut(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect('/home');
     }
-
-    checkLoggedOut(req, res, next) {
-        if(req.isAuthenticated()){
-            return res.redirect('/home');
-        }
-        next();
-    }
+    next();
+  }
+  showRegister(req, res) {
+    res.render('register');
+  }
+  showVerify(req, res) {
+    res.render('verify');
+  }
+  showResetPassword(req, res) {
+    res.render('resetpassword');
+  }
 }
 module.exports = new LoginController();

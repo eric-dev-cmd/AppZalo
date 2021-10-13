@@ -6,13 +6,17 @@ const initPassportLocal = require('../../controllers/PassportController');
 
 initPassportLocal();
 
+
 router.get('/', authController.checkLoggedOut, authController.showLogin);
-router.post('/login', passport.authenticate('local', {
-    successRedirect: "/home",
-    failureRedirect: "/login-register",
-    successFlash: true, 
-    failureFlash: true
-}));
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/home',
+    failureRedirect: '/login-register',
+    successFlash: true,
+    failureFlash: true,
+  })
+);
 
 router.get('/logout', authController.checkLoggedIn, authController.getLogout);
 
