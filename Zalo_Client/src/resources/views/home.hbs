@@ -2774,7 +2774,7 @@
                                         </button>
                                     </li>
                                     <li class="list-inline-item px-2">
-                                        <button type="button" class="btn btn-success avatar-sm rounded-circle">
+                                        <button type="button" class="btn btn-success avatar-sm rounded-circle"  id="video-call">
                                             <span class="avatar-title bg-transparent font-size-20">
                                                 <i class="fas fa-phone-alt"></i>
                                             </span>
@@ -2874,6 +2874,7 @@
 
                                 </div>
                                 <div class="col-md-12">
+                                    <input type="hidden" id="userName" value="{{user.userName}}">
                                     <input type="hidden" name="id" id="id" value="{{user._id}}">
                                     <input type="hidden" id="gender" value="{{user.gender}}">
                                     <div class="col-12 fs-14">

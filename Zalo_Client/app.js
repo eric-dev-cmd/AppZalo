@@ -15,6 +15,7 @@ const socketIo = require('socket.io');
 const initSockets = require('./src/sockets/index');
 const passportSocketIo = require('passport.socketio');
 const cookieParser = require('cookie-parser');
+const events = require('events');
 const {
   fail
 } = require('assert');
@@ -23,6 +24,7 @@ const AWS = require('aws-sdk');
 //init app
 const app = express();
 
+events.EventEmitter.defaultMaxListeners = 25;
 //init server with socket.io and http
 const server = http.createServer(app);
 const io = socketIo(server);

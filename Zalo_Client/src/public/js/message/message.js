@@ -94,6 +94,8 @@ async function showConversationGroup(id) {
     //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
     insertInput(id, true);
     insertInputFile(id, true);
+    insertIdForVideoCall(id);
+
 }
 
 //hiển thị tin nhắn cá nhân
@@ -150,10 +152,19 @@ async function showConversationUser(id) {
             }
         }
     });
-   // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
+    // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
     insertInput(id, false);
     insertInputFile(id, false);
+    insertIdForVideoCall(id);
     scrollMessageUserEnd();
+}
+
+//Thêm id cho video Call
+function insertIdForVideoCall(id) {
+    $('#video-call').html('');
+    $(`<span class="avatar-title bg-transparent font-size-20" id="video-${id}"> <i class="fas fa-phone-alt"></i></span>`)
+        .appendTo($('#video-call'));
+    videoCall(id);
 }
 
 //Thêm thẻ input nhập tin nhắn
