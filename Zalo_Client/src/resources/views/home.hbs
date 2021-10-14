@@ -62,11 +62,13 @@
                 </li>
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="top" title=""
                     data-bs-original-title="Thông báo">
-                    <a class="nav-link d-flex align-items-center justify-content-center" id="notification-tab"
-                        data-bs-toggle="pill" href="http://localhost:4002/home#notification" role="tab" aria-Đã
-                        chọn="true">
+                    <a class="nav-link d-flex align-items-center justify-content-center position-relative"
+                        id="notification-tab" data-bs-toggle="pill" href="http://localhost:4002/home#notification"
+                        role="tab" aria-Đã chọn="true">
                         <i class="fal fa-bell"></i>
-                        <span id="sumOfNotification" data-sum={{sumOfNotification}}>
+                        <span id="sumOfNotification" class="badge badge-pill badge-info position-absolute"
+                            style="background: #443eab; border-radius: 50%; top: 6px;left: 28px;font-size: 14px;"
+                            data-sum={{sumOfNotification}}>
                             {{sumOfNotification}}
                         </span>
                     </a>
@@ -466,20 +468,20 @@
                                                                     <h5 class="text-truncate font-size-15 mb-1">
                                                                         {{this.name}}</h5>
                                                                     {{#ifFile this.messageType}}
-                                                                    <p
-                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0" id="last-message-conversation">
+                                                                    <p class="chat-user-message chat-user-message-group text-truncate mb-0"
+                                                                        id="last-message-conversation">
                                                                         [Tệp tin]
                                                                     </p>
                                                                     {{/ifFile}}
                                                                     {{#ifImage this.messageType}}
-                                                                    <p
-                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0" id="last-message-conversation">
+                                                                    <p class="chat-user-message chat-user-message-group text-truncate mb-0"
+                                                                        id="last-message-conversation">
                                                                         [Hình ảnh]
                                                                     </p>
                                                                     {{/ifImage}}
                                                                     {{#ifText this.messageType}}
-                                                                    <p
-                                                                        class="chat-user-message chat-user-message-group text-truncate mb-0" id="last-message-conversation">
+                                                                    <p class="chat-user-message chat-user-message-group text-truncate mb-0"
+                                                                        id="last-message-conversation">
                                                                         {{this.lastText}}
                                                                     </p>
                                                                     {{/ifText}}
@@ -511,17 +513,20 @@
                                                                     <h5 class="text-truncate font-size-15 mb-1">
                                                                         {{this.userName}}</h5>
                                                                     {{#ifImage this.messageType}}
-                                                                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
+                                                                    <p class="chat-user-message text-truncate mb-0"
+                                                                        id="last-message-conversation">
                                                                         [Hình ảnh]
                                                                     </p>
                                                                     {{/ifImage}}
                                                                     {{#ifFile this.messageType}}
-                                                                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
+                                                                    <p class="chat-user-message text-truncate mb-0"
+                                                                        id="last-message-conversation">
                                                                         [Tệp tin]
                                                                     </p>
                                                                     {{/ifFile}}
                                                                     {{#ifText this.messageType}}
-                                                                    <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
+                                                                    <p class="chat-user-message text-truncate mb-0"
+                                                                        id="last-message-conversation">
                                                                         {{this.textUser}}
                                                                     </p>
                                                                     {{/ifText}}
@@ -1736,7 +1741,7 @@
                                 </div>
                                 <div class="me-3 ms-0">
                                     <img src="https://s120-ava-talk.zadn.vn/2/1/c/7/13/120/10e6b4db2255ee6bbf106de6f1261b69.jpg"
-                                        class="rounded-circle avatar-xs" alt="" id="">
+                                        class="rounded-circle avatar-xs" alt="" id="avatar-conversation">
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
 
@@ -1766,15 +1771,8 @@
                                 </li>
 
                                 <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
-                                    <button type="button" class="btn nav-btn" data-bs-toggle="modal"
-                                        data-bs-target="#audiocallModal">
-                                        <i class="fal fa-phone-alt"></i>
-                                    </button>
-                                </li>
-
-                                <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
-                                    <button type="button" class="btn nav-btn" data-bs-toggle="modal"
-                                        data-bs-target="#videocallModal">
+                                    <button type="button" class="btn nav-btn" 
+                                        id="video-call">
                                         <i class="fal fa-video"></i>
                                     </button>
                                 </li>
@@ -2358,25 +2356,18 @@
                         <div class="col-auto">
                             <div class="chat-input-links ms-md-2 me-md-0">
                                 <ul class="list-inline mb-0">
-                                    <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="" data-bs-original-title="Attached File">
-                                        <button type="button"
-                                            class="btn btn-link text-decoration-none font-size-16 btn-lg waves-effect">
-                                            <form method="post" action="" enctype="multipart/form-data"
-                                                id="form-File-Chat">
-                                                <div id="file-Chat">
-                                                    <input type="file" name="files" multiple>
-                                                </div>
-                                                <input type="button" value="gui file" id="send-file">
-                                            </form>
-                                            <i class="fal fa-paperclip text-white"></i>
-                                        </button>
-                                    </li>
+
                                     <li class="list-inline-item">
-                                        <button type="submit"
-                                            class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light">
-                                            <i class="fal fa-paper-plane text-white"></i>
-                                        </button>
+                                        <form method="post" action="" enctype="multipart/form-data" id="form-File-Chat">
+                                            <span id="file-Chat">
+                                                <input type="file" name="files" id="attach-vinh" multiple>
+                                            </span>
+
+                                            <button type="button" value="gui file" id="send-file"
+                                                class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light">
+                                                <i class="fal fa-paper-plane text-white"></i>
+                                            </button>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -2774,7 +2765,7 @@
                                         </button>
                                     </li>
                                     <li class="list-inline-item px-2">
-                                        <button type="button" class="btn btn-success avatar-sm rounded-circle"  id="video-call">
+                                        <button type="button" class="btn btn-success avatar-sm rounded-circle">
                                             <span class="avatar-title bg-transparent font-size-20">
                                                 <i class="fas fa-phone-alt"></i>
                                             </span>

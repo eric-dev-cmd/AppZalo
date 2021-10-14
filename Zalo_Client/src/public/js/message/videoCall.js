@@ -1,5 +1,5 @@
 function videoCall(id) {
-    $(`#video-${id}`).unbind('click').on('click', function () {
+    $(`#video-${id}`).off('click').on('click', function () {
         let callerName = $('#userName').val();
         let dataToEmit = {
             listenerId: id,
@@ -61,10 +61,12 @@ $(document).ready(function () {
     });
 });
 
-function showModalOfCaller(dataToEmit) {
+async function showModalOfCaller(dataToEmit) {
+    let listener = await $.get(http + `/users/${dataToEmit.listenerId}`);
     let timerInterval
     Swal.fire({
-        title: `<img src="https://s120-ava-talk.zadn.vn/2/1/c/7/13/120/10e6b4db2255ee6bbf106de6f1261b69.jpg" alt="" class="img-thumbnail rounded-circle">`,
+        title: `<img src="/images/${listener.user.avatar}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
+        cursor: pointer; position: relative">`,
         html: `
             ${dataToEmit.listenerName}
             <br/><br/>
@@ -80,7 +82,7 @@ function showModalOfCaller(dataToEmit) {
         allowOutsideClick: false,
         willOpen: (ele) => {
             $(ele).find('button.swal2-confirm.swal2-styled').hide();
-            $('#btn-cancel-call').unbind('click').on('click', function () {
+            $('#btn-cancel-call').off('click').on('click', function () {
                 socket.emit('caller-cancel-request-call-to-server', dataToEmit);
                 Swal.close();
                 clearInterval(timerInterval);
@@ -91,11 +93,10 @@ function showModalOfCaller(dataToEmit) {
             //12
             socket.on('server-send-reject-call-to-caller', function (response) {
                 Swal.close();
-                stopVideo();
                 clearInterval(timerInterval);
                 Swal.fire({
                     type: 'info',
-                    title: `${response.listenerName} đã từ chối cuộc gọi`
+                    title: `${response.listenerName} đã từ chối cuộc gọi.`
                 })
             });
 
@@ -117,10 +118,12 @@ function showModalOfCaller(dataToEmit) {
 function showModalVideoCaller(dataToEmit) {
     Swal.fire({
         title: `info`,
-        html: `<video id="localStream" width="200" controls> </video> <br/><br/>
+        html: `${dataToEmit.callerName}<br>
+        <video id="localStream" width="200" controls> </video> <br/><br/>
+        ${dataToEmit.listenerName}<br>
         <video id="remoteStream" width="300" controls> </video>
         <br/><br/>
-        <button type="button" class="btn btn-danger avatar-sm rounded-circle" id="btn-cancel-call">
+        <button type="button" class="btn btn-danger avatar-sm rounded-circle" id="btn-cancel-called">
             <span class="avatar-title bg-transparent font-size-20">
                     <i class="fal fa-times"></i> 
             </span>
@@ -129,7 +132,7 @@ function showModalVideoCaller(dataToEmit) {
         allowOutsideClick: false,
         willOpen: (ele) => {
             $(ele).find('button.swal2-confirm.swal2-styled').hide();
-            $('#btn-cancel-call').unbind('click').on('click', function () {
+            $('#btn-cancel-called').off('click').on('click', function () {
                 socket.emit('caller-cancel-request-call-to-server', dataToEmit);
                 stopVideo();
                 Swal.close();
@@ -150,10 +153,12 @@ function showModalVideoCaller(dataToEmit) {
     })
 }
 
-function showModalOfListener(dataToEmit) {
+async function showModalOfListener(dataToEmit) {
+    let caller = await $.get(http + `/users/${dataToEmit.callerId}`);
     let timerInterval
     Swal.fire({
-        title: `<img src="https://s120-ava-talk.zadn.vn/2/1/c/7/13/120/10e6b4db2255ee6bbf106de6f1261b69.jpg" alt="" class="img-thumbnail rounded-circle">`,
+        title: `<img src="/images/${caller.user.avatar}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
+        cursor: pointer; position: relative">`,
         html: `
             ${dataToEmit.callerName}
             <br/><br/>
@@ -175,13 +180,13 @@ function showModalOfListener(dataToEmit) {
         allowOutsideClick: false,
         willOpen: (ele) => {
             $(ele).find('button.swal2-confirm.swal2-styled').hide();
-            $('#btn-reject-call').unbind('click').on('click', function () {
+            $('#btn-reject-call').off('click').on('click', function () {
                 Swal.close();
                 clearInterval(timerInterval);
                 //10
                 socket.emit('listener-reject-request-call-to-server', dataToEmit);
             });
-            $('#btn-accept-call').unbind('click').on('click', function () {
+            $('#btn-accept-call').off('click').on('click', function () {
                 Swal.close();
                 clearInterval(timerInterval);
 
@@ -215,10 +220,12 @@ function showModalOfListener(dataToEmit) {
 function showModalVideoListener(dataToEmit) {
     Swal.fire({
         title: `info`,
-        html: `<video id="localStream" width="200" controls> </video> <br/><br/>
+        html: `${dataToEmit.listenerName}<br>
+        <video id="localStream" width="200" controls> </video>
+        ${dataToEmit.callerName}<br>
         <video id="remoteStream" width="300" controls> </video>
         <br/><br/>
-        <button type="button" class="btn btn-danger avatar-sm rounded-circle" id="btn-cancel-call">
+        <button type="button" class="btn btn-danger avatar-sm rounded-circle" id="btn-cancel-called">
             <span class="avatar-title bg-transparent font-size-20">
                 <i class="fal fa-times"></i> 
             </span>
@@ -227,7 +234,7 @@ function showModalVideoListener(dataToEmit) {
         allowOutsideClick: false,
         willOpen: (ele) => {
             $(ele).find('button.swal2-confirm.swal2-styled').hide();
-            $('#btn-cancel-call').unbind('click').on('click', function () {
+            $('#btn-cancel-called').off('click').on('click', function () {
                 socket.emit('listener-reject-request-call-to-server', dataToEmit);
                 stopVideo();
                 Swal.close();
@@ -263,14 +270,18 @@ function openVideo() {
 function playVideo(idVideo, stream) {
     const video = document.getElementById(idVideo);
     video.srcObject = stream;
-    video.play();
+    let playPromise = video.play();
+    // if (playPromise !== undefined) {
+    //     playPromise.then(_ => {
+    //         })
+    //         .catch(error => {});
+    // }
 }
-
 
 function stopVideo() {
     const video = document.querySelector('video');
     const mediaStream = video.srcObject;
-    const tracks = mediaStream.getTracks(); 
-    tracks[0].stop();
+    const tracks = mediaStream.getTracks();
+    //tracks[0].stop();
     tracks.forEach(track => track.stop())
 }

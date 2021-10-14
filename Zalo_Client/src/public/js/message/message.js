@@ -25,7 +25,8 @@ async function showConversationGroup(id) {
     let sender = await $.get(http + `/users/${currentUserId}`);
     // lấy tin nhắn theo id nhóm
     let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
-
+    //hiển thị avatar
+    $('#avatar-conversation').attr('src', `/images/${sender.user.avatar}`)
     //hiển thị tên nhóm
     $('#name-conversation').html(`${group.name}`);
     //phía gửi: gán giá trị data-id = id hiện tại
@@ -107,6 +108,7 @@ async function showConversationUser(id) {
     let messages = await $.get(
         http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`
     );
+    $('#avatar-conversation').attr('src', `/images/${receiver.user.avatar}`)
     $('#name-conversation').html(`${receiver.user.userName}`);
     $('#right-conversation').attr('data-id', `${currentUserId}`);
     $('.message-list').attr('id', `conversation-${id}`);
@@ -162,8 +164,7 @@ async function showConversationUser(id) {
 //Thêm id cho video Call
 function insertIdForVideoCall(id) {
     $('#video-call').html('');
-    $(`<span class="avatar-title bg-transparent font-size-20" id="video-${id}"> <i class="fas fa-phone-alt"></i></span>`)
-        .appendTo($('#video-call'));
+    $(` <i class="fal fa-video" id="video-${id}"></i>`).appendTo($('#video-call'));
     videoCall(id);
 }
 
