@@ -31,5 +31,8 @@ class LoginController {
   showResetPassword(req, res) {
     res.render('resetpassword');
   }
+  showUpdatePassword(req, res) {
+    res.render('updatepassword');
+  }
 }
 module.exports = new LoginController();
