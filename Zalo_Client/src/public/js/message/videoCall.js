@@ -14,7 +14,6 @@ let getPeerId = '';
 const peer = new Peer();
 var MediaStream;
 $(document).ready(function () {
-
     //02
     socket.on('server-send-listener-is-offline', function () {
         console.log('offline')

@@ -28,6 +28,3 @@ socket.on('response-remove-request-contact-receiver', function (user) {
     addNewContact();
 });
 
-$(document).ready(function () {
-    removeRequestContactReceiver();
-});

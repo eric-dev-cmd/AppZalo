@@ -93,7 +93,3 @@ function sumOfNotificationDes() {
     $('#sumOfNotification').html('');
     $('<span>(' + sum + ')</span>').appendTo($('#sumOfNotification'));
   }
-
-$(document).ready(function () {
-    acceptRequestContact();
-});

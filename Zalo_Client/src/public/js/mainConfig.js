@@ -1,4 +1,5 @@
 const socket = io();
+const http = `http://localhost:4000`;
 
 // cập nhật thời gian tin nhắn đã gửi của ds cuộc trò truyện
 socket.on('response-update-time', function (data) {
@@ -17,10 +18,12 @@ function getAllConversation() {
         var li = $(this).find('li')
         let firstLiId = li.first().attr('id');
         $(`#${firstLiId}`).click();
-    })
+    });
 }
 
 $(document).ready(function () {
     searchPhone();
-    getAllConversation()
+    removeRequestContactReceiver();
+    acceptRequestContact();
+    getAllConversation();
 });

@@ -26,8 +26,10 @@ async function showConversationGroup(id) {
     // lấy tin nhắn theo id nhóm
     let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
     //hiển thị avatar
+    $('#avatar-detail').attr('src', `/images/${sender.user.avatar}`)
     $('#avatar-conversation').attr('src', `/images/${sender.user.avatar}`)
     //hiển thị tên nhóm
+    $('#name').html(`${group.name}`);
     $('#name-conversation').html(`${group.name}`);
     //phía gửi: gán giá trị data-id = id hiện tại
     $('#right-conversation').attr('data-id', `${currentUserId}`);
@@ -92,11 +94,12 @@ async function showConversationGroup(id) {
             scrollMessageGroupEnd();
         }
     });
+    detailConversation(messages);
     //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
     insertInput(id, true);
     insertInputFile(id, true);
     insertIdForVideoCall(id);
-
+    insertIdUserOnline(group);
 }
 
 //hiển thị tin nhắn cá nhân
@@ -105,18 +108,18 @@ async function showConversationUser(id) {
     let currentUserId = document.getElementById('id').value;
     let receiver = await $.get(http + `/users/${id}`);
     let sender = await $.get(http + `/users/${currentUserId}`);
-    let messages = await $.get(
-        http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`
-    );
+    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`);
+    //hiển thị avatar
+    $('#avatar-detail').attr('src', `/images/${receiver.user.avatar}`)
     $('#avatar-conversation').attr('src', `/images/${receiver.user.avatar}`)
+    //hiển thị tên
+    $('#name').html(`${receiver.user.userName}`);
     $('#name-conversation').html(`${receiver.user.userName}`);
     $('#right-conversation').attr('data-id', `${currentUserId}`);
     $('.message-list').attr('id', `conversation-${id}`);
-    $(`#conversation-${id}`).append(
-        leftConversationText(receiver, {
-            text: '',
-        })
-    );
+    $(`#conversation-${id}`).append(leftConversationText(receiver, {
+        text: '',
+    }));
     let rightId = $('#right-conversation').attr('data-id');
     let leftId = $(`#left-conversation-${receiver.user._id}`).attr('data-id');
     $(`#conversation-${id}`).html('');
@@ -154,11 +157,32 @@ async function showConversationUser(id) {
             }
         }
     });
+    detailConversation(messages);
     // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
     insertInput(id, false);
     insertInputFile(id, false);
     insertIdForVideoCall(id);
+    insertIdUserOnline(receiver);
     scrollMessageUserEnd();
+}
+
+// //thêm id cho user online
+function insertIdUserOnline(receiver) {
+    if (receiver.members) {
+        $('#info-conversation').html('');
+        $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
+        <a id="name-conversation" class="text-reset user-profile-show">${receiver.name}</a>  
+        <i id="online-conversation-${receiver._id }"></i></h5>
+        <span style="padding-top: 3px" id="time-online"><i class="fa fa-user" aria-hidden="true"></i> ${receiver.members.length} thành viên</span>`)
+            .appendTo($('#info-conversation'));
+    } else {
+        $('#info-conversation').html('');
+        $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
+        <a id="name-conversation" class="text-reset user-profile-show">${receiver.user.userName}</a>  
+        <i id="online-conversation-${receiver.user._id}"></i></h5>
+        <span style="padding-top: 3px" id="time-online-${receiver.user._id}"></span>`)
+            .appendTo($('#info-conversation'));
+    }
 }
 
 //Thêm id cho video Call
@@ -408,7 +432,7 @@ function rightConversationImage(user, message) {
 function leftConversationImage(user, message) {
     return `<li id="left-conversation-${user.user._id}" data-id="${
     user.user._id
-  }" data-content="${message.text}">
+  }" data-content="${message.text}" data-messageId="${message._id}">
      <div class="conversation-list">
          <div class="chat-avatar">
              <img src="/images/${user.user.avatar}"
@@ -631,7 +655,7 @@ function leftConversationFile(user, message) {
     let fileName = message.fileName.split('.');
     return `<li id="left-conversation-${user.user._id}" data-id="${
     user.user._id
-  }" data-content="${message.text}">
+  }" data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}" alt="">
