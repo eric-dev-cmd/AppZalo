@@ -17,8 +17,20 @@ class MessagesController {
             .catch(next);
     }
 
+    getAPIByText(req, res, next) {
+        Message.find({
+                'text': req.params.text
+            }).exec()
+            .then(api => {
+                res.json(api);
+            })
+            .catch(next);
+    }
+
     getAPIByReceiverId(req, res, next) {
-        Message.find({'receiverId': req.params.receiverid}).sort({
+        Message.find({
+                'receiverId': req.params.receiverid
+            }).sort({
                 'createdAt': 1
             }).exec()
             .then(api => {

@@ -1,6 +1,6 @@
 //upload file
 function fileChat(id, isChatGroup) {
-    $('#send-file').unbind('click').on('click', function () {
+    $('#send-file').off('click').on('click', function () {
         let formData = new FormData();
         let myFiles = document.getElementById(`fileChat-${id}`);
         for (var i = 0; i < myFiles.files.length; i++) {
@@ -24,6 +24,7 @@ function fileChat(id, isChatGroup) {
                 //     }, 
                 //     isChatGroup: '' 
                 // }
+                $(`#fileChat-${id}`).val('')
                 let messages = data.messages.newMessages;
                 let isChatGroup = data.isChatGroup;
                 if (messages.length > 1) {

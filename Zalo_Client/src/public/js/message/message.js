@@ -100,6 +100,7 @@ async function showConversationGroup(id) {
     insertInputFile(id, true);
     insertIdForVideoCall(id);
     insertIdUserOnline(group);
+    showSearchMessage(id);
 }
 
 //hiển thị tin nhắn cá nhân
@@ -164,6 +165,14 @@ async function showConversationUser(id) {
     insertIdForVideoCall(id);
     insertIdUserOnline(receiver);
     scrollMessageUserEnd();
+    showSearchMessage(id);
+}
+
+function showSearchMessage(id) {
+    $('#search-conversation').html('');
+    $(`<input type="text" class="form-control bg-light border-0"
+    placeholder="Tìm kiếm.." id="search-message">`).appendTo($('#search-conversation'));
+    searchMessage(id);
 }
 
 // //thêm id cho user online
@@ -218,7 +227,7 @@ function renderTime(message) {
 
 //tạo tin nhắn text gửi đi
 function rightConversationText(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${user.user._id}" data-messageId="${message._id}">
+    return `<li class="right" id="right-conversation" data-content="${message.text}" data-id="${user.user._id}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="images/${user.user.avatar}" alt="">
@@ -227,7 +236,7 @@ function rightConversationText(user, message) {
         <div class="user-chat-content">
             <div class="ctext-wrap">
                 <div class="ctext-wrap-content">
-                    <p class="mb-0" >
+                    <p class="mb-0" id="chat-content" >
                         ${message.text}
                     </p>
                     <p class="chat-time mb-0"><i
@@ -264,7 +273,7 @@ function rightConversationText(user, message) {
                 </div>
             </div>
 
-            <div class="conversation-name">${user.user.userName}</div>
+            <div class="conversation-name">Tôi</div>
         </div>
     </div>
 </li>`;
@@ -284,7 +293,7 @@ function leftConversationText(user, message) {
         <div class="user-chat-content">
             <div class="ctext-wrap">
                 <div class="ctext-wrap-content">
-                    <p class="mb-0" >
+                    <p class="mb-0" id="chat-content" >
                     ${message.text}
                     </p>
                     <p class="chat-time mb-0"><i
@@ -421,7 +430,7 @@ function rightConversationImage(user, message) {
 
             </div>
 
-            <div class="conversation-name">${user.user.userName}</div>
+            <div class="conversation-name">Tôi</div>
         </div>
 
     </div>
@@ -643,7 +652,7 @@ function rightConversationFile(user, message) {
 
             </div>
 
-            <div class="conversation-name">${user.user.userName}</div>
+            <div class="conversation-name">Tôi</div>
         </div>
 
     </div>

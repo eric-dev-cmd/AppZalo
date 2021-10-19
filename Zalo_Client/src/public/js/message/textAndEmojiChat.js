@@ -134,7 +134,7 @@ async function addConversation(receiverId, isChatGroup) {
                     class="chat-user-img online align-self-center me-3 ms-0">
                     <img src="/images/${receiver.user.avatar}"
                         class="rounded-circle avatar-xs" alt="">
-                    <span class="user-status"></span>
+                    <span class=""></span>
                 </div>
     
                 <div class="flex-1 overflow-hidden">
@@ -163,7 +163,7 @@ async function addConversation(receiverId, isChatGroup) {
                     class="chat-user-img online align-self-center me-3 ms-0">
                     <img src="/images/${groupReceiver.avatar}"
                         class="rounded-circle avatar-xs" alt="">
-                    <span class="user-status"></span>
+                    <span class=""></span>
                 </div>
     
                 <div class="flex-1 overflow-hidden">
