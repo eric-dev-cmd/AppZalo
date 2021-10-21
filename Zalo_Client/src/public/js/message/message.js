@@ -101,6 +101,7 @@ async function showConversationGroup(id) {
     insertIdForVideoCall(id);
     insertIdUserOnline(group);
     showSearchMessage(id);
+    searchConversation(id, true);
 }
 
 //hiển thị tin nhắn cá nhân
@@ -166,12 +167,13 @@ async function showConversationUser(id) {
     insertIdUserOnline(receiver);
     scrollMessageUserEnd();
     showSearchMessage(id);
+    searchConversation(id, false);
 }
 
 function showSearchMessage(id) {
-    $('#search-conversation').html('');
+    $('#search-message-in-conversation').html('');
     $(`<input type="text" class="form-control bg-light border-0"
-    placeholder="Tìm kiếm.." id="search-message">`).appendTo($('#search-conversation'));
+    placeholder="Tìm kiếm.." id="search-message">`).appendTo($('#search-message-in-conversation'));
     searchMessage(id);
 }
 

@@ -1,5 +1,7 @@
 const socket = io();
 const http = `http://localhost:4000`;
+//các cuộc trò truyện
+let conversations;
 
 // cập nhật thời gian tin nhắn đã gửi của ds cuộc trò truyện
 socket.on('response-update-time', function (data) {
@@ -15,7 +17,8 @@ socket.on('response-update-time', function (data) {
 
 function getAllConversation() {
     $('#conversation-list').each(function () {
-        var li = $(this).find('li')
+        var li = $(this).find('li');
+        conversations = li;
         let firstLiId = li.first().attr('id');
         $(`#${firstLiId}`).click();
     });
