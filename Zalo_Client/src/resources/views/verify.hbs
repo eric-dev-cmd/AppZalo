@@ -8,18 +8,21 @@
                 <div class="card">
                     <div class="card-body p-4">
                         <div class="p-3">
-                            <form action="/accounts/password/update">
+
+                            <form action="/accounts/password/update" method="POST">
                                 <div class="mb-4">
                                     <label class="form-label fs-14">Nhập mã gồm 6 chữ số mà chúng tôi đã gửi đến</label>
                                     <div class="input-group bg-soft-light rounded-3 mb-3">
                                         <span class="input-group-text text-muted" id="basic-addon2">
                                             <i class="fal fa-user-check"></i>
                                         </span>
-                                        <input type="tel" class="form-control form-control-lg bg-soft-light"
+                                        <input type="tel" name="numberVerify"
+                                            class="form-control form-control-lg bg-soft-light"
                                             placeholder="Nhập mã xác thực" aria-label="Nhập mã xác thực"
                                             aria-describedby="basic-addon2"
                                             style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
                                     </div>
+                                    <input type="text" hidden value="{{this.phoneNumber}}" name="phoneNumber">
                                 </div>
 
                                 <div class="row">
