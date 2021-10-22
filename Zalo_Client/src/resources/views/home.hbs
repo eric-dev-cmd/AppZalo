@@ -93,7 +93,7 @@
                         <div class="search-box mb-3">
                             <div class="input-wrapper">
                                 <i class="fal fa-search fs-14"></i>
-                                <input class="text-white" type="text" placeholder="Tìm kiếm...">
+                                <input class="text-white" type="text" placeholder="Tìm kiếm..." id="search-conversation">
                             </div>
                             <div class="input-icon-plus d-flex">
                                 <i class="fal fa-user-plus px-3 fs-14 cursor-point" data-bs-toggle="modal"
@@ -453,7 +453,8 @@
                                                     {{#if this.members}}
                                                     <li class="cursor-point"
                                                         onclick="showConversationGroup('{{this._id}}')"
-                                                        id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}">
+                                                        id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}"
+                                                        data-name="{{this.name}}">
                                                         <a>
                                                             <div class="d-flex">
                                                                 <div
@@ -498,7 +499,8 @@
                                                     {{else}}
                                                     <li class="cursor-point"
                                                         onclick="showConversationUser('{{this._id}}')"
-                                                        id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}">
+                                                        id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}" 
+                                                        data-name="{{this.userName}}">
                                                         <a>
                                                             <div class="d-flex">
                                                                 <div
@@ -1760,7 +1762,7 @@
                                             <i class="fal fa-search"></i>
                                         </button>
                                         <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-md">
-                                            <div class="search-box p-2" id="search-conversation">
+                                            <div class="search-box p-2" id="search-message-in-conversation">
                                                 <input type="text" class="form-control bg-light border-0"
                                                     placeholder="Tìm kiếm.." id="search-message">
                                             </div>

@@ -127,7 +127,7 @@ async function addConversation(receiverId, isChatGroup) {
     let receiver = await $.get(http + `/users/${receiverId}`);
     let messages = await $.get(http +`/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
     return `<li onclick="showConversationUser('${receiver.user._id}')" id="receiver-${receiver.user._id}" 
-    data-updated="${receiver.user.updatedAt}">
+    data-updated="${receiver.user.updatedAt}" data-name="${receiver.user.userName}">
         <a>
             <div class="d-flex">
                 <div
@@ -156,7 +156,7 @@ async function addConversation(receiverId, isChatGroup) {
       groupReceiver._id
     }')" id="receiver-${groupReceiver._id}" data-updated="${
       groupReceiver.updatedAt
-    }">
+    }" data-name="${groupReceiver.name}">
         <a>
             <div class="d-flex">
                 <div

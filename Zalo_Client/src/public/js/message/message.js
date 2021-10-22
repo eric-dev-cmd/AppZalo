@@ -100,7 +100,8 @@ async function showConversationGroup(id) {
     insertInputFile(id, true);
     insertIdForVideoCall(id);
     insertIdUserOnline(group);
-    showSearchMessage(id);
+    showSearchMessage(id, true);
+    searchConversation(id, true);
 }
 
 //hiển thị tin nhắn cá nhân
@@ -165,14 +166,15 @@ async function showConversationUser(id) {
     insertIdForVideoCall(id);
     insertIdUserOnline(receiver);
     scrollMessageUserEnd();
-    showSearchMessage(id);
+    showSearchMessage(id, false);
+    searchConversation(id, false);
 }
 
-function showSearchMessage(id) {
-    $('#search-conversation').html('');
+function showSearchMessage(id, isChatGroup) {
+    $('#search-message-in-conversation').html('');
     $(`<input type="text" class="form-control bg-light border-0"
-    placeholder="Tìm kiếm.." id="search-message">`).appendTo($('#search-conversation'));
-    searchMessage(id);
+    placeholder="Tìm kiếm.." id="search-message">`).appendTo($('#search-message-in-conversation'));
+    searchMessage(id, isChatGroup);
 }
 
 // //thêm id cho user online
