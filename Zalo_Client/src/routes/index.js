@@ -10,6 +10,11 @@ function route(app) {
     res.header('Access-Control-Allow-Origin', '*');
     next();
   });
+  app.use((req, res, next) => {
+    app.locals.success = req.flash('success');
+    app.locals.error = req.flash('error');
+    next();
+  });
   app.use('/accounts', accountRouter);
 
   app.use('/login-register', authRouter);

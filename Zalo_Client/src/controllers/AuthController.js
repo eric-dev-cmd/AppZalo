@@ -35,15 +35,16 @@ class LoginController {
     try {
       const { phoneNumber } = req.body;
       const user = await axios.get(http + '/users/searchPhone/' + phoneNumber);
-      // let phone = user.data.user.local.phone;
-
-      // req.flash('error', 'Số điện thoại đã được đăng ký');
-      // res.locals.message = req.flash('errors');
-      // req.flash('error', 'Số điện thoại đã được đăng ký');
-      console.log('That bai');
-      res.render('verify', {
-        phoneNumber,
-      });
+      if (!user.data.user) {
+        console.log('Thanh cong');
+        res.render('verify', {
+          phoneNumber,
+        });
+      } else {
+        console.log('SDT da duoc dang ky');
+        req.flash('error', 'Số điện thoại đã được đăng ký 😮');
+        res.redirect('/accounts/signup');
+      }
     } catch (err) {
       console.log(err);
     }

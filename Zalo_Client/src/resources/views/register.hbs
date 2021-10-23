@@ -13,7 +13,9 @@
                     <div class="card-body p-4">
                         <div class="p-3">
                             <form action="/accounts/verify" _lpchecked="1" method="POST">
-
+                                {{#if error}}
+                                <div class="alert alert-danger text-center">{{error}}</div>
+                                {{/if}}
                                 <div class="mb-3">
                                     <label class="form-label fs-18">Số điện thoại</label>
                                     <div class="input-group bg-soft-light rounded-3  mb-3">
