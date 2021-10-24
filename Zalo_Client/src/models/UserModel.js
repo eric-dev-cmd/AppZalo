@@ -4,7 +4,10 @@ const bcrypt = require('bcryptjs');
 // const validator = require('validator');
 
 const User = new Schema({
-  userName: String,
+  userName: {
+    type: String,
+    default: 'username',
+  },
   gender: {
     type: String,
     default: 'male',
@@ -19,6 +22,7 @@ const User = new Schema({
   },
   avatar: {
     type: String,
+    // default: 'https://i.stack.imgur.com/dr5qp.jpg',
     default: 'avatar-default.jpg',
   },
   role: {

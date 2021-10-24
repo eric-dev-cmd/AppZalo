@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const User = new Schema({
-  userName: String,
+  userName: {
+    type: String,
+    default: "username",
+  },
   gender: {
     type: String,
     default: "male",
@@ -18,7 +21,8 @@ const User = new Schema({
   },
   avatar: {
     type: String,
-    default: "avatar-default.jpg",
+    default: "https://i.stack.imgur.com/dr5qp.jpg",
+    // default: "avatar-default.jpg",
   },
   role: {
     type: String,

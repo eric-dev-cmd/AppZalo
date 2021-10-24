@@ -1,8 +1,8 @@
 const User = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
-const userService = require('../services/userService');
 const axios = require('axios');
 const http = require('./http');
+
 
 class LoginController {
   showLogin(req, res) {
@@ -34,6 +34,8 @@ class LoginController {
   async showVerify(req, res) {
     try {
       const { phoneNumber } = req.body;
+      trung('Hi Vinh');
+      console.log(phoneNumber);
       const user = await axios.get(http + '/users/searchPhone/' + phoneNumber);
       if (!user.data.user) {
         console.log('Thanh cong');
@@ -79,5 +81,8 @@ class LoginController {
       });
     }
   }
+}
+function trung(text) {
+  console.log(text);
 }
 module.exports = new LoginController();
