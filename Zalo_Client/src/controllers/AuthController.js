@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const axios = require('axios');
 const http = require('./http');
 
-
 class LoginController {
   showLogin(req, res) {
     res.locals.message = req.flash('errors');
@@ -34,8 +33,8 @@ class LoginController {
   async showVerify(req, res) {
     try {
       const { phoneNumber } = req.body;
-      trung('Hi Vinh');
       console.log(phoneNumber);
+      console.log('Trung Vinh');
       const user = await axios.get(http + '/users/searchPhone/' + phoneNumber);
       if (!user.data.user) {
         console.log('Thanh cong');
@@ -82,7 +81,5 @@ class LoginController {
     }
   }
 }
-function trung(text) {
-  console.log(text);
-}
+
 module.exports = new LoginController();

@@ -93,7 +93,8 @@
                         <div class="search-box mb-3">
                             <div class="input-wrapper">
                                 <i class="fal fa-search fs-14"></i>
-                                <input class="text-white" type="text" placeholder="Tìm kiếm..." id="search-conversation">
+                                <input class="text-white" type="text" placeholder="Tìm kiếm..."
+                                    id="search-conversation">
                             </div>
                             <div class="input-icon-plus d-flex">
                                 <i class="fal fa-user-plus px-3 fs-14 cursor-point" data-bs-toggle="modal"
@@ -354,7 +355,9 @@
 
                         <div class="owl-carousel owl-theme owl-loaded owl-drag" id="user-status-carousel">
                             <div class="owl-stage-outer">
-                                <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 435px;" id="list-user-online">
+                                <div class="owl-stage"
+                                    style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 435px;"
+                                    id="list-user-online">
                                     {{!-- <div class="owl-item active" style="width: 71px; margin-right: 16px;">
                                         <div class="item">
                                             <a href="javascript:void(0)" class="user-status-box">
@@ -499,7 +502,7 @@
                                                     {{else}}
                                                     <li class="cursor-point"
                                                         onclick="showConversationUser('{{this._id}}')"
-                                                        id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}" 
+                                                        id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}"
                                                         data-name="{{this.userName}}">
                                                         <a>
                                                             <div class="d-flex">
@@ -671,6 +674,12 @@
                                                 <label for="addgroupname-input" class="form-label">Tên nhóm</label>
                                                 <input type="text" class="form-control" id="addgroupname-input"
                                                     placeholder="Enter Group Name">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label for="addgroupname-input" class="form-label">Thêm bạn bè vào
+                                                    group</label>
+                                                <input type="text" class="form-control" id="addgroupname-input"
+                                                    placeholder="Nhập tên hoặc số điện thoại để tìm kiếm">
                                             </div>
                                             <div class="mb-4">
                                                 <label class="form-label">Thành viên nhóm</label>
@@ -1745,8 +1754,8 @@
                                         class="rounded-circle avatar-xs" alt="" id="avatar-conversation">
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden" id="info-conversation">
-                                    <h5 class="font-size-16 mb-0 text-truncate" >
-                                        <a id="name-conversation" class="text-reset user-profile-show">Luynh</a> 
+                                    <h5 class="font-size-16 mb-0 text-truncate">
+                                        <a id="name-conversation" class="text-reset user-profile-show">Luynh</a>
                                         <i id="online-conversation-{{this._id}}"></i>
                                     </h5>
                                     <span style="padding-top: 3px" id="time-online">Truy cập 10 phút trước</span>
@@ -2487,7 +2496,7 @@
                                             <!-- end profile-user-accordion -->
                                         </div>
 
-                                          <div class="accordion" id="myprofile">
+                                        <div class="accordion" id="myprofile">
                                             <div class="accordion-item card border">
                                                 <div class="accordion-header" id="attachfile3">
                                                     <button class="accordion-button collapsed" type="button"
