@@ -348,7 +348,7 @@ function rightConversationImage(user, message) {
                         <li class="list-inline-item message-img-list me-2 ms-0">
                             <div>
                                 <a class="popup-img d-inline-block m-1"
-                                    href="./assets/img-1.jpg"
+                                    href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}"
                                     title="Project 1">
                                     <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}" alt=""
                                         class="rounded border">
@@ -457,7 +457,7 @@ function leftConversationImage(user, message) {
                          <li class="list-inline-item message-img-list">
                              <div>
                                  <a class="popup-img d-inline-block m-1"
-                                     href="./assets/img-2.jpg"
+                                     href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}"
                                      title="Project 2">
                                      <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}" alt=""
                                          class="rounded border">
