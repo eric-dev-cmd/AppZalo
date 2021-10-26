@@ -17,8 +17,8 @@ const firebaseApp = initializeApp({
 const auth = getAuth(firebaseApp);
 console.log(auth);
 // Form register - only form
-const registerForm = document.querySelector('#registerForm');
-console.log(registerForm);
+// const registerForm = document.querySelector('#registerForm');
+// console.log(registerForm);
 // registerForm.addEventListener('submit', (e) => {
 //   e.preventDefault();
 //   console.log('Trung vinh');
