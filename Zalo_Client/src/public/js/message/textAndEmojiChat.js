@@ -161,7 +161,7 @@ async function addConversation(receiverId, isChatGroup) {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="/images/${groupReceiver.avatar}"
+                    <img src="/images/avatar-group.png"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>
