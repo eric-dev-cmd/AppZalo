@@ -22,7 +22,8 @@ function upload(files, uuid) {
             Bucket: process.env.AWSBUCKETNAME,
             Key: `${uuid}.${file.name}`,
             Body: file.data, //(buffer file)
-            ACL: 'public-read'
+            ACL: 'public-read',
+            ContentType: file.mimetype
         }
         S3.upload(params, (error, data) => {
             if (error) {
