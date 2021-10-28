@@ -1,4 +1,4 @@
-console.log('Firebase');
+
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
 import {
   getAuth,
@@ -15,11 +15,6 @@ const firebaseApp = initializeApp({
   measurementId: 'G-YP67FPLW9H',
 });
 const auth = getAuth(firebaseApp);
+console.log('Running firebase');
 console.log(auth);
-// Form register - only form
-// const registerForm = document.querySelector('#registerForm');
-// console.log(registerForm);
-// registerForm.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   console.log('Trung vinh');
-// });
+
