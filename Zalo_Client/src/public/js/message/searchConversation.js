@@ -1,23 +1,22 @@
-function searchConversation(id, isChatGroup) {
-    $('#search-conversation').off('keyup').on('keyup', function (element) {
-        let content = $('#search-conversation').val();
-        let listConversation = searchNameConversation(content);
-        //tìm kiếm cuộc trò truyện
-        listConversation.true.forEach(name => {
-            conversations.each(function () {
-                let li = $(`li[data-name='${name}']`);
-                $('#conversation-list').append(li);
-            })
-        });
-        //xóa các cuộc trò truyện không tìm thấy
-        listConversation.false.forEach(name => {
-            conversations.each(function () {
-                $('#conversation-list').find(`li[data-name='${name}']`).remove();
-            })
-        });
-        eventKeydown();
-    })
-}
+$('#search-conversation').off('keyup').on('keyup', function (element) {
+    let content = $('#search-conversation').val();
+    let listConversation = searchNameConversation(content);
+    //tìm kiếm cuộc trò truyện
+    listConversation.true.forEach(name => {
+        conversations.each(function () {
+            let li = $(`li[data-name='${name}']`);
+            $('#conversation-list').append(li);
+        })
+    });
+    //xóa các cuộc trò truyện không tìm
+    listConversation.false.forEach(name => {
+        conversations.each(function () {
+            $('#conversation-list').find(`li[data-name='${name}']`).remove();
+        })
+    });
+    eventKeydown();
+})
+
 
 //tìm kiếm tên của các cuộc trò truyện
 function searchNameConversation(content) {

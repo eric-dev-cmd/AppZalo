@@ -99,7 +99,143 @@
                             <div class="input-icon-plus d-flex">
                                 <i class="fal fa-user-plus px-3 fs-14 cursor-point" data-bs-toggle="modal"
                                     data-bs-target="#exampleModalAddFriend" id="show-modal"></i>
-                                <i class=" fal fa-user-circle fs-14 cursor-point"></i>
+                                <i class=" fal fa-users fs-14 cursor-point " data-bs-toggle="modal"
+                                    data-bs-target="#addgroup-exampleModal"></i>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="addgroup-exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="addgroup-exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-size-16" id="addgroup-exampleModalLabel">Tạo
+                                                    nhóm
+                                                    mới</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                </button>
+                                            </div>
+                                            <div class="modal-body p-4">
+                                                <form id="create-group">
+                                                    <div class="mb-4">
+                                                        <label for="addgroupname-input"
+                                                            class="form-label float-start">Tên
+                                                            nhóm</label>
+                                                        <input type="text" class="form-control" id="addgroupname-input"
+                                                            name="groupName" placeholder="Nhập tên nhóm">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="addgroupname-input"
+                                                            class="form-label float-start">Thêm
+                                                            bạn bè vào
+                                                            group</label>
+                                                        <input type="text" class="form-control"
+                                                            id="seach-user-add-group"
+                                                            placeholder="Nhập tên hoặc số điện thoại để tìm kiếm">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label class="form-label float-start">Thành viên
+                                                            nhóm</label> <br>
+                                                        <div class="mb-3">
+                                                            <button class="btn btn-light btn-sm" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#groupmembercollapse"
+                                                                aria-expanded="false"
+                                                                aria-controls="groupmembercollapse" id="choose-user" hidden>
+                                                                Chọn thành viên
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="collapse" id="groupmembercollapse">
+                                                            <div class="card border">
+                                                                <div class="card-header">
+                                                                    <h5 class="font-size-15 mb-0 float-start">
+                                                                        Liên hệ</h5>
+                                                                </div>
+                                                                <div class="card-body p-2">
+                                                                    <div data-simplebar="init"
+                                                                        style="max-height: 150px;">
+                                                                        <div class="simplebar-wrapper"
+                                                                            style="margin: 0px;">
+                                                                            <div
+                                                                                class="simplebar-height-auto-observer-wrapper">
+                                                                                <div
+                                                                                    class="simplebar-height-auto-observer">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="simplebar-mask">
+                                                                                <div class="simplebar-offset"
+                                                                                    style="right: 0px; bottom: 0px;">
+                                                                                    <div class="simplebar-content-wrapper"
+                                                                                        style="height: auto; overflow: hidden;">
+                                                                                        <div class="simplebar-content"
+                                                                                            style="padding: 0px;">
+                                                                                            <div>
+                                                                                                <ul class="list-unstyled contact-list"
+                                                                                                    id="list-concact-add-group">
+                                                                                                    {{#each
+                                                                                                    allConversationMessages}}
+                                                                                                    {{#if
+                                                                                                    this.members}}
+
+                                                                                                    {{else}}
+                                                                                                    <li id="{{this._id}}">
+                                                                                                        <div
+                                                                                                            class="form-check">
+                                                                                                            <input
+                                                                                                                type="checkbox"
+                                                                                                                class="form-check-input"
+                                                                                                                id="{{this._id}}"
+                                                                                                                value="{{this._id}}"
+                                                                                                                name="idUser">
+                                                                                                            <label
+                                                                                                                class="form-check-label"
+                                                                                                                for="{{this._id}}">{{this.userName}}</label>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                    {{/if}}
+                                                                                                    {{/each}}
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="simplebar-placeholder"
+                                                                                style="width: 0px; height: 0px;">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="simplebar-track simplebar-horizontal"
+                                                                            style="visibility: hidden;">
+                                                                            <div class="simplebar-scrollbar"
+                                                                                style="transform: translate3d(0px, 0px, 0px); display: none;">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="simplebar-track simplebar-vertical"
+                                                                            style="visibility: hidden;">
+                                                                            <div class="simplebar-scrollbar"
+                                                                                style="transform: translate3d(0px, 0px, 0px); display: none;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-link"
+                                                            data-bs-dismiss="modal">Đóng</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            id="btn-create-group">Tạo
+                                                            nhóm</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalAddFriend" tabindex="-1"
@@ -641,139 +777,7 @@
             <div class="tab-pane" id="pills-groups" role="tabpanel" aria-labelledby="pills-groups-tab">
                 <!-- Start Groups content -->
                 <div>
-                    <div class="p-4">
-                        {{!-- <div class="user-chat-nav float-end">
-                            <div data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
-                                data-bs-original-title="Create group">
-                                <!-- Button trigger modal -->
-                                <button type="button"
-                                    class="btn btn-link text-decoration-none text-muted font-size-18 py-0"
-                                    data-bs-toggle="modal" data-bs-target="#addgroup-exampleModal">
-                                    <i class="fal fa-users me-1 ms-0"></i>
-                                </button>
-                            </div>
-
-                        </div>
-                        <h4 class="mb-4">Nhóm</h4>
-
-                        <!-- Start add group Modal -->
-                        <div class="modal fade" id="addgroup-exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="addgroup-exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title font-size-16" id="addgroup-exampleModalLabel">Tạo nhóm
-                                            mới</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                        </button>
-                                    </div>
-                                    <div class="modal-body p-4">
-                                        <form>
-                                            <div class="mb-4">
-                                                <label for="addgroupname-input" class="form-label">Tên nhóm</label>
-                                                <input type="text" class="form-control" id="addgroupname-input"
-                                                    placeholder="Enter Group Name">
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="addgroupname-input" class="form-label">Thêm bạn bè vào
-                                                    group</label>
-                                                <input type="text" class="form-control" id="addgroupname-input"
-                                                    placeholder="Nhập tên hoặc số điện thoại để tìm kiếm">
-                                            </div>
-                                            <div class="mb-4">
-                                                <label class="form-label">Thành viên nhóm</label>
-                                                <div class="mb-3">
-                                                    <button class="btn btn-light btn-sm" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#groupmembercollapse"
-                                                        aria-expanded="false" aria-controls="groupmembercollapse">
-                                                        Chọn thành viên
-                                                    </button>
-                                                </div>
-
-                                                <div class="collapse" id="groupmembercollapse">
-                                                    <div class="card border">
-                                                        <div class="card-header">
-                                                            <h5 class="font-size-15 mb-0">Liên hệ</h5>
-                                                        </div>
-                                                        <div class="card-body p-2">
-                                                            <div data-simplebar="init" style="max-height: 150px;">
-                                                                <div class="simplebar-wrapper" style="margin: 0px;">
-                                                                    <div class="simplebar-height-auto-observer-wrapper">
-                                                                        <div class="simplebar-height-auto-observer">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="simplebar-mask">
-                                                                        <div class="simplebar-offset"
-                                                                            style="right: 0px; bottom: 0px;">
-                                                                            <div class="simplebar-content-wrapper"
-                                                                                style="height: auto; overflow: hidden;">
-                                                                                <div class="simplebar-content"
-                                                                                    style="padding: 0px;">
-                                                                                    <div>
-                                                                                        <ul
-                                                                                            class="list-unstyled contact-list">
-                                                                                            {{#each
-                                                                                            allConversationMessages}}
-                                                                                            {{#if this.members}}
-
-                                                                                            {{else}}
-                                                                                            <li>
-                                                                                                <div class="form-check">
-                                                                                                    <input
-                                                                                                        type="checkbox"
-                                                                                                        class="form-check-input"
-                                                                                                        id="{{this._id}}">
-                                                                                                    <label
-                                                                                                        class="form-check-label"
-                                                                                                        for="{{this._id}}">{{this.userName}}</label>
-                                                                                                </div>
-                                                                                            </li>
-                                                                                            {{/if}}
-                                                                                            {{/each}}
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="simplebar-placeholder"
-                                                                        style="width: 0px; height: 0px;"></div>
-                                                                </div>
-                                                                <div class="simplebar-track simplebar-horizontal"
-                                                                    style="visibility: hidden;">
-                                                                    <div class="simplebar-scrollbar"
-                                                                        style="transform: translate3d(0px, 0px, 0px); display: none;">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="simplebar-track simplebar-vertical"
-                                                                    style="visibility: hidden;">
-                                                                    <div class="simplebar-scrollbar"
-                                                                        style="transform: translate3d(0px, 0px, 0px); display: none;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="addgroupdescription-input" class="form-label">Mô tả</label>
-                                                <textarea class="form-control" id="addgroupdescription-input" rows="3"
-                                                    placeholder="Enter Description"></textarea>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-link" data-bs-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Tạo nhóm</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- End add group Modal -->
-
+                    <div class="p-4">                    
                         <div class="search-box chat-search-box">
                             <div class="input-group rounded-3">
                                 <span class="input-group-text text-muted bg-light pe-1 ps-3" id="basic-addon1">
@@ -1480,163 +1484,7 @@
                         </div>
                         <div class="col-sm-8 col-4">
                             <ul class="list-inline user-chat-nav text-end mb-0">
-                                <li class="list-inline-item">
-                                    <div class="dropdown">
-                                        {{!-- <div class="user-chat-nav float-end"> --}}
-                                            <div data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
-                                                data-bs-original-title="Create group">
-                                                <!-- Button trigger modal -->
-                                                <button type="button"
-                                                    class="btn btn-link text-decoration-none text-muted font-size-18 py-0"
-                                                    data-bs-toggle="modal" data-bs-target="#addgroup-exampleModal">
-                                                    <i class="fal fa-users me-1 ms-0"></i>
-                                                </button>
-                                            </div>
-
-                                            {{!--
-                                        </div> --}}
-
-
-                                        <!-- Start add group Modal -->
-                                        <div class="modal fade" id="addgroup-exampleModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="addgroup-exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title font-size-16"
-                                                            id="addgroup-exampleModalLabel">Tạo nhóm
-                                                            mới</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close">
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body p-4">
-                                                        <form>
-                                                            <div class="mb-4">
-                                                                <label for="addgroupname-input"
-                                                                    class="form-label float-start">Tên
-                                                                    nhóm</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="addgroupname-input"
-                                                                    placeholder="Enter Group Name">
-                                                            </div>
-                                                            <div class="mb-4">
-                                                                <label for="addgroupname-input"
-                                                                    class="form-label float-start">Thêm
-                                                                    bạn bè vào
-                                                                    group</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="addgroupname-input"
-                                                                    placeholder="Nhập tên hoặc số điện thoại để tìm kiếm">
-                                                            </div>
-                                                            <div class="mb-4">
-                                                                <label class="form-label float-start">Thành viên
-                                                                    nhóm</label>
-                                                                <div class="mb-3">
-                                                                    <button class="btn btn-light btn-sm" type="button"
-                                                                        data-bs-toggle="collapse"
-                                                                        data-bs-target="#groupmembercollapse"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="groupmembercollapse">
-                                                                        Chọn thành viên
-                                                                    </button>
-                                                                </div>
-
-                                                                <div class="collapse" id="groupmembercollapse">
-                                                                    <div class="card border">
-                                                                        <div class="card-header">
-                                                                            <h5 class="font-size-15 mb-0 float-start">
-                                                                                Liên hệ</h5>
-                                                                        </div>
-                                                                        <div class="card-body p-2">
-                                                                            <div data-simplebar="init"
-                                                                                style="max-height: 150px;">
-                                                                                <div class="simplebar-wrapper"
-                                                                                    style="margin: 0px;">
-                                                                                    <div
-                                                                                        class="simplebar-height-auto-observer-wrapper">
-                                                                                        <div
-                                                                                            class="simplebar-height-auto-observer">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="simplebar-mask">
-                                                                                        <div class="simplebar-offset"
-                                                                                            style="right: 0px; bottom: 0px;">
-                                                                                            <div class="simplebar-content-wrapper"
-                                                                                                style="height: auto; overflow: hidden;">
-                                                                                                <div class="simplebar-content"
-                                                                                                    style="padding: 0px;">
-                                                                                                    <div>
-                                                                                                        <ul
-                                                                                                            class="list-unstyled contact-list">
-                                                                                                            {{#each
-                                                                                                            allConversationMessages}}
-                                                                                                            {{#if
-                                                                                                            this.members}}
-
-                                                                                                            {{else}}
-                                                                                                            <li>
-                                                                                                                <div
-                                                                                                                    class="form-check">
-                                                                                                                    <input
-                                                                                                                        type="checkbox"
-                                                                                                                        class="form-check-input"
-                                                                                                                        id="{{this._id}}">
-                                                                                                                    <label
-                                                                                                                        class="form-check-label"
-                                                                                                                        for="{{this._id}}">{{this.userName}}</label>
-                                                                                                                </div>
-                                                                                                            </li>
-                                                                                                            {{/if}}
-                                                                                                            {{/each}}
-                                                                                                        </ul>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="simplebar-placeholder"
-                                                                                        style="width: 0px; height: 0px;">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="simplebar-track simplebar-horizontal"
-                                                                                    style="visibility: hidden;">
-                                                                                    <div class="simplebar-scrollbar"
-                                                                                        style="transform: translate3d(0px, 0px, 0px); display: none;">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="simplebar-track simplebar-vertical"
-                                                                                    style="visibility: hidden;">
-                                                                                    <div class="simplebar-scrollbar"
-                                                                                        style="transform: translate3d(0px, 0px, 0px); display: none;">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="addgroupdescription-input"
-                                                                    class="form-label float-start">Mô tả</label>
-                                                                <textarea class="form-control"
-                                                                    id="addgroupdescription-input" rows="3"
-                                                                    placeholder="Enter Description"></textarea>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-link"
-                                                            data-bs-dismiss="modal">Đóng</button>
-                                                        <button type="button" class="btn btn-primary">Tạo nhóm</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </li>
+                                
                                 <li class="list-inline-item">
                                     <div class="dropdown">
                                         <button class="btn nav-btn dropdown-toggle" type="button"

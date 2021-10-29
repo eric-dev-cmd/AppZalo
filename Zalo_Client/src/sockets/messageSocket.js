@@ -43,7 +43,7 @@ class MessageSocket {
       socket.on('disconnect', () => {
         clients = removeSocketIdFromArray(clients, sender._id, socket);
         sender.chatGroupIds.forEach((groupId) => {
-          clients = removeSocketIdFromArray(clients, groupId, socket.id);
+          clients = removeSocketIdFromArray(clients, groupId, socket);
         });
       });
     });
@@ -81,7 +81,7 @@ class MessageSocket {
       socket.on('disconnect', () => {
         clients = removeSocketIdFromArray(clients, sender._id, socket);
         sender.chatGroupIds.forEach((groupId) => {
-          clients = removeSocketIdFromArray(clients, groupId, socket.id);
+          clients = removeSocketIdFromArray(clients, groupId, socket);
         });
       });
     });

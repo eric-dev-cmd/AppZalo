@@ -101,7 +101,7 @@ async function showConversationGroup(id) {
     insertIdForVideoCall(id);
     insertIdUserOnline(group);
     showSearchMessage(id, true);
-    searchConversation(id, true);
+   
 }
 
 //hiển thị tin nhắn cá nhân
@@ -167,7 +167,7 @@ async function showConversationUser(id) {
     insertIdUserOnline(receiver);
     scrollMessageUserEnd();
     showSearchMessage(id, false);
-    searchConversation(id, false);
+    
 }
 
 function showSearchMessage(id, isChatGroup) {

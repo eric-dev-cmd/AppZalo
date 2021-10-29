@@ -23,6 +23,14 @@ class UsersController {
       .catch(next);
   }
 
+  getAPIByUserName(req, res, next) {
+    User.findOne({ "userName": req.params.username })
+      .then((user) => {
+        res.status(200).json({ user });
+      })
+      .catch(next);
+  }
+
   getAPIById(req, res, next) {
     User.findById(req.params.id)
       .then((user) => {

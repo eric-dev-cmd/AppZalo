@@ -13,6 +13,36 @@ class ChatGroupService {
             }
         });
     }
+
+    createGroup(groupName, listId, currentUserId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                if (listId.length > 1) {
+                    listId.push(currentUserId);
+                    let getListId = [];
+                    listId.map(id => {
+                        getListId.push({userId : id})
+                    });
+                    try {
+                        let newGroup = {
+                            name: groupName,
+                            userId: currentUserId,
+                            members: getListId,
+                            userAmount: getListId.length,
+                            createdAt: Date.now()
+                        }
+                        let createGroup = await axios.post(http + '/chatGroups', newGroup);
+                        resolve(createGroup.data);
+                    } catch (error) {
+                        reject(error);
+                    }
+                }
+            } catch (error) {
+
+            }
+
+        });
+    }
 }
 
 module.exports = new ChatGroupService;

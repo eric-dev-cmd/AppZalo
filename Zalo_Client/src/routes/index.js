@@ -4,6 +4,7 @@ const userRouter = require('./userRouter');
 const authRouter = require('./Authentication/authRouter');
 const messageRouter = require('./messageRouter');
 const accountRouter = require('./accountRouter');
+const groupRouter = require('./groupRouter');
 
 function route(app) {
   app.use((req, res, next) => {
@@ -22,6 +23,7 @@ function route(app) {
   app.use('/home', homeRouter);
   app.use('/updateProfile', userRouter);
   app.use('/message', messageRouter);
+  app.use('/group', groupRouter);
 }
 
 module.exports = route;
