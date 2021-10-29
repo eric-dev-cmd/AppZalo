@@ -68,8 +68,8 @@ $('#seach-user-add-group').off('keyup').on('keyup', async function (e) {
         if (phoneCurrent !== content) {
             try {
                 let user = await $.get(http + `/users/searchPhone/${content}`);
-                $('#list-concact-add-group').find(`li[id=${user.user._id}]`).remove();
-                $('#list-concact-add-group').prepend(getUser(user));
+                $('#list-contact-add-group').find(`li[id=${user.user._id}]`).remove();
+                $('#list-contact-add-group').prepend(getUser(user));
             } catch (error) {
                 console.log(error)
             }
@@ -78,8 +78,8 @@ $('#seach-user-add-group').off('keyup').on('keyup', async function (e) {
                 listConversation.true.forEach(async name => {
                     let user = await $.get(http + `/users/searchUserName/${name}`);
                     conversations.each(function () {
-                        $('#list-concact-add-group').find(`li[id=${user.user._id}]`).remove();
-                        $('#list-concact-add-group').prepend(getUser(user));
+                        $('#list-contact-add-group').find(`li[id=${user.user._id}]`).remove();
+                        $('#list-contact-add-group').prepend(getUser(user));
                     })
                 });
             } catch (error) {
@@ -98,6 +98,7 @@ function getUser(user) {
                 type="checkbox"
                 class="form-check-input"
                 id="${user.user._id}" value="${user.user._id}" name="idUser">
+                <img src="/images/${user.user.avatar}" class="rounded-circle avatar-xs" alt="">
             <label
                 class="form-check-label"
                 for="${user.user._id}">${user.user.userName}</label>

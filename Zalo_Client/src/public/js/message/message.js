@@ -101,7 +101,21 @@ async function showConversationGroup(id) {
     insertIdForVideoCall(id);
     insertIdUserOnline(group);
     showSearchMessage(id, true);
-   
+    showIconAddUserToGroup(id)
+}
+
+function showIconAddUserToGroup(id) {
+    $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
+    let icon = `<li class="list-inline-item" id="icon-add-user-to-group" data-gid="${id}">
+                <div class="dropdown">
+                    <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="modal"
+                        data-bs-target="#addUserToGroup-exampleModal">
+                        <i class="fa fa-users"></i>
+                    </button>
+                </div>
+            </li>`
+    $('#list-tools').prepend(icon);
+    showUser(id);
 }
 
 //hiển thị tin nhắn cá nhân
@@ -167,7 +181,7 @@ async function showConversationUser(id) {
     insertIdUserOnline(receiver);
     scrollMessageUserEnd();
     showSearchMessage(id, false);
-    
+
 }
 
 function showSearchMessage(id, isChatGroup) {

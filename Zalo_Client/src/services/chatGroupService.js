@@ -19,28 +19,42 @@ class ChatGroupService {
             try {
                 if (listId.length > 1) {
                     listId.push(currentUserId);
-                    let getListId = [];
-                    listId.map(id => {
-                        getListId.push({userId : id})
+                    let members = [];
+                    listId.map(userId => {
+                        members.push({
+                            userId: userId
+                        })
                     });
-                    try {
                         let newGroup = {
                             name: groupName,
                             userId: currentUserId,
-                            members: getListId,
-                            userAmount: getListId.length,
+                            members: members,
+                            userAmount: members.length,
                             createdAt: Date.now()
                         }
                         let createGroup = await axios.post(http + '/chatGroups', newGroup);
                         resolve(createGroup.data);
-                    } catch (error) {
-                        reject(error);
-                    }
                 }
             } catch (error) {
-
+                reject(error);
             }
+        });
+    }
 
+    addUserToGroup(groupId, listId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let group = await axios.get(http + '/chatGroups/' + groupId);
+                listId.map(userId => {
+                    group.data.members.push({
+                        userId: userId
+                    })
+                });
+                let getGroup = await axios.put(http + '/chatGroups/' + groupId, group.data);
+                resolve(getGroup.data);
+            } catch (error) {
+                reject(error);
+            }
         });
     }
 }

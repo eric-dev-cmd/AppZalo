@@ -141,7 +141,8 @@
                                                                 data-bs-toggle="collapse"
                                                                 data-bs-target="#groupmembercollapse"
                                                                 aria-expanded="false"
-                                                                aria-controls="groupmembercollapse" id="choose-user" hidden>
+                                                                aria-controls="groupmembercollapse" id="choose-user"
+                                                                hidden>
                                                                 Chọn thành viên
                                                             </button>
                                                         </div>
@@ -172,14 +173,10 @@
                                                                                             style="padding: 0px;">
                                                                                             <div>
                                                                                                 <ul class="list-unstyled contact-list"
-                                                                                                    id="list-concact-add-group">
-                                                                                                    {{#each
-                                                                                                    allConversationMessages}}
-                                                                                                    {{#if
-                                                                                                    this.members}}
-
-                                                                                                    {{else}}
-                                                                                                    <li id="{{this._id}}">
+                                                                                                    id="list-contact-add-group">
+                                                                                                    {{#each contacts}}
+                                                                                                    <li
+                                                                                                        id="{{this._id}}">
                                                                                                         <div
                                                                                                             class="form-check">
                                                                                                             <input
@@ -188,12 +185,14 @@
                                                                                                                 id="{{this._id}}"
                                                                                                                 value="{{this._id}}"
                                                                                                                 name="idUser">
+                                                                                                            <img src="/images/{{this.avatar}}"
+                                                                                                                class="rounded-circle avatar-xs"
+                                                                                                                alt="">
                                                                                                             <label
                                                                                                                 class="form-check-label"
                                                                                                                 for="{{this._id}}">{{this.userName}}</label>
                                                                                                         </div>
                                                                                                     </li>
-                                                                                                    {{/if}}
                                                                                                     {{/each}}
                                                                                                 </ul>
                                                                                             </div>
@@ -777,7 +776,7 @@
             <div class="tab-pane" id="pills-groups" role="tabpanel" aria-labelledby="pills-groups-tab">
                 <!-- Start Groups content -->
                 <div>
-                    <div class="p-4">                    
+                    <div class="p-4">
                         <div class="search-box chat-search-box">
                             <div class="input-group rounded-3">
                                 <span class="input-group-text text-muted bg-light pe-1 ps-3" id="basic-addon1">
@@ -1483,8 +1482,135 @@
                             </div>
                         </div>
                         <div class="col-sm-8 col-4">
-                            <ul class="list-inline user-chat-nav text-end mb-0">
-                                
+                            <ul class="list-inline user-chat-nav text-end mb-0" id="list-tools">
+
+                                {{!-- modal --}}
+                                <div class="modal fade" id="addUserToGroup-exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="addUserToGroup-exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-size-16" id="addgroup-exampleModalLabel">
+                                                    Thêm thành viên mới</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                </button>
+                                            </div>
+                                            <div class="modal-body p-4">
+                                                <form id="add-user-to-group">
+                                                    <div class="mb-4">
+                                                        <label for="addgroupname-input"
+                                                            class="form-label float-start">Thêm bạn bè vào nhóm</label>
+                                                        <input type="text" class="form-control"
+                                                            id="seach-user-add-group"
+                                                            placeholder="Nhập tên hoặc số điện thoại để tìm kiếm">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label class="form-label float-start">Thành viên
+                                                            nhóm</label> <br>
+                                                        <div class="mb-3">
+                                                            <button class="btn btn-light btn-sm" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#groupmembercollapse"
+                                                                aria-expanded="false"
+                                                                aria-controls="groupmembercollapse" id="choose-user"
+                                                                hidden>
+                                                                Chọn thành viên
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="collapse" id="groupmembercollapse">
+                                                            <div class="card border">
+                                                                <div class="card-header">
+                                                                    <h5 class="font-size-15 mb-0 float-start">
+                                                                        Liên hệ</h5>
+                                                                </div>
+                                                                <div class="card-body p-2">
+                                                                    <div data-simplebar="init"
+                                                                        style="max-height: 200px;">
+                                                                        <div class="simplebar-wrapper"
+                                                                            style="margin: 0px;">
+                                                                            <div
+                                                                                class="simplebar-height-auto-observer-wrapper">
+                                                                                <div
+                                                                                    class="simplebar-height-auto-observer">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="simplebar-mask">
+                                                                                <div class="simplebar-offset"
+                                                                                    style="right: 0px; bottom: 0px;">
+                                                                                    <div class="simplebar-content-wrapper"
+                                                                                        style="height: auto; overflow: hidden;">
+                                                                                        <div class="simplebar-content"
+                                                                                            style="padding: 0px;">
+                                                                                            <div>
+                                                                                                <ul class="list-unstyled contact-list"
+                                                                                                    id="list-user-add-to-group">
+                                                                                                    {{#each contacts}}
+                                                                                                    <li
+                                                                                                        id="{{this._id}}">
+                                                                                                        <div
+                                                                                                            class="form-check">
+                                                                                                            <input
+                                                                                                                type="checkbox"
+                                                                                                                class="form-check-input"
+                                                                                                                id="{{this._id}}"
+                                                                                                                value="{{this._id}}"
+                                                                                                                name="idUser">
+                                                                                                            <img src="/images/{{this.avatar}}"
+                                                                                                                class="rounded-circle avatar-xs"
+                                                                                                                alt="">
+                                                                                                            <label
+                                                                                                                class="form-check-label"
+                                                                                                                for="{{this._id}}">{{this.userName}}</label> 
+                                                                                                                <br>
+                                                                                                            <label
+                                                                                                                class="form-check-label font-size-12" id="joined-group" 
+                                                                                                                for="{{this._id}}" >Đã tham gia</label>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                    {{/each}}
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="simplebar-placeholder"
+                                                                                style="width: 0px; height: 0px;">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="simplebar-track simplebar-horizontal"
+                                                                            style="visibility: hidden;">
+                                                                            <div class="simplebar-scrollbar"
+                                                                                style="transform: translate3d(0px, 0px, 0px); display: none;">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="simplebar-track simplebar-vertical"
+                                                                            style="visibility: hidden;">
+                                                                            <div class="simplebar-scrollbar"
+                                                                                style="transform: translate3d(0px, 0px, 0px); display: none;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-link"
+                                                            data-bs-dismiss="modal">Đóng</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            id="btn-add-user-to-group">Thêm</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <li class="list-inline-item">
                                     <div class="dropdown">
                                         <button class="btn nav-btn dropdown-toggle" type="button"
