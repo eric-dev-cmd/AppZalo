@@ -102,6 +102,9 @@ function getUser(user) {
             <label
                 class="form-check-label"
                 for="${user.user._id}">${user.user.userName}</label>
+                <br>
+            <label  class="form-check-label font-size-12" 
+                id="joined-group" for="${user.user._id}" >Đã tham gia</label>
         </div>
     </li>`
 }
