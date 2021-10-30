@@ -15,12 +15,49 @@ class MessageService {
     return new Promise(async (resolve, reject) => {
       try {
         // lấy danh sách bạn bè
-        let userConversation = await contactService.getContacts(senderId);
+        let userIsFriend = await contactService.getContacts(senderId);
+
+        //lấy tất cả tin nhắn
+        let messages = await axios.get(http + '/messages/SearchBySenderIdOrReceiverId/' + senderId);
+
+        //tìm các user đã từng nhắn tin
+        let listUser = messages.data.map(async message => {
+          if (message.chatType === 'personal') {
+            if (message.receiverId !== senderId) {
+              let user = await axios.get(http + '/users/' + message.receiverId);
+              return user.data.user;
+            } else {
+              let user = await axios.get(http + '/users/' + message.senderId);
+              return user.data.user;
+            }
+          } else {
+            let group = await axios.get(http + '/chatGroups/' + message.receiverId);
+            return group.data;
+          }
+        });
+
+        //gom 2 mảng
+        let listAllUser = userIsFriend.getContacts.concat(await Promise.all(listUser));
+
+        // loại những user trùng theo id
+        let set = new Set(listAllUser.map(user => user._id));
+        let listId = Array.from(set);
+
+        //tìm user theo id
+        let users = listId.map(async (id) => {
+          let user = await axios.get(http + '/users/' + id);
+          return user.data.user;
+        });
+
+        //lọc ra những phần tử null(group)
+        var userConversation = (await Promise.all(users)).filter(function (e) {
+          return e != null
+        });
+
         //lấy ds groups
         let groupConversation = await chatGroupService.getChatGroups(senderId);
         //gom 2 mảng
-        let allConversation =
-          userConversation.getContacts.concat(groupConversation);
+        let allConversation = userConversation.concat(groupConversation);
         allConversation = sortJsonArray(allConversation, 'updatedAt', 'des');
         let allConversationMessages = allConversation.map(
           async (conversation) => {

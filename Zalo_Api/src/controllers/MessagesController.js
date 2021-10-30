@@ -17,6 +17,20 @@ class MessagesController {
             .catch(next);
     }
 
+    getAPIBySenderIdOrReceiverId(req, res, next) {
+        Message.find({
+                '$or': [{
+                    'senderId': req.params.id,
+                }, {
+                    'receiverId': req.params.id,
+                }]
+            }).exec()
+            .then(api => {
+                res.json(api);
+            })
+            .catch(next);
+    }
+
     getAPIByText(req, res, next) {
         Message.find({
                 'text': req.params.text

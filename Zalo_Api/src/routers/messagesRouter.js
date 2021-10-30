@@ -4,6 +4,7 @@ const messageController = require('../controllers/MessagesController');
 
 router.get('/', messageController.getAPI);
 router.get('/:id', messageController.getAPIById);
+router.get('/SearchBySenderIdOrReceiverId/:id', messageController.getAPIBySenderIdOrReceiverId);
 router.get('/SearchByText/:text', messageController.getAPIByText);
 router.get('/SearchByReceiverId/:receiverid', messageController.getAPIByReceiverId);
 router.get('/SearchBySenderIdAndReceiverId/:senderid/:receiverid', messageController.getAPIBySenderIdAndReceiverId);

@@ -2,7 +2,6 @@ const socket = io();
 const http = `http://localhost:4000`;
 //các cuộc trò truyện
 let conversations;
-const CLOUD_FRONT_URL = 'https://d3g6kijcj4e3dl.cloudfront.net'
 
 // cập nhật thời gian tin nhắn đã gửi của ds cuộc trò truyện
 socket.on('response-update-time', function (data) {

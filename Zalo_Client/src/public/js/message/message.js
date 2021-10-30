@@ -181,7 +181,7 @@ async function showConversationUser(id) {
     insertIdUserOnline(receiver);
     scrollMessageUserEnd();
     showSearchMessage(id, false);
-
+    $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
 }
 
 function showSearchMessage(id, isChatGroup) {

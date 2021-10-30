@@ -63,10 +63,21 @@ class ContactService {
             let findNotification = await this.checkExistsNotification(senderId, receiverId, NotificationUtil.NOTIFICATION_TYPES.ADD_CONTACT)
             // nếu đã tồn tại contact và notification => delete notification và update contact
             if (findContact !== null && findNotification !== null) {
+                // let message = {
+                //     senderId: senderId,
+                //     receiverId: receiverId,
+                //     chatType: 'personal',
+                //     messageType: 'text',
+                //     text: 'Đã trờ thành bạn bè.',
+                //     createdAt: Date.now()
+                // }
+                // await axios.post( http + '/messages', message);
                 await axios.delete(http + '/notifications/' + findNotification._id)
                 await axios.put(http + '/contacts/' + contact._id, contact)
                     .then(resolve(true))
                     .catch(reject(false));
+
+                
             }
         })
     }
