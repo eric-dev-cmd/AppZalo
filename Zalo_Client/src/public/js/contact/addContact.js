@@ -33,7 +33,6 @@ function addNewContact() {
 
   //lắng nghe socket response-add-new-contact từ server
 socket.on('response-add-new-contact', function (user) {
-  console.log(user);
     let notification = `<li class="position-relative" data-uid = '${user.id}'>
     <a  style="width: 100%;">
         <div class="d-flex">

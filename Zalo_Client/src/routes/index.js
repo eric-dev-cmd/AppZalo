@@ -12,12 +12,11 @@ function route(app) {
     next();
   });
   app.use((req, res, next) => {
-    app.locals.success = req.flash('success');
-    app.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next();
   });
   app.use('/accounts', accountRouter);
-
   app.use('/login-register', authRouter);
   app.use('/contact', contactsRouter);
   app.use('/home', homeRouter);

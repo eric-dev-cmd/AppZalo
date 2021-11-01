@@ -1,7 +1,7 @@
 
 
 function searchPhone() {
-  $('#seachByPhone').on('click', function () {
+  $('#btnSeachPhone').on('click', function () {
     var phone = $('#searchPhone').val();
     search(phone);
     $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
@@ -10,7 +10,7 @@ function searchPhone() {
 
 //tim kiem theo url
 function search(phone) {
-  const phoneCurrent = $('#phone').attr('placeholder')
+  const phoneCurrent = $('#phone').attr('placeholder');
   if (phoneCurrent !== phone) {
     const url = http + `/users/searchPhone/${phone}`;
     $.get(url, function (data, status) {

@@ -8,8 +8,7 @@ initPassportLocal();
 
 
 router.get('/', authController.checkLoggedOut, authController.showLogin);
-router.post(
-  '/login',
+router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/home',
     failureRedirect: '/login-register',

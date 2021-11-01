@@ -139,13 +139,6 @@ function preview_image(event) {
     };
     const file = reader.readAsDataURL(fileData);
   }
-
-  let userAvatar = null;
-  let formData = new FormData();
-  formData.append('avatar', fileData);
-  userAvatar = formData;
-  console.log(userAvatar);
-  const file = reader.readAsDataURL(fileData);
 }
 
 // console.log(editorParent.style)
