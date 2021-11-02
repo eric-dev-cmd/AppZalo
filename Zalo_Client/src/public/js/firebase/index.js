@@ -16,5 +16,16 @@ const firebaseApp = initializeApp({
 });
 const auth = getAuth(firebaseApp);
 console.log('Running firebase');
-console.log(auth);
+showRecaptchaVerifier();
+function showRecaptchaVerifier() {
+  window.recaptchaVerifier = new RecaptchaVerifier(
+    'recaptcha-container',
+    {},
+    auth
+  );
+  console.log(auth)
+  recaptchaVerifier.render().then((widgetId) => {
+    window.recaptchaWidgetId = widgetId;
+  });
+ }
 

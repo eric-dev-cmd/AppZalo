@@ -60,10 +60,18 @@ body {
   display: inline-block; }
 
 .list-addfriend:hover {
-  background-color: #eeeff2;
   cursor: pointer;
   display: block !important;
   opacity: 0.8; }
+  #btnSeachPhone {
+  border: none;
+  color: #fff;
+  background-color: #7269ef;
+  border-color: #7269ef;
+  padding: 8px;
+  border-radius: 6px;
+  margin-left: 4px;
+}
 
 .list-addfriend:hover
 .list-addfriend-item

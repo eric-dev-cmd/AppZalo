@@ -35,6 +35,7 @@ class LoginController {
       const { phoneNumber } = req.body;
       console.log(phoneNumber);
       console.log('Trung Vinh');
+      // if(phoneNumber)
       const user = await axios.get(http + '/users/searchPhone/' + phoneNumber);
       if (!user.data.user) {
         console.log('Thanh cong');
