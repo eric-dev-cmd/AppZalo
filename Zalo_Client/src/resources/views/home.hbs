@@ -1501,8 +1501,7 @@
                                                     <div class="mb-4">
                                                         <label for="addgroupname-input"
                                                             class="form-label float-start">Thêm bạn bè vào nhóm</label>
-                                                        <input type="text" class="form-control"
-                                                            id="search-user"
+                                                        <input type="text" class="form-control" id="search-user"
                                                             placeholder="Nhập tên hoặc số điện thoại để tìm kiếm">
                                                     </div>
                                                     <div class="mb-4">
@@ -1562,11 +1561,14 @@
                                                                                                                 alt="">
                                                                                                             <label
                                                                                                                 class="form-check-label"
-                                                                                                                for="{{this._id}}">{{this.userName}}</label> 
-                                                                                                                <br>
+                                                                                                                for="{{this._id}}">{{this.userName}}</label>
+                                                                                                            <br>
                                                                                                             <label
-                                                                                                                class="form-check-label font-size-12" id="joined-group" 
-                                                                                                                for="{{this._id}}" >Đã tham gia</label>
+                                                                                                                class="form-check-label font-size-12"
+                                                                                                                id="joined-group"
+                                                                                                                for="{{this._id}}">Đã
+                                                                                                                tham
+                                                                                                                gia</label>
                                                                                                         </div>
                                                                                                     </li>
                                                                                                     {{/each}}
@@ -2215,9 +2217,9 @@
                                     <li class="list-inline-item">
                                         <form method="post" action="" enctype="multipart/form-data" id="form-File-Chat">
                                             <span id="file-Chat">
-                                                <input type="file" name="files" id="attach-vinh" multiple>
+                                                <input type="file" name="files" id="attach-vinh"  multiple>
                                             </span>
-
+                
                                             <button type="button" value="gui file" id="send-file"
                                                 class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light">
                                                 <i class="fal fa-paper-plane text-white"></i>
@@ -2550,9 +2552,7 @@
                                     </div>
                                 </div>
                                 <div class="position-absolute avatar-camera cursor-point">
-                                    <label for="choose-image">
-                                        <i class="far fa-camera-alt">
-                                        </i>
+                                    <label for="choose-image"><i class="far fa-camera-alt"></i>
                                     </label>
                                     <input type="file" accept="image/*" onchange="preview_image(event)"
                                         id="choose-image" class="input-hidden" name="avatar">

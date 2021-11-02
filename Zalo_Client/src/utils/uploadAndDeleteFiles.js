@@ -1,8 +1,8 @@
 const AWS = require('aws-sdk');
 
 const S3 = new AWS.S3({
-    accessKeyId: 'AKIATJALXNYWDPCCEMWV',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA2N2XQT2BZ6D55VFG',
+    secretAccessKey: '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'
 })
 
 function uploadFiles(files, uuid) {

@@ -15,6 +15,7 @@ function initSockets(io) {
     messageSocket.addNewFile(io);
     messageSocket.updateTime(io);
     messageSocket.deleteTextAndEmoji(io);
+    messageSocket.typing(io);
 
     videoCallSocket.videoCall(io);
     userSocket.checkOnlineOffline(io);

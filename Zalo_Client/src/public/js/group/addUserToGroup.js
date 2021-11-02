@@ -10,11 +10,6 @@ $('#btn-add-user-to-group').unbind('click').on('click', function () {
         processData: false,
         success: function (data) {
             $('#addUserToGroup-exampleModal').modal('hide');
-            // let group = data.group;
-            // $('#addgroup-exampleModal').modal('hide');
-            // socket.emit('create-group', {
-            //     group: group
-            // });
         },
     });
 });

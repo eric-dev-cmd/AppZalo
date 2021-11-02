@@ -1,7 +1,7 @@
 function enableEmojioneArea(id, isChatGroup) {
   $(`#write-chat-${id}`).emojioneArea({
     standalone: false,
-    placeholder: 'Nhập tin nhắn',
+    placeholder: 'Nhập tin nhắn...',
     search: false,
     pickerPosition: 'top',
     filtersPosition: 'bottom',
@@ -18,11 +18,21 @@ function enableEmojioneArea(id, isChatGroup) {
 }
 
 function textAndEmojiChat(id, isChatGroup) {
-  $('.emojionearea')
-    .unbind('keyup')
-    .on('keyup', function (element) {
+  $('.emojionearea').unbind('keyup').on('keyup', function (element) {
+    let messageVal = $(`#write-chat-${id}`).val();
+      if(messageVal.length > 0){
+        socket.emit('typing', {
+          receiverId: id,
+          typing: true,
+        });
+      }
+      if(messageVal.length == 0){
+        socket.emit('typing', {
+          receiverId: id,
+          typing: false,
+        });
+      }
       if (element.which === 13) {
-        let messageVal = $(`#write-chat-${id}`).val();
         let dataTextAndEmoji = {
           uid: id,
           messageVal: messageVal,
@@ -31,6 +41,45 @@ function textAndEmojiChat(id, isChatGroup) {
         addNewTextAndEmoji(dataTextAndEmoji, isChatGroup);
       }
     });
+}
+
+socket.on('response-typing', async function (data) {
+  let receiver = await $.get(http + `/users/${data.receiverId}`);
+  if(data.typing == true){
+    $(`#conversation-${data.receiverId}`).find('#typing').remove();
+    $(`#conversation-${data.receiverId}`).append(typing(receiver));
+  }else{
+    $(`#conversation-${data.receiverId}`).find('#typing').remove();
+  }
+})
+
+function typing(receiver) {
+  return `<li id="typing">
+  <div class="conversation-list">
+      <div class="chat-avatar">
+          <img src="/images/${receiver.user.avatar}"
+              alt="">
+      </div>
+
+      <div class="user-chat-content">
+          <div class="ctext-wrap">
+              <div class="ctext-wrap-content">
+                  <p class="mb-0">
+                      typing
+                      <span class="animate-typing">
+                          <span class="dot"></span>
+                          <span class="dot"></span>
+                          <span class="dot"></span>
+                      </span>
+                  </p>
+              </div>
+          </div>
+
+          <div class="conversation-name">${receiver.user.userName}</div>
+      </div>
+
+  </div>
+</li>`
 }
 
 //tạo mới tin nhắn của tài khoản người gửi
@@ -55,8 +104,6 @@ function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
       let receiverUpdated = $(`#receiver-${message.receiverId}`).attr('data-updated');
       //tìm kiếm cuộc trò cũ và xóa
       $('#conversation-list').find(`li[data-updated = ${receiverUpdated}]`).remove();
-
-
       //gửi socket từ client đến server
       socket.emit('add-new-text-emoji', {
         message: message,
@@ -104,6 +151,7 @@ socket.on('response-add-new-text-emoji', async function (data) {
       leftConversationText(receiver, message)
     );
     scrollMessageUserEnd();
+    $(`#conversation-${message.senderId}`).find('#typing').remove();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);

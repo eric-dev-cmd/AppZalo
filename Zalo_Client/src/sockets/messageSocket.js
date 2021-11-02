@@ -122,6 +122,31 @@ class MessageSocket {
     });
   }
 
+  typing(io) {
+    let clients = {};
+    io.on('connection', (socket) => {
+      let sender = socket.request.user.data.user;
+      //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+      clients = pushSocketIdToArray(clients, sender._id, socket.id);
+      //lắng nghe socket từ client gửi
+      socket.on('typing', (data) => {
+        let response = {
+          receiverId: sender._id,
+          typing: data.typing,
+        };
+        //gửi socket đến cho client
+        //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
+        if (clients[data.receiverId]) {
+          emitEventToArray(clients, data.receiverId, io, 'response-typing', response);
+        }
+      });
+      //xóa id socket mỗi khi socket disconnect
+      socket.on('disconnect', () => {
+        clients = removeSocketIdFromArray(clients, sender._id, socket);
+      });
+    });
+  }
+
   updateTime(io) {
     let clients = {};
     io.on('connection', (socket) => {
