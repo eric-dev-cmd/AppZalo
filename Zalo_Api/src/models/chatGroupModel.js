@@ -3,7 +3,7 @@ const Schema=mongoose.Schema;
 
 const ChatGroup= new Schema({
     name: String,
-    userAmount: {type: Number, min: 3, max: 150},
+    userAmount: {type: Number, min: 2, max: 150},
     messageAmount: {type: Number, default: 0},
     userId: String,
     members: [

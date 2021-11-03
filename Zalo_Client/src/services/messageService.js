@@ -22,7 +22,6 @@ class MessageService {
 
         //tìm các user đã từng nhắn tin
         let listUser = messages.data.map(async message => {
-          if (message.chatType === 'personal') {
             if (message.receiverId !== senderId) {
               let user = await axios.get(http + '/users/' + message.receiverId);
               return user.data.user;
@@ -30,17 +29,15 @@ class MessageService {
               let user = await axios.get(http + '/users/' + message.senderId);
               return user.data.user;
             }
-          } else {
-            let group = await axios.get(http + '/chatGroups/' + message.receiverId);
-            return group.data;
-          }
         });
 
         //gom 2 mảng
         let listAllUser = userIsFriend.getContacts.concat(await Promise.all(listUser));
 
         // loại những user trùng theo id
-        let set = new Set(listAllUser.map(user => user._id));
+        let set = new Set(listAllUser.map(user => {
+            return user._id;
+        }));
         let listId = Array.from(set);
 
         //tìm user theo id
@@ -82,12 +79,7 @@ class MessageService {
               }
 
             } else {
-              let getMessages = await axios.get(
-                http +
-                '/messages/SearchBySenderIdAndReceiverId/' +
-                senderId +
-                '/' +
-                conversation._id
+              let getMessages = await axios.get(http +'/messages/SearchBySenderIdAndReceiverId/' +senderId +'/' +conversation._id
               );
               conversation.messages = getMessages.data;
               try {

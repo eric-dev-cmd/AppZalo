@@ -20,46 +20,13 @@ $('#btn-create-group').unbind('click').on('click', function () {
 socket.on('response-create-group', function (data) {
     let group = data.group;
     let isChatGroup = true;
-    addConversationGroup(group._id, isChatGroup)
+    addConversation(group._id, isChatGroup)
         .then(function (result) {
             $('#conversation-list').prepend(result);
             getAllConversation();
         });
-
+    
 });
-
-//tạo cuộc trò truyện mới
-async function addConversationGroup(receiverId, isChatGroup) {
-    if (isChatGroup === true || isChatGroup === 'true') {
-        let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
-        // lấy tin nhắn theo id nhóm
-        let messages = await $.get(http + `/messages/SearchByReceiverId/${groupReceiver._id}`);
-        return `<li onclick="showConversationGroup('${
-        groupReceiver._id
-      }')" id="receiver-${groupReceiver._id}" data-updated="${
-        groupReceiver.updatedAt
-      }" data-name="${groupReceiver.name}">
-          <a>
-              <div class="d-flex">
-                  <div
-                      class="chat-user-img online align-self-center me-3 ms-0">
-                      <img src="/images/avatar-group.png"
-                          class="rounded-circle avatar-xs" alt="">
-                      <span class=""></span>
-                  </div>
-      
-                  <div class="flex-1 overflow-hidden">
-                      <h5 class="text-truncate font-size-15 mb-1">
-                          ${groupReceiver.name}</h5>
-                      <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
-                          </p>
-                  </div>
-                  <div class="font-size-11" id="updated-time-${groupReceiver._id}" data-uid="${groupReceiver._id}"></div>
-              </div>
-          </a>
-      </li>`;
-    }
-}
 
 $('#seach-user-add-group').off('keyup').on('keyup', async function (e) {
     if (e.which == 13) {
@@ -108,3 +75,4 @@ function getUser(user) {
         </div>
     </li>`
 }
+

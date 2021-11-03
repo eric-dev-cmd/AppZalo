@@ -3,7 +3,8 @@ const {
   emitEventToArray,
   removeSocketIdFromArray,
 } = require('../utils/socket');
-const messageService = require('../services/messageService')
+const messageService = require('../services/messageService');
+const message = require('../utils/message');
 class MessageSocket {
   addNewTextAndEmoji(io) {
     /**
@@ -21,6 +22,7 @@ class MessageSocket {
       sender.chatGroupIds.forEach((groupId) => {
         clients = pushSocketIdToArray(clients, groupId, socket.id);
       });
+      
       //lắng nghe socket từ client gửi
       socket.on('add-new-text-emoji', (data) => {
         let respone = {
@@ -30,12 +32,7 @@ class MessageSocket {
         //gửi socket đến cho client
         //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.message.receiverId]) {
-          emitEventToArray(
-            clients,
-            data.message.receiverId,
-            io,
-            'response-add-new-text-emoji',
-            respone
+          emitEventToArray(clients,data.message.receiverId,io,'response-add-new-text-emoji',respone
           );
         }
       });

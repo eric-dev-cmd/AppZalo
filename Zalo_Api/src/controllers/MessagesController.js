@@ -17,12 +17,15 @@ class MessagesController {
             .catch(next);
     }
 
+    //get messageType 'personal'
     getAPIBySenderIdOrReceiverId(req, res, next) {
         Message.find({
                 '$or': [{
                     'senderId': req.params.id,
+                    'chatType': 'personal'
                 }, {
                     'receiverId': req.params.id,
+                    'chatType': 'personal'
                 }]
             }).exec()
             .then(api => {

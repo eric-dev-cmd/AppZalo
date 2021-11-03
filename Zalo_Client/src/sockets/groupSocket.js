@@ -10,6 +10,10 @@ class groupSocket {
             let sender = socket.request.user.data.user;
             //thêm socketid vào đối tượng clients vào người dùng đăng nhập
             clients = pushSocketIdToArray(clients, sender._id, socket.id);
+            //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
+            sender.chatGroupIds.forEach((groupId) => {
+                clients = pushSocketIdToArray(clients, groupId, socket.id);
+            });
             //lắng nghe socket từ client gửi
             socket.on('create-group', (data) => {
                 let response = {
@@ -25,6 +29,9 @@ class groupSocket {
             //xóa id socket mỗi khi socket disconnect
             socket.on('disconnect', () => {
                 clients = removeSocketIdFromArray(clients, sender._id, socket);
+                sender.chatGroupIds.forEach((groupId) => {
+                    clients = removeSocketIdFromArray(clients, groupId, socket);
+                });
             });
         });
     }

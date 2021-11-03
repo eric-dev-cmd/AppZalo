@@ -20,35 +20,35 @@ function enableEmojioneArea(id, isChatGroup) {
 function textAndEmojiChat(id, isChatGroup) {
   $('.emojionearea').unbind('keyup').on('keyup', function (element) {
     let messageVal = $(`#write-chat-${id}`).val();
-      if(messageVal.length > 0){
-        socket.emit('typing', {
-          receiverId: id,
-          typing: true,
-        });
-      }
-      if(messageVal.length == 0){
-        socket.emit('typing', {
-          receiverId: id,
-          typing: false,
-        });
-      }
-      if (element.which === 13) {
-        let dataTextAndEmoji = {
-          uid: id,
-          messageVal: messageVal,
-          isChatGroup: isChatGroup,
-        };
-        addNewTextAndEmoji(dataTextAndEmoji, isChatGroup);
-      }
-    });
+    if (messageVal.length > 0) {
+      socket.emit('typing', {
+        receiverId: id,
+        typing: true,
+      });
+    }
+    if (messageVal.length == 0) {
+      socket.emit('typing', {
+        receiverId: id,
+        typing: false,
+      });
+    }
+    if (element.which === 13) {
+      let dataTextAndEmoji = {
+        uid: id,
+        messageVal: messageVal,
+        isChatGroup: isChatGroup,
+      };
+      addNewTextAndEmoji(dataTextAndEmoji, isChatGroup);
+    }
+  });
 }
 
 socket.on('response-typing', async function (data) {
   let receiver = await $.get(http + `/users/${data.receiverId}`);
-  if(data.typing == true){
+  if (data.typing == true) {
     $(`#conversation-${data.receiverId}`).find('#typing').remove();
     $(`#conversation-${data.receiverId}`).append(typing(receiver));
-  }else{
+  } else {
     $(`#conversation-${data.receiverId}`).find('#typing').remove();
   }
 })
@@ -133,7 +133,7 @@ socket.on('response-add-new-text-emoji', async function (data) {
     addConversation(message.receiverId, data.isChatGroup)
       .then(function (result) {
         $('#conversation-list').prepend(result);
-      //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
+        //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
       });
 
     // lấy data-updated từ danh sách cuộc trò truyện
@@ -155,7 +155,7 @@ socket.on('response-add-new-text-emoji', async function (data) {
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
-    //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
+      //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
     });
     // lấy data-updated từ danh sách cuộc trò truyện
     let receiverUpdated = $(`#receiver-${message.senderId}`).attr('data-updated');
@@ -173,7 +173,7 @@ async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    let messages = await $.get(http +`/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
+    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
     return `<li onclick="showConversationUser('${receiver.user._id}')" id="receiver-${receiver.user._id}" 
     data-updated="${receiver.user.updatedAt}" data-name="${receiver.user.userName}">
         <a>
@@ -199,7 +199,7 @@ async function addConversation(receiverId, isChatGroup) {
   if (isChatGroup === true || isChatGroup === 'true') {
     let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
     // lấy tin nhắn theo id nhóm
-    let messages = await $.get( http + `/messages/SearchByReceiverId/${groupReceiver._id}`);
+    let messages = await $.get(http + `/messages/SearchByReceiverId/${groupReceiver._id}`);
     return `<li onclick="showConversationGroup('${
       groupReceiver._id
     }')" id="receiver-${groupReceiver._id}" data-updated="${
@@ -235,25 +235,32 @@ function renderTimeAgo(messages) {
 }
 
 function getLastEndMessageInConversation(messages) {
-  let last = Object.keys(messages).pop();
-  let lastMessage = messages[last];
- 
-  if (lastMessage.messageType === 'image') {
-    return '[Hình ảnh]'
-  }
-  if (lastMessage.messageType === 'file') {
-    return '[Tệp tin]'
-  } 
-  if (lastMessage.messageType === 'text') {
-    return lastMessage.text;
+  if (messages.length == 0) {
+    return '';
+  } else {
+    let last = Object.keys(messages).pop();
+    let lastMessage = messages[last];
+    if (lastMessage.messageType === 'image') {
+      return '[Hình ảnh]'
+    }
+    if (lastMessage.messageType === 'file') {
+      return '[Tệp tin]'
+    }
+    if (lastMessage.messageType === 'text') {
+      return lastMessage.text;
+    }
   }
 }
 
 function renderTimeAgoGroup(messages) {
-  let last = Object.keys(messages).pop();
-  let lastMessage = messages[last];
-  let formatedTimeAgo = moment(lastMessage.createdAt).locale('vi').startOf('seconds').fromNow();
-  return formatedTimeAgo;
+  if (messages.length == 0) {
+    return '';
+  } else {
+    let last = Object.keys(messages).pop();
+    let lastMessage = messages[last];
+    let formatedTimeAgo = moment(lastMessage.createdAt).locale('vi').startOf('seconds').fromNow();
+    return formatedTimeAgo;
+  }
 }
 
 function scrollMessageUserEnd() {
