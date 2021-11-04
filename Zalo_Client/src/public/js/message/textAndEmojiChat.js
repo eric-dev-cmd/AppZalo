@@ -102,6 +102,7 @@ function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
       //tạo mới cuộc trò truyện trong danh sách trò truyện
       addConversation(message.receiverId, isChatGroup).then(function (result) {
         $('#conversation-list').prepend(result);
+        getAllConversation();
       });
       // lấy data-updated từ danh sách cuộc trò truyện
       let receiverUpdated = $(`#receiver-${message.receiverId}`).attr(
@@ -141,6 +142,7 @@ socket.on('response-add-new-text-emoji', async function (data) {
       result
     ) {
       $('#conversation-list').prepend(result);
+      getAllConversation();
       //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
     });
 
@@ -163,6 +165,7 @@ socket.on('response-add-new-text-emoji', async function (data) {
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
+      getAllConversation();
       //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
     });
     // lấy data-updated từ danh sách cuộc trò truyện
@@ -176,9 +179,6 @@ socket.on('response-add-new-text-emoji', async function (data) {
   }
 });
 
-function getLastMessageConversation() {
-  console.log('OK');
-}
 //tạo cuộc trò truyện mới
 async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
@@ -188,7 +188,7 @@ async function addConversation(receiverId, isChatGroup) {
       http +
         `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
     );
-    return `<li class="cursor-point chat-user-list-item active" onclick="showConversationUser('${
+    return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
       receiver.user._id
     }')" id="receiver-${receiver.user._id}" 
     data-updated="${receiver.user.updatedAt}" data-name="${
@@ -224,7 +224,7 @@ async function addConversation(receiverId, isChatGroup) {
     let messages = await $.get(
       http + `/messages/SearchByReceiverId/${groupReceiver._id}`
     );
-    return `<li class="cursor-point chat-user-list-item active" onclick="showConversationGroup('${
+    return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${
       groupReceiver._id
     }')" id="receiver-${groupReceiver._id}" data-updated="${
       groupReceiver.updatedAt
