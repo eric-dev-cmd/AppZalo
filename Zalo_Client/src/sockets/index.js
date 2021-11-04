@@ -20,6 +20,8 @@ function initSockets(io) {
     videoCallSocket.videoCall(io);
     userSocket.checkOnlineOffline(io);
     groupSocket.createGroup(io);
+    groupSocket.deleteGroup(io);
+    groupSocket.leaveGroup(io)
 }
 
 module.exports = initSockets;

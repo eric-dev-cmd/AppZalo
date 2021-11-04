@@ -101,7 +101,8 @@ async function showConversationGroup(id) {
     insertIdForVideoCall(id);
     insertIdUserOnline(group);
     showSearchMessage(id, true);
-    showIconAddUserToGroup(id)
+    showIconAddUserToGroup(id);
+    showBtnDeleteOrLeaveGroup(id);
 }
 
 function showIconAddUserToGroup(id) {

@@ -31,7 +31,7 @@
         <div class="flex-lg-column my-auto">
             <ul class="nav nav-pills side-menu-nav justify-content-center" role="tablist">
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="top" title=""
-                    data-bs-original-title="Tin nhắn">
+                    data-bs-original-title="Tin nhắn" id="show-conversation">
                     <a class="nav-link active d-flex align-items-center justify-content-center" id="pills-chat-tab"
                         data-bs-toggle="pill" href="http://localhost:4002/home#pills-chat" role="tab" aria-Đã
                         chọn="true">
@@ -902,8 +902,8 @@
                                                         <p class="mb-0 py-2">Mô tả</p>
                                                         <span>
                                                             <button class="btn btn-sm btn-outline-info"
-                                                                style="min-width: 120px;width: 26%;">Nhắn
-                                                                tin</button>
+                                                                style="min-width: 120px;width: 26%;"
+                                                                id="btn-send-message">Nhắn tin</button>
                                                         </span>
 
                                                     </div>
@@ -1455,7 +1455,7 @@
     <!-- end chat-leftsidebar -->
 
     <!-- Start User chat -->
-    <div class="user-chat w-100 overflow-hidden user-chat-show" >
+    <div class="user-chat w-100 overflow-hidden user-chat-show">
         <div class="d-lg-flex">
 
             <!-- start chat conversation section -->
@@ -1661,8 +1661,10 @@
                                                     class="fal fa-archive float-end text-muted"></i></a>
                                             <a class="dropdown-item" href="javascript:void(0)">Tắt tiếng <i
                                                     class="fal fa-volume-mute float-end text-muted"></i></a>
-                                            <a class="dropdown-item" href="javascript:void(0)">Xoá <i
-                                                    class="fal fa-trash-alt float-end text-muted"></i></a>
+                                            <a class="dropdown-item" href="javascript:void(0)" id="delete-group">Giải
+                                                tán nhóm<i class="fal fa-trash-alt float-end text-muted"></i></a>
+                                            <a class="dropdown-item" href="javascript:void(0)" id="leave-group">Rời nhóm
+                                                <i class="fa fa-sign-out float-end text-muted" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </li>
@@ -2204,7 +2206,7 @@
                 <!-- end chat conversation end -->
 
                 <!-- start chat input section -->
-                <div class="chat-input-section p-3 p-lg-4 border-top mb-0" >
+                <div class="chat-input-section p-3 p-lg-4 border-top mb-0">
 
                     <div class="row g-0">
 
@@ -2218,9 +2220,9 @@
                                     <li class="list-inline-item">
                                         <form method="post" action="" enctype="multipart/form-data" id="form-File-Chat">
                                             <span id="file-Chat">
-                                                <input type="file" name="files" id="attach-vinh"  multiple>
+                                                <input type="file" name="files" id="attach-vinh" multiple>
                                             </span>
-                
+
                                             <button type="button" value="gui file" id="send-file"
                                                 class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light">
                                                 <i class="fal fa-paper-plane text-white"></i>

@@ -1,7 +1,6 @@
 function showDetailsProfile(id) {
     $.get(http + `/users/${id}`, function(data, status) {
         const {local, userName, _id, avatar, gender, birthday} = data.user;
-        console.log(data);
         if (status === 'success') {
 			$("#modal-show-profile #avatar_profile").attr("src","/images/" + avatar);
 			$("#modal-show-profile #userName_profile").html(`<div>${userName}</div>`);

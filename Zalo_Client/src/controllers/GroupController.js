@@ -26,5 +26,18 @@ class GroupController {
             return res.status(500).send(error);
         }
     }
+
+    async deleteGroup(req, res) {
+        try {
+            let groupId = req.body.groupId;
+            let currentUserId = req.user.data.user._id;
+            const group = await chatGroupService.deleteGroup(groupId, currentUserId);
+            return res.status(200).send({
+                success: !!group
+            });
+        } catch (error) {
+            return res.status(500).send(error);
+        }
+    }
 }
 module.exports = new GroupController();

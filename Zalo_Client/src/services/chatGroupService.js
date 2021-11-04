@@ -45,6 +45,23 @@ class ChatGroupService {
         });
     }
 
+    deleteGroup(groupId, currentUserId) {
+        return new Promise(async (resolve, reject) => {
+            let group = await axios.get(http + '/chatGroups/' + groupId);
+            if (group.data.userId === currentUserId) {
+                await axios.delete(http + '/chatGroups/' + groupId)
+                    .then(resolve(true))
+                    .catch(reject(false));
+            } else {
+                let members = group.data.members.filter(member => member.userId != currentUserId);
+                group.data.members = members;
+                await axios.put(http + '/chatGroups/' + groupId, group.data)
+                    .then(resolve(true))
+                    .catch(reject(false));
+            }
+        });
+    }
+
     async create(groupName, listId, currentUserId) {
         listId.push(currentUserId);
         let members = [];
