@@ -100,6 +100,7 @@ async function showConversationGroup(id) {
     showSearchMessage(id, true);
     showIconAddUserToGroup(id);
     showBtnDeleteOrLeaveGroup(id);
+    showActiveMessage();
 }
 
 function showIconAddUserToGroup(id) {
@@ -111,7 +112,7 @@ function showIconAddUserToGroup(id) {
                         <i class="fa fa-users"></i>
                     </button>
                 </div>
-            </li>`
+            </li>`;
     $('#list-tools').prepend(icon);
     showUser(id);
 }
@@ -183,12 +184,15 @@ async function showConversationUser(id) {
     scrollMessageUserEnd();
     showSearchMessage(id, false);
     $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
+    showActiveMessage();
 }
 
 function showSearchMessage(id, isChatGroup) {
     $('#search-message-in-conversation').html('');
     $(`<input type="text" class="form-control bg-light border-0"
-    placeholder="Tìm kiếm.." id="search-message">`).appendTo($('#search-message-in-conversation'));
+    placeholder="Tìm kiếm.." id="search-message">`).appendTo(
+        $('#search-message-in-conversation')
+    );
     searchMessage(id, isChatGroup);
 }
 
@@ -198,23 +202,27 @@ function insertIdUserOnline(receiver) {
         $('#info-conversation').html('');
         $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
         <a id="name-conversation" class="text-reset user-profile-show">${receiver.name}</a>  
-        <i id="online-conversation-${receiver._id }"></i></h5>
-        <span style="padding-top: 3px" id="time-online"><i class="fa fa-user" aria-hidden="true"></i> ${receiver.members.length} thành viên</span>`)
-            .appendTo($('#info-conversation'));
+        <i id="online-conversation-${receiver._id}"></i></h5>
+        <span style="padding-top: 3px" id="time-online"><i class="fa fa-user" aria-hidden="true"></i> ${receiver.members.length} thành viên</span>`).appendTo(
+            $('#info-conversation')
+        );
     } else {
         $('#info-conversation').html('');
         $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
         <a id="name-conversation" class="text-reset user-profile-show">${receiver.user.userName}</a>  
         <i id="online-conversation-${receiver.user._id}"></i></h5>
-        <span style="padding-top: 3px" id="time-online-${receiver.user._id}"></span>`)
-            .appendTo($('#info-conversation'));
+        <span style="padding-top: 3px" id="time-online-${receiver.user._id}"></span>`).appendTo(
+            $('#info-conversation')
+        );
     }
 }
 
 //Thêm id cho video Call
 function insertIdForVideoCall(id) {
     $('#video-call').html('');
-    $(` <i class="fal fa-video" id="video-${id}"></i>`).appendTo($('#video-call'));
+    $(` <i class="fal fa-video" id="video-${id}"></i>`).appendTo(
+        $('#video-call')
+    );
     videoCall(id);
 }
 
@@ -230,9 +238,9 @@ function insertInput(id, isChatGroup) {
 //Thêm thẻ input file
 function insertInputFile(id, isChatGroup) {
     $('#file-Chat').html('');
-    $(`<input id="fileChat-${id}" data-id="${id}" type="file" name="files" multiple>`).appendTo(
-        $('#file-Chat')
-    );
+    $(
+        `<input id="fileChat-${id}" data-id="${id}" type="file" name="files" multiple>`
+    ).appendTo($('#file-Chat'));
     fileChat(id, isChatGroup);
 }
 
@@ -241,10 +249,11 @@ function renderTime(message) {
     return formatedTime;
 }
 
-
 //tạo tin nhắn text gửi đi
 function rightConversationText(user, message) {
-    return `<li class="right" id="right-conversation" data-content="${message.text}" data-id="${user.user._id}" data-messageId="${message._id}">
+    return `<li class="right" id="right-conversation" data-content="${
+    message.text
+  }" data-id="${user.user._id}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="images/${user.user.avatar}" alt="">
@@ -282,7 +291,9 @@ function rightConversationText(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item" onclick="deleteTextAndEmoji('${message._id}')"
+                        <a class="dropdown-item" onclick="deleteTextAndEmoji('${
+                          message._id
+                        }')"
                             href="javascript:void(0)">Thu hồi
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
@@ -349,7 +360,9 @@ function leftConversationText(user, message) {
 
 //tạo tin nhắn image gửi đi
 function rightConversationImage(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${user.user._id}"  data-messageId="${message._id}">
+    return `<li class="right" id="right-conversation" data-id="${
+    user.user._id
+  }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}"
@@ -363,16 +376,22 @@ function rightConversationImage(user, message) {
                         <li class="list-inline-item message-img-list me-2 ms-0">
                             <div>
                                 <a class="popup-img d-inline-block m-1"
-                                    href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}"
+                                    href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                      message.fileName
+                                    }"
                                     title="Project 1">
-                                    <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}" alt=""
+                                    <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                      message.fileName
+                                    }" alt=""
                                         class="rounded border">
                                 </a>
                             </div>
                             <div class="message-img-link">
                                 <ul class="list-inline mb-0">
                                     <li class="list-inline-item">
-                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}">
+                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                          message.fileName
+                                        }">
                                             <i class="fal fa-download"></i>
                                         </a>
                                     </li>
@@ -438,7 +457,9 @@ function rightConversationImage(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item" onclick="deleteFile('${message._id}')"
+                        <a class="dropdown-item" onclick="deleteFile('${
+                          message._id
+                        }')"
                             href="javascript:void(0)">Xoá 
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
@@ -472,16 +493,22 @@ function leftConversationImage(user, message) {
                          <li class="list-inline-item message-img-list">
                              <div>
                                  <a class="popup-img d-inline-block m-1"
-                                     href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}"
+                                     href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                       message.fileName
+                                     }"
                                      title="Project 2">
-                                     <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}" alt=""
+                                     <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                       message.fileName
+                                     }" alt=""
                                          class="rounded border">
                                  </a>
                              </div>
                              <div class="message-img-link">
                                  <ul class="list-inline mb-0">
                                      <li class="list-inline-item">
-                                         <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}">
+                                         <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                           message.fileName
+                                         }">
                                              <i class="fal fa-download"></i>
                                          </a>
                                      </li>
@@ -566,7 +593,9 @@ function leftConversationImage(user, message) {
 //tạo tin nhắn file gửi đi
 function rightConversationFile(user, message) {
     let fileName = message.fileName.split('.');
-    return `<li class="right"  id="right-conversation" data-id="${user.user._id}"  data-messageId="${message._id}">
+    return `<li class="right"  id="right-conversation" data-id="${
+    user.user._id
+  }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
             <img src="/images/${user.user.avatar}" alt="">
@@ -600,7 +629,9 @@ function rightConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}"
+                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                          message.fileName
+                                        }"
                                             class="text-muted">
                                             <i class="fal
                                                     fa-download"></i>
@@ -660,7 +691,9 @@ function rightConversationFile(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item" onclick="deleteFile('${message._id}')"
+                        <a class="dropdown-item" onclick="deleteFile('${
+                          message._id
+                        }')"
                             href="javascript:void(0)">Xoá
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
@@ -715,7 +748,9 @@ function leftConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}"
+                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                          message.fileName
+                                        }"
                                             class="text-muted">
                                             <i class="fal
                                                     fa-download"></i>
@@ -789,4 +824,14 @@ function leftConversationFile(user, message) {
 
     </div>
 </li>`;
+}
+
+function showActiveMessage() {
+    const getChatUserItem = document.querySelectorAll('.chat-user-list-item');
+    getChatUserItem.forEach((message, index) => {
+        message.addEventListener('click', () => {
+            $('.chat-user-list-item.active').removeClass('active');
+            message.classList.add('active');
+        });
+    });
 }

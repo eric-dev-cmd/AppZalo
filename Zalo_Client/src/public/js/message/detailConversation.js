@@ -1,20 +1,19 @@
 function detailConversation(messages) {
-    $('#list-file-conversation').html('')
-    $('#list-image-conversation').html('')
-    $.each(messages, (i, message) => {
-        if(message.messageType === 'file'){
-            $('#list-file-conversation').prepend(renderListFile(message))
-        }
-        if(message.messageType === 'image'){
-            $('#list-image-conversation').prepend(renderListImage(message))
-        }
-    });
+  $('#list-file-conversation').html('');
+  $('#list-image-conversation').html('');
+  $.each(messages, (i, message) => {
+    if (message.messageType === 'file') {
+      $('#list-file-conversation').prepend(renderListFile(message));
+    }
+    if (message.messageType === 'image') {
+      $('#list-image-conversation').prepend(renderListImage(message));
+    }
+  });
 }
 
-
 function renderListFile(message) {
-    let fileName = message.fileName.split('.');
-    return `<div class="card p-2 border mb-2">
+  let fileName = message.fileName.split('.');
+  return `<div class="card p-2 border mb-2">
     <div class="d-flex align-items-center">
         <div class="avatar-sm me-3 ms-0">
             <div
@@ -63,11 +62,11 @@ function renderListFile(message) {
             </ul>
         </div>
     </div>
-</div>`
+</div>`;
 }
 
 function renderListImage(message) {
-    return `<ul class="list-inline message-img  mb-0">
+  return `<ul class="list-inline message-img  mb-0">
     <li class="list-inline-item message-img-list">
         <div>
             <a class="popup-img d-inline-block m-1" href="./assets/img-2.jpg" title="Project 2">
@@ -101,5 +100,5 @@ function renderListImage(message) {
             </ul>
         </div>
     </li>
-</ul>`
+</ul>`;
 }
