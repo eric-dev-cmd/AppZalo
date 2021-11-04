@@ -1,111 +1,121 @@
 function scrollMessageUserEnd() {
-    const listHeight = document.querySelector(
-        '.conversation-height'
-    ).clientHeight;
-    const mainLayoutBody = document.querySelector('.simplebar-content-height');
-    mainLayoutBody.scroll({
-        top: listHeight,
-    });
+  const listHeight = document.querySelector(
+    '.conversation-height'
+  ).clientHeight;
+  const mainLayoutBody = document.querySelector('.simplebar-content-height');
+  mainLayoutBody.scroll({
+    top: listHeight,
+  });
 }
 
 function scrollMessageGroupEnd() {
-    let listHeight = document.querySelector(
-        '.conversation-height-group'
-    ).clientHeight;
-    const mainLayoutBody = document.querySelector('.simplebar-content-height');
-    mainLayoutBody.scroll({
-        top: listHeight,
-        behavior: 'smooth',
-    });
+  let listHeight = document.querySelector(
+    '.conversation-height-group'
+  ).clientHeight;
+  const mainLayoutBody = document.querySelector('.simplebar-content-height');
+  mainLayoutBody.scroll({
+    top: listHeight,
+    behavior: 'smooth',
+  });
 }
 //hiển thị tin nhắn nhóm
 async function showConversationGroup(id) {
-    let group = await $.get(http + `/chatGroups/${id}`);
-    let currentUserId = document.getElementById('id').value;
-    let sender = await $.get(http + `/users/${currentUserId}`);
-    // lấy tin nhắn theo id nhóm
-    let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
-    //hiển thị avatar
-    $('#avatar-detail').attr('src', `/images/${sender.user.avatar}`)
-    $('#avatar-conversation').attr('src', `/images/${sender.user.avatar}`)
-    //hiển thị tên nhóm
-    $('#name').html(`${group.name}`);
-    $('#name-conversation').html(`${group.name}`);
-    //phía gửi: gán giá trị data-id = id hiện tại
-    $('#right-conversation').attr('data-id', `${currentUserId}`);
-    //phía gửi: lấy id đã gán
-    let rightId = $('#right-conversation').attr('data-id');
-    //set id cho danh sách tin nhắn của cuộc trò truyện
-    $('.message-list').attr('id', `conversation-${id}`);
-    $(`#conversation-${id}`).html('');
-    messages.map(async (message) => {
-        //tìm người gửi cho user hiện tại
-        let receiver = await $.get(http + `/users/${message.senderId}`);
-        //phía nhận: tạo nội dung nhận = null
-        $(`#conversation-${id}`).append(leftConversationText(receiver, {
-            text: null
-        }));
-        $(`#conversation-${id}`).append(rightConversationText(receiver, {
-            text: null,
-        }));
-        if (message.messageType === 'text') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationText(sender, message));
-            }
-            if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-                $(`#conversation-${id}`).append(leftConversationText(receiver, message));
-            }
-            scrollMessageGroupEnd();
-        }
-        if (message.messageType === 'image') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(
-                    rightConversationImage(sender, message)
-                );
-            }
-            if (
-                message.senderId ===
-                $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
-                message.senderId !== currentUserId
-            ) {
-                $(`#conversation-${id}`).append(
-                    leftConversationImage(receiver, message)
-                );
-            }
-            scrollMessageGroupEnd();
-        }
-        if (message.messageType === 'file') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationFile(sender, message));
-            }
-            if (
-                message.senderId ===
-                $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
-                message.senderId !== currentUserId
-            ) {
-                $(`#conversation-${id}`).append(
-                    leftConversationFile(receiver, message)
-                );
-            }
-            scrollMessageGroupEnd();
-        }
-        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
-    });
-    detailConversation(messages);
-    //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
-    insertInput(id, true);
-    insertInputFile(id, true);
-    insertIdForVideoCall(id);
-    insertIdUserOnline(group);
-    showSearchMessage(id, true);
-    showIconAddUserToGroup(id);
-    showBtnDeleteOrLeaveGroup(id);
-    showActiveMessage();
+  let group = await $.get(http + `/chatGroups/${id}`);
+  let currentUserId = document.getElementById('id').value;
+  let sender = await $.get(http + `/users/${currentUserId}`);
+  // lấy tin nhắn theo id nhóm
+  let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
+  //hiển thị avatar
+  $('#avatar-detail').attr('src', `/images/${sender.user.avatar}`);
+  $('#avatar-conversation').attr('src', `/images/${sender.user.avatar}`);
+  //hiển thị tên nhóm
+  $('#name').html(`${group.name}`);
+  $('#name-conversation').html(`${group.name}`);
+  //phía gửi: gán giá trị data-id = id hiện tại
+  $('#right-conversation').attr('data-id', `${currentUserId}`);
+  //phía gửi: lấy id đã gán
+  let rightId = $('#right-conversation').attr('data-id');
+  //set id cho danh sách tin nhắn của cuộc trò truyện
+  $('.message-list').attr('id', `conversation-${id}`);
+  $(`#conversation-${id}`).html('');
+  messages.map(async (message) => {
+    //tìm người gửi cho user hiện tại
+    let receiver = await $.get(http + `/users/${message.senderId}`);
+    //phía nhận: tạo nội dung nhận = null
+    $(`#conversation-${id}`).append(
+      leftConversationText(receiver, {
+        text: null,
+      })
+    );
+    $(`#conversation-${id}`).append(
+      rightConversationText(receiver, {
+        text: null,
+      })
+    );
+    if (message.messageType === 'text') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationText(sender, message));
+      }
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
+        $(`#conversation-${id}`).append(
+          leftConversationText(receiver, message)
+        );
+      }
+      scrollMessageGroupEnd();
+    }
+    if (message.messageType === 'image') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(
+          rightConversationImage(sender, message)
+        );
+      }
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
+        $(`#conversation-${id}`).append(
+          leftConversationImage(receiver, message)
+        );
+      }
+      scrollMessageGroupEnd();
+    }
+    if (message.messageType === 'file') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationFile(sender, message));
+      }
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
+        $(`#conversation-${id}`).append(
+          leftConversationFile(receiver, message)
+        );
+      }
+      scrollMessageGroupEnd();
+    }
+    $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+  });
+  detailConversation(messages);
+  //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
+  insertInput(id, true);
+  insertInputFile(id, true);
+  insertIdForVideoCall(id);
+  insertIdUserOnline(group);
+  showSearchMessage(id, true);
+  showIconAddUserToGroup(id);
+  showBtnDeleteOrLeaveGroup(id);
+  showActiveMessage();
 }
 
 function showIconAddUserToGroup(id) {
-    $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
-    let icon = `<li class="list-inline-item" id="icon-add-user-to-group" data-gid="${id}">
+  $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
+  let icon = `<li class="list-inline-item" id="icon-add-user-to-group" data-gid="${id}">
                 <div class="dropdown">
                     <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="modal"
                         data-bs-target="#addUserToGroup-exampleModal">
@@ -113,145 +123,151 @@ function showIconAddUserToGroup(id) {
                     </button>
                 </div>
             </li>`;
-    $('#list-tools').prepend(icon);
-    showUser(id);
+  $('#list-tools').prepend(icon);
+  showUser(id);
 }
 
 //hiển thị tin nhắn cá nhân
 async function showConversationUser(id) {
-    // $('#conversation-list').find(`li[id = receiver-${id}]`).css('color', '#abb4d2');
-    let currentUserId = document.getElementById('id').value;
-    let receiver = await $.get(http + `/users/${id}`);
-    let sender = await $.get(http + `/users/${currentUserId}`);
-    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`);
-    //hiển thị avatar
-    $('#avatar-detail').attr('src', `/images/${receiver.user.avatar}`)
-    $('#avatar-conversation').attr('src', `/images/${receiver.user.avatar}`)
-    //hiển thị tên
-    $('#name').html(`${receiver.user.userName}`);
-    $('#name-conversation').html(`${receiver.user.userName}`);
-    $('#right-conversation').attr('data-id', `${currentUserId}`);
-    $('.message-list').attr('id', `conversation-${id}`);
-    $(`#conversation-${id}`).append(leftConversationText(receiver, {
-        text: '',
-    }));
-    $(`#conversation-${id}`).append(rightConversationText(receiver, {
-        text: '',
-    }));
-    let rightId = $('#right-conversation').attr('data-id');
-    let leftId = $(`#left-conversation-${receiver.user._id}`).attr('data-id');
-    $(`#conversation-${id}`).html('');
-    messages.forEach((message) => {
-        if (message.messageType === 'text') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationText(sender, message));
-            }
-            if (message.senderId === leftId) {
-                $(`#conversation-${id}`).append(
-                    leftConversationText(receiver, message)
-                );
-            }
-        }
-        if (message.messageType === 'image') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(
-                    rightConversationImage(sender, message)
-                );
-            }
-            if (message.senderId === leftId) {
-                $(`#conversation-${id}`).append(
-                    leftConversationImage(receiver, message)
-                );
-            }
-        }
-        if (message.messageType === 'file') {
-            if (message.senderId === rightId) {
-                $(`#conversation-${id}`).append(rightConversationFile(sender, message));
-            }
-            if (message.senderId === leftId) {
-                $(`#conversation-${id}`).append(
-                    leftConversationFile(receiver, message)
-                );
-            }
-        }
-    });
-    detailConversation(messages);
-    // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
-    insertInput(id, false);
-    insertInputFile(id, false);
-    insertIdForVideoCall(id);
-    insertIdUserOnline(receiver);
-    scrollMessageUserEnd();
-    showSearchMessage(id, false);
-    $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
-    showActiveMessage();
+  // $('#conversation-list').find(`li[id = receiver-${id}]`).css('color', '#abb4d2');
+  let currentUserId = document.getElementById('id').value;
+  let receiver = await $.get(http + `/users/${id}`);
+  let sender = await $.get(http + `/users/${currentUserId}`);
+  let messages = await $.get(
+    http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`
+  );
+  //hiển thị avatar
+  $('#avatar-detail').attr('src', `/images/${receiver.user.avatar}`);
+  $('#avatar-conversation').attr('src', `/images/${receiver.user.avatar}`);
+  //hiển thị tên
+  $('#name').html(`${receiver.user.userName}`);
+  $('#name-conversation').html(`${receiver.user.userName}`);
+  $('#right-conversation').attr('data-id', `${currentUserId}`);
+  $('.message-list').attr('id', `conversation-${id}`);
+  $(`#conversation-${id}`).append(
+    leftConversationText(receiver, {
+      text: '',
+    })
+  );
+  $(`#conversation-${id}`).append(
+    rightConversationText(receiver, {
+      text: '',
+    })
+  );
+  let rightId = $('#right-conversation').attr('data-id');
+  let leftId = $(`#left-conversation-${receiver.user._id}`).attr('data-id');
+  $(`#conversation-${id}`).html('');
+  messages.forEach((message) => {
+    if (message.messageType === 'text') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationText(sender, message));
+      }
+      if (message.senderId === leftId) {
+        $(`#conversation-${id}`).append(
+          leftConversationText(receiver, message)
+        );
+      }
+    }
+    if (message.messageType === 'image') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(
+          rightConversationImage(sender, message)
+        );
+      }
+      if (message.senderId === leftId) {
+        $(`#conversation-${id}`).append(
+          leftConversationImage(receiver, message)
+        );
+      }
+    }
+    if (message.messageType === 'file') {
+      if (message.senderId === rightId) {
+        $(`#conversation-${id}`).append(rightConversationFile(sender, message));
+      }
+      if (message.senderId === leftId) {
+        $(`#conversation-${id}`).append(
+          leftConversationFile(receiver, message)
+        );
+      }
+    }
+  });
+  detailConversation(messages);
+  // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
+  insertInput(id, false);
+  insertInputFile(id, false);
+  insertIdForVideoCall(id);
+  insertIdUserOnline(receiver);
+  scrollMessageUserEnd();
+  showSearchMessage(id, false);
+  $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
+  showActiveMessage();
 }
 
 function showSearchMessage(id, isChatGroup) {
-    $('#search-message-in-conversation').html('');
-    $(`<input type="text" class="form-control bg-light border-0"
+  $('#search-message-in-conversation').html('');
+  $(`<input type="text" class="form-control bg-light border-0"
     placeholder="Tìm kiếm.." id="search-message">`).appendTo(
-        $('#search-message-in-conversation')
-    );
-    searchMessage(id, isChatGroup);
+    $('#search-message-in-conversation')
+  );
+  searchMessage(id, isChatGroup);
 }
 
 // //thêm id cho user online
 function insertIdUserOnline(receiver) {
-    if (receiver.members) {
-        $('#info-conversation').html('');
-        $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
+  if (receiver.members) {
+    $('#info-conversation').html('');
+    $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
         <a id="name-conversation" class="text-reset user-profile-show">${receiver.name}</a>  
         <i id="online-conversation-${receiver._id}"></i></h5>
         <span style="padding-top: 3px" id="time-online"><i class="fa fa-user" aria-hidden="true"></i> ${receiver.members.length} thành viên</span>`).appendTo(
-            $('#info-conversation')
-        );
-    } else {
-        $('#info-conversation').html('');
-        $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
+      $('#info-conversation')
+    );
+  } else {
+    $('#info-conversation').html('');
+    $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
         <a id="name-conversation" class="text-reset user-profile-show">${receiver.user.userName}</a>  
         <i id="online-conversation-${receiver.user._id}"></i></h5>
         <span style="padding-top: 3px" id="time-online-${receiver.user._id}"></span>`).appendTo(
-            $('#info-conversation')
-        );
-    }
+      $('#info-conversation')
+    );
+  }
 }
 
 //Thêm id cho video Call
 function insertIdForVideoCall(id) {
-    $('#video-call').html('');
-    $(` <i class="fal fa-video" id="video-${id}"></i>`).appendTo(
-        $('#video-call')
-    );
-    videoCall(id);
+  $('#video-call').html('');
+  $(` <i class="fal fa-video" id="video-${id}"></i>`).appendTo(
+    $('#video-call')
+  );
+  videoCall(id);
 }
 
 //Thêm thẻ input nhập tin nhắn
 function insertInput(id, isChatGroup) {
-    $('#write-chat').html('');
-    $(`<input type="text" style="display: none" id="write-chat-${id}">`).appendTo(
-        $('#write-chat')
-    );
-    enableEmojioneArea(id, isChatGroup);
+  $('#write-chat').html('');
+  $(`<input type="text" style="display: none" id="write-chat-${id}">`).appendTo(
+    $('#write-chat')
+  );
+  enableEmojioneArea(id, isChatGroup);
 }
 
 //Thêm thẻ input file
 function insertInputFile(id, isChatGroup) {
-    $('#file-Chat').html('');
-    $(
-        `<input id="fileChat-${id}" data-id="${id}" type="file" name="files" multiple>`
-    ).appendTo($('#file-Chat'));
-    fileChat(id, isChatGroup);
+  $('#file-Chat').html('');
+  $(
+    `<input id="fileChat-${id}" data-id="${id}" type="file" name="files" multiple>`
+  ).appendTo($('#file-Chat'));
+  fileChat(id, isChatGroup);
 }
 
 function renderTime(message) {
-    let formatedTime = moment(message.createdAt).format('LT');
-    return formatedTime;
+  let formatedTime = moment(message.createdAt).format('LT');
+  return formatedTime;
 }
 
 //tạo tin nhắn text gửi đi
 function rightConversationText(user, message) {
-    return `<li class="right" id="right-conversation" data-content="${
+  return `<li class="right" id="right-conversation" data-content="${
     message.text
   }" data-id="${user.user._id}" data-messageId="${message._id}">
     <div class="conversation-list">
@@ -309,7 +325,7 @@ function rightConversationText(user, message) {
 
 //tạo tin nhắn text nhận
 function leftConversationText(user, message) {
-    return `<li id="left-conversation-${user.user._id}" data-id="${
+  return `<li id="left-conversation-${user.user._id}" data-id="${
     user.user._id
   }"  data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
@@ -360,7 +376,7 @@ function leftConversationText(user, message) {
 
 //tạo tin nhắn image gửi đi
 function rightConversationImage(user, message) {
-    return `<li class="right" id="right-conversation" data-id="${
+  return `<li class="right" id="right-conversation" data-id="${
     user.user._id
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
@@ -477,7 +493,7 @@ function rightConversationImage(user, message) {
 
 //tạo tin nhắn image nhận
 function leftConversationImage(user, message) {
-    return `<li id="left-conversation-${user.user._id}" data-id="${
+  return `<li id="left-conversation-${user.user._id}" data-id="${
     user.user._id
   }" data-content="${message.text}" data-messageId="${message._id}">
      <div class="conversation-list">
@@ -592,8 +608,8 @@ function leftConversationImage(user, message) {
 
 //tạo tin nhắn file gửi đi
 function rightConversationFile(user, message) {
-    let fileName = message.fileName.split('.');
-    return `<li class="right"  id="right-conversation" data-id="${
+  let fileName = message.fileName.split('.');
+  return `<li class="right"  id="right-conversation" data-id="${
     user.user._id
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
@@ -711,8 +727,8 @@ function rightConversationFile(user, message) {
 
 //tạo tin nhắn file nhận
 function leftConversationFile(user, message) {
-    let fileName = message.fileName.split('.');
-    return `<li id="left-conversation-${user.user._id}" data-id="${
+  let fileName = message.fileName.split('.');
+  return `<li id="left-conversation-${user.user._id}" data-id="${
     user.user._id
   }" data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
@@ -827,11 +843,20 @@ function leftConversationFile(user, message) {
 }
 
 function showActiveMessage() {
-    const getChatUserItem = document.querySelectorAll('.chat-user-list-item');
-    getChatUserItem.forEach((message, index) => {
-        message.addEventListener('click', () => {
-            $('.chat-user-list-item.active').removeClass('active');
-            message.classList.add('active');
-        });
+  const getChatUserItem = document.querySelectorAll('.chat-user-list-item');
+  getChatUserItem.forEach((message, index) => {
+    message.addEventListener('click', () => {
+      $('.chat-user-list-item.active').removeClass('active');
+      message.classList.add('active');
     });
+  });
+}
+function showActiveMessageGroup() {
+  const getChatUserItem = document.querySelectorAll('.chat-user-list-item');
+  getChatUserItem.forEach((message, index) => {
+    message.addEventListener('click', () => {
+      $('.chat-user-list-item.active').removeClass('active');
+      message.classList.add('active');
+    });
+  });
 }

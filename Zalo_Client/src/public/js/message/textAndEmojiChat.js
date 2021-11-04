@@ -117,7 +117,6 @@ function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
         isChatGroup: isChatGroup,
       });
     });
-    showActiveMessage();
   }).fail(function (res) {
     console.log(res);
   });
@@ -225,7 +224,7 @@ async function addConversation(receiverId, isChatGroup) {
     let messages = await $.get(
       http + `/messages/SearchByReceiverId/${groupReceiver._id}`
     );
-    return `<li onclick="showConversationGroup('${
+    return `<li class="cursor-point chat-user-list-item active" onclick="showConversationGroup('${
       groupReceiver._id
     }')" id="receiver-${groupReceiver._id}" data-updated="${
       groupReceiver.updatedAt
