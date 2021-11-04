@@ -16,6 +16,7 @@ class groupSocket {
             });
             //lắng nghe socket từ client gửi
             socket.on('create-group', (data) => {
+                clients = pushSocketIdToArray(clients, data.group._id, socket.id);
                 let response = {
                     group: data.group,
                 };

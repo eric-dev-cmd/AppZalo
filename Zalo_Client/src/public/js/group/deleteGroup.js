@@ -49,4 +49,5 @@ socket.on('response-delete-group', function (data) {
 
 socket.on('response-leave-group', function (data) {
     getAllConversation();
-})
+});
+

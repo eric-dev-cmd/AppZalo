@@ -45,15 +45,15 @@ async function showConversationGroup(id) {
         $(`#conversation-${id}`).append(leftConversationText(receiver, {
             text: null
         }));
+        $(`#conversation-${id}`).append(rightConversationText(receiver, {
+            text: null,
+        }));
         if (message.messageType === 'text') {
             if (message.senderId === rightId) {
                 $(`#conversation-${id}`).append(rightConversationText(sender, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
-
                 $(`#conversation-${id}`).append(leftConversationText(receiver, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             scrollMessageGroupEnd();
         }
@@ -62,7 +62,6 @@ async function showConversationGroup(id) {
                 $(`#conversation-${id}`).append(
                     rightConversationImage(sender, message)
                 );
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             if (
                 message.senderId ===
@@ -72,14 +71,12 @@ async function showConversationGroup(id) {
                 $(`#conversation-${id}`).append(
                     leftConversationImage(receiver, message)
                 );
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             scrollMessageGroupEnd();
         }
         if (message.messageType === 'file') {
             if (message.senderId === rightId) {
                 $(`#conversation-${id}`).append(rightConversationFile(sender, message));
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             if (
                 message.senderId ===
@@ -89,10 +86,10 @@ async function showConversationGroup(id) {
                 $(`#conversation-${id}`).append(
                     leftConversationFile(receiver, message)
                 );
-                $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
             }
             scrollMessageGroupEnd();
         }
+        $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
     });
     detailConversation(messages);
     //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
@@ -135,6 +132,9 @@ async function showConversationUser(id) {
     $('#right-conversation').attr('data-id', `${currentUserId}`);
     $('.message-list').attr('id', `conversation-${id}`);
     $(`#conversation-${id}`).append(leftConversationText(receiver, {
+        text: '',
+    }));
+    $(`#conversation-${id}`).append(rightConversationText(receiver, {
         text: '',
     }));
     let rightId = $('#right-conversation').attr('data-id');
