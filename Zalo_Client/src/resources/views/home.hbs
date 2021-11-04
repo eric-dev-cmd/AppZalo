@@ -590,7 +590,7 @@
                                                     id="conversation-list">
                                                     {{#each allConversationMessages}}
                                                     {{#if this.members}}
-                                                    <li class="cursor-point"
+                                                    <li class="cursor-point chat-user-list-item"
                                                         onclick="showConversationGroup('{{this._id}}')"
                                                         id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}"
                                                         data-name="{{this.name}}">
@@ -636,7 +636,7 @@
                                                         </a>
                                                     </li>
                                                     {{else}}
-                                                    <li class="cursor-point"
+                                                    <li class="cursor-point chat-user-list-item"
                                                         onclick="showConversationUser('{{this._id}}')"
                                                         id="receiver-{{this._id}}" data-updated="{{this.updatedAt}}"
                                                         data-name="{{this.userName}}">
@@ -1664,7 +1664,8 @@
                                             <a class="dropdown-item" href="javascript:void(0)" id="delete-group">Giải
                                                 tán nhóm<i class="fal fa-trash-alt float-end text-muted"></i></a>
                                             <a class="dropdown-item" href="javascript:void(0)" id="leave-group">Rời nhóm
-                                                <i class="fa fa-sign-out float-end text-muted" aria-hidden="true"></i></a>
+                                                <i class="fa fa-sign-out float-end text-muted"
+                                                    aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </li>
