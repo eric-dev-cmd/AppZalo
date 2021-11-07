@@ -20,11 +20,13 @@ class UsersController {
       .then((user) => {
         res.status(200).json({ user });
       })
-      .catch(next);
+      .catch(() => {
+        res.status(404).json({ message: "Failed" });
+      });
   }
 
   getAPIByUserName(req, res, next) {
-    User.findOne({ "userName": req.params.username })
+    User.findOne({ userName: req.params.username })
       .then((user) => {
         res.status(200).json({ user });
       })
