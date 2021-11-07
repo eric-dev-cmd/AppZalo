@@ -21,6 +21,8 @@ let form = document.querySelector('[name="verify"]');
 // Lấy Input
 let inputs = form.querySelectorAll('.inputs input');
 let phoneParent = document.querySelector('#phoneParent');
+let yourInputNumber = '';
+let btnVerify = document.getElementById('btnRegister');
 
 // Xác minh robot
 const setUpRecaptcha = () => {
@@ -61,9 +63,15 @@ const onSignInSubmit = (e) => {
       // Tai khoan nay co the dang ky
       console.log(data.user);
       if (data.user == null) {
+        console.log(phoneEntered);
+        console.log(phoneNumberT);
         console.log('Khong ton tai tai khoan');
-        $('.secondBox').show();
-        $('.firstBox').hide();
+        setTimeout(() => {
+          $('.firstBox').hide();
+        }, 1000);
+        setTimeout(() => {
+          $('.secondBox').show();
+        }, 1500);
         // Gửi OTP
         signInWithPhoneNumber(auth, phoneNumberT, appVerifier)
           .then((confirmationResult) => {
@@ -74,9 +82,10 @@ const onSignInSubmit = (e) => {
             console.log(phoneNumberT);
             console.log('Sent OTP Success');
             const lastPhone = phoneNumberT.slice(phoneNumberT.length - 4);
-
             const setPhoneForVerify = document.getElementById('lastPhone');
             setPhoneForVerify.innerHTML = lastPhone;
+            handleCountDown();
+
             submitOTP.addEventListener('click', function (e) {
               e.preventDefault();
               let arr = [];
@@ -90,24 +99,38 @@ const onSignInSubmit = (e) => {
               console.log(otp);
               console.log('Click xác minh OTP');
               const code = otp;
+              const boxVerify = document.querySelector('.box-verify');
+              const icon = boxVerify.querySelector('.fas');
+              console.log(boxVerify);
+              console.log(icon);
               confirmationResult
                 .confirm(code)
                 .then((result) => {
-                  // User signed in successfully.
                   const user = result.user;
-                  console.log('Success 😍');
-                  // const timestamp = new Date().getTime();
-                  // const exp = timestamp + 60 * 60 * 24 * 1000 * 1;
-                  // document.cookie = 'phoneNumber=' + phoneNumberT + 'expires=' + exp;
-                  window.location.href = `/accounts/password/update?phone=${phoneNumberT}`;
+                  icon.classList.add('fa-check-circle');
+                  icon.classList.add('text-success');
+                  icon.classList.remove('fa-times-circle');
+                  boxVerify.querySelector(
+                    'p'
+                  ).innerHTML = `Tài khoản của bạn đã được<br/>xác minh thành công<br/><span class='text-success'>Vui lòng đợi trong khi chuyển hướng</span>`;
+                  setTimeout(() => {
+                    window.location.href = `/accounts/password/update?phone=${phoneNumberT}`;
+                  }, 2000);
                   // ...
                 })
                 .catch((error) => {
-                  // User couldn't sign in (bad verification code?)
-                  // ...
+                  icon.classList.remove('fa-check-circle');
+                  icon.classList.add('fa-times-circle');
+                  icon.classList.add('text-danger');
+
+                  boxVerify.querySelector(
+                    'p'
+                  ).innerHTML = `<span class="text-danger">Xác minh thất bại</span><br/><span style="color: #000"> &nbsp;<span class='btn-return' style="color: red;"> thử lại</span></span>`;
+                  console.log('Xác minh thất bại');
                   console.log(error.message);
                   console.log(error);
                 });
+              boxVerify.classList.add('active');
             });
           })
           .catch((error) => {
@@ -139,8 +162,10 @@ const onSignInSubmit = (e) => {
         // Tai khoan da ton tai, khong cho dang ky
         console.log('Tai khoan da ton tai!');
         const show = document.getElementById('showNotification');
+        show.classList.remove('active');
         show.style.visibility = 'visible';
-        show.classList.add('active');
+        phoneParent.style.borderColor = '#721c24';
+        show.classList.add('unactive');
         show.innerHTML =
           'Tài khoản đã tồn tại. Vui lòng nhập số điện thoại khác!';
       }
@@ -178,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   OTPInput();
 });
 // Validation when click
-let btnVerify = document.getElementById('btnRegister');
 
 function handleValidationPhone() {
   console.log('Validation Phone Number');
@@ -188,7 +212,7 @@ function handleValidationPhone() {
   phoneNumber.addEventListener('blur', () => {
     handleValidation();
   });
-  phoneNumber.addEventListener('submit', () => {
+  phoneNumber.addEventListener('click', () => {
     handleValidation();
   });
 }
@@ -210,7 +234,8 @@ function handleValidation() {
       show.style.visibility = 'visible';
       phoneParent.style.borderColor = '#721c24';
       show.classList.add('unactive');
-      show.innerHTML = 'SĐT là số và có 10 chữ số. Có +84(0)!';
+      show.innerHTML =
+        'Là số - chứa 10 số. Bắt đầu với +84(0) vd: +84987059059';
     }
   } else {
     btnVerify.disabled = true;
@@ -229,8 +254,6 @@ let btnRegisted = document.querySelector('#phoneNumber');
 handleOnInput(btnRegisted);
 function handleOnInput(inputElement) {
   const show = document.getElementById('showNotification');
-  console.log(inputElement);
-  console.log('KAKA');
   inputElement.oninput = function () {
     btnVerify.disabled = false;
     btnVerify.style.cursor = 'pointer';
@@ -238,4 +261,21 @@ function handleOnInput(inputElement) {
     show.style.visibility = 'hidden';
     show.classList.add('unactive');
   };
+}
+const expireEle = document.querySelector('.expire');
+// OTP
+let expire = 60;
+let OTP;
+let countdown;
+console.log(expireEle);
+function handleCountDown() {
+  countdown = setInterval(() => {
+    expire--;
+    if (expire === 0) {
+      clearInterval(countdown);
+      OTP = null;
+      console.log(OTP);
+    }
+    expireEle.textContent = expire < 10 ? '0' + expire + 's' : expire + 's';
+  }, 1000);
 }
