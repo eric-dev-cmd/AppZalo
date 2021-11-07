@@ -20,6 +20,8 @@ console.log('Firebase OTP');
 let form = document.querySelector('[name="verify"]');
 // Lấy Input
 let inputs = form.querySelectorAll('.inputs input');
+let phoneParent = document.querySelector('#phoneParent');
+
 // Xác minh robot
 const setUpRecaptcha = () => {
   window.recaptchaVerifier = new RecaptchaVerifier(
@@ -36,6 +38,7 @@ const setUpRecaptcha = () => {
 };
 let phoneNumberT;
 handleValidationPhone();
+
 const onSignInSubmit = (e) => {
   e.preventDefault();
   setUpRecaptcha();
@@ -182,9 +185,6 @@ function handleValidationPhone() {
   const phoneNumber = document.querySelector('#phoneNumber');
   let btnVerify = document.getElementById('btnRegister');
   console.log(phoneNumber);
-  btnVerify.disabled = true;
-  btnVerify.style.cursor = 'no-drop';
-
   phoneNumber.addEventListener('blur', () => {
     handleValidation();
   });
@@ -200,6 +200,7 @@ function handleValidation() {
       btnVerify.disabled = false;
       btnVerify.style.cursor = 'pointer';
       show.style.visibility = 'visible';
+      phoneParent.style.borderColor = '#b8daff';
       show.classList.add('active');
       show.innerHTML = 'Số điện thoại hợp lệ';
     } else {
@@ -207,6 +208,7 @@ function handleValidation() {
       btnVerify.style.cursor = 'no-drop';
       show.classList.remove('active');
       show.style.visibility = 'visible';
+      phoneParent.style.borderColor = '#721c24';
       show.classList.add('unactive');
       show.innerHTML = 'SĐT là số và có 10 chữ số. Có +84(0)!';
     }
@@ -215,10 +217,25 @@ function handleValidation() {
     btnVerify.style.cursor = 'no-drop';
     show.classList.remove('active');
     show.style.visibility = 'visible';
+    phoneParent.style.borderColor = '#721c24';
     show.classList.add('unactive');
     show.innerHTML = 'SĐT không được để trống!';
   }
 }
 function isVietnamesePhoneNumber(number) {
   return /(^[+84]+(3|5|7|8|9|1)([0-9]{8})\b)$/g.test(number);
+}
+let btnRegisted = document.querySelector('#phoneNumber');
+handleOnInput(btnRegisted);
+function handleOnInput(inputElement) {
+  const show = document.getElementById('showNotification');
+  console.log(inputElement);
+  console.log('KAKA');
+  inputElement.oninput = function () {
+    btnVerify.disabled = false;
+    btnVerify.style.cursor = 'pointer';
+    phoneParent.style.borderColor = 'none !important';
+    show.style.visibility = 'hidden';
+    show.classList.add('unactive');
+  };
 }
