@@ -454,7 +454,7 @@
                             style="cursor: pointer;">
                             <div class="d-flex cursor-point dropdown-toggle" data-bs-toggle="dropdown"
                                 aria-expanded="false" aria-haspopup="true">
-                                <span class="pe-2 fw-bold text-white">Tất cả tin nhắn</span>
+                                <span class="pe-2 fw-bold text-white" id="showTextSelected">Tất cả tin nhắn</span>
                                 <i class="fal fa-angle-down fs-24 text-white" style="line-height: 26px;"></i>
                             </div>
                             <div class="dropdown-menu" id="select-type-chat">
@@ -468,12 +468,15 @@
                                 <a class="dropdown-item d-flex align-items-center justify-content-between"
                                     href="javascript:void(0)">Chỉ tin nhắn từ người lạ
                                 </a> --}}
-                                <a class="dropdown-item d-flex align-items-center justify-content-between">Toàn bộ trò
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    id="allConversation">Toàn bộ trò
                                     truyện <i class="fal fa-check ps-2"></i></a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between">Trò truyện cá
-                                    nhân</a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between">Trò truyện
-                                    nhóm</a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    id="personalConversation">Trò truyện cá
+                                    nhân <i class="fal ps-2"></i></a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    id="groupConversation">Trò truyện
+                                    nhóm <i class="fal ps-2"></i></a>
                             </div>
 
 
@@ -589,8 +592,9 @@
                                                 <ul class="list-unstyled chat-list chat-user-list"
                                                     id="conversation-list">
                                                     <script>
+
                                                         const allConversationMessagesJson = {{{ allConversationMessagesJson }}};
-                                                    </script>                                            
+                                                    </script>
                                                     {{#each allConversationMessages}}
                                                     {{#if this.members}}
                                                     <li class="cursor-point chat-user-list-item"
@@ -1458,10 +1462,10 @@
     <!-- Start User chat -->
     <div class="user-chat w-100 overflow-hidden user-chat-show">
         <div class="d-lg-flex">
-            
+
             <!-- start chat conversation section -->
             <div class="w-100 overflow-hidden position-relative">
-                <div class="p-2 p-lg-3 border-bottom user-chat-topbar" >
+                <div class="p-2 p-lg-3 border-bottom user-chat-topbar">
                     <div class="row align-items-center">
                         <div class="col-sm-4 col-8">
                             <div class="d-flex align-items-center">
