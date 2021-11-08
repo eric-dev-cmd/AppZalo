@@ -193,3 +193,154 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
     },
   };
 };
+const form = document.getElementById('formInfo');
+const username = document.getElementById('username');
+const password = document.getElementById('passwordInfor');
+const password2 = document.getElementById('passwordInforConfirm');
+
+// Nhan value tu input
+const show = document.getElementById('showNotification');
+let error = '';
+var illegalChars = /\W /;
+// USERNAME
+username.addEventListener('blur', () => {
+  const usernameValue = username.value;
+  isUsernameValid(usernameValue);
+});
+handleOnInputUsername(username);
+// PASSWORD
+function handleOnInputUsername(inputElement) {
+  const show = document.getElementById('showNotification');
+  inputElement.oninput = function () {
+    error = '';
+    show.classList.remove('alert-danger');
+    show.style.display = 'none';
+    show.innerHTML = error;
+  };
+}
+function isUsernameValid(str) {
+  console.log('USERNAME isvalid');
+  // cho phép các chữ cái, số và dấu gạch dưới
+  if (str == '') {
+    isShowError('Vui lòng nhập Username<br>');
+  } else if (str.length < 2 || str.length > 45) {
+    isShowError('Tên người dùng phải có 2-45 ký tự<br>');
+  } else if (illegalChars.test(removeAscent(str))) {
+    isShowError('Username không hợp lệ. Vui lòng sử dụng bảng chữ cái<br>');
+  } else {
+    error = '';
+    show.classList.remove('alert-danger');
+    show.style.display = 'none';
+    show.innerHTML = error;
+  }
+  return error;
+}
+function isShowSuccess(messageError) {
+  error = messageError;
+  show.classList.remove('alert-danger');
+  show.style.display = 'block';
+  show.classList.add('alert-success');
+  show.innerHTML = error;
+}
+function isShowError(messageError) {
+  error = messageError;
+  show.classList.remove('alert-success');
+  show.style.display = 'block';
+  show.classList.add('alert-danger');
+  show.innerHTML = error;
+}
+function removeAscent(str) {
+  if (str === null || str === undefined) return str;
+  str = str.toLowerCase();
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+  str = str.replace(/đ/g, 'd');
+  return str;
+}
+var myInput = document.getElementById('passwordInfor');
+var letter = document.getElementById('letter');
+var capital = document.getElementById('capital');
+var number = document.getElementById('number');
+var length = document.getElementById('length');
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function () {
+  document.getElementById('message').style.display = 'block';
+};
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function () {
+  document.getElementById('message').style.display = 'none';
+};
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function () {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if (myInput.value.match(lowerCaseLetters)) {
+    letter.classList.remove('invalid');
+    letter.classList.add('valid');
+  } else {
+    letter.classList.remove('valid');
+    letter.classList.add('invalid');
+  }
+
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if (myInput.value.match(upperCaseLetters)) {
+    capital.classList.remove('invalid');
+    capital.classList.add('valid');
+  } else {
+    capital.classList.remove('valid');
+    capital.classList.add('invalid');
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if (myInput.value.match(numbers)) {
+    number.classList.remove('invalid');
+    number.classList.add('valid');
+  } else {
+    number.classList.remove('valid');
+    number.classList.add('invalid');
+  }
+
+  // Validate length
+  if (myInput.value.length >= 8) {
+    length.classList.remove('invalid');
+    length.classList.add('valid');
+  } else {
+    length.classList.remove('valid');
+    length.classList.add('invalid');
+  }
+};
+
+function validatePassword() {
+  if (password.value != password2.value) {
+    isShowError('Mật khẩu không khớp');
+  } else {
+    console.log('Dung mk');
+    isShowSuccess('Mật khẩu khớp');
+    // password2.setCustomValidity('');
+  }
+}
+password.onchange = validatePassword;
+password2.onkeyup = validatePassword;
+function showPassword() {
+  var x = document.getElementById('passwordInfor');
+  var y = document.getElementById('passwordInforConfirm');
+
+  if (x.type === 'password') {
+    x.type = 'text';
+  } else {
+    x.type = 'password';
+  }
+  if (y.type === 'password') {
+    y.type = 'text';
+  } else {
+    y.type = 'password';
+  }
+}
