@@ -8,7 +8,7 @@ router.post('/password/updated', authController.createInDatabase);
 router.post('/password/update', authController.showUpdatePassword);
 
 router.get('/password/reset', authController.showResetPassword);
-router.post('/verify', authController.showVerify);
+// router.post('/verify', authController.showVerify);
 router.get('/signup', authController.showRegister);
 
 module.exports = router;

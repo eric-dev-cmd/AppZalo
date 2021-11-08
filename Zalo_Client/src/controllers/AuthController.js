@@ -27,49 +27,26 @@ class LoginController {
     }
     next();
   }
-  async showRegister(req, res) {
+  showRegister(req, res) {
     res.render('register');
-  }
-  async showVerify(req, res) {
-    try {
-      const { phoneNumber } = req.body;
-      console.log(phoneNumber);
-      console.log('Trung Vinh');
-      // if(phoneNumber)
-      const user = await axios.get(http + '/users/searchPhone/' + phoneNumber);
-      if (!user.data.user) {
-        console.log('Thanh cong');
-
-        res.render('verify', {
-          phoneNumber,
-        });
-      } else {
-        console.log('SDT da duoc dang ky');
-        req.flash('error', 'Số điện thoại đã được đăng ký 😮');
-        res.redirect('/accounts/signup');
-      }
-    } catch (err) {
-      console.log(err);
-    }
   }
   showResetPassword(req, res) {
     res.render('resetpassword');
   }
   showUpdatePassword(req, res) {
-    const { phoneNumber } = req.body;
+    let phone = req.query.phone;
+    let phoneRegister = phone.slice(phone.length - 9);
     res.render('updatepassword', {
-      phoneNumber,
+      phone: '0' + phoneRegister,
     });
   }
   async createInDatabase(req, res) {
-    console.log(req.body.password == req.body.passwordConfirm);
     if (req.body.password == req.body.passwordConfirm) {
-      console.log('Success');
       const passHash = await bcrypt.hash(req.body.password, 10);
-      console.log(passHash);
       let newUser = await User.create({
+        userName: req.body.userName,
         local: {
-          phone: req.body.phoneNumber,
+          phone: req.body.phone,
           password: passHash,
         },
       });
