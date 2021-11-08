@@ -1,4 +1,5 @@
 async function deleteConversation(id) {
+    $('#delete-conversation').show();
     $('#leave-group').hide();
     $('#delete-group').hide();
     let currentUserId = document.getElementById('id').value;

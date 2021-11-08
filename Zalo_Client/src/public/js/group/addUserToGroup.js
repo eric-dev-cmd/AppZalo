@@ -9,21 +9,31 @@ $('#btn-add-user-to-group').unbind('click').on('click', function () {
         contentType: false,
         processData: false,
         success: function (data) {
+            let group = data.group;
+            let isChatGroup = true;
             $('#addUserToGroup-exampleModal').modal('hide');
+            $('#conversation-list').find(`li[id=receiver-${group._id}]`).remove();
+            $('.chat-user-list-item.active').removeClass('active');
+            addConversation(group._id, isChatGroup)
+                .then(function (result) {
+                    $('#conversation-list').prepend(result);
+                    getAllConversation();
+                });
+            socket.emit('add-user-to-group', {
+                group: group
+            });
         },
     });
 });
 
-async function showUser(groupId) {
-    let group = await $.get(http + `/chatGroups/${groupId}`);
-    $('[id=joined-group]').css('display', 'none');
-    $('#list-user-add-to-group').find(':input').removeAttr('disabled');
-    $('#list-user-add-to-group').find(':input').attr('checked', false);
-    group.members.forEach(user => {
-        $('#list-user-add-to-group').find(`li[id=${user.userId}]`).find('#joined-group').css('display', 'inline-block');
-        $('#list-user-add-to-group').find(`li[id=${user.userId}]`).find(`#${user.userId}`).attr('disabled', 'disabled');
-    });
-}
+socket.on('response-add-user-to-group', function (data) {
+    let group = data.group;
+    let isChatGroup = true;
+    addConversation(group._id, isChatGroup)
+        .then(function (result) {
+            $('#conversation-list').prepend(result);
+        });
+})
 
 $('#search-user').off('keyup').on('keyup', async function (e) {
     let groupId = $('#icon-add-user-to-group').attr('data-gid');
@@ -33,7 +43,7 @@ $('#search-user').off('keyup').on('keyup', async function (e) {
         try {
             let user = await $.get(http + `/users/searchPhone/${content}`);
             $('#list-user-add-to-group').find(`li[id=${user.user._id}]`).remove();
-            $('#list-user-add-to-group').prepend(getUser(user)); 
+            $('#list-user-add-to-group').prepend(getUser(user));
         } catch (error) {
             console.log(error)
         }
@@ -52,3 +62,14 @@ $('#search-user').off('keyup').on('keyup', async function (e) {
     }
     showUser(groupId);
 });
+
+async function showUser(groupId) {
+    let group = await $.get(http + `/chatGroups/${groupId}`);
+    $('[id=joined-group]').css('display', 'none');
+    $('#list-user-add-to-group').find(':input').removeAttr('disabled');
+    $('#list-user-add-to-group').find(':input').attr('checked', false);
+    group.members.forEach(user => {
+        $('#list-user-add-to-group').find(`li[id=${user.userId}]`).find('#joined-group').css('display', 'inline-block');
+        $('#list-user-add-to-group').find(`li[id=${user.userId}]`).find(`#${user.userId}`).attr('disabled', 'disabled');
+    });
+}

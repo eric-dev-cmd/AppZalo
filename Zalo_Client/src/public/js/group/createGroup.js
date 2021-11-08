@@ -9,8 +9,15 @@ $('#btn-create-group').unbind('click').on('click', function () {
         processData: false,
         success: function (data) {
             let group = data.group;
+            let isChatGroup = true;
             $('#addgroup-exampleModal').modal('hide');
             $('.chat-user-list-item.active').removeClass('active');
+            $('#conversation-list').find(`li[id=receiver-${group._id}]`).remove();
+            addConversation(group._id, isChatGroup)
+            .then(function (result) {
+                $('#conversation-list').prepend(result);
+                getAllConversation();
+            });
             socket.emit('create-group', {
                 group: group
             });
@@ -24,7 +31,6 @@ socket.on('response-create-group', function (data) {
     addConversation(group._id, isChatGroup)
         .then(function (result) {
             $('#conversation-list').prepend(result);
-            getAllConversation();
         });
     
 });

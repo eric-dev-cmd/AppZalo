@@ -2,6 +2,7 @@ async function showBtnDeleteOrLeaveGroup(id) {
     let currentUserId = document.getElementById('id').value;
     let group = await $.get(http + `/chatGroups/${id}`);
     if (group.userId === currentUserId) {
+        $('#delete-group').show();
         $('#leave-group').hide();
         $('#delete-conversation').hide();
         $('#delete-group').off('click').on('click', function () {
@@ -21,6 +22,7 @@ async function showBtnDeleteOrLeaveGroup(id) {
             });
         });
     } else {
+        $('#leave-group').show();
         $('#delete-group').hide();
         $('#delete-conversation').hide();
         $('#leave-group').off('click').on('click', function () {
@@ -33,8 +35,9 @@ async function showBtnDeleteOrLeaveGroup(id) {
                 success: function (data) {
                     if (data.success) {
                         $('#conversation-list').find(`li[id=receiver-${id}]`).remove();
+                        getAllConversation();
                         socket.emit('leave-group', {
-                            groupId: id
+                            group: group
                         });
                     }
                 }
@@ -50,6 +53,11 @@ socket.on('response-delete-group', function (data) {
 })
 
 socket.on('response-leave-group', function (data) {
-    getAllConversation();
+    let groupId = data.groupId;
+    let isChatGroup = true;
+    $('#conversation-list').find(`li[id=receiver-${groupId}]`).remove();
+    addConversation(groupId, isChatGroup)
+        .then(function (result) {
+            $('#conversation-list').prepend(result);
+        });
 });
-

@@ -89,7 +89,7 @@ class ChatGroupService {
             })
         });
         let getGroup = await axios.put(http + '/chatGroups/' + groupId, group.data);
-        return getGroup.data;
+        return group.data;
     }
 }
 

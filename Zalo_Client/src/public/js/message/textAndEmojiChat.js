@@ -184,10 +184,7 @@ async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    let messages = await $.get(
-      http +
-      `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
-    );
+    let messages = await $.get(http +`/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
     return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
       receiver.user._id
     }')" id="receiver-${receiver.user._id}" 
@@ -221,14 +218,10 @@ async function addConversation(receiverId, isChatGroup) {
   if (isChatGroup === true || isChatGroup === 'true') {
     let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
     // lấy tin nhắn theo id nhóm
-    let messages = await $.get(
-      http + `/messages/SearchByReceiverId/${groupReceiver._id}`
-    );
-    return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${
-      groupReceiver._id
-    }')" id="receiver-${groupReceiver._id}" data-updated="${
-      groupReceiver.updatedAt
-    }" data-name="${groupReceiver.name}">
+    let messages = await $.get(http + `/messages/SearchByReceiverId/${groupReceiver._id}`);
+    return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${groupReceiver._id}')" 
+    id="receiver-${groupReceiver._id}" data-updated="${groupReceiver.updatedAt}" 
+    data-name="${groupReceiver.name}">
         <a>
             <div class="d-flex">
                 <div
