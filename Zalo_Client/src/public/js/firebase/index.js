@@ -107,12 +107,15 @@ const onSignInSubmit = (e) => {
                 .confirm(code)
                 .then((result) => {
                   const user = result.user;
-                  icon.classList.add('fa-check-circle');
-                  icon.classList.add('text-success');
-                  icon.classList.remove('fa-times-circle');
-                  boxVerify.querySelector(
-                    'p'
-                  ).innerHTML = `Tài khoản của bạn đã được<br/>xác minh thành công<br/><span class='text-success'>Vui lòng đợi trong khi chuyển hướng</span>`;
+
+                  setTimeout(() => {
+                    icon.classList.add('fa-check-circle');
+                    icon.classList.add('text-success');
+                    icon.classList.remove('fa-times-circle');
+                    boxVerify.querySelector(
+                      'p'
+                    ).innerHTML = `Tài khoản của bạn đã được<br/>xác minh thành công<br/><span class='text-success'>Vui lòng đợi trong khi chuyển hướng</span>`;
+                  }, 500);
                   setTimeout(() => {
                     window.location.href = `/accounts/password/update?phone=${phoneNumberT}`;
                   }, 2000);
@@ -125,26 +128,34 @@ const onSignInSubmit = (e) => {
 
                   boxVerify.querySelector(
                     'p'
-                  ).innerHTML = `<span class="text-danger">Xác minh thất bại</span><br/><span style="color: #000"> &nbsp;<span class='btn-return' style="color: red;"> thử lại</span></span>`;
-                  console.log('Xác minh thất bại');
-                  console.log(error.message);
-                  console.log(error);
+                  ).innerHTML = `<span class="text-danger">Xác minh thất bại.</span><br/><span style="color: #000">Vui lòng&nbsp;<span class='btn-return' style="color: red;">Thử lại</span></span>`;
+                  let btnReturnOTP = document.querySelector('.btn-return');
+                  btnReturnOTP.addEventListener('click', () => {
+                    icon.classList.remove('text-danger');
+                    icon.classList.remove('fa-times-circle');
+                    boxVerify.querySelector('p').innerHTML = '';
+                    icon.classList.add('fa-check-circle');
+                    boxVerify.classList.remove('active');
+                  });
+                  resetReCaptcha();
                 });
               boxVerify.classList.add('active');
             });
           })
           .catch((error) => {
+            window.recaptchaVerifier.render().then(function (widgetId) {
+              grecaptcha.reset(widgetId);
+            });
             // Error; SMS not sent
             // ...
             console.log(error);
             console.log(error.message);
-
+            resetReCaptcha();
             console.log('Not send OTP');
           });
         function handleInput(e) {
           // Check data đã được nhập và nếu có dữ liệu đầu vào thì đi tiếp
           const input = e.target;
-          console.log(input.value);
           if (input.nextElementSibling && input.value) {
             input.nextElementSibling.focus();
           }
@@ -262,20 +273,36 @@ function handleOnInput(inputElement) {
     show.classList.add('unactive');
   };
 }
-const expireEle = document.querySelector('.expire');
-// OTP
-let expire = 60;
-let OTP;
-let countdown;
-console.log(expireEle);
+
 function handleCountDown() {
+  const expireEle = document.querySelector('.expire');
+  // OTP
+  let expire = 60;
+  let OTP;
+  let countdown;
+  console.log(expireEle);
   countdown = setInterval(() => {
     expire--;
     if (expire === 0) {
       clearInterval(countdown);
-      OTP = null;
-      console.log(OTP);
     }
     expireEle.textContent = expire < 10 ? '0' + expire + 's' : expire + 's';
   }, 1000);
+}
+function resetReCaptcha() {
+  if (
+    typeof grecaptcha !== 'undefined' &&
+    typeof window.recaptchaWidgetId !== 'undefined'
+  ) {
+    grecaptcha.reset(window.recaptchaWidgetId);
+  }
+}
+let btnResendOTP = document.querySelector('#btnResendOTP');
+btnResendOTP.addEventListener('click', () => {
+  resendOTP();
+});
+resendOTP();
+function resendOTP() {
+  resetReCaptcha();
+  console.log('Resend OTP');
 }
