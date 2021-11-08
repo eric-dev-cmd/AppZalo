@@ -1,4 +1,4 @@
-$('#search-conversation').off('keyup').on('keyup', function (element) {
+$('#search-conversation').unbind('keyup').on('keyup', function (e) {
     let content = $('#search-conversation').val();
     let listConversation = searchNameConversation(content);
     //tìm kiếm cuộc trò truyện
@@ -14,7 +14,6 @@ $('#search-conversation').off('keyup').on('keyup', function (element) {
             $('#conversation-list').find(`li[data-name='${name}']`).remove();
         })
     });
-    eventKeydown();
 })
 
 
@@ -38,8 +37,25 @@ function searchNameConversation(content) {
 }
 
 //khi xóa nội dung tìm kiếm
-function eventKeydown() {
-    $('#search-conversation').off('keydown').on('keydown', function () {
-        $('#conversation-list').prepend(conversations);
-    });
-}
+$('#search-conversation').off('keydown').on('keydown', function (e) {
+    if (e.which === 8) {
+        socket.emit('get-conversations');
+        socket.on('response-conversations', function (data) {
+            $('#conversation-list').html('');
+            let conversations = data;
+            conversations.forEach(conversation => {
+                if (conversation.members) {
+                    addConversation(conversation._id, true)
+                        .then(function (result) {
+                            $('#conversation-list').append(result);
+                        });
+                } else {
+                    addConversation(conversation._id, false)
+                        .then(function (result) {
+                            $('#conversation-list').append(result);
+                        });
+                }
+            });
+        });
+    }
+});

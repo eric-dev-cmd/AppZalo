@@ -10,13 +10,15 @@ class HomeController {
     let contacts = await contactService.getContacts(req.user.data.user._id);
     let getAllConversationItem = await messageService.getListItemContacts(req.user.data.user._id);
     let getAllConversationMessages = getAllConversationItem.allConversationMessages;
+
     res.render('home', {
       user: req.user.data.user,
       notifications: notifications.getNotiContents,
       sumOfNotification : notifications.sumOfNotification,
       contacts: sortJsonArray(contacts.getContacts, 'userName', 'asc'),
       sumOfContact: contacts.sumOfContact,
-      allConversationMessages: getAllConversationMessages
+      allConversationMessages: getAllConversationMessages,
+      allConversationMessagesJson: JSON.stringify(getAllConversationMessages)
     });
   }
 }

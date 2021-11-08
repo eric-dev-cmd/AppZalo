@@ -9,6 +9,7 @@ const moment = require('moment');
 const {
   v4: uuidv4
 } = require('uuid');
+const message = require('../utils/message');
 
 class MessageService {
   getListItemContacts(senderId) {
@@ -16,19 +17,18 @@ class MessageService {
       try {
         // lấy danh sách bạn bè
         let userIsFriend = await contactService.getContacts(senderId);
-
         //lấy tất cả tin nhắn
         let messages = await axios.get(http + '/messages/SearchBySenderIdOrReceiverId/' + senderId);
 
         //tìm các user đã từng nhắn tin
         let listUser = messages.data.map(async message => {
-            if (message.receiverId !== senderId) {
-              let user = await axios.get(http + '/users/' + message.receiverId);
-              return user.data.user;
-            } else {
-              let user = await axios.get(http + '/users/' + message.senderId);
-              return user.data.user;
-            }
+          if (message.receiverId !== senderId) {
+            let user = await axios.get(http + '/users/' + message.receiverId);
+            return user.data.user;
+          } else {
+            let user = await axios.get(http + '/users/' + message.senderId);
+            return user.data.user;
+          }
         });
 
         //gom 2 mảng
@@ -36,7 +36,7 @@ class MessageService {
 
         // loại những user trùng theo id
         let set = new Set(listAllUser.map(user => {
-            return user._id;
+          return user._id;
         }));
         let listId = Array.from(set);
 
@@ -64,34 +64,29 @@ class MessageService {
                 http + '/messages/SearchByReceiverId/' + conversation._id
               );
               conversation.messages = getMessages.data;
-              // Get item last
-              try {
+              // Get item last          
                 let lastGroup = Object.keys(conversation.messages).pop();
-                let lastMessGroup = conversation.messages[lastGroup];
-                moment.locale('vi');
-                let formatedTimeAgo = moment(lastMessGroup.createdAt).fromNow();
-                // Set
-                conversation.time = formatedTimeAgo;
-                conversation.lastText = lastMessGroup.text;
-                conversation.messageType = lastMessGroup.messageType;
-              } catch (error) {
-                console.log(error)
-              }
-
+                if (lastGroup) {
+                  let lastMessGroup = conversation.messages[lastGroup];
+                  moment.locale('vi');
+                  let formatedTimeAgo = moment(lastMessGroup.createdAt).fromNow();
+                  // Set
+                  conversation.time = formatedTimeAgo;
+                  conversation.lastText = lastMessGroup.text;
+                  conversation.messageType = lastMessGroup.messageType;
+                }
             } else {
-              let getMessages = await axios.get(http +'/messages/SearchBySenderIdAndReceiverId/' +senderId +'/' +conversation._id
-              );
+              let getMessages = await axios.get(http + '/messages/SearchBySenderIdAndReceiverId/' + senderId + '/' + conversation._id);
               conversation.messages = getMessages.data;
-              try {
                 let lastUser = Object.keys(conversation.messages).pop();
-                let lastItemUser = conversation.messages[lastUser];
-                let formatedTimeAgoUser = moment(lastItemUser.createdAt).fromNow();
-                conversation.time = formatedTimeAgoUser;
-                conversation.textUser = lastItemUser.text;
-                conversation.messageType = lastItemUser.messageType;
-              } catch (error) {
-                console.log(error)
-              }
+                if (lastUser) {
+                  let lastItemUser = conversation.messages[lastUser];
+                  moment.locale('vi');
+                  let formatedTimeAgoUser = moment(lastItemUser.createdAt).fromNow();
+                  conversation.time = formatedTimeAgoUser;
+                  conversation.textUser = lastItemUser.text;
+                  conversation.messageType = lastItemUser.messageType;
+                }
             }
             return conversation;
           }
@@ -356,6 +351,19 @@ class MessageService {
         FilesUtil.deleteFile(getMessage.data.fileName);
         // xóa tin nhắn trong db
         await axios.delete(http + '/messages/' + messageId);
+        return resolve(true);
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+
+  async deleteConversation(messages) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        messages.forEach(async message => {
+          await axios.delete(http + '/messages/' + message._id);
+        });
         return resolve(true);
       } catch (error) {
         return reject(error);

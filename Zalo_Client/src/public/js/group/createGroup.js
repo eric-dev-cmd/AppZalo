@@ -10,6 +10,7 @@ $('#btn-create-group').unbind('click').on('click', function () {
         success: function (data) {
             let group = data.group;
             $('#addgroup-exampleModal').modal('hide');
+            $('.chat-user-list-item.active').removeClass('active');
             socket.emit('create-group', {
                 group: group
             });

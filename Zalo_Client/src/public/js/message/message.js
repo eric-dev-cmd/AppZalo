@@ -201,6 +201,7 @@ async function showConversationUser(id) {
   showSearchMessage(id, false);
   $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
   showActiveMessage();
+  deleteConversation(id);
 }
 
 function showSearchMessage(id, isChatGroup) {

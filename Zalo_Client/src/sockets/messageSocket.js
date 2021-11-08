@@ -22,7 +22,7 @@ class MessageSocket {
       sender.chatGroupIds.forEach((groupId) => {
         clients = pushSocketIdToArray(clients, groupId, socket.id);
       });
-      
+
       //lắng nghe socket từ client gửi
       socket.on('add-new-text-emoji', (data) => {
         let respone = {
@@ -32,8 +32,7 @@ class MessageSocket {
         //gửi socket đến cho client
         //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.message.receiverId]) {
-          emitEventToArray(clients,data.message.receiverId,io,'response-add-new-text-emoji',respone
-          );
+          emitEventToArray(clients, data.message.receiverId, io, 'response-add-new-text-emoji', respone);
         }
       });
       //xóa id socket mỗi khi socket disconnect
@@ -152,6 +151,14 @@ class MessageSocket {
       clients = pushSocketIdToArray(clients, sender._id, socket.id);
       //gửi socket đến cho client
       //nếu đang đăng nhập thì gửi đi cho gửi nhận tin nhắn
+      socket.on('get-conversations', async function () {
+        let getAllConversation = await messageService.getListItemContacts(sender._id);
+        let allConversation = getAllConversation.allConversationMessages;
+        if (clients[sender._id]) {
+          emitEventToArray(clients, sender._id, io, 'response-conversations', allConversation);
+        }
+      });
+
       setInterval(async function () {
         let getAllConversation = await messageService.getListItemContacts(sender._id);
         let allConversation = getAllConversation.allConversationMessages;

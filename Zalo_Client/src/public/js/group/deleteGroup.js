@@ -3,6 +3,7 @@ async function showBtnDeleteOrLeaveGroup(id) {
     let group = await $.get(http + `/chatGroups/${id}`);
     if (group.userId === currentUserId) {
         $('#leave-group').hide();
+        $('#delete-conversation').hide();
         $('#delete-group').off('click').on('click', function () {
             $.ajax({
                 url: '/group/deleteGroup',
@@ -21,6 +22,7 @@ async function showBtnDeleteOrLeaveGroup(id) {
         });
     } else {
         $('#delete-group').hide();
+        $('#delete-conversation').hide();
         $('#leave-group').off('click').on('click', function () {
             $.ajax({
                 url: '/group/deleteGroup',

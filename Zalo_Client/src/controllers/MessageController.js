@@ -49,5 +49,15 @@ class MessageController{
             return res.status(500).send(error);
         }
     }
+
+    async deleteConversation(req, res){
+        try {
+            let messages = req.body.messages;
+            let deleteResquest = await messageService.deleteConversation(messages);
+            return res.status(200).send({ success: !!deleteResquest });
+        } catch (error) {
+            return res.status(500).send(error);
+        }
+    }
 }
 module.exports = new MessageController;

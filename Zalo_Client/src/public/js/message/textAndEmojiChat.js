@@ -186,7 +186,7 @@ async function addConversation(receiverId, isChatGroup) {
     let receiver = await $.get(http + `/users/${receiverId}`);
     let messages = await $.get(
       http +
-        `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
+      `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
     );
     return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
       receiver.user._id
@@ -256,13 +256,17 @@ async function addConversation(receiverId, isChatGroup) {
 }
 
 function renderTimeAgo(messages) {
-  let last = Object.keys(messages).pop();
-  let lastMessage = messages[last];
-  let formatedTimeAgo = moment(lastMessage.createdAt)
-    .locale('vi')
-    .startOf('seconds')
-    .fromNow();
-  return formatedTimeAgo;
+  if (messages.length == 0) {
+    return '';
+  } else {
+    let last = Object.keys(messages).pop();
+    let lastMessage = messages[last];
+    let formatedTimeAgo = moment(lastMessage.createdAt)
+      .locale('vi')
+      .startOf('seconds')
+      .fromNow();
+    return formatedTimeAgo;
+  }
 }
 
 function getLastEndMessageInConversation(messages) {

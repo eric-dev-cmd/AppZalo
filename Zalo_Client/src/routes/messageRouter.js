@@ -7,4 +7,5 @@ router.post('/addNewTextAndEmoji', authController.checkLoggedIn, messageControll
 router.post('/uploadFiles', authController.checkLoggedIn, messageController.uploadFiles);
 router.delete('/deleteTextAndEmoji', authController.checkLoggedIn, messageController.deleteTextAndEmoji);
 router.delete('/deleteFile', authController.checkLoggedIn, messageController.deleteFile);
+router.delete('/deleteConversation', authController.checkLoggedIn, messageController.deleteConversation);
 module.exports = router;

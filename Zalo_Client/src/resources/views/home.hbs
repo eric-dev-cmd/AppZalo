@@ -588,6 +588,9 @@
                                             <div class="simplebar-content" style="padding: 0px;">
                                                 <ul class="list-unstyled chat-list chat-user-list"
                                                     id="conversation-list">
+                                                    <script>
+                                                        const allConversationMessagesJson = {{{ allConversationMessagesJson }}};
+                                                    </script>                                            
                                                     {{#each allConversationMessages}}
                                                     {{#if this.members}}
                                                     <li class="cursor-point chat-user-list-item"
@@ -624,8 +627,6 @@
                                                                         {{this.lastText}}
                                                                     </p>
                                                                     {{/ifText}}
-
-
                                                                 </div>
                                                                 <div class="font-size-11 chat-user-time-group"
                                                                     id="updated-time-{{this._id}}"
@@ -1666,6 +1667,9 @@
                                             <a class="dropdown-item" href="javascript:void(0)" id="leave-group">Rời nhóm
                                                 <i class="fa fa-sign-out float-end text-muted"
                                                     aria-hidden="true"></i></a>
+                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                id="delete-conversation">Xóa trò truyện
+                                                <i class="fal fa-trash-alt float-end text-muted"></i></a>
                                         </div>
                                     </div>
                                 </li>
