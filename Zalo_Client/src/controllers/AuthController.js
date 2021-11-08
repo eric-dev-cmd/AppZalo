@@ -51,6 +51,7 @@ class LoginController {
         },
       });
       console.log(newUser);
+      req.flash('success', 'Tài khoản đăng ký thành công ');
       res.redirect('/login-register');
     } else {
       console.log('Failure');

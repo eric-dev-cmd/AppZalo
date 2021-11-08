@@ -107,12 +107,15 @@ const onSignInSubmit = (e) => {
                 .confirm(code)
                 .then((result) => {
                   const user = result.user;
-                  icon.classList.add('fa-check-circle');
-                  icon.classList.add('text-success');
-                  icon.classList.remove('fa-times-circle');
-                  boxVerify.querySelector(
-                    'p'
-                  ).innerHTML = `Tài khoản của bạn đã được<br/>xác minh thành công<br/><span class='text-success'>Vui lòng đợi trong khi chuyển hướng</span>`;
+
+                  setTimeout(() => {
+                    icon.classList.add('fa-check-circle');
+                    icon.classList.add('text-success');
+                    icon.classList.remove('fa-times-circle');
+                    boxVerify.querySelector(
+                      'p'
+                    ).innerHTML = `Tài khoản của bạn đã được<br/>xác minh thành công<br/><span class='text-success'>Vui lòng đợi trong khi chuyển hướng</span>`;
+                  }, 500);
                   setTimeout(() => {
                     window.location.href = `/accounts/password/update?phone=${phoneNumberT}`;
                   }, 2000);
@@ -128,6 +131,10 @@ const onSignInSubmit = (e) => {
                   ).innerHTML = `<span class="text-danger">Xác minh thất bại.</span><br/><span style="color: #000">Vui lòng&nbsp;<span class='btn-return' style="color: red;">Thử lại</span></span>`;
                   let btnReturnOTP = document.querySelector('.btn-return');
                   btnReturnOTP.addEventListener('click', () => {
+                    icon.classList.remove('text-danger');
+                    icon.classList.remove('fa-times-circle');
+                    boxVerify.querySelector('p').innerHTML = '';
+                    icon.classList.add('fa-check-circle');
                     boxVerify.classList.remove('active');
                   });
                   resetReCaptcha();
