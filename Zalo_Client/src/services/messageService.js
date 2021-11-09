@@ -65,28 +65,28 @@ class MessageService {
               );
               conversation.messages = getMessages.data;
               // Get item last          
-                let lastGroup = Object.keys(conversation.messages).pop();
-                if (lastGroup) {
-                  let lastMessGroup = conversation.messages[lastGroup];
-                  moment.locale('vi');
-                  let formatedTimeAgo = moment(lastMessGroup.createdAt).fromNow();
-                  // Set
-                  conversation.time = formatedTimeAgo;
-                  conversation.lastText = lastMessGroup.text;
-                  conversation.messageType = lastMessGroup.messageType;
-                }
+              let lastGroup = Object.keys(conversation.messages).pop();
+              if (lastGroup) {
+                let lastMessGroup = conversation.messages[lastGroup];
+                moment.locale('vi');
+                let formatedTimeAgo = moment(lastMessGroup.createdAt).fromNow();
+                // Set
+                conversation.time = formatedTimeAgo;
+                conversation.lastText = lastMessGroup.text;
+                conversation.messageType = lastMessGroup.messageType;
+              }
             } else {
               let getMessages = await axios.get(http + '/messages/SearchBySenderIdAndReceiverId/' + senderId + '/' + conversation._id);
               conversation.messages = getMessages.data;
-                let lastUser = Object.keys(conversation.messages).pop();
-                if (lastUser) {
-                  let lastItemUser = conversation.messages[lastUser];
-                  moment.locale('vi');
-                  let formatedTimeAgoUser = moment(lastItemUser.createdAt).fromNow();
-                  conversation.time = formatedTimeAgoUser;
-                  conversation.textUser = lastItemUser.text;
-                  conversation.messageType = lastItemUser.messageType;
-                }
+              let lastUser = Object.keys(conversation.messages).pop();
+              if (lastUser) {
+                let lastItemUser = conversation.messages[lastUser];
+                moment.locale('vi');
+                let formatedTimeAgoUser = moment(lastItemUser.createdAt).fromNow();
+                conversation.time = formatedTimeAgoUser;
+                conversation.textUser = lastItemUser.text;
+                conversation.messageType = lastItemUser.messageType;
+              }
             }
             return conversation;
           }
@@ -97,6 +97,28 @@ class MessageService {
           groupConversation: groupConversation,
           allConversationMessages: await Promise.all(allConversationMessages),
         });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  addInfoMessage(senderId, receiverId, messageVal, messageType) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let newMessageItem = {
+          text: messageVal,
+          senderId: senderId,
+          receiverId: receiverId,
+          chatType: messageUtil.MESSAGE_CHAT_TYPES.GROUP,
+          messageType: messageType,
+          createdAt: Date.now(),
+        };
+        //tạo tin nhắn mới
+        let newMessage = await axios.post(http + '/messages', newMessageItem);
+        //cập nhật thời gian và số lượng tin nhắn
+        this.updateTimeForGroup(receiverId);
+        return resolve(newMessage.data);
       } catch (error) {
         reject(error);
       }

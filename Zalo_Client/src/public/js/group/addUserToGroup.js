@@ -1,7 +1,10 @@
-$('#btn-add-user-to-group').unbind('click').on('click', function () {
+$('#btn-add-user-to-group').unbind('click').on('click', async function () {
     let groupId = $('#icon-add-user-to-group').attr('data-gid');
     var formData = new FormData(document.getElementById('add-user-to-group'));
     formData.append('groupId', groupId);
+    //group trước khi thêm user
+    let groupPre = await $.get(http + `/chatGroups/${groupId}`);
+    let membersPre = groupPre.members.map(member => member.userId);
     $.ajax({
         url: '/group/addUserToGroup',
         type: 'put',
@@ -9,6 +12,7 @@ $('#btn-add-user-to-group').unbind('click').on('click', function () {
         contentType: false,
         processData: false,
         success: function (data) {
+            //sau khi thêm
             let group = data.group;
             let isChatGroup = true;
             $('#addUserToGroup-exampleModal').modal('hide');
@@ -19,8 +23,10 @@ $('#btn-add-user-to-group').unbind('click').on('click', function () {
                     $('#conversation-list').prepend(result);
                     getAllConversation();
                 });
+            messageAddUserToGroup(group, membersPre);
             socket.emit('add-user-to-group', {
-                group: group
+                group: group,
+                membersPre: membersPre
             });
         },
     });

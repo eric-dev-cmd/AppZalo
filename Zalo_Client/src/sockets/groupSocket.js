@@ -19,6 +19,7 @@ class groupSocket {
                 clients = pushSocketIdToArray(clients, data.group._id, socket.id);
                 let response = {
                     group: data.group,
+                    userId: data.userId
                 };
                 let members = data.group.members.filter(member => member.userId != sender._id);
                 members.forEach(members => {
@@ -53,6 +54,7 @@ class groupSocket {
                 clients = pushSocketIdToArray(clients, data.group._id, socket.id);
                 let response = {
                     group: data.group,
+                    membersPre: data.membersPre
                 };
                 let members = data.group.members.filter(member => member.userId != sender._id);
                 members.forEach(member => {

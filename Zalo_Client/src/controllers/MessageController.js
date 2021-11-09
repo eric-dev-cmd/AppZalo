@@ -1,6 +1,19 @@
 const messageService = require('../services/messageService');
 
 class MessageController{
+    async addInfoMessage(req, res){
+        try {
+            let senderId = req.user.data.user._id; 
+            let receiverId = req.body.uid;
+            let messageVal = req.body.messageVal; //tin nhắn từ client gửi 
+            let messageType = req.body.messageType;
+            let newMessage = await messageService.addInfoMessage(senderId, receiverId, messageVal, messageType);
+            return res.status(200).send(newMessage);
+        } catch (error) {
+            return res.status(500).send(error);
+        }
+    }
+
     async addNewTextAndEmoji(req, res){
         try {
             let senderId = req.user.data.user._id; // id cua user dang nhap

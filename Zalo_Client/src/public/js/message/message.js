@@ -52,13 +52,16 @@ async function showConversationGroup(id) {
         text: null,
       })
     );
+    if (message.messageType === 'info') {
+        addInfo(group, message);
+    }
     if (message.messageType === 'text') {
       if (message.senderId === rightId) {
         $(`#conversation-${id}`).append(rightConversationText(sender, message));
       }
       if (
         message.senderId ===
-          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -75,7 +78,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -88,11 +91,7 @@ async function showConversationGroup(id) {
       if (message.senderId === rightId) {
         $(`#conversation-${id}`).append(rightConversationFile(sender, message));
       }
-      if (
-        message.senderId ===
-          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
-        message.senderId !== currentUserId
-      ) {
+      if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
         $(`#conversation-${id}`).append(
           leftConversationFile(receiver, message)
         );
@@ -111,6 +110,18 @@ async function showConversationGroup(id) {
   showIconAddUserToGroup(id);
   showBtnDeleteOrLeaveGroup(id);
   showActiveMessage();
+}
+
+function addInfo(group, message) {
+  // group.members.forEach(async member => {
+  //   let user = await $.get(http + `/users/${member.userId}`);
+    $(`#conversation-${group._id}`).append(`
+        <li>
+          <div class="chat-day-title">
+            <span class="title">${message.text}</span>
+          </div>
+        </li>`);
+  //});
 }
 
 function showIconAddUserToGroup(id) {
@@ -852,6 +863,7 @@ function showActiveMessage() {
     });
   });
 }
+
 function showActiveMessageGroup() {
   const getChatUserItem = document.querySelectorAll('.chat-user-list-item');
   getChatUserItem.forEach((message, index) => {

@@ -1,6 +1,7 @@
 $('#choose-user').click();
 $('#btn-create-group').unbind('click').on('click', function () {
-    var formData = new FormData(document.getElementById('create-group'))
+    var formData = new FormData(document.getElementById('create-group'));
+    let currentUserId = document.getElementById('id').value;
     $.ajax({
         url: '/group/createGroup',
         type: 'post',
@@ -14,12 +15,14 @@ $('#btn-create-group').unbind('click').on('click', function () {
             $('.chat-user-list-item.active').removeClass('active');
             $('#conversation-list').find(`li[id=receiver-${group._id}]`).remove();
             addConversation(group._id, isChatGroup)
-            .then(function (result) {
-                $('#conversation-list').prepend(result);
-                getAllConversation();
-            });
+                .then(function (result) {
+                    $('#conversation-list').prepend(result);
+                    getAllConversation();
+                });
+            messageCreateGroup(group, currentUserId);
             socket.emit('create-group', {
-                group: group
+                group: group,
+                userId: currentUserId
             });
         },
     });
@@ -28,11 +31,10 @@ $('#btn-create-group').unbind('click').on('click', function () {
 socket.on('response-create-group', function (data) {
     let group = data.group;
     let isChatGroup = true;
-    addConversation(group._id, isChatGroup)
+    addConversation(group._id)
         .then(function (result) {
             $('#conversation-list').prepend(result);
         });
-    
 });
 
 $('#seach-user-add-group').off('keyup').on('keyup', async function (e) {
@@ -82,4 +84,3 @@ function getUser(user) {
         </div>
     </li>`
 }
-

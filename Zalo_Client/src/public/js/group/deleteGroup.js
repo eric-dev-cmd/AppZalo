@@ -50,6 +50,7 @@ socket.on('response-delete-group', function (data) {
     let groupId = data.groupId;
     $('#conversation-list').find(`li[id=receiver-${groupId}]`).remove();
     getAllConversation();
+    
 })
 
 socket.on('response-leave-group', function (data) {

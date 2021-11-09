@@ -41,11 +41,13 @@ function showChat() {
   if (allConversationMessagesJson.length == 0) {
     $('.user-chat-topbar').hide();
     $('#input-chat').hide();
-  }else{
+  } else {
     $('.user-chat-topbar').show();
     $('#input-chat').show();
   }
 }
+
+
 
 $(document).ready(function () {
   searchPhone();
