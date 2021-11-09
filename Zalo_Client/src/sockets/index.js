@@ -6,15 +6,15 @@ const groupSocket = require('./groupSocket');
 
 function initSockets(io) {
     contactSocket.addNewContact(io);
-    contactSocket.removeRequestContact(io);
-    contactSocket.removeRequestContactReceiver(io);
+    contactSocket.deleteRequestContact(io);
+    contactSocket.deleteRequestContactReceiver(io);
     contactSocket.acceptContact(io);
-    contactSocket.removeFriend(io);
+    contactSocket.deleteFriend(io);
 
-    messageSocket.addNewTextAndEmoji(io);
+    messageSocket.addNewText(io);
     messageSocket.addNewFile(io);
     messageSocket.updateTime(io);
-    messageSocket.deleteTextAndEmoji(io);
+    messageSocket.deleteText(io);
     messageSocket.typing(io);
 
     videoCallSocket.videoCall(io);

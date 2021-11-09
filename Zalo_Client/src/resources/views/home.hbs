@@ -605,7 +605,7 @@
                                                             <div class="d-flex">
                                                                 <div
                                                                     class="chat-user-img online align-self-center me-3 ms-0">
-                                                                    <img src="/images/avatar-group.png"
+                                                                    <img src="{{this.avatar}}"
                                                                         class="rounded-circle avatar-xs" alt="">
                                                                     <span class=""></span>
                                                                 </div>
@@ -1033,7 +1033,7 @@
                                                                         <i
                                                                             class="fal fa-ban float-end text-muted"></i></a>
                                                                     <a class="dropdown-item"
-                                                                        onclick="removeFriend('{{this._id}}')">Xoá
+                                                                        onclick="deleteFriend('{{this._id}}')">Xoá
                                                                         <i
                                                                             class="fal fa-trash-alt float-end text-muted"></i></a>
                                                                 </div>
@@ -2219,8 +2219,8 @@
 
                     <div class="row g-0" id="input-chat">
 
-                        <div class="col" id="write-chat">
-                            <input style="display: none" type="text" placeholder="Nhập tin nhắn" id="write-chat-">
+                        <div class="col" id="text-chat">
+                            <input style="display: none" type="text" placeholder="Nhập tin nhắn" id="text-chat-">
                         </div>
                         <div class="col-auto">
                             <div class="chat-input-links ms-md-2 me-md-0">

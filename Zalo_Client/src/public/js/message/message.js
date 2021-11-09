@@ -256,11 +256,11 @@ function insertIdForVideoCall(id) {
 
 //Thêm thẻ input nhập tin nhắn
 function insertInput(id, isChatGroup) {
-  $('#write-chat').html('');
-  $(`<input type="text" style="display: none" id="write-chat-${id}">`).appendTo(
-    $('#write-chat')
+  $('#text-chat').html('');
+  $(`<input type="text" style="display: none" id="text-chat-${id}">`).appendTo(
+    $('#text-chat')
   );
-  enableEmojioneArea(id, isChatGroup);
+  enableEmoji(id, isChatGroup);
 }
 
 //Thêm thẻ input file
@@ -319,7 +319,7 @@ function rightConversationText(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item" onclick="deleteTextAndEmoji('${
+                        <a class="dropdown-item" onclick="deleteText('${
                           message._id
                         }')"
                             href="javascript:void(0)">Thu hồi
@@ -404,11 +404,11 @@ function rightConversationImage(user, message) {
                         <li class="list-inline-item message-img-list me-2 ms-0">
                             <div>
                                 <a class="popup-img d-inline-block m-1"
-                                    href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                    href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                       message.fileName
                                     }"
                                     title="Project 1">
-                                    <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                       message.fileName
                                     }" alt=""
                                         class="rounded border">
@@ -417,7 +417,7 @@ function rightConversationImage(user, message) {
                             <div class="message-img-link">
                                 <ul class="list-inline mb-0">
                                     <li class="list-inline-item">
-                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                           message.fileName
                                         }">
                                             <i class="fal fa-download"></i>
@@ -521,11 +521,11 @@ function leftConversationImage(user, message) {
                          <li class="list-inline-item message-img-list">
                              <div>
                                  <a class="popup-img d-inline-block m-1"
-                                     href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                     href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                        message.fileName
                                      }"
                                      title="Project 2">
-                                     <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                        message.fileName
                                      }" alt=""
                                          class="rounded border">
@@ -534,7 +534,7 @@ function leftConversationImage(user, message) {
                              <div class="message-img-link">
                                  <ul class="list-inline mb-0">
                                      <li class="list-inline-item">
-                                         <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                         <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                            message.fileName
                                          }">
                                              <i class="fal fa-download"></i>
@@ -657,7 +657,7 @@ function rightConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                           message.fileName
                                         }"
                                             class="text-muted">
@@ -776,7 +776,7 @@ function leftConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
                                           message.fileName
                                         }"
                                             class="text-muted">

@@ -1,43 +1,31 @@
 const chatGroupService = require('../services/chatGroupService');
 class GroupController {
     async createGroup(req, res) {
-        try {
-            let groupName = req.body.groupName;
-            let listId = req.body.idUser;
-            let currentUserId = req.user.data.user._id;
-            const newGroup = await chatGroupService.createGroup(groupName, listId, currentUserId);
-            return res.status(200).send({
-                group: newGroup
-            });
-        } catch (error) {
-            return res.status(500).send(error);
-        }
+        let groupName = req.body.groupName;
+        let listId = req.body.idUser;
+        let currentUserId = req.user.data.user._id;
+        const newGroup = await chatGroupService.createGroup(groupName, listId, currentUserId);
+        return res.send({
+            group: newGroup
+        });
     }
 
     async addUserToGroup(req, res) {
-        try {
-            let listId = req.body.idUser;
-            let groupId = req.body.groupId;
-            const group = await chatGroupService.addUserToGroup(groupId, listId);
-            return res.status(200).send({
-                group: group
-            });
-        } catch (error) {
-            return res.status(500).send(error);
-        }
+        let listId = req.body.idUser;
+        let groupId = req.body.groupId;
+        const group = await chatGroupService.addUserToGroup(groupId, listId);
+        return res.send({
+            group: group
+        });
     }
 
     async deleteGroup(req, res) {
-        try {
-            let groupId = req.body.groupId;
-            let currentUserId = req.user.data.user._id;
-            const group = await chatGroupService.deleteGroup(groupId, currentUserId);
-            return res.status(200).send({
-                success: !!group
-            });
-        } catch (error) {
-            return res.status(500).send(error);
-        }
+        let groupId = req.body.groupId;
+        let currentUserId = req.user.data.user._id;
+        const group = await chatGroupService.deleteGroup(groupId, currentUserId);
+        return res.send({
+            success: !!group
+        });
     }
 }
 module.exports = new GroupController();

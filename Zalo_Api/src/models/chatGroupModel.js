@@ -9,6 +9,10 @@ const ChatGroup= new Schema({
     members: [
         {userId: String}
     ],
+    avatar: {
+        type: String,
+        default: "https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-alt/512/Group-icon.png",
+      },
     createdAt: {type: Number, default: Date.now},
     updatedAt: {type: Number, default: Date.now},
     deletedAt: {type: Number, default: null}

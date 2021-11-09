@@ -46,7 +46,7 @@ function showBtnAddAndRemove(receiverId) {
     if (data.contact !== null && data.contact.status === false) {
       $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
       $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
-      removeRequestContact();
+      deleteRequestContact();
     }
     if (data.contact === null) {
       $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide();

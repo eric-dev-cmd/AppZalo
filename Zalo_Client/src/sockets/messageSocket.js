@@ -6,7 +6,7 @@ const {
 const messageService = require('../services/messageService');
 const message = require('../utils/message');
 class MessageSocket {
-  addNewTextAndEmoji(io) {
+  addNewText(io) {
     /**
      * đối tượng clients gồm key và value
      * key: id của người dùng đang đăng nhập mỗi khi load trang
@@ -83,7 +83,7 @@ class MessageSocket {
     });
   }
 
-  deleteTextAndEmoji(io) {
+  deleteText(io) {
     let clients = {};
     io.on('connection', (socket) => {
       let sender = socket.request.user.data.user;

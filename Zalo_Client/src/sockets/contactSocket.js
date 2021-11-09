@@ -40,7 +40,7 @@ class ContactSocket {
         });
     }
 
-    removeRequestContact(io) {
+    deleteRequestContact(io) {
         let clients = {};
         io.on('connection', (socket) => {
             let senderId = socket.request.user.data.user._id;
@@ -59,7 +59,7 @@ class ContactSocket {
         });
     }
 
-    removeRequestContactReceiver(io) {
+    deleteRequestContactReceiver(io) {
         let clients = {};
         io.on('connection', (socket) => {
             let receiverId = socket.request.user.data.user._id;
@@ -99,7 +99,7 @@ class ContactSocket {
         });
     }
 
-    removeFriend(io) {
+    deleteFriend(io) {
         let clients = {};
         io.on('connection', (socket) => {
             let senderId = socket.request.user.data.user._id;

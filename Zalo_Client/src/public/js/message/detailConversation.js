@@ -70,13 +70,13 @@ function renderListImage(message) {
     <li class="list-inline-item message-img-list">
         <div>
             <a class="popup-img d-inline-block m-1" href="./assets/img-2.jpg" title="Project 2">
-                <img src="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}" width="150" class="rounded border">
+                <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${message.fileName}" width="150" class="rounded border">
             </a>
         </div>
         <div class="message-img-link">
             <ul class="list-inline mb-0">
                 <li class="list-inline-item">
-                    <a href="https://appchat-2021.s3.ap-southeast-1.amazonaws.com/${message.fileName}">
+                    <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${message.fileName}">
                         <i class="fal fa-download"></i>
                     </a>
                 </li>

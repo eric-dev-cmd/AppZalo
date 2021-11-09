@@ -75,7 +75,7 @@ function contact(user) {
                     href="javascript:void(0)">Block
                     <i
                         class="fal fa-ban float-end text-muted"></i></a>
-                <a class="dropdown-item" onclick="removeFriend('${user._id}')">Remove
+                <a class="dropdown-item" onclick="deleteFriend('${user._id}')">Remove
                     <i
                         class="fal fa-trash-alt float-end text-muted"></i></a>
             </div>

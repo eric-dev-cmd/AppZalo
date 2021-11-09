@@ -1,5 +1,5 @@
 //xóa bạn bè( từ html)
-function removeFriend(id) {
+function deleteFriend(id) {
     $.ajax({
         url: '/contact/remove',
         type: 'delete',

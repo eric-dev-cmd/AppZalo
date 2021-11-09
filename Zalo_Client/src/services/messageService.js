@@ -125,7 +125,7 @@ class MessageService {
     });
   }
 
-  addNewTextAndEmoji(senderId, receiverId, messageVal, isChatGroup) {
+  addNewText(senderId, receiverId, messageVal, isChatGroup) {
     return new Promise(async (resolve, reject) => {
       try {
         if (isChatGroup === 'true' && messageVal.length > 0) {
@@ -357,7 +357,7 @@ class MessageService {
     });
   }
 
-  deleteTextAndEmoji(messageId) {
+  deleteText(messageId) {
     return new Promise(async (resolve, reject) => {
       await axios.delete(http + '/messages/' + messageId)
         .then(resolve(true))

@@ -1,8 +1,8 @@
 //từ html
-async function deleteTextAndEmoji(id) {
+async function deleteText(id) {
     let message = await $.get(http + `/messages/${id}`);
     $.ajax({
-        url: '/message/deleteTextAndEmoji',
+        url: '/message/deleteText',
         type: 'delete',
         data: {
             messageId: id

@@ -18,7 +18,7 @@ function addNewContact() {
           if (data.success) {
             $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
             $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
-            removeRequestContact(receiverId);
+            deleteRequestContact(receiverId);
             socket.emit('add-new-contact', {
               receiverId: receiverId,
             });
@@ -61,7 +61,7 @@ socket.on('response-add-new-contact', function (user) {
   </li>`;
     $('#notification-contact').prepend(notification);
     sumOfNotificationInc();
-    removeRequestContactReceiver();
+    deleteRequestContactReceiver();
     acceptRequestContact();
   });
 

@@ -1,5 +1,5 @@
-function enableEmojioneArea(id, isChatGroup) {
-  $(`#write-chat-${id}`).emojioneArea({
+function enableEmoji(id, isChatGroup) {
+  $(`#text-chat-${id}`).emojioneArea({
     standalone: false,
     placeholder: 'Nhập tin nhắn...',
     search: false,
@@ -7,21 +7,21 @@ function enableEmojioneArea(id, isChatGroup) {
     filtersPosition: 'bottom',
     inline: true,
     events: {
-      keyup: function (editor, event) {
-        $(`#write-chat-${id}`).val(this.getText());
+      keyup: function () {
+        $(`#text-chat-${id}`).val(this.getText());
       },
       click: function () {
-        textAndEmojiChat(id, isChatGroup);
+        textChat(id, isChatGroup);
       },
     },
   });
 }
 
-function textAndEmojiChat(id, isChatGroup) {
+function textChat(id, isChatGroup) {
   $('.emojionearea')
     .unbind('keyup')
     .on('keyup', function (element) {
-      let messageVal = $(`#write-chat-${id}`).val();
+      let messageVal = $(`#text-chat-${id}`).val();
       if (messageVal.length > 0) {
         socket.emit('typing', {
           receiverId: id,
@@ -40,7 +40,7 @@ function textAndEmojiChat(id, isChatGroup) {
           messageVal: messageVal,
           isChatGroup: isChatGroup,
         };
-        addNewTextAndEmoji(dataTextAndEmoji, isChatGroup);
+        addNewText(dataTextAndEmoji, isChatGroup);
       }
     });
 }
@@ -85,8 +85,8 @@ function typing(receiver) {
 }
 
 //tạo mới tin nhắn của tài khoản người gửi
-function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
-  $.post('/message/addNewTextAndEmoji', dataTextAndEmoji, function (data) {
+function addNewText(dataTextAndEmoji, isChatGroup) {
+  $.post('/message/addNewText', dataTextAndEmoji, function (data) {
     let message = data;
     //lấy người gửi
     $.get(http + `/users/${message.senderId}`, function (data) {
@@ -96,7 +96,7 @@ function addNewTextAndEmoji(dataTextAndEmoji, isChatGroup) {
         rightConversationText(sender, message)
       );
       //thẻ input = rỗng
-      $(`#write-chat-${message.receiverId}`).val('');
+      $(`#text-chat-${message.receiverId}`).val('');
       $('.emojionearea-editor').text('');
       scrollMessageUserEnd();
       //tạo mới cuộc trò truyện trong danh sách trò truyện

@@ -1,5 +1,5 @@
 //xu ly huy yeu cau ket ban
-function removeRequestContact() {
+function deleteRequestContact() {
   $('#btn-cancel-friend').one('click', function (e) {
     var me = $(this);
     e.preventDefault();
