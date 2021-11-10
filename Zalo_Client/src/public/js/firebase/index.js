@@ -118,7 +118,7 @@ const onSignInSubmit = (e) => {
                   }, 500);
                   setTimeout(() => {
                     window.location.href = `/accounts/password/update?phone=${phoneNumberT}`;
-                  }, 2000);
+                  }, 1500);
                   // ...
                 })
                 .catch((error) => {
