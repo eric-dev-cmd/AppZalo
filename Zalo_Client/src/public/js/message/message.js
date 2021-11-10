@@ -61,7 +61,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -77,7 +77,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -89,7 +89,11 @@ async function showConversationGroup(id) {
       if (message.senderId === rightId) {
         $(`#conversation-${id}`).append(rightConversationFile(sender, message));
       }
-      if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
         $(`#conversation-${id}`).append(
           leftConversationFile(receiver, message)
         );
@@ -275,6 +279,7 @@ function insertInputFile(id, isChatGroup) {
 
 function renderTime(message) {
   let formatedTime = moment(message.createdAt).format('LT');
+  console.log();
   return formatedTime;
 }
 

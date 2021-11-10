@@ -11,6 +11,7 @@ class LoginController {
 
   getLogout(req, res) {
     req.logout();
+    req.flash('success', 'Đăng xuất thành công');
     return res.redirect('/login-register');
   }
 
@@ -53,11 +54,6 @@ class LoginController {
       console.log(newUser);
       req.flash('success', 'Tài khoản đăng ký thành công ');
       res.redirect('/login-register');
-    } else {
-      console.log('Failure');
-      res.render('updatepassword', {
-        error: 'Mật khẩu không trùng khớp 😮. Vui lòng nhập lại',
-      });
     }
   }
 }
