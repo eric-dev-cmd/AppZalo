@@ -1,4 +1,5 @@
 const Message = require('../models/messageModel');
+const sortJsonArray = require('sort-json-array');
 
 class MessagesController {
     getAPI(req, res, next) {
@@ -45,15 +46,32 @@ class MessagesController {
     }
 
     getAPIByReceiverId(req, res, next) {
-        Message.find({
-                'receiverId': req.params.receiverid
-            }).sort({
-                'createdAt': 1
-            }).exec()
-            .then(api => {
-                res.json(api);
-            })
-            .catch(next);
+        let limit = 10;
+        let startFrom = req.query.startFrom;
+        let start = Number(startFrom);
+        if (start > 0) {
+            Message.find({
+                    'receiverId': req.params.receiverid
+                }).sort({
+                    'createdAt': -1
+                })
+                .limit(limit).skip(start).exec()
+                .then(api => {
+                    res.json(sortJsonArray(api, 'createdAt', 'des'));
+                })
+                .catch(next);
+        } else {
+            Message.find({
+                    'receiverId': req.params.receiverid
+                }).sort({
+                    'createdAt': -1
+                })
+                .limit(limit).skip(start).exec()
+                .then(api => {
+                    res.json(sortJsonArray(api, 'createdAt', 'asc'));
+                })
+                .catch(next);
+        }
     }
 
     getAPIBySenderIdAndReceiverId(req, res, next) {
