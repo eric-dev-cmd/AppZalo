@@ -69,7 +69,6 @@ function loadDay() {
     case 2:
       // Lay gia tri Nam dang duoc chon trong ddlNam
       var gtNam = parseInt(Nam.value);
-      console.log(gtNam);
       // Thuat toan tinh nam nhuan
       if (gtNam % 4 == 0 && (gtNam % 100 != 0 || gtNam % 400 == 0)) {
         // La nam nhuan
@@ -128,9 +127,9 @@ function preview_image(event) {
     fileData = null;
     return false;
   }
-  if (fileData['size'] > 1048576) {
+  if (fileData['size'] > 10485760) {
     //1MB
-    alert('Kích cỡ file phải nhỏ hơn 1MB');
+    alert('Kích cỡ file phải nhỏ hơn 10MB');
     fileData = null;
     return false;
   } else {

@@ -152,8 +152,8 @@ async function showConversationUser(id) {
     http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`
   );
   //hiển thị avatar
-  $('#avatar-detail').attr('src', `/images/${receiver.user.avatar}`);
-  $('#avatar-conversation').attr('src', `/images/${receiver.user.avatar}`);
+  $('#avatar-detail').attr('src', `${s3}/${receiver.user.avatar}`);
+  $('#avatar-conversation').attr('src', `${s3}/${receiver.user.avatar}`);
   //hiển thị tên
   $('#name').html(`${receiver.user.userName}`);
   $('#name-conversation').html(`${receiver.user.userName}`);
@@ -289,7 +289,7 @@ function rightConversationText(user, message) {
   }" data-id="${user.user._id}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="images/${user.user.avatar}" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}" alt="">
         </div>
 
         <div class="user-chat-content">
@@ -347,7 +347,7 @@ function leftConversationText(user, message) {
   }"  data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="images/${user.user.avatar}"
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}"
                 alt="">
         </div>
 
@@ -398,7 +398,7 @@ function rightConversationImage(user, message) {
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="/images/${user.user.avatar}"
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}"
                 alt="">
         </div>
 
@@ -515,7 +515,7 @@ function leftConversationImage(user, message) {
   }" data-content="${message.text}" data-messageId="${message._id}">
      <div class="conversation-list">
          <div class="chat-avatar">
-             <img src="/images/${user.user.avatar}"
+             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}"
                  alt="">
          </div>
 
@@ -631,7 +631,7 @@ function rightConversationFile(user, message) {
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="/images/${user.user.avatar}" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}" alt="">
         </div>
 
         <div class="user-chat-content">
@@ -750,7 +750,7 @@ function leftConversationFile(user, message) {
   }" data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="/images/${user.user.avatar}" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}" alt="">
         </div>
 
         <div class="user-chat-content">
