@@ -30,6 +30,7 @@ function upload(files, uuid) {
                 return error;
             }
             return data;
+            
         });
     });
 }
