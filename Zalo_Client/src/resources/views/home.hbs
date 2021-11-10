@@ -893,8 +893,7 @@
                                                                 {{!-- avatar profile --}}
                                                             </div>
                                                             <img class="avatar-banner"
-                                                                src="https://cover-talk.zadn.vn/c/1/7/d/3/10e6b4db2255ee6bbf106de6f1261b69.jpg"
-                                                                alt="">
+                                                                src="https://cover.talk.zdn.vn/default" alt="">
                                                         </div>
 
                                                     </div>
@@ -905,9 +904,8 @@
                                                         </h3>
                                                         <p class="mb-0 py-2">This is my des</p>
                                                         <p class="mb-0 py-2">Mô tả</p>
-                                                        <span>
-                                                            <button class="btn btn-sm btn-outline-info"
-                                                                style="min-width: 120px;width: 26%;"
+                                                        <span id="id_profile">
+                                                            <button class="btn btn-sm btnCommon"
                                                                 id="btn-send-message">Nhắn tin</button>
                                                         </span>
 
@@ -1001,7 +999,7 @@
                                                 <ul class="list-unstyled contact-list" id="contact-list">
 
                                                     {{#each contacts}}
-                                                    <li data-uid='{{this._id}}'>
+                                                    <li id="contact-list-item" data-uid='{{this._id}}'>
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-1 d-flex align-items-center">
                                                                 <img src="/images/{{this.avatar}}"
@@ -1042,13 +1040,10 @@
                                                         </div>
                                                     </li>
                                                     {{/each }}
-
                                                 </ul>
                                                 {{!-- End --}}
                                             </div>
-
                                             <!-- end contact list A -->
-
                                         </div>
                                     </div>
                                 </div>
@@ -1162,17 +1157,15 @@
 
                         <h5 class="font-size-16 mb-1 text-truncate">{{user.userName}}</h5>
                         <div class="dropdown d-inline-block mb-1">
-                            <a class="text-muted dropdown-toggle pb-1 d-block"
-                                href="https://themesbrand.com/chatvia/layouts/dark.html#" role="button"
+                            <a class="text-muted dropdown-toggle pb-1 d-block" href="javascript:void(0)" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Có sẵn <i class="fal fa-angle-down"></i>
                             </a>
 
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="https://themesbrand.com/chatvia/layouts/dark.html#">Có
+                                <a class="dropdown-item" href="javascript:void(0)">Có
                                     sẵn</a>
-                                <a class="dropdown-item"
-                                    href="https://themesbrand.com/chatvia/layouts/dark.html#">Bận</a>
+                                <a class="dropdown-item" href="javascript:void(0)">Bận</a>
                             </div>
                         </div>
                     </div>
@@ -1257,13 +1250,13 @@
                                                                         </button>
                                                                         <div class="dropdown-menu dropdown-menu-end">
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Mọi
+                                                                                href="javascript:void(0)">Mọi
                                                                                 người</a>
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Đã
+                                                                                href="javascript:void(0)">Đã
                                                                                 chọn</a>
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Không
+                                                                                href="javascript:void(0)">Không
                                                                                 ai</a>
                                                                         </div>
                                                                     </div>
@@ -1303,13 +1296,13 @@
                                                                         </button>
                                                                         <div class="dropdown-menu dropdown-menu-end">
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Mọi
+                                                                                href="javascript:void(0)">Mọi
                                                                                 người</a>
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Đã
+                                                                                href="javascript:void(0)">Đã
                                                                                 chọn</a>
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Không
+                                                                                href="javascript:void(0)">Không
                                                                                 ai</a>
                                                                         </div>
                                                                     </div>
@@ -1351,13 +1344,13 @@
                                                                         </button>
                                                                         <div class="dropdown-menu dropdown-menu-end">
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Mọi
+                                                                                href="javascript:void(0)">Mọi
                                                                                 người</a>
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Đã
+                                                                                href="javascript:void(0)">Đã
                                                                                 chọn</a>
                                                                             <a class="dropdown-item"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#">Không
+                                                                                href="javascript:void(0)">Không
                                                                                 ai</a>
                                                                         </div>
                                                                     </div>
@@ -1404,7 +1397,7 @@
                                                         <button class="accordion-button collapsed" type="button"
                                                             data-bs-toggle="collapse" data-bs-target="#collapseFour"
                                                             aria-expanded="false" aria-controls="collapseFour">
-                                                            <h5 class="font-size-14 m-0"> Giúp</h5>
+                                                            <h5 class="font-size-14 m-0">Giúp</h5>
                                                         </button>
                                                     </div>
                                                     <div id="collapseFour" class="accordion-collapse collapse"
@@ -1412,17 +1405,17 @@
                                                         <div class="accordion-body">
                                                             <div class="py-3">
                                                                 <h5 class="font-size-13 mb-0"><a
-                                                                        href="https://themesbrand.com/chatvia/layouts/dark.html#"
+                                                                        href="javascript:void(0)"
                                                                         class="text-body d-block">FAQs</a></h5>
                                                             </div>
                                                             <div class="py-3 border-top">
                                                                 <h5 class="font-size-13 mb-0"><a
-                                                                        href="https://themesbrand.com/chatvia/layouts/dark.html#"
+                                                                        href="javascript:void(0)"
                                                                         class="text-body d-block">Liên hệ</a></h5>
                                                             </div>
                                                             <div class="py-3 border-top">
                                                                 <h5 class="font-size-13 mb-0"><a
-                                                                        href="https://themesbrand.com/chatvia/layouts/dark.html#"
+                                                                        href="javascript:void(0)"
                                                                         class="text-body d-block">Điều khoản &amp; Chính
                                                                         sách quyền riêng tư</a></h5>
                                                             </div>
@@ -1578,6 +1571,7 @@
                                                                                                         </div>
                                                                                                     </li>
                                                                                                     {{/each}}
+
                                                                                                 </ul>
                                                                                             </div>
                                                                                         </div>

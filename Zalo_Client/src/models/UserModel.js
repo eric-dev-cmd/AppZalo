@@ -22,7 +22,6 @@ const User = new Schema({
   },
   avatar: {
     type: String,
-    // default: 'https://i.stack.imgur.com/dr5qp.jpg',
     default: 'avatar-default.jpg',
   },
   role: {
@@ -37,20 +36,8 @@ const User = new Schema({
     password: {
       type: String,
       required: [true, 'Please provide a password'],
-      minlength: 8,
       select: false,
     },
-    // passwordConfirm: {
-    //   type: String,
-    //   required: [true, 'Please confirm your password'],
-    //   validate: {
-    //     // This only works on CREATE and SAVE!!!
-    //     validator: function (el) {
-    //       return el === this.password;
-    //     },
-    //     message: 'Passwords are not the same!',
-    //   },
-    // },
   },
   createAt: {
     type: Number,

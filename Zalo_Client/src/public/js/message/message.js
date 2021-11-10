@@ -53,7 +53,7 @@ async function showConversationGroup(id) {
       })
     );
     if (message.messageType === 'info') {
-        addInfo(group, message);
+      addInfo(group, message);
     }
     if (message.messageType === 'text') {
       if (message.senderId === rightId) {
@@ -61,7 +61,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -78,7 +78,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -91,7 +91,11 @@ async function showConversationGroup(id) {
       if (message.senderId === rightId) {
         $(`#conversation-${id}`).append(rightConversationFile(sender, message));
       }
-      if (message.senderId === $(`#left-conversation-${receiver.user._id}`).attr('data-id') && message.senderId !== currentUserId) {
+      if (
+        message.senderId ===
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        message.senderId !== currentUserId
+      ) {
         $(`#conversation-${id}`).append(
           leftConversationFile(receiver, message)
         );
@@ -115,7 +119,7 @@ async function showConversationGroup(id) {
 function addInfo(group, message) {
   // group.members.forEach(async member => {
   //   let user = await $.get(http + `/users/${member.userId}`);
-    $(`#conversation-${group._id}`).append(`
+  $(`#conversation-${group._id}`).append(`
         <li>
           <div class="chat-day-title">
             <span class="title">${message.text}</span>
@@ -274,6 +278,7 @@ function insertInputFile(id, isChatGroup) {
 
 function renderTime(message) {
   let formatedTime = moment(message.createdAt).format('LT');
+  console.log();
   return formatedTime;
 }
 
