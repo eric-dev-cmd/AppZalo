@@ -6,8 +6,8 @@
             <li class="nav-item btn-group dropend profile-user-dropdown">
                 <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" style="margin-top: 15px;">
-                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/{{user.avatar}}" alt="" class="profile-user rounded-circle"
-                        style="width: 100%; height: 100%">
+                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/{{user.avatar}}"
+                        alt="" class="profile-user rounded-circle" style="width: 100%; height: 100%">
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item d-flex align-items-center justify-content-between"
@@ -902,7 +902,6 @@
                                                             id="userName_profile">
                                                             {{!-- userNAme profile --}}
                                                         </h3>
-                                                        <p class="mb-0 py-2">This is my des</p>
                                                         <p class="mb-0 py-2">Mô tả</p>
                                                         <span id="id_profile">
                                                             <button class="btn btn-sm btnCommon"
@@ -996,12 +995,15 @@
                                                     data-sum="{{sumOfContact}}">
                                                     Bạn bè({{sumOfContact}})
                                                 </div>
-                                                <ul class="list-unstyled contact-list" id="contact-list">
+                                                <ul class="list-unstyled contact-list contact-list-name"
+                                                    id="contact-list">
 
                                                     {{#each contacts}}
-                                                    <li id="contact-list-item" data-uid='{{this._id}}'>
+                                                    <li id="contact-list-item" class="contact-list-item-cl"
+                                                        data-uid='{{this._id}}'
+                                                        onclick="showConversationUser('{{this._id}}')">
                                                         <div class="d-flex align-items-center">
-                                                            <div class="flex-1 d-flex align-items-center">
+                                                            <div class="flex-1 d-flex align-items-center contact-item">
                                                                 <img src="/images/{{this.avatar}}"
                                                                     class="rounded-circle avatar-xs me-3"
                                                                     alt="{{this.userName}}">
@@ -2552,7 +2554,8 @@
                                         width: 100%
                                         ">
                                     <div class="rel" style="text-align: center; margin: -47px 0px 0px;">
-                                        <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/{{user.avatar}}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
+                                        <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/{{user.avatar}}"
+                                            style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
                                             cursor: pointer; position: relative" id="avatar">
 
                                     </div>

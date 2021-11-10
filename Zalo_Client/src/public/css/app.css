@@ -1409,6 +1409,38 @@ input[readonly]
   opacity: 1;
   transition: 0.5s; }
 
+#seachByPhone {
+  width: 19%;
+  margin-left: 5px;
+  padding: 7px 0;
+  background: #800040;
+  color: white;
+  border: 1px solid #800040; }
+  #seachByPhone:hover {
+    background: #9c1458;
+    border-color: #9c1458; }
+
+#btnSeachPhone {
+  border: none;
+  color: #fff;
+  background-color: #7269ef;
+  border-color: #7269ef;
+  padding: 8px;
+  border-radius: 6px;
+  margin-left: 4px; }
+
+.btnCommon {
+  border: none !important;
+  background-color: #7269ef !important;
+  border-color: #7269ef !important;
+  padding: 8px;
+  border-radius: 6px;
+  margin-left: 4px;
+  min-width: 100px;
+  width: 26%;
+  min-height: 35px;
+  color: white !important; }
+
 .search-box {
   display: flex;
   align-items: center;
@@ -1532,34 +1564,8 @@ input[readonly]
 .mg-15 {
   margin: -15px; }
 
-#seachByPhone {
-  width: 19%;
-  margin-left: 5px;
-  padding: 7px 0;
-  background: #800040;
-  color: white;
-  border: 1px solid #800040; }
-  #seachByPhone:hover {
-    background: #9c1458;
-    border-color: #9c1458; }
+.contact-list-item-cl:hover {
+  background: #36404a; }
 
-#btnSeachPhone {
-  border: none;
-  color: #fff;
-  background-color: #7269ef;
-  border-color: #7269ef;
-  padding: 8px;
-  border-radius: 6px;
-  margin-left: 4px; }
-
-.btnCommon {
-  border: none !important;
-  background-color: #7269ef !important;
-  border-color: #7269ef !important;
-  padding: 8px;
-  border-radius: 6px;
-  margin-left: 4px;
-  min-width: 100px;
-  width: 26%;
-  min-height: 35px;
-  color: white !important; }
+.contact-list-item-cl.active {
+  background: #36404a; }

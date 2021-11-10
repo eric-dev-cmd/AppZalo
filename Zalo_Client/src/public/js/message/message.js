@@ -293,7 +293,9 @@ function rightConversationText(user, message) {
   }" data-id="${user.user._id}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+              user.user.avatar
+            }" alt="">
         </div>
 
         <div class="user-chat-content">
@@ -351,7 +353,9 @@ function leftConversationText(user, message) {
   }"  data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}"
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+              user.user.avatar
+            }"
                 alt="">
         </div>
 
@@ -402,7 +406,9 @@ function rightConversationImage(user, message) {
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}"
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+              user.user.avatar
+            }"
                 alt="">
         </div>
 
@@ -519,7 +525,9 @@ function leftConversationImage(user, message) {
   }" data-content="${message.text}" data-messageId="${message._id}">
      <div class="conversation-list">
          <div class="chat-avatar">
-             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}"
+             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+               user.user.avatar
+             }"
                  alt="">
          </div>
 
@@ -635,7 +643,9 @@ function rightConversationFile(user, message) {
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+              user.user.avatar
+            }" alt="">
         </div>
 
         <div class="user-chat-content">
@@ -754,7 +764,9 @@ function leftConversationFile(user, message) {
   }" data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${user.user.avatar}" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+              user.user.avatar
+            }" alt="">
         </div>
 
         <div class="user-chat-content">
@@ -865,7 +877,9 @@ function leftConversationFile(user, message) {
 
 function showActiveMessage() {
   const getChatUserItem = document.querySelectorAll('.chat-user-list-item');
+  // console.log(getChatUserItem);
   getChatUserItem.forEach((message, index) => {
+    // console.log(message);
     message.addEventListener('click', () => {
       $('.chat-user-list-item.active').removeClass('active');
       message.classList.add('active');
