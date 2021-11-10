@@ -51,8 +51,8 @@ function showChat() {
 
 $(document).ready(function () {
   searchPhone();
-  deleteRequestContactReceiver();
-  acceptRequestContact();
+  removeFriendRequestFromReceiver();
+  acceptFriendRequest();
   getAllConversation();
   showChat();
 });

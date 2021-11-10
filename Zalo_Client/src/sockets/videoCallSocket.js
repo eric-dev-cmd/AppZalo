@@ -1,14 +1,14 @@
 const {
-    pushSocketIdToArray,
-    emitEventToArray,
-    removeSocketIdFromArray
+    addSocketId,
+    sendEvent,
+    deleteSocketId
 } = require('../utils/socket')
 class videoCallSocket {
     videoCall(io) {
         let clients = {};
         io.on('connection', (socket) => {
             let senderId = socket.request.user.data.user._id;
-            clients = pushSocketIdToArray(clients, senderId, socket.id);
+            clients = addSocketId(clients, senderId, socket.id);
             socket.on('caller-check-listener-online', (data) => {
                 //online
                 if (clients[data.listenerId]) {
@@ -17,7 +17,7 @@ class videoCallSocket {
                         listenerId: data.listenerId,
                         callerName: data.callerName
                     }
-                    emitEventToArray(clients, data.listenerId, io, 'server-request-peer-id-of-listener', response);
+                    sendEvent(clients, data.listenerId, io, 'server-request-peerId-to-listener', response);
                 }
                 //offline 
                 else {
@@ -25,7 +25,7 @@ class videoCallSocket {
                 }
             });
 
-            socket.on('listener-emit-peer-id-to-server', (data) => {
+            socket.on('listener-emit-peerId-to-server', (data) => {
                 let response = {
                     callerId: data.callerId,
                     listenerId: data.listenerId,
@@ -34,7 +34,7 @@ class videoCallSocket {
                     listenerPeerId: data.listenerPeerId
                 }
                 if (clients[data.callerId]) {
-                    emitEventToArray(clients, data.callerId, io, 'server-send-peer-id-of-listener-to-caller', response);
+                    sendEvent(clients, data.callerId, io, 'server-send-peerId-of-listener-to-caller', response);
                 }
             });
 
@@ -47,7 +47,7 @@ class videoCallSocket {
                     listenerPeerId: data.listenerPeerId
                 }
                 if (clients[data.listenerId]) {
-                    emitEventToArray(clients, data.listenerId, io, 'server-send-request-call-to-listener', response);
+                    sendEvent(clients, data.listenerId, io, 'server-send-request-call-to-listener', response);
                 }
             });
 
@@ -60,11 +60,11 @@ class videoCallSocket {
                     listenerPeerId: data.listenerPeerId
                 }
                 if (clients[data.listenerId]) {
-                    emitEventToArray(clients, data.listenerId, io, 'server-send-cancel-request-call-to-listener', response);
+                    sendEvent(clients, data.listenerId, io, 'server-send-cancel-request-call-to-listener', response);
                 }
             });
 
-            socket.on('listener-reject-request-call-to-server', (data) => {
+            socket.on('listener-deny-request-call-to-server', (data) => {
                 let response = {
                     callerId: data.callerId,
                     listenerId: data.listenerId,
@@ -73,7 +73,7 @@ class videoCallSocket {
                     listenerPeerId: data.listenerPeerId
                 }
                 if (clients[data.callerId]) {
-                    emitEventToArray(clients, data.callerId, io, 'server-send-reject-call-to-caller', response);
+                    sendEvent(clients, data.callerId, io, 'server-send-deny-call-to-caller', response);
                 }
             });
 
@@ -86,17 +86,17 @@ class videoCallSocket {
                     listenerPeerId: data.listenerPeerId
                 }
                 if (clients[data.callerId]) {
-                    emitEventToArray(clients, data.callerId, io, 'server-send-accept-call-to-caller', response);
+                    sendEvent(clients, data.callerId, io, 'server-send-accept-call-to-caller', response);
                 }
                 if (clients[data.listenerId]) {
-                    emitEventToArray(clients, data.listenerId, io, 'server-send-accept-call-to-listener', response);
+                    sendEvent(clients, data.listenerId, io, 'server-send-accept-call-to-listener', response);
                 }
             });
 
 
             //xóa id socket mỗi khi socket disconnect
             socket.on('disconnect', () => {
-                clients = removeSocketIdFromArray(clients, senderId, socket);
+                clients = deleteSocketId(clients, senderId, socket);
             });
         });
     }

@@ -10,7 +10,7 @@ class ContactController {
         });
     }
 
-    async remove(req, res) {
+    async removeFriend(req, res) {
         const senderId = req.user.data.user._id;
         const receiverId = req.body.uid;
         const removeRequest = await contactService.remove(senderId, receiverId);
@@ -19,7 +19,7 @@ class ContactController {
         });
     }
 
-    async removeReceiver(req, res) {
+    async removeFriendRequestFromReceiver(req, res) {
         const receiverId = req.user.data.user._id;
         const senderId = req.body.uid;
         const removeRequest = await contactService.remove(senderId, receiverId);

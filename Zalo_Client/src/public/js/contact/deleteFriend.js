@@ -1,7 +1,7 @@
 //xóa bạn bè( từ html)
 function deleteFriend(id) {
     $.ajax({
-        url: '/contact/remove',
+        url: '/contact/removeFriend',
         type: 'delete',
         data: {
             uid: id
@@ -10,7 +10,7 @@ function deleteFriend(id) {
             if (data.success) {
                 $('#contact-list').find(`li[data-uid = ${id}]`).remove();
                 sumOfContactDes();
-                socket.emit('remove-friend', {
+                socket.emit('delete-friend', {
                     receiverId: id,
                 });
             }
@@ -18,7 +18,7 @@ function deleteFriend(id) {
     });
 }
 
-socket.on('response-remove-friend', function (user) {
+socket.on('response-delete-friend', function (user) {
     $('#contact-list').find(`li[data-uid = ${user.id}]`).remove();
     sumOfContactDes();
 });

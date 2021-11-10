@@ -3,9 +3,9 @@ const router = express.Router();
 const contactController = require('../controllers/ContactsControllers');
 const authController = require('../controllers/AuthController');
 
-router.post('/add-new', authController.checkLoggedIn, contactController.addNew);
-router.delete('/remove', authController.checkLoggedIn, contactController.remove);
-router.delete('/removeReceiver', authController.checkLoggedIn, contactController.removeReceiver);
+router.post('/addNewContact', authController.checkLoggedIn, contactController.addNew);
+router.delete('/removeFriend', authController.checkLoggedIn, contactController.removeFriend);
+router.delete('/removeFriendRequestFromReceiver', authController.checkLoggedIn, contactController.removeFriendRequestFromReceiver);
 router.put('/accept', authController.checkLoggedIn, contactController.accept);
 
 module.exports = router;

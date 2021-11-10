@@ -1,10 +1,10 @@
 //xu ly tu choi ket ban
-function deleteRequestContactReceiver() {
+function removeFriendRequestFromReceiver() {
     $('#btn-cancel-friend-receiver').on('click', function (e) {
         e.preventDefault();
         let senderId = $(this).data('uid');
         $.ajax({
-            url: '/contact/removeReceiver',
+            url: '/contact/removeFriendRequestFromReceiver',
             type: 'delete',
             data: {
                 uid: senderId,

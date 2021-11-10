@@ -35,7 +35,7 @@ function search(phone) {
   }
 }
 
-//xu ly btn-add-remove-friend
+//xu ly btn-add-delete-friend
 function showBtnAddAndRemove(receiverId) {
   const userId = document.getElementById('id').value;
   $.get(http + `/contacts/search/${userId}/${receiverId}`, function (data) {
@@ -46,7 +46,7 @@ function showBtnAddAndRemove(receiverId) {
     if (data.contact !== null && data.contact.status === false) {
       $('#btn-add-cancel-friend').find('#btn-add-friend').hide();
       $('#btn-add-cancel-friend').find('#btn-cancel-friend').css('display', 'inline-block');
-      deleteRequestContact();
+      removeFriendRequest();
     }
     if (data.contact === null) {
       $('#btn-add-cancel-friend').find('#btn-cancel-friend').hide();

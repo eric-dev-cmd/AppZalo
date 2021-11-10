@@ -1,7 +1,7 @@
 const {
-    pushSocketIdToArray,
-    emitEventToArray,
-    removeSocketIdFromArray
+    addSocketId,
+    sendEvent,
+    deleteSocketId
 } = require('../utils/socket')
 class ContactSocket {
     addNewContact(io) {
@@ -15,7 +15,7 @@ class ContactSocket {
         io.on('connection', (socket) => {
             let senderId = socket.request.user.data.user._id;
             //push socket id vào đối tượng client có key là senderId: {'senderId' = [socketid]}
-            clients = pushSocketIdToArray(clients, senderId, socket.id);
+            clients = addSocketId(clients, senderId, socket.id);
             /**
              * nếu đang đăng nhập => có sắn id của người dùng thì sẽ push id socket vào
              * ngược lại, lần đầu tiên đăng nhập thì sẽ tạo phần tử đầu tiên là id socket
@@ -30,50 +30,50 @@ class ContactSocket {
                 };
                 //gửi socket cho client
                 if (clients[data.receiverId]) {
-                    emitEventToArray(clients, data.receiverId, io, 'response-add-new-contact', currentUser);
+                    sendEvent(clients, data.receiverId, io, 'response-add-new-contact', currentUser);
                 };
             });
              //xóa id socket mỗi khi socket disconnect
             socket.on('disconnect', () => {
-                clients = removeSocketIdFromArray(clients,senderId, socket);
+                clients = deleteSocketId(clients,senderId, socket);
             });
         });
     }
 
-    deleteRequestContact(io) {
+    removeFriendRequest(io) {
         let clients = {};
         io.on('connection', (socket) => {
             let senderId = socket.request.user.data.user._id;
-            clients = pushSocketIdToArray(clients, senderId, socket.id);
+            clients = addSocketId(clients, senderId, socket.id);
             socket.on('remove-request-contact', (data) => {
                 let currentUser = {
                     id: senderId
                 };
                 if (clients[data.receiverId]) {
-                    emitEventToArray(clients, data.receiverId, io, 'response-remove-request-contact', currentUser);
+                    sendEvent(clients, data.receiverId, io, 'response-remove-request-contact', currentUser);
                 };
             });
             socket.on('disconnect', () => {
-                clients = removeSocketIdFromArray(clients,senderId, socket);
+                clients = deleteSocketId(clients,senderId, socket);
             });
         });
     }
 
-    deleteRequestContactReceiver(io) {
+    removeFriendRequestFromReceiver(io) {
         let clients = {};
         io.on('connection', (socket) => {
             let receiverId = socket.request.user.data.user._id;
-            clients = pushSocketIdToArray(clients, receiverId, socket.id);
+            clients = addSocketId(clients, receiverId, socket.id);
             socket.on('remove-request-contact-receiver', (data) => {
                 let currentUser = {
                     id: receiverId
                 }
                 if (clients[data.senderId]) {
-                    emitEventToArray(clients, data.senderId, io, 'response-remove-request-contact-receiver', currentUser);
+                    sendEvent(clients, data.senderId, io, 'response-remove-request-contact-receiver', currentUser);
                 }
             });
             socket.on('disconnect', () => {
-                clients = removeSocketIdFromArray(clients, receiverId, socket);
+                clients = deleteSocketId(clients, receiverId, socket);
             })
         });
     }
@@ -82,19 +82,19 @@ class ContactSocket {
         let clients = {};
         io.on('connection', (socket) => {
             let receiverId = socket.request.user.data.user._id;
-            clients = pushSocketIdToArray(clients, receiverId, socket.id);
-            socket.on('accept-contact', (data) => {
+            clients = addSocketId(clients, receiverId, socket.id);
+            socket.on('accept-Friend-Request', (data) => {
                 let currentUser = {
                     _id: receiverId,
                     userName: socket.request.user.data.user.userName,
                     avatar: socket.request.user.data.user.avatar 
                 };
                 if (clients[data.senderId]) {
-                    emitEventToArray(clients, data.senderId, io, 'response-accept-contact', currentUser);
+                    sendEvent(clients, data.senderId, io, 'response-accept-Friend-Request', currentUser);
                 };
             });
             socket.on('disconnect', () => {
-                clients = removeSocketIdFromArray(clients, receiverId, socket);
+                clients = deleteSocketId(clients, receiverId, socket);
             });
         });
     }
@@ -103,17 +103,17 @@ class ContactSocket {
         let clients = {};
         io.on('connection', (socket) => {
             let senderId = socket.request.user.data.user._id;
-            clients = pushSocketIdToArray(clients, senderId, socket.id);
-            socket.on('remove-friend', (data) => {
+            clients = addSocketId(clients, senderId, socket.id);
+            socket.on('delete-friend', (data) => {
                 let currentUser = {
                     id: senderId
                 };
                 if (clients[data.receiverId]) {
-                    emitEventToArray(clients, data.receiverId, io, 'response-remove-friend', currentUser);
+                    sendEvent(clients, data.receiverId, io, 'response-delete-friend', currentUser);
                 };
             });
             socket.on('disconnect', () => {
-                clients = removeSocketIdFromArray(clients,senderId, socket);
+                clients = deleteSocketId(clients,senderId, socket);
             });
         });
     }

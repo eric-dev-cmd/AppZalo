@@ -1,5 +1,5 @@
 //xu ly accept ket ban
-function acceptRequestContact() {
+function acceptFriendRequest() {
     $('#btn-accept-friend').on('click', function (e) {
         e.preventDefault();
         let senderId = $(this).data('uid');
@@ -20,7 +20,7 @@ function acceptRequestContact() {
                             $('#contact-list').prepend(contact(data.user));
                         }
                     });
-                    socket.emit('accept-contact', {
+                    socket.emit('accept-Friend-Request', {
                         senderId: senderId,
                     });
                 }
@@ -29,7 +29,7 @@ function acceptRequestContact() {
     });
 }
 
-socket.on('response-accept-contact', function (user) {
+socket.on('response-accept-Friend-Request', function (user) {
     sumOfContactInc();
     showBtnAddAndRemove(user._id);
     $('#contact-list').prepend(contact(user));

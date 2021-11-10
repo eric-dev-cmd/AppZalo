@@ -1,4 +1,4 @@
-let pushSocketIdToArray = (clients, userId, socketId) => {
+let addSocketId = (clients, userId, socketId) => {
     if (clients[userId]) {
         clients[userId].push(socketId);
     } else {
@@ -7,13 +7,13 @@ let pushSocketIdToArray = (clients, userId, socketId) => {
     return clients;
 }
 
-let emitEventToArray = (clients, userId, io, eventName, data) => {
+let sendEvent = (clients, userId, io, eventName, data) => {
     clients[userId].forEach(socketId => {
         return io.to(socketId).emit(eventName, data);
     });
 }
 
-let removeSocketIdFromArray = (clients, userId, socket) => {
+let deleteSocketId = (clients, userId, socket) => {
     clients[userId] = clients[userId].filter((socketId) => {
         return socketId !== socket.id;
     })
@@ -24,7 +24,7 @@ let removeSocketIdFromArray = (clients, userId, socket) => {
 }
 
 module.exports = {
-    pushSocketIdToArray,
-    emitEventToArray,
-    removeSocketIdFromArray
+    addSocketId,
+    sendEvent,
+    deleteSocketId
 }

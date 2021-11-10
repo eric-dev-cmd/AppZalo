@@ -23,7 +23,7 @@ $(document).ready(function () {
         getPeerId = peerId;
     });
     //03
-    socket.on('server-request-peer-id-of-listener', function (response) {
+    socket.on('server-request-peerId-to-listener', function (response) {
         let dataToEmit = {
             callerId: response.callerId,
             listenerId: response.listenerId,
@@ -32,10 +32,10 @@ $(document).ready(function () {
             listenerPeerId: getPeerId
         }
         //04
-        socket.emit('listener-emit-peer-id-to-server', dataToEmit);
+        socket.emit('listener-emit-peerId-to-server', dataToEmit);
     });
     //05
-    socket.on('server-send-peer-id-of-listener-to-caller', function (response) {
+    socket.on('server-send-peerId-of-listener-to-caller', function (response) {
         let dataToEmit = {
             callerId: response.callerId,
             listenerId: response.listenerId,
@@ -90,7 +90,7 @@ async function showModalOfCaller(dataToEmit) {
         },
         didOpen: () => {
             //12
-            socket.on('server-send-reject-call-to-caller', function (response) {
+            socket.on('server-send-deny-call-to-caller', function (response) {
                 Swal.close();
                 clearInterval(timerInterval);
                 Swal.fire({
@@ -163,7 +163,7 @@ async function showModalOfListener(dataToEmit) {
             <br/><br/>
             Cuộc gọi video đến
             <br/><br/>
-            <button type="button" class="btn btn-danger avatar-sm rounded-circle" id="btn-reject-call">
+            <button type="button" class="btn btn-danger avatar-sm rounded-circle" id="btn-deny-call">
                 <span class="avatar-title bg-transparent font-size-20">
                     <i class="fal fa-times"></i> 
                 </span>
@@ -179,11 +179,11 @@ async function showModalOfListener(dataToEmit) {
         allowOutsideClick: false,
         willOpen: (ele) => {
             $(ele).find('button.swal2-confirm.swal2-styled').hide();
-            $('#btn-reject-call').off('click').on('click', function () {
+            $('#btn-deny-call').off('click').on('click', function () {
                 Swal.close();
                 clearInterval(timerInterval);
                 //10
-                socket.emit('listener-reject-request-call-to-server', dataToEmit);
+                socket.emit('listener-deny-request-call-to-server', dataToEmit);
             });
             $('#btn-accept-call').off('click').on('click', function () {
                 Swal.close();
@@ -234,7 +234,7 @@ function showModalVideoListener(dataToEmit) {
         willOpen: (ele) => {
             $(ele).find('button.swal2-confirm.swal2-styled').hide();
             $('#btn-cancel-called').off('click').on('click', function () {
-                socket.emit('listener-reject-request-call-to-server', dataToEmit);
+                socket.emit('listener-deny-request-call-to-server', dataToEmit);
                 stopVideo();
                 Swal.close();
             });

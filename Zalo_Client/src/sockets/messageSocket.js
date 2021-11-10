@@ -1,7 +1,7 @@
 const {
-  pushSocketIdToArray,
-  emitEventToArray,
-  removeSocketIdFromArray,
+  addSocketId,
+  sendEvent,
+  deleteSocketId,
 } = require('../utils/socket');
 const messageService = require('../services/messageService');
 const message = require('../utils/message');
@@ -17,14 +17,14 @@ class MessageSocket {
     io.on('connection', (socket) => {
       let sender = socket.request.user.data.user;
       //thêm socketid vào đối tượng clients vào người dùng đăng nhập
-      clients = pushSocketIdToArray(clients, sender._id, socket.id);
+      clients = addSocketId(clients, sender._id, socket.id);
       //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
       sender.chatGroupIds.forEach((groupId) => {
-        clients = pushSocketIdToArray(clients, groupId, socket.id);
+        clients = addSocketId(clients, groupId, socket.id);
       });
 
       //lắng nghe socket từ client gửi
-      socket.on('add-new-text-emoji', (data) => {
+      socket.on('add-new-text', (data) => {
         let respone = {
           message: data.message,
           isChatGroup: data.isChatGroup,
@@ -32,14 +32,14 @@ class MessageSocket {
         //gửi socket đến cho client
         //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.message.receiverId]) {
-          emitEventToArray(clients, data.message.receiverId, io, 'response-add-new-text-emoji', respone);
+          sendEvent(clients, data.message.receiverId, io, 'response-add-new-text', respone);
         }
       });
       //xóa id socket mỗi khi socket disconnect
       socket.on('disconnect', () => {
-        clients = removeSocketIdFromArray(clients, sender._id, socket);
+        clients = deleteSocketId(clients, sender._id, socket);
         sender.chatGroupIds.forEach((groupId) => {
-          clients = removeSocketIdFromArray(clients, groupId, socket);
+          clients = deleteSocketId(clients, groupId, socket);
         });
       });
     });
@@ -56,10 +56,10 @@ class MessageSocket {
     io.on('connection', (socket) => {
       let sender = socket.request.user.data.user;
       //thêm socketid vào đối tượng clients vào người dùng đăng nhập
-      clients = pushSocketIdToArray(clients, sender._id, socket.id);
+      clients = addSocketId(clients, sender._id, socket.id);
       //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
       sender.chatGroupIds.forEach((groupId) => {
-        clients = pushSocketIdToArray(clients, groupId, socket.id);
+        clients = addSocketId(clients, groupId, socket.id);
       });
       //lắng nghe socket từ client gửi
       socket.on('add-new-file', (data) => {
@@ -70,14 +70,14 @@ class MessageSocket {
         //gửi socket đến cho client
         //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.messages[0].receiverId]) {
-          emitEventToArray(clients, data.messages[0].receiverId, io, 'response-add-new-file', response);
+          sendEvent(clients, data.messages[0].receiverId, io, 'response-add-new-file', response);
         }
       });
       //xóa id socket mỗi khi socket disconnect
       socket.on('disconnect', () => {
-        clients = removeSocketIdFromArray(clients, sender._id, socket);
+        clients = deleteSocketId(clients, sender._id, socket);
         sender.chatGroupIds.forEach((groupId) => {
-          clients = removeSocketIdFromArray(clients, groupId, socket);
+          clients = deleteSocketId(clients, groupId, socket);
         });
       });
     });
@@ -87,32 +87,32 @@ class MessageSocket {
     let clients = {};
     io.on('connection', (socket) => {
       let sender = socket.request.user.data.user;
-      clients = pushSocketIdToArray(clients, sender._id, socket.id);
+      clients = addSocketId(clients, sender._id, socket.id);
       sender.chatGroupIds.forEach((groupId) => {
-        clients = pushSocketIdToArray(clients, groupId, socket.id);
+        clients = addSocketId(clients, groupId, socket.id);
       });
       //lắng nghe socket từ client gửi
-      socket.on('delete-text-emoji', (data) => {
+      socket.on('delete-text', (data) => {
         let respone = {
           message: data.message,
         };
         //gửi socket đến cho client
         //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.message.receiverId]) {
-          emitEventToArray(
+          sendEvent(
             clients,
             data.message.receiverId,
             io,
-            'response-delete-text-emoji',
+            'response-delete-text',
             respone
           );
         }
       });
       //xóa id socket mỗi khi socket disconnect
       socket.on('disconnect', () => {
-        clients = removeSocketIdFromArray(clients, sender._id, socket);
+        clients = deleteSocketId(clients, sender._id, socket);
         sender.chatGroupIds.forEach((groupId) => {
-          clients = removeSocketIdFromArray(clients, groupId, socket.id);
+          clients = deleteSocketId(clients, groupId, socket.id);
         });
       });
     });
@@ -123,7 +123,7 @@ class MessageSocket {
     io.on('connection', (socket) => {
       let sender = socket.request.user.data.user;
       //thêm socketid vào đối tượng clients vào người dùng đăng nhập
-      clients = pushSocketIdToArray(clients, sender._id, socket.id);
+      clients = addSocketId(clients, sender._id, socket.id);
       //lắng nghe socket từ client gửi
       socket.on('typing', (data) => {
         let response = {
@@ -133,12 +133,12 @@ class MessageSocket {
         //gửi socket đến cho client
         //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.receiverId]) {
-          emitEventToArray(clients, data.receiverId, io, 'response-typing', response);
+          sendEvent(clients, data.receiverId, io, 'response-typing', response);
         }
       });
       //xóa id socket mỗi khi socket disconnect
       socket.on('disconnect', () => {
-        clients = removeSocketIdFromArray(clients, sender._id, socket);
+        clients = deleteSocketId(clients, sender._id, socket);
       });
     });
   }
@@ -148,14 +148,14 @@ class MessageSocket {
     io.on('connection', (socket) => {
       let sender = socket.request.user.data.user;
       //thêm socketid vào đối tượng clients vào người dùng đăng nhập
-      clients = pushSocketIdToArray(clients, sender._id, socket.id);
+      clients = addSocketId(clients, sender._id, socket.id);
       //gửi socket đến cho client
       //nếu đang đăng nhập thì gửi đi cho gửi nhận tin nhắn
       socket.on('get-conversations', async function () {
         let getAllConversation = await messageService.getListItemContacts(sender._id);
         let allConversation = getAllConversation.allConversationMessages;
         if (clients[sender._id]) {
-          emitEventToArray(clients, sender._id, io, 'response-conversations', allConversation);
+          sendEvent(clients, sender._id, io, 'response-conversations', allConversation);
         }
       });
 
@@ -163,13 +163,13 @@ class MessageSocket {
         let getAllConversation = await messageService.getListItemContacts(sender._id);
         let allConversation = getAllConversation.allConversationMessages;
         if (clients[sender._id]) {
-          emitEventToArray(clients, sender._id, io, 'response-update-time', allConversation);
+          sendEvent(clients, sender._id, io, 'response-update-time', allConversation);
         }
       }, 50000);
 
       //xóa id socket mỗi khi socket disconnect
       socket.on('disconnect', () => {
-        clients = removeSocketIdFromArray(clients, sender._id, socket);
+        clients = deleteSocketId(clients, sender._id, socket);
       });
     });
   }

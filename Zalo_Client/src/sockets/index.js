@@ -6,8 +6,8 @@ const groupSocket = require('./groupSocket');
 
 function initSockets(io) {
     contactSocket.addNewContact(io);
-    contactSocket.deleteRequestContact(io);
-    contactSocket.deleteRequestContactReceiver(io);
+    contactSocket.removeFriendRequest(io);
+    contactSocket.removeFriendRequestFromReceiver(io);
     contactSocket.acceptContact(io);
     contactSocket.deleteFriend(io);
 

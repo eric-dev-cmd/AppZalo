@@ -113,7 +113,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
         .find(`li[data-updated = ${receiverUpdated}]`)
         .remove();
       //gửi socket từ client đến server
-      socket.emit('add-new-text-emoji', {
+      socket.emit('add-new-text', {
         message: message,
         isChatGroup: isChatGroup,
       });
@@ -124,7 +124,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
 }
 
 //lắng nghe socket từ server đến client
-socket.on('response-add-new-text-emoji', async function (data) {
+socket.on('response-add-new-text', async function (data) {
   let message = data.message;
   // lấy id người dùng hiện tại
   let currentUserId = document.getElementById('id').value;

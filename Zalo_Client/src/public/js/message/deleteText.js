@@ -24,7 +24,7 @@ async function deleteText(id) {
                         });
                 }
 
-                socket.emit('delete-text-emoji', {
+                socket.emit('delete-text', {
                     message: message,
                 });
             }
@@ -32,7 +32,7 @@ async function deleteText(id) {
     });
 }
 
-socket.on('response-delete-text-emoji', async function (data) {
+socket.on('response-delete-text', async function (data) {
     let message = data.message;
     let currentUserId = document.getElementById('id').value;
     if (message.chatType === 'group' && currentUserId !== message.senderId) {

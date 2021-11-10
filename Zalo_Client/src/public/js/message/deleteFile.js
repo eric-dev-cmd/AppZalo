@@ -23,7 +23,7 @@ async function deleteFile(id) {
                             $(`#receiver-${message.receiverId}`).find('#last-message-conversation').text(getLastEndMessageInConversation(messages));
                         });
                 }
-                socket.emit('delete-text-emoji', {
+                socket.emit('delete-text', {
                     message: message,
                 });
                 
@@ -32,7 +32,7 @@ async function deleteFile(id) {
     });
 }
 
-socket.on('response-delete-text-emoji', async function (data) {
+socket.on('response-delete-text', async function (data) {
     
     let message = data.message;
     let currentUserId = document.getElementById('id').value;

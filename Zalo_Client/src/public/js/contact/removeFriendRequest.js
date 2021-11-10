@@ -1,5 +1,5 @@
 //xu ly huy yeu cau ket ban
-function deleteRequestContact() {
+function removeFriendRequest() {
   $('#btn-cancel-friend').one('click', function (e) {
     var me = $(this);
     e.preventDefault();
@@ -9,7 +9,7 @@ function deleteRequestContact() {
     me.data('requestRunning', true);
     var receiverId = $('#btn-add-friend').attr('data-uid');
     $.ajax({
-      url: '/contact/remove',
+      url: '/contact/removeFriend',
       type: 'delete',
       data: {
         uid: receiverId,
