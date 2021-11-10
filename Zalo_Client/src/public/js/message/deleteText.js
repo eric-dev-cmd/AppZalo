@@ -18,7 +18,7 @@ async function deleteText(id) {
                             $(`#receiver-${message.receiverId}`).find('#last-message-conversation').text(getLastEndMessageInConversation(messages));
                         });
                 } else {
-                    $.get(http + `/messages/SearchBySenderIdAndReceiverId/${message.senderId}/${message.receiverId}`)
+                    $.get(http + `/messages/SearchBySenderIdAndReceiverId/${message.senderId}/${message.receiverId}?startFrom=0`)
                         .then(function (messages) {
                             $(`#receiver-${message.receiverId}`).find('#last-message-conversation').text(getLastEndMessageInConversation(messages));
                         });
@@ -44,7 +44,7 @@ socket.on('response-delete-text', async function (data) {
     }
     if (message.chatType === 'personal') {
         $(`#conversation-${message.senderId}`).find(`li[data-messageId = ${message._id}]`).remove();
-        let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${message.senderId}/${message.receiverId}`)
+        let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${message.senderId}/${message.receiverId}?startFrom=0`)
         $(`#receiver-${message.senderId}`).find('#last-message-conversation').text(getLastEndMessageInConversation(messages));
     }
 });

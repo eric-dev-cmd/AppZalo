@@ -76,7 +76,7 @@ class MessageService {
                 conversation.messageType = lastMessGroup.messageType;
               }
             } else {
-              let getMessages = await axios.get(http + '/messages/SearchBySenderIdAndReceiverId/' + senderId + '/' + conversation._id);
+              let getMessages = await axios.get(http + '/messages/SearchBySenderIdAndReceiverId/' + senderId + '/' + conversation._id + '?startFrom=0');
               conversation.messages = getMessages.data;
               let lastUser = Object.keys(conversation.messages).pop();
               if (lastUser) {

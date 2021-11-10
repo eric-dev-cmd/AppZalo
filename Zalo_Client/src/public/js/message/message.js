@@ -113,7 +113,8 @@ async function showConversationGroup(id) {
   showIconAddUserToGroup(id);
   showBtnDeleteOrLeaveGroup(id);
   showActiveMessage();
-  loadMessageForGroup(id);
+  var startFrom = 0;
+  loadMessageForGroup(id, startFrom);
 }
 
 function addInfo(group, message) {
@@ -144,13 +145,13 @@ function showIconAddUserToGroup(id) {
 
 //hiển thị tin nhắn cá nhân
 async function showConversationUser(id) {
-  
+
   // $('#conversation-list').find(`li[id = receiver-${id}]`).css('color', '#abb4d2');
   let currentUserId = document.getElementById('id').value;
   let receiver = await $.get(http + `/users/${id}`);
   let sender = await $.get(http + `/users/${currentUserId}`);
   let messages = await $.get(
-    http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`
+    http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}?startFrom=0`
   );
   //hiển thị avatar
   $('#avatar-detail').attr('src', `${s3}/${receiver.user.avatar}`);
@@ -218,6 +219,8 @@ async function showConversationUser(id) {
   $('#list-tools').find(`li[id=icon-add-user-to-group]`).remove();
   showActiveMessage();
   deleteConversation(id);
+  var startFrom = 0;
+  loadMessageForPresonal(id, startFrom);
 }
 
 function showSearchMessage(id, isChatGroup) {

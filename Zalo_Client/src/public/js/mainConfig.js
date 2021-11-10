@@ -3,7 +3,7 @@ const http = `http://localhost:4000`;
 //các cuộc trò truyện
 let conversations;
 const s3 = 'https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com'
-var startFrom = 0;
+
 
 // cập nhật thời gian tin nhắn đã gửi của ds cuộc trò truyện
 socket.on('response-update-time', function (data) {

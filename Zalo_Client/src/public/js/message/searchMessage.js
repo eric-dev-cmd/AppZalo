@@ -2,11 +2,11 @@ function searchMessage(id, isChatGroup) {
     $('#search-message').off('keyup').on('keyup', async function () {
         let content = $('#search-message').val();
         if (isChatGroup == true) {
-            let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
+            let messages = await $.get(http + `/messages/SearchByReceiverId/${id}?startFrom=0`);
             searchMessageConversation(id, messages, content);
         } else {
             let currentUserId = document.getElementById('id').value;
-            let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`);
+            let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}?startFrom=0`);
             searchMessageConversation(id, messages, content);
         }
     });

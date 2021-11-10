@@ -3,7 +3,7 @@ async function deleteConversation(id) {
     $('#leave-group').hide();
     $('#delete-group').hide();
     let currentUserId = document.getElementById('id').value;
-    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}`);
+    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}?startFrom=0`);
     $('#delete-conversation').off('click').on('click', function () {
         $.ajax({
             url: '/message/deleteConversation',

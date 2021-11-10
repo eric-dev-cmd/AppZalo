@@ -112,7 +112,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
         .find(`li[data-updated = ${receiverUpdated}]`)
         .remove();
       //gửi socket từ client đến server
-      socket.emit('add-new-text-emoji', {
+      socket.emit('add-new-text', {
         message: message,
         isChatGroup: isChatGroup,
       });
@@ -123,7 +123,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
 }
 
 //lắng nghe socket từ server đến client
-socket.on('response-add-new-text-emoji', async function (data) {
+socket.on('response-add-new-text', async function (data) {
   let message = data.message;
   // lấy id người dùng hiện tại
   let currentUserId = document.getElementById('id').value;
@@ -140,7 +140,6 @@ socket.on('response-add-new-text-emoji', async function (data) {
       result
     ) {
       $('#conversation-list').prepend(result);
-      getAllConversation();
       //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
     });
 
@@ -182,7 +181,7 @@ async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    let messages = await $.get(http +`/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
+    let messages = await $.get(http +`/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}?startFrom=0`);
     return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
       receiver.user._id
     }')" id="receiver-${receiver.user._id}" 

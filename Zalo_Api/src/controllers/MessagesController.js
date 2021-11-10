@@ -75,7 +75,11 @@ class MessagesController {
     }
 
     getAPIBySenderIdAndReceiverId(req, res, next) {
-        Message.find({
+        let limit = 10;
+        let startFrom = req.query.startFrom;
+        let start = Number(startFrom);
+        if (start > 0) {
+            Message.find({
                 '$or': [{
                         '$and': [{
                                 'senderId': req.params.senderid
@@ -96,12 +100,43 @@ class MessagesController {
                     }
                 ]
             }).sort({
-                'createdAt': 1
-            }).exec()
+                'createdAt': -1
+            }).limit(limit).skip(start).exec()
             .then(api => {
-                res.json(api);
+                res.json((sortJsonArray(api, 'createdAt', 'des')));
             })
             .catch(next);
+        }
+        else{
+            Message.find({
+                '$or': [{
+                        '$and': [{
+                                'senderId': req.params.senderid
+                            },
+                            {
+                                'receiverId': req.params.receiverid
+                            }
+                        ]
+                    },
+                    {
+                        '$and': [{
+                                'senderId': req.params.receiverid
+                            },
+                            {
+                                'receiverId': req.params.senderid
+                            }
+                        ]
+                    }
+                ]
+            }).sort({
+                'createdAt': -1
+            }).limit(limit).skip(start).exec()
+            .then(api => {
+                res.json((sortJsonArray(api, 'createdAt', 'asc')));
+            })
+            .catch(next);
+        }
+        
     }
 
     postAPI(req, res, next) {
