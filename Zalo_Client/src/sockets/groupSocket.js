@@ -18,8 +18,7 @@ class groupSocket {
             socket.on('create-group', (data) => {
                 clients = addSocketId(clients, data.group._id, socket.id);
                 let response = {
-                    group: data.group,
-                    userId: data.userId
+                    group: data.group
                 };
                 let members = data.group.members.filter(member => member.userId != sender._id);
                 members.forEach(members => {
@@ -29,6 +28,12 @@ class groupSocket {
                     }
                 });
             });
+
+            //lắng nghe socket từ client gửi
+            socket.on('members-get-socketId', (data) => {
+                clients = addSocketId(clients, data.group._id, socket.id);
+            });
+
             //xóa id socket mỗi khi socket disconnect
             socket.on('disconnect', () => {
                 clients = deleteSocketId(clients, sender._id, socket);
@@ -116,7 +121,7 @@ class groupSocket {
             //lắng nghe socket từ client gửi
             socket.on('leave-group', (data) => {
                 let response = {
-                    groupId: data.group._id,
+                    group: data.group
                 };
                 let members = data.group.members.filter(member => member.userId != sender._id);
                 members.forEach(members => {

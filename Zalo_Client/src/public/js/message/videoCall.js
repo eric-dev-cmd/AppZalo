@@ -64,7 +64,7 @@ async function showModalOfCaller(dataToEmit) {
     let listener = await $.get(http + `/users/${dataToEmit.listenerId}`);
     let timerInterval
     Swal.fire({
-        title: `<img src="/images/${listener.user.avatar}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
+        title: `<img src="${s3}/${listener.user.avatar}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
         cursor: pointer; position: relative">`,
         html: `
             ${dataToEmit.listenerName}
@@ -156,7 +156,7 @@ async function showModalOfListener(dataToEmit) {
     let caller = await $.get(http + `/users/${dataToEmit.callerId}`);
     let timerInterval
     Swal.fire({
-        title: `<img src="/images/${caller.user.avatar}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
+        title: `<img src="${s3}/${caller.user.avatar}" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover;
         cursor: pointer; position: relative">`,
         html: `
             ${dataToEmit.callerName}

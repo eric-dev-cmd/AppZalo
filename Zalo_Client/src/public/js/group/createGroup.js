@@ -13,7 +13,6 @@ $('#btn-create-group').unbind('click').on('click', function () {
             let isChatGroup = true;
             $('#addgroup-exampleModal').modal('hide');
             $('.chat-user-list-item.active').removeClass('active');
-            $('#conversation-list').find(`li[id=receiver-${group._id}]`).remove();
             addConversation(group._id, isChatGroup)
                 .then(function (result) {
                     $('#conversation-list').prepend(result);
@@ -21,8 +20,7 @@ $('#btn-create-group').unbind('click').on('click', function () {
                 });
             messageCreateGroup(group, currentUserId);
             socket.emit('create-group', {
-                group: group,
-                userId: currentUserId
+                group: group
             });
         },
     });
@@ -31,10 +29,11 @@ $('#btn-create-group').unbind('click').on('click', function () {
 socket.on('response-create-group', function (data) {
     let group = data.group;
     let isChatGroup = true;
-    addConversation(group._id)
+    addConversation(group._id, isChatGroup)
         .then(function (result) {
             $('#conversation-list').prepend(result);
         });
+    socket.emit('members-get-socketId', {group: group});
 });
 
 $('#seach-user-add-group').off('keyup').on('keyup', async function (e) {
@@ -74,7 +73,7 @@ function getUser(user) {
                 type="checkbox"
                 class="form-check-input"
                 id="${user.user._id}" value="${user.user._id}" name="idUser">
-                <img src="/images/${user.user.avatar}" class="rounded-circle avatar-xs" alt="">
+                <img src="${s3}/${user.user.avatar}" class="rounded-circle avatar-xs" alt="">
             <label
                 class="form-check-label"
                 for="${user.user._id}">${user.user.userName}</label>

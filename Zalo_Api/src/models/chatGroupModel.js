@@ -11,7 +11,7 @@ const ChatGroup= new Schema({
     ],
     avatar: {
         type: String,
-        default: "https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-alt/512/Group-icon.png",
+        default: "group-avatar.png",
       },
     createdAt: {type: Number, default: Date.now},
     updatedAt: {type: Number, default: Date.now},

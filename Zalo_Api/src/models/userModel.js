@@ -21,8 +21,8 @@ const User = new Schema({
   },
   avatar: {
     type: String,
-    default: "https://i.stack.imgur.com/dr5qp.jpg",
-    // default: "avatar-default.jpg",
+    //default: "https://i.stack.imgur.com/dr5qp.jpg",
+     default: "user-avatar.png",
   },
   role: {
     type: String,

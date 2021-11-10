@@ -6,7 +6,7 @@ const route = require('./src/routes/index');
 const passport = require('passport');
 const connectFlash = require('connect-flash');
 const dotenv = require('dotenv')
-const port = process.env.PORT || 4002;
+const port = 4002;
 const db = require('./src/config/db');
 const session = require('./src/config/session');
 const upload = require('express-fileupload');
@@ -25,6 +25,7 @@ const AWS = require('aws-sdk');
 const app = express();
 
 events.EventEmitter.defaultMaxListeners = 25;
+
 //init server with socket.io and http
 const server = http.createServer(app);
 const io = socketIo(server);

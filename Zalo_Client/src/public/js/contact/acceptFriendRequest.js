@@ -47,7 +47,7 @@ function contact(user) {
     let contact = `<li data-uid = '${user._id}'
     <div class="d-flex align-items-center">
         <div class="flex-1 d-flex align-items-center">
-            <img src="/images/${user.avatar}"
+            <img src="${s3}/${user.avatar}"
                 class="rounded-circle avatar-xs me-3"
                 alt="${user.userName}">
             <h5 class="font-size-14 m-0">${user.userName}</h5>

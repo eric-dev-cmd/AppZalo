@@ -26,8 +26,8 @@ async function showConversationGroup(id) {
   // lấy tin nhắn theo id nhóm
   let messages = await $.get(http + `/messages/SearchByReceiverId/${id}?startFrom=0`);
   //hiển thị avatar
-  $('#avatar-detail').attr('src', `/images/${sender.user.avatar}`);
-  $('#avatar-conversation').attr('src', `/images/${sender.user.avatar}`);
+  $('#avatar-detail').attr('src', `${s3}/${group.avatar}`);
+  $('#avatar-conversation').attr('src', `${s3}/${group.avatar}`);
   //hiển thị tên nhóm
   $('#name').html(`${group.name}`);
   $('#name-conversation').html(`${group.name}`);
@@ -68,6 +68,7 @@ async function showConversationGroup(id) {
           leftConversationText(receiver, message)
         );
       }
+
     }
     if (message.messageType === 'image') {
       if (message.senderId === rightId) {

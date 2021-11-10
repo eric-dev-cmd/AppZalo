@@ -59,7 +59,7 @@ function typing(receiver) {
   return `<li id="typing">
   <div class="conversation-list">
       <div class="chat-avatar">
-          <img src="/images/${receiver.user.avatar}"
+          <img src="${s3}/${receiver.user.avatar}"
               alt="">
       </div>
 
@@ -101,8 +101,8 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
       //tạo mới cuộc trò truyện trong danh sách trò truyện
       addConversation(message.receiverId, isChatGroup).then(function (result) {
         $('#conversation-list').prepend(result);
-        getAllConversation();
       });
+      scrollMessageUserEnd();
       // lấy data-updated từ danh sách cuộc trò truyện
       let receiverUpdated = $(`#receiver-${message.receiverId}`).attr(
         'data-updated'
@@ -135,10 +135,10 @@ socket.on('response-add-new-text', async function (data) {
     $(`#conversation-${message.receiverId}`).append(
       leftConversationText(receiver, message)
     );
+    scrollMessageUserEnd();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
-    addConversation(message.receiverId, data.isChatGroup).then(function (
-      result
-    ) {
+    addConversation(message.receiverId, data.isChatGroup)
+    .then(function (result) {
       $('#conversation-list').prepend(result);
       //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
     });
@@ -157,12 +157,11 @@ socket.on('response-add-new-text', async function (data) {
     $(`#conversation-${message.senderId}`).append(
       leftConversationText(receiver, message)
     );
-    scrollMessageUserEnd();
     $(`#conversation-${message.senderId}`).find('#typing').remove();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
-      getAllConversation();
+      scrollMessageUserEnd();
       //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
     });
     // lấy data-updated từ danh sách cuộc trò truyện
@@ -192,7 +191,7 @@ async function addConversation(receiverId, isChatGroup) {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="/images/${receiver.user.avatar}"
+                    <img src="${s3}/${receiver.user.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>
@@ -223,7 +222,7 @@ async function addConversation(receiverId, isChatGroup) {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="/images/avatar-group.png"
+                    <img src="${s3}/${this.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>

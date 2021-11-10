@@ -8,9 +8,9 @@ function messageCreateGroup(group) {
             messageType: 'info',
             isChatGroup: true,
         };
-        $.post('/message/addInfoMessage', message, function (data) {
-            let message = data;
-        });
+        // $.post('/message/addInfoMessage', message, function (data) {
+        //     let message = data;
+        // });
     })
 }
 

@@ -34,7 +34,7 @@ groupConversation.addEventListener('click', () => {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="/images/avatar-group.png"
+                    <img src="${s3}/${__this.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>
@@ -77,7 +77,7 @@ personalConversation.addEventListener('click', () => {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="/images/${__this.avatar}"
+                    <img src="${s3}/${__this.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>
@@ -115,7 +115,7 @@ allConversation.addEventListener('click', () => {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="/images/avatar-group.png"
+                    <img src="${s3}/${__this.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>
@@ -147,7 +147,7 @@ allConversation.addEventListener('click', () => {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="/images/${__this.avatar}"
+                    <img src="${s3}/${__this.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>

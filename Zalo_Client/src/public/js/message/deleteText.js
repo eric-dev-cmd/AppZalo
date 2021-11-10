@@ -39,7 +39,7 @@ socket.on('response-delete-text', async function (data) {
         //xóa li của người gửi theo cuộc trò truyện
         $(`#conversation-${message.receiverId}`).find(`li[data-messageId = ${message._id}]`).remove();
         //cập nhật lại tin nhắn cuối cùng trong cuộc trò truyện
-        let messages = await $.get(http + `/messages/SearchByReceiverId/${message.receiverId}`);
+        let messages = await $.get(http + `/messages/SearchByReceiverId/${message.receiverId}?startFrom=0`);
         $(`#receiver-${message.receiverId}`).find('#last-message-conversation').text(getLastEndMessageInConversation(messages));
     }
     if (message.chatType === 'personal') {

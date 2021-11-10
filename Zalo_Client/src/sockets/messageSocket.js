@@ -23,6 +23,15 @@ class MessageSocket {
         clients = addSocketId(clients, groupId, socket.id);
       });
 
+      //khi tạo nhóm mới => thêm socketid của nhóm
+      socket.on('create-group', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
+      });
+
+      socket.on('members-get-socketId', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
+      });
+
       //lắng nghe socket từ client gửi
       socket.on('add-new-text', (data) => {
         let respone = {
@@ -61,6 +70,15 @@ class MessageSocket {
       sender.chatGroupIds.forEach((groupId) => {
         clients = addSocketId(clients, groupId, socket.id);
       });
+
+      socket.on('create-group', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
+      });
+
+      socket.on('members-get-socketId', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
+      });
+
       //lắng nghe socket từ client gửi
       socket.on('add-new-file', (data) => {
         let response = {
@@ -90,6 +108,13 @@ class MessageSocket {
       clients = addSocketId(clients, sender._id, socket.id);
       sender.chatGroupIds.forEach((groupId) => {
         clients = addSocketId(clients, groupId, socket.id);
+      });
+      socket.on('create-group', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
+      });
+
+      socket.on('members-get-socketId', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
       });
       //lắng nghe socket từ client gửi
       socket.on('delete-text', (data) => {
@@ -149,6 +174,13 @@ class MessageSocket {
       let sender = socket.request.user.data.user;
       //thêm socketid vào đối tượng clients vào người dùng đăng nhập
       clients = addSocketId(clients, sender._id, socket.id);
+      socket.on('create-group', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
+      });
+
+      socket.on('members-get-socketId', (data) => {
+        clients = addSocketId(clients, data.group._id, socket.id);
+      });
       //gửi socket đến cho client
       //nếu đang đăng nhập thì gửi đi cho gửi nhận tin nhắn
       socket.on('get-conversations', async function () {

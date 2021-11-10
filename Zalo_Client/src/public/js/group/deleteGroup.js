@@ -33,13 +33,15 @@ async function showBtnDeleteOrLeaveGroup(id) {
                     groupId: id
                 },
                 success: function (data) {
-                    if (data.success) {
-                        $('#conversation-list').find(`li[id=receiver-${id}]`).remove();
-                        getAllConversation();
-                        socket.emit('leave-group', {
-                            group: group
+                    $('#conversation-list').find(`li[id=receiver-${id}]`).remove();
+                    getAllConversation();
+                    fetch(http + `/chatGroups/${id}`)
+                        .then(response => response.json())
+                        .then(group => {
+                            socket.emit('leave-group', {
+                                group: group
+                            });
                         });
-                    }
                 }
             });
         });
@@ -50,15 +52,17 @@ socket.on('response-delete-group', function (data) {
     let groupId = data.groupId;
     $('#conversation-list').find(`li[id=receiver-${groupId}]`).remove();
     getAllConversation();
-    
+
 })
 
 socket.on('response-leave-group', function (data) {
-    let groupId = data.groupId;
+    let group = data.group;
     let isChatGroup = true;
-    $('#conversation-list').find(`li[id=receiver-${groupId}]`).remove();
-    addConversation(groupId, isChatGroup)
+    $('#conversation-list').find(`li[id=receiver-${group._id}]`).remove();
+    addConversation(group._id, isChatGroup)
         .then(function (result) {
             $('#conversation-list').prepend(result);
         });
+    insertIdUserOnline(group);
+    showUser(group._id);
 });

@@ -24,7 +24,7 @@ class GroupController {
         let currentUserId = req.user.data.user._id;
         const group = await chatGroupService.deleteGroup(groupId, currentUserId);
         return res.send({
-            success: !!group
+            group: group
         });
     }
 }
