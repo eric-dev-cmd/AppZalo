@@ -7,7 +7,7 @@ function removeFriendRequestFromReceiver() {
             url: '/contact/removeFriendRequestFromReceiver',
             type: 'delete',
             data: {
-                uid: senderId,
+                userId: senderId,
             },
             success: function (data) {
                 if (data.success) {

@@ -4,7 +4,7 @@ function deleteFriend(id) {
         url: '/contact/removeFriend',
         type: 'delete',
         data: {
-            uid: id
+            userId: id
         },
         success: function (data) {
             if (data.success) {

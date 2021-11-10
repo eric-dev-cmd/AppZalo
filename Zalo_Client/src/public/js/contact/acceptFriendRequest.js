@@ -1,13 +1,13 @@
 //xu ly accept ket ban
 function acceptFriendRequest() {
-    $('#btn-accept-friend').on('click', function (e) {
+    $('#btn-accept-friend').off('click').on('click', function (e) {
         e.preventDefault();
         let senderId = $(this).data('uid');
         $.ajax({
             url: '/contact/accept',
             type: 'put',
             data: {
-                uid: senderId,
+                userId: senderId,
             },
             success: function (data) {
                 if (data.success) {

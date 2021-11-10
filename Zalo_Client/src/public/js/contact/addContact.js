@@ -2,7 +2,7 @@
 function addNewContact() {
   $('#btn-add-friend').off('click').on('click', function (e) {
     let receiverId = $('#btn-add-friend').attr('data-uid');
-    let id = {uid: receiverId};
+    let id = {userId: receiverId};
     $.post('/contact/addNewContact', id, function (data) {
       if (data.success) {
         $('#btn-add-cancel-friend').find('#btn-add-friend').hide();

@@ -1,18 +1,12 @@
 //xu ly huy yeu cau ket ban
 function removeFriendRequest() {
   $('#btn-cancel-friend').one('click', function (e) {
-    var me = $(this);
-    e.preventDefault();
-    if (me.data('requestRunning')) {
-      return;
-    }
-    me.data('requestRunning', true);
     var receiverId = $('#btn-add-friend').attr('data-uid');
     $.ajax({
       url: '/contact/removeFriend',
       type: 'delete',
       data: {
-        uid: receiverId,
+        userId: receiverId,
       },
       success: function (data) {
         if (data.success) {
@@ -23,9 +17,6 @@ function removeFriendRequest() {
             receiverId: receiverId,
           });
         }
-      },
-      complete: function () {
-        me.data('requestRunning', false);
       },
     });
   });
