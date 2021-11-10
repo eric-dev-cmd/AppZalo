@@ -61,7 +61,7 @@ class MessageService {
             // tìm kiếm messages theo senderId và (receiverId hoặc groupId)
             if (conversation.members) {
               let getMessages = await axios.get(
-                http + '/messages/SearchByReceiverId/' + conversation._id
+                http + '/messages/SearchByReceiverId/' + conversation._id + "?startFrom=0"
               );
               conversation.messages = getMessages.data;
               // Get item last          

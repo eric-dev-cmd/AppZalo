@@ -24,7 +24,7 @@ async function showConversationGroup(id) {
   let currentUserId = document.getElementById('id').value;
   let sender = await $.get(http + `/users/${currentUserId}`);
   // lấy tin nhắn theo id nhóm
-  let messages = await $.get(http + `/messages/SearchByReceiverId/${id}`);
+  let messages = await $.get(http + `/messages/SearchByReceiverId/${id}?startFrom=0`);
   //hiển thị avatar
   $('#avatar-detail').attr('src', `/images/${sender.user.avatar}`);
   $('#avatar-conversation').attr('src', `/images/${sender.user.avatar}`);
@@ -53,7 +53,7 @@ async function showConversationGroup(id) {
       })
     );
     if (message.messageType === 'info') {
-        addInfo(group, message);
+      addInfo(group, message);
     }
     if (message.messageType === 'text') {
       if (message.senderId === rightId) {
@@ -68,7 +68,6 @@ async function showConversationGroup(id) {
           leftConversationText(receiver, message)
         );
       }
-      scrollMessageGroupEnd();
     }
     if (message.messageType === 'image') {
       if (message.senderId === rightId) {
@@ -85,7 +84,6 @@ async function showConversationGroup(id) {
           leftConversationImage(receiver, message)
         );
       }
-      scrollMessageGroupEnd();
     }
     if (message.messageType === 'file') {
       if (message.senderId === rightId) {
@@ -96,10 +94,11 @@ async function showConversationGroup(id) {
           leftConversationFile(receiver, message)
         );
       }
-      scrollMessageGroupEnd();
     }
     $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
+    scrollMessageUserEnd();
   });
+  
   detailConversation(messages);
   //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
   insertInput(id, true);
@@ -110,12 +109,13 @@ async function showConversationGroup(id) {
   showIconAddUserToGroup(id);
   showBtnDeleteOrLeaveGroup(id);
   showActiveMessage();
+  loadMessageForGroup(id);
 }
 
 function addInfo(group, message) {
   // group.members.forEach(async member => {
   //   let user = await $.get(http + `/users/${member.userId}`);
-    $(`#conversation-${group._id}`).append(`
+  $(`#conversation-${group._id}`).append(`
         <li>
           <div class="chat-day-title">
             <span class="title">${message.text}</span>
@@ -140,6 +140,7 @@ function showIconAddUserToGroup(id) {
 
 //hiển thị tin nhắn cá nhân
 async function showConversationUser(id) {
+  
   // $('#conversation-list').find(`li[id = receiver-${id}]`).css('color', '#abb4d2');
   let currentUserId = document.getElementById('id').value;
   let receiver = await $.get(http + `/users/${id}`);

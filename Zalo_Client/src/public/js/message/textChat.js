@@ -98,7 +98,6 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
       //thẻ input = rỗng
       $(`#text-chat-${message.receiverId}`).val('');
       $('.emojionearea-editor').text('');
-      scrollMessageUserEnd();
       //tạo mới cuộc trò truyện trong danh sách trò truyện
       addConversation(message.receiverId, isChatGroup).then(function (result) {
         $('#conversation-list').prepend(result);
@@ -113,7 +112,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
         .find(`li[data-updated = ${receiverUpdated}]`)
         .remove();
       //gửi socket từ client đến server
-      socket.emit('add-new-text', {
+      socket.emit('add-new-text-emoji', {
         message: message,
         isChatGroup: isChatGroup,
       });
@@ -124,7 +123,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
 }
 
 //lắng nghe socket từ server đến client
-socket.on('response-add-new-text', async function (data) {
+socket.on('response-add-new-text-emoji', async function (data) {
   let message = data.message;
   // lấy id người dùng hiện tại
   let currentUserId = document.getElementById('id').value;
@@ -136,7 +135,6 @@ socket.on('response-add-new-text', async function (data) {
     $(`#conversation-${message.receiverId}`).append(
       leftConversationText(receiver, message)
     );
-    scrollMessageUserEnd();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.receiverId, data.isChatGroup).then(function (
       result
@@ -218,7 +216,7 @@ async function addConversation(receiverId, isChatGroup) {
   if (isChatGroup === true || isChatGroup === 'true') {
     let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
     // lấy tin nhắn theo id nhóm
-    let messages = await $.get(http + `/messages/SearchByReceiverId/${groupReceiver._id}`);
+    let messages = await $.get(http + `/messages/SearchByReceiverId/${groupReceiver._id}?startFrom=0`);
     return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${groupReceiver._id}')" 
     id="receiver-${groupReceiver._id}" data-updated="${groupReceiver.updatedAt}" 
     data-name="${groupReceiver.name}">

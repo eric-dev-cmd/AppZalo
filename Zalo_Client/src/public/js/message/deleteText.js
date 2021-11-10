@@ -13,7 +13,7 @@ async function deleteText(id) {
                 $(`#conversation-${message.receiverId}`).find(`li[data-messageId = ${message._id}]`).remove();
                 //cập nhật lại tin nhắn cuối cùng trong cuộc trò truyện
                 if (message.chatType === 'group') {
-                    $.get(http + `/messages/SearchByReceiverId/${message.receiverId}`)
+                    $.get(http + `/messages/SearchByReceiverId/${message.receiverId}?startFrom=0`)
                         .then(function (messages) {
                             $(`#receiver-${message.receiverId}`).find('#last-message-conversation').text(getLastEndMessageInConversation(messages));
                         });
