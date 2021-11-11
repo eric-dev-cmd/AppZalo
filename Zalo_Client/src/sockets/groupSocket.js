@@ -7,8 +7,9 @@ class groupSocket {
     createGroup(io) {
         let clients = {};
         io.on('connection', (socket) => {
-            let sender = socket.request.user.data.user;
-            //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+            // let sender = socket.request.user.data.user;
+            let cookie = decodeURIComponent(socket.request.headers.cookie);
+            let sender = JSON.parse(cookie.split('userCookie=')[1]);
             clients = addSocketId(clients, sender._id, socket.id);
             //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
             sender.chatGroupIds.forEach((groupId) => {
@@ -47,8 +48,9 @@ class groupSocket {
     addUserToGroup(io) {
         let clients = {};
         io.on('connection', (socket) => {
-            let sender = socket.request.user.data.user;
-            //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+            //let sender = socket.request.user.data.user;
+            let cookie = decodeURIComponent(socket.request.headers.cookie);
+            let sender = JSON.parse(cookie.split('userCookie=')[1]);
             clients = addSocketId(clients, sender._id, socket.id);
             //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
             sender.chatGroupIds.forEach((groupId) => {
@@ -82,13 +84,24 @@ class groupSocket {
     deleteGroup(io) {
         let clients = {};
         io.on('connection', (socket) => {
-            let sender = socket.request.user.data.user;
-            //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+            //let sender = socket.request.user.data.user;
+            let cookie = decodeURIComponent(socket.request.headers.cookie);
+            let sender = JSON.parse(cookie.split('userCookie=')[1]);
             clients = addSocketId(clients, sender._id, socket.id);
             //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
             sender.chatGroupIds.forEach((groupId) => {
                 clients = addSocketId(clients, groupId, socket.id);
             });
+
+            //khi tạo nhóm mới => thêm socketid của nhóm
+            socket.on('create-group', (data) => {
+                clients = addSocketId(clients, data.group._id, socket.id);
+            });
+
+            socket.on('members-get-socketId', (data) => {
+                clients = addSocketId(clients, data.group._id, socket.id);
+            });
+
             //lắng nghe socket từ client gửi
             socket.on('delete-group', (data) => {
                 let response = {
@@ -111,8 +124,8 @@ class groupSocket {
     leaveGroup(io) {
         let clients = {};
         io.on('connection', (socket) => {
-            let sender = socket.request.user.data.user;
-            //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+            let cookie = decodeURIComponent(socket.request.headers.cookie);
+            let sender = JSON.parse(cookie.split('userCookie=')[1]);
             clients = addSocketId(clients, sender._id, socket.id);
             //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
             sender.chatGroupIds.forEach((groupId) => {

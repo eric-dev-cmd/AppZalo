@@ -5,6 +5,9 @@ const {
 } = require('../utils/socket');
 const messageService = require('../services/messageService');
 const message = require('../utils/message');
+const axios = require('axios');
+const http = require('../controllers/http');
+
 class MessageSocket {
   addNewText(io) {
     /**
@@ -15,9 +18,11 @@ class MessageSocket {
      */
     let clients = {};
     io.on('connection', (socket) => {
-      let sender = socket.request.user.data.user;
-      //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+      //let sender = socket.request.user.data.user;
+      let cookie = decodeURIComponent(socket.request.headers.cookie);
+      let sender = JSON.parse(cookie.split('userCookie=')[1]);
       clients = addSocketId(clients, sender._id, socket.id);
+
       //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
       sender.chatGroupIds.forEach((groupId) => {
         clients = addSocketId(clients, groupId, socket.id);
@@ -63,8 +68,9 @@ class MessageSocket {
      */
     let clients = {};
     io.on('connection', (socket) => {
-      let sender = socket.request.user.data.user;
-      //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+      //let sender = socket.request.user.data.user;
+      let cookie = decodeURIComponent(socket.request.headers.cookie);
+      let sender = JSON.parse(cookie.split('userCookie=')[1]);
       clients = addSocketId(clients, sender._id, socket.id);
       //thêm socketid vào đối tượng clients vào nhóm của người đăng nhập
       sender.chatGroupIds.forEach((groupId) => {
@@ -104,8 +110,12 @@ class MessageSocket {
   deleteText(io) {
     let clients = {};
     io.on('connection', (socket) => {
-      let sender = socket.request.user.data.user;
+      // let sender = socket.request.user.data.user;
+
+      let cookie = decodeURIComponent(socket.request.headers.cookie);
+      let sender = JSON.parse(cookie.split('userCookie=')[1]);
       clients = addSocketId(clients, sender._id, socket.id);
+
       sender.chatGroupIds.forEach((groupId) => {
         clients = addSocketId(clients, groupId, socket.id);
       });
@@ -145,18 +155,19 @@ class MessageSocket {
 
   typing(io) {
     let clients = {};
-    io.on('connection', (socket) => {
-      let sender = socket.request.user.data.user;
+    io.on('connection', async (socket) => {
+      //let sender = socket.request.user.data.user;
       //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+
+      let cookie = decodeURIComponent(socket.request.headers.cookie);
+      let sender = JSON.parse(cookie.split('userCookie=')[1]);
       clients = addSocketId(clients, sender._id, socket.id);
-      //lắng nghe socket từ client gửi
+
       socket.on('typing', (data) => {
         let response = {
           receiverId: sender._id,
           typing: data.typing,
         };
-        //gửi socket đến cho client
-        //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
         if (clients[data.receiverId]) {
           sendEvent(clients, data.receiverId, io, 'response-typing', response);
         }
@@ -171,9 +182,12 @@ class MessageSocket {
   updateTime(io) {
     let clients = {};
     io.on('connection', (socket) => {
-      let sender = socket.request.user.data.user;
-      //thêm socketid vào đối tượng clients vào người dùng đăng nhập
+      //let sender = socket.request.user.data.user;
+
+      let cookie = decodeURIComponent(socket.request.headers.cookie);
+      let sender = JSON.parse(cookie.split('userCookie=')[1]);
       clients = addSocketId(clients, sender._id, socket.id);
+
       socket.on('create-group', (data) => {
         clients = addSocketId(clients, data.group._id, socket.id);
       });

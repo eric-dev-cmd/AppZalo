@@ -6,6 +6,8 @@ const sortJsonArray = require('sort-json-array');
 class HomeController {
   async index(req, res) {
     res.locals.message = req.flash('success');
+    let user =req.user.data.user;
+    res.cookie('userCookie', JSON.stringify(user));
     let notifications = await notificationService.getNotifications(req.user.data.user._id);
     let contacts = await contactService.getContacts(req.user.data.user._id);
     let getAllConversationItem = await messageService.getListItemContacts(req.user.data.user._id);
@@ -14,7 +16,7 @@ class HomeController {
     res.render('home', {
       user: req.user.data.user,
       notifications: notifications.getNotiContents,
-      sumOfNotification : notifications.sumOfNotification,
+      sumOfNotification: notifications.sumOfNotification,
       contacts: sortJsonArray(contacts.getContacts, 'userName', 'asc'),
       sumOfContact: contacts.sumOfContact,
       allConversationMessages: getAllConversationMessages,
@@ -22,4 +24,5 @@ class HomeController {
     });
   }
 }
-module.exports = new HomeController();
+
+module.exports = new HomeController;

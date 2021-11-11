@@ -42,7 +42,7 @@ function initPassportLocal() {
     done(null, user.data.user._id);
   });
 
-  //lấy dữ liệu user dựa vào thông tin lưu trên session và gắn vào req.user
+  //lấy dữ liệu user gắn vào req.user
   passport.deserializeUser(async (id, done) => {
     try {
       let user = await axios.get(http + '/users/' + id);
@@ -57,6 +57,7 @@ function initPassportLocal() {
       return done(error, null);
     }
   });
+
 }
 
 module.exports = initPassportLocal;

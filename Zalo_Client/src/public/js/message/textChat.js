@@ -22,9 +22,11 @@ function textChat(id, isChatGroup) {
     .unbind('keyup')
     .on('keyup', function (element) {
       let messageVal = $(`#text-chat-${id}`).val();
+      let currentUserId = document.getElementById('id').value;
       if (messageVal.length > 0) {
         socket.emit('typing', {
           receiverId: id,
+          senderId: currentUserId,
           typing: true,
         });
       }
@@ -46,6 +48,7 @@ function textChat(id, isChatGroup) {
 }
 
 socket.on('response-typing', async function (data) {
+  console.log(data);
   let receiver = await $.get(http + `/users/${data.receiverId}`);
   if (data.typing == true) {
     $(`#conversation-${data.receiverId}`).find('#typing').remove();
@@ -222,7 +225,7 @@ async function addConversation(receiverId, isChatGroup) {
             <div class="d-flex">
                 <div
                     class="chat-user-img online align-self-center me-3 ms-0">
-                    <img src="${s3}/${this.avatar}"
+                    <img src="${s3}/${groupReceiver.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
                 </div>

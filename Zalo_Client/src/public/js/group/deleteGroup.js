@@ -13,11 +13,10 @@ async function showBtnDeleteOrLeaveGroup(id) {
                     groupId: id
                 },
                 success: function (data) {
-                    if (data.success) {
-                        socket.emit('delete-group', {
-                            groupId: id
-                        });
-                    }
+                    socket.emit('delete-group', {
+                        groupId: id
+                    });
+
                 }
             });
         });

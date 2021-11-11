@@ -13,8 +13,8 @@ const upload = require('express-fileupload');
 const http = require('http');
 const socketIo = require('socket.io');
 const initSockets = require('./src/sockets/index');
-const passportSocketIo = require('passport.socketio');
 const cookieParser = require('cookie-parser');
+const passportSocketIo = require('passport.socketio');
 const events = require('events');
 const {
   fail
@@ -24,7 +24,7 @@ const AWS = require('aws-sdk');
 //init app
 const app = express();
 
-events.EventEmitter.defaultMaxListeners = 25;
+events.EventEmitter.defaultMaxListeners = 200;
 
 //init server with socket.io and http
 const server = http.createServer(app);
@@ -105,20 +105,19 @@ app.use(passport.session());
 app.use(upload());
 
 
+
 //init route
-route(app);
+route(app, io);
 
-io.use(
-  passportSocketIo.authorize({
-    cookieParser: cookieParser,
-    key: 'express.sid',
-    secret: 'mySecret',
-    store: session.sessionStore,
-  })
-);
+// io.use(passportSocketIo.authorize({
+//   cookieParser: cookieParser,
+//   key: 'express.sid',
+//   secret: 'mySecret',
+//   store: session.sessionStore,
+// }));
 
-//intit socket
 initSockets(io);
+
 
 server.listen(port, () => {
   console.log(`App running on http://localhost:${port}...`);

@@ -7,13 +7,16 @@ class videoCallSocket {
     videoCall(io) {
         let clients = {};
         io.on('connection', (socket) => {
-            let senderId = socket.request.user.data.user._id;
-            clients = addSocketId(clients, senderId, socket.id);
+            //let senderId = socket.request.user.data.user._id;
+            let cookie = decodeURIComponent(socket.request.headers.cookie);
+            let sender = JSON.parse(cookie.split('userCookie=')[1]);
+            clients = addSocketId(clients, sender._id, socket.id);
+            
             socket.on('caller-check-listener-online', (data) => {
                 //online
                 if (clients[data.listenerId]) {
                     let response = {
-                        callerId: senderId,
+                        callerId: sender._id,
                         listenerId: data.listenerId,
                         callerName: data.callerName
                     }
@@ -96,7 +99,7 @@ class videoCallSocket {
 
             //xóa id socket mỗi khi socket disconnect
             socket.on('disconnect', () => {
-                clients = deleteSocketId(clients, senderId, socket);
+                clients = deleteSocketId(clients, sender._id, socket);
             });
         });
     }
