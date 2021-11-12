@@ -36,7 +36,10 @@ function textChat(id, isChatGroup) {
           typing: false,
         });
       }
+
       if (element.which === 13) {
+        $(`#search-conversation`).val('')
+        $('#conversation-list').prepend(conversations);
         let dataTextAndEmoji = {
           uid: id,
           messageVal: messageVal,
@@ -141,10 +144,10 @@ socket.on('response-add-new-text', async function (data) {
     scrollMessageUserEnd();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.receiverId, data.isChatGroup)
-    .then(function (result) {
-      $('#conversation-list').prepend(result);
-      //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
-    });
+      .then(function (result) {
+        $('#conversation-list').prepend(result);
+        //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
+      });
 
     // lấy data-updated từ danh sách cuộc trò truyện
     let receiverUpdated = $(`#receiver-${message.receiverId}`).attr(
@@ -183,7 +186,7 @@ async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    let messages = await $.get(http +`/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}?startFrom=0`);
+    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}?startFrom=0`);
     return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
       receiver.user._id
     }')" id="receiver-${receiver.user._id}" 

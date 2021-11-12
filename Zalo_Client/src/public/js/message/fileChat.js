@@ -25,6 +25,8 @@ function fileChat(id, isChatGroup) {
                 //     isChatGroup: '' 
                 // }
                 $(`#fileChat-${id}`).val('')
+                $(`#search-conversation`).val('')
+                $('#conversation-list').prepend(conversations);
                 let messages = data.messages.newMessages;
                 let isChatGroup = data.isChatGroup;
                 setTimeout(function () {
@@ -42,7 +44,6 @@ function fileChat(id, isChatGroup) {
 
 //phía gửi:tạo mới file
 async function addNewFileChat(messages, isChatGroup) {
-
     let currentUserId = document.getElementById('id').value;
     let sender = await $.get(http + `/users/${currentUserId}`);
     await messages.map((message) => {

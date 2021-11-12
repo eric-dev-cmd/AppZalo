@@ -104,8 +104,6 @@ app.use(passport.session());
 
 app.use(upload());
 
-
-
 //init route
 route(app, io);
 
@@ -116,7 +114,10 @@ route(app, io);
 //   store: session.sessionStore,
 // }));
 
+
 initSockets(io);
+
+
 
 
 server.listen(port, () => {

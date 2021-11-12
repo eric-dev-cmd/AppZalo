@@ -20,7 +20,8 @@ class HomeController {
       contacts: sortJsonArray(contacts.getContacts, 'userName', 'asc'),
       sumOfContact: contacts.sumOfContact,
       allConversationMessages: getAllConversationMessages,
-      allConversationMessagesJson: JSON.stringify(getAllConversationMessages)
+      allConversationMessagesJson: JSON.stringify(getAllConversationMessages),
+      userJson: JSON.stringify(req.user.data.user)
     });
   }
 }
