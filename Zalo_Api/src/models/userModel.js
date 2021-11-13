@@ -38,7 +38,7 @@ const User = new Schema({
   },
   // Tai khoan co oln hay k
   isOnline: {
-    type: Boolean,
+    type: String,
     default: false,
   },
   // Tai khoan co bi khoa hay k

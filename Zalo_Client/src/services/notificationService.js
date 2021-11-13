@@ -13,7 +13,7 @@ class Notification {
                 let getNotiContents = notifications.data.map(async (notification) => {
                     let sender = await axios.get(http + '/users/' + notification.senderId);
                     // lấy nội dung notification truyền vào thông tin của người gửi
-                    return NotificationUtil.NotifitionUtil.getContent(notification.type, notification.isRead, sender.data.user._id, sender.data.user.userName, sender.data.user.avatar);
+                    return NotificationUtil.NotifitionUtil.getContent(notification.type, sender.data.user._id, sender.data.user.userName, sender.data.user.avatar);
                 });
                 let sumOfNotification = 0;
                 for (let i = 0; i < getNotiContents.length; i++) {

@@ -107,18 +107,7 @@ app.use(upload());
 //init route
 route(app, io);
 
-// io.use(passportSocketIo.authorize({
-//   cookieParser: cookieParser,
-//   key: 'express.sid',
-//   secret: 'mySecret',
-//   store: session.sessionStore,
-// }));
-
-
 initSockets(io);
-
-
-
 
 server.listen(port, () => {
   console.log(`App running on http://localhost:${port}...`);

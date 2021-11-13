@@ -9,10 +9,6 @@ const ChatGroup = new Schema(
             min: 3,
             max: 150,
         },
-        messageAmount: {
-            type: Number,
-            default: 0,
-        },
         userId: String,
         members: [
             {

@@ -60,16 +60,12 @@ async function addNewFileChat(messages, isChatGroup) {
         }
     });
     if (messages[0].chatType === 'personal') {
+        $('#conversation-list').find(`li[id=receiver-${messages[0].receiverId}]`).remove();
         //tạo mới cuộc trò truyện trong danh sách trò truyện
         addConversation(messages[0].receiverId, isChatGroup)
             .then(function (result) {
                 $('#conversation-list').prepend(result);
             });
-
-        // lấy data-updated từ danh sách cuộc trò truyện
-        let receiverUpdated = $(`#receiver-${messages[0].receiverId}`).attr('data-updated');
-        //tìm kiếm cuộc trò cũ và xóa
-        $('#conversation-list').find(`li[data-updated = ${receiverUpdated}]`).remove();
     }
     //gửi socket từ client đến server
     socket.emit('add-new-file', {
@@ -103,15 +99,12 @@ socket.on('response-add-new-file', async function (data) {
                 }
             }
         });
+        $('#conversation-list').find(`li[id=receiver-${messages[0].receiverId}]`).remove();
         //tạo mới cuộc trò truyện trong danh sách trò truyện
         addConversation(messages[0].receiverId, isChatGroup)
             .then(function (result) {
                 $('#conversation-list').prepend(result);
             });
-        // lấy data-updated từ danh sách cuộc trò truyện
-        let receiverUpdated = $(`#receiver-${messages[0].receiverId}`).attr('data-updated');
-        //tìm kiếm cuộc trò cũ và xóa
-        $('#conversation-list').find(`li[data-updated = ${receiverUpdated}]`).remove();
     }
     //nếu cuộc trò chuyện cá nhân
     if (isChatGroup == false || isChatGroup == 'false') {
@@ -129,14 +122,11 @@ socket.on('response-add-new-file', async function (data) {
                 }
             }
         });
+        $('#conversation-list').find(`li[id=receiver-${messages[0].senderId}]`).remove();
         //tạo mới cuộc trò truyện trong danh sách trò truyện
         addConversation(messages[0].senderId, isChatGroup)
             .then(function (result) {
                 $('#conversation-list').prepend(result);
             });
-        // lấy data-updated từ danh sách cuộc trò truyện
-        let receiverUpdated = $(`#receiver-${messages[0].senderId}`).attr('data-updated');
-        //tìm kiếm cuộc trò cũ và xóa
-        $('#conversation-list').find(`li[data-updated = ${receiverUpdated}]`).remove();
     }
 });

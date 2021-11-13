@@ -1,6 +1,5 @@
 const axios = require('axios');
 const http = require('../controllers/http');
-const NotificationUtil = require('../utils/notifications');
 
 class ContactService {
     // gửi lời mời kết bạn
@@ -23,7 +22,7 @@ class ContactService {
                 let newNotificationItem = {
                     senderId: senderId,
                     receiverId: receiverId,
-                    type: NotificationUtil.NOTIFICATION_TYPES.ADD_CONTACT
+                    type: 'add_contact'
                 }
                 await axios.post(http + '/notifications', newNotificationItem);
                 return resolve(newContact);
@@ -35,7 +34,7 @@ class ContactService {
     remove(senderId, receiverId) {
         return new Promise(async (resolve, reject) => {
             let findContact = await this.checkExistsContact(senderId, receiverId);
-            let findNotification = await this.checkExistsNotification(senderId, receiverId, NotificationUtil.NOTIFICATION_TYPES.ADD_CONTACT)
+            let findNotification = await this.checkExistsNotification(senderId, receiverId, 'add_contact')
             // nếu đã tồn tại contact và thông tin thì hủy lời mời kết bạn
             if (findContact !== null && findNotification !== null) {
                 await axios.delete(http + '/notifications/' + findNotification._id)
@@ -60,7 +59,7 @@ class ContactService {
             findContact.updatedAt = Date.now();
             // status = true là bạn bè
             findContact.status = true;
-            let findNotification = await this.checkExistsNotification(senderId, receiverId, NotificationUtil.NOTIFICATION_TYPES.ADD_CONTACT)
+            let findNotification = await this.checkExistsNotification(senderId, receiverId, 'add_contact')
             // nếu đã tồn tại contact và notification => delete notification và update contact
             if (findContact !== null && findNotification !== null) {
                 // let message = {

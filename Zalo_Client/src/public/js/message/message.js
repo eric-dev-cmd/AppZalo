@@ -61,7 +61,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -78,7 +78,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -92,7 +92,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -103,7 +103,7 @@ async function showConversationGroup(id) {
     $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
     scrollMessageUserEnd();
   });
-  
+
   detailConversation(messages);
   //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
   insertInput(id, true);
@@ -146,7 +146,6 @@ function showIconAddUserToGroup(id) {
 
 //hiển thị tin nhắn cá nhân
 async function showConversationUser(id) {
-
   // $('#conversation-list').find(`li[id = receiver-${id}]`).css('color', '#abb4d2');
   let currentUserId = document.getElementById('id').value;
   let receiver = await $.get(http + `/users/${id}`);
@@ -176,6 +175,9 @@ async function showConversationUser(id) {
   let leftId = $(`#left-conversation-${receiver.user._id}`).attr('data-id');
   $(`#conversation-${id}`).html('');
   messages.forEach((message) => {
+    //cập nhật đã đọc
+
+
     if (message.messageType === 'text') {
       if (message.senderId === rightId) {
         $(`#conversation-${id}`).append(rightConversationText(sender, message));
@@ -896,4 +898,20 @@ function showActiveMessageGroup() {
       message.classList.add('active');
     });
   });
+}
+
+function isRead(message) {
+  if (message.isRead === false) {
+    $.ajax({
+      url: '/message/updateIsRead',
+      type: 'put',
+      data: {
+        message: message,
+      },
+      success: function (data) {
+        if(data.success){
+        }
+      },
+    });
+  }
 }

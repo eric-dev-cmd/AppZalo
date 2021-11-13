@@ -19,7 +19,6 @@ class MessageService {
         let userIsFriend = await contactService.getContacts(senderId);
         //lấy tất cả tin nhắn
         let messages = await axios.get(http + '/messages/SearchBySenderIdOrReceiverId/' + senderId);
-
         //tìm các user đã từng nhắn tin
         let listUser = messages.data.map(async message => {
           if (message.receiverId !== senderId) {
@@ -64,6 +63,14 @@ class MessageService {
                 http + '/messages/SearchByReceiverId/' + conversation._id + "?startFrom=0"
               );
               conversation.messages = getMessages.data;
+
+              let unRead = [];
+              getMessages.data.forEach(message => {
+                if (message.isRead == false) {
+                  unRead.push(message);
+                  conversation.countUnRead = unRead.length;
+                }
+              })
               // Get item last          
               let lastGroup = Object.keys(conversation.messages).pop();
               if (lastGroup) {
@@ -74,10 +81,19 @@ class MessageService {
                 conversation.time = formatedTimeAgo;
                 conversation.lastText = lastMessGroup.text;
                 conversation.messageType = lastMessGroup.messageType;
+                conversation.lastIsRead = lastMessGroup.isRead;
+                conversation.lastMessage = lastMessGroup;
               }
             } else {
               let getMessages = await axios.get(http + '/messages/SearchBySenderIdAndReceiverId/' + senderId + '/' + conversation._id + '?startFrom=0');
               conversation.messages = getMessages.data;
+              let unRead = [];
+              getMessages.data.forEach(message => {
+                if (message.isRead == false) {
+                  unRead.push(message);
+                  conversation.countUnRead = unRead.length;
+                }
+              })
               let lastUser = Object.keys(conversation.messages).pop();
               if (lastUser) {
                 let lastItemUser = conversation.messages[lastUser];
@@ -86,6 +102,8 @@ class MessageService {
                 conversation.time = formatedTimeAgoUser;
                 conversation.textUser = lastItemUser.text;
                 conversation.messageType = lastItemUser.messageType;
+                conversation.lastIsRead = lastItemUser.isRead;
+                conversation.lastMessage = lastItemUser;
               }
             }
             return conversation;
@@ -133,6 +151,7 @@ class MessageService {
             text: messageVal,
             senderId: senderId,
             receiverId: receiverId,
+            isRead: false,
             chatType: messageUtil.MESSAGE_CHAT_TYPES.GROUP,
             messageType: messageUtil.MESSAGE_TYPES.TEXT,
             createdAt: Date.now(),
@@ -148,6 +167,7 @@ class MessageService {
             text: messageVal,
             senderId: senderId,
             receiverId: receiverId,
+            isRead: false,
             chatType: messageUtil.MESSAGE_CHAT_TYPES.PERSONAL,
             messageType: messageUtil.MESSAGE_TYPES.TEXT,
             createdAt: Date.now(),
@@ -179,6 +199,7 @@ class MessageService {
                 let newMessageItem = {
                   senderId: senderId,
                   receiverId: receiverId,
+                  isRead: false,
                   chatType: messageUtil.MESSAGE_CHAT_TYPES.GROUP,
                   messageType: messageUtil.MESSAGE_TYPES.IMAGE,
                   fileName: `${uuid}.${file.name}`,
@@ -194,6 +215,7 @@ class MessageService {
                 let newMessageItem = {
                   senderId: senderId,
                   receiverId: receiverId,
+                  isRead: false,
                   chatType: messageUtil.MESSAGE_CHAT_TYPES.GROUP,
                   messageType: messageUtil.MESSAGE_TYPES.FILE,
                   fileName: `${uuid}.${file.name}`,
@@ -222,6 +244,7 @@ class MessageService {
                 let newMessageItem = {
                   senderId: senderId,
                   receiverId: receiverId,
+                  isRead: false,
                   chatType: messageUtil.MESSAGE_CHAT_TYPES.PERSONAL,
                   messageType: messageUtil.MESSAGE_TYPES.IMAGE,
                   fileName: `${uuid}.${file.name}`,
@@ -237,6 +260,7 @@ class MessageService {
                 let newMessageItem = {
                   senderId: senderId,
                   receiverId: receiverId,
+                  isRead: false,
                   chatType: messageUtil.MESSAGE_CHAT_TYPES.PERSONAL,
                   messageType: messageUtil.MESSAGE_TYPES.FILE,
                   fileName: `${uuid}.${file.name}`,
@@ -268,6 +292,7 @@ class MessageService {
               let newMessageItem = {
                 senderId: senderId,
                 receiverId: receiverId,
+                isRead: false,
                 chatType: messageUtil.MESSAGE_CHAT_TYPES.GROUP,
                 messageType: messageUtil.MESSAGE_TYPES.IMAGE,
                 fileName: `${uuid}.${files.name}`,
@@ -289,6 +314,7 @@ class MessageService {
               let newMessageItem = {
                 senderId: senderId,
                 receiverId: receiverId,
+                isRead: false,
                 chatType: messageUtil.MESSAGE_CHAT_TYPES.GROUP,
                 messageType: messageUtil.MESSAGE_TYPES.FILE,
                 fileName: `${uuid}.${files.name}`,
@@ -313,6 +339,7 @@ class MessageService {
               let newMessageItem = {
                 senderId: senderId,
                 receiverId: receiverId,
+                isRead: false,
                 chatType: messageUtil.MESSAGE_CHAT_TYPES.PERSONAL,
                 messageType: messageUtil.MESSAGE_TYPES.IMAGE,
                 fileName: `${uuid}.${files.name}`,
@@ -334,6 +361,7 @@ class MessageService {
               let newMessageItem = {
                 senderId: senderId,
                 receiverId: receiverId,
+                isRead: false,
                 chatType: messageUtil.MESSAGE_CHAT_TYPES.PERSONAL,
                 messageType: messageUtil.MESSAGE_TYPES.FILE,
                 fileName: `${uuid}.${files.name}`,
@@ -393,6 +421,19 @@ class MessageService {
     });
   }
 
+  // cập nhật tin nhắn đã đọc
+  async updateIsRead(message) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        message.isRead = true;
+        await axios.put(http + '/messages/' + message._id, message);
+        return resolve(true);
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+
   // cập nhật thời gian
   async updateTimeForUser(senderId, receiverId) {
     let getSender = await axios.get(http + '/users/' + senderId);
@@ -410,7 +451,6 @@ class MessageService {
     let getChatGroupReceiver = await axios.get(http + '/chatGroups/' + receiverId);
     let chatGroup = getChatGroupReceiver.data;
     chatGroup.updatedAt = Date.now();
-    chatGroup.messageAmount = chatGroup.messageAmount + 1;
     await axios.put(http + '/chatGroups/' + receiverId, chatGroup);
   }
 }

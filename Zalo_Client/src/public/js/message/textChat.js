@@ -39,7 +39,6 @@ function textChat(id, isChatGroup) {
 
       if (element.which === 13) {
         $(`#search-conversation`).val('')
-        $('#conversation-list').prepend(conversations);
         let dataTextAndEmoji = {
           uid: id,
           messageVal: messageVal,
@@ -51,7 +50,6 @@ function textChat(id, isChatGroup) {
 }
 
 socket.on('response-typing', async function (data) {
-  console.log(data);
   let receiver = await $.get(http + `/users/${data.receiverId}`);
   if (data.typing == true) {
     $(`#conversation-${data.receiverId}`).find('#typing').remove();
@@ -104,19 +102,13 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
       //thẻ input = rỗng
       $(`#text-chat-${message.receiverId}`).val('');
       $('.emojionearea-editor').text('');
+      //tìm kiếm cuộc trò cũ và xóa
+      $('#conversation-list').find(`li[id=receiver-${message.receiverId}]`).remove();
       //tạo mới cuộc trò truyện trong danh sách trò truyện
       addConversation(message.receiverId, isChatGroup).then(function (result) {
         $('#conversation-list').prepend(result);
       });
       scrollMessageUserEnd();
-      // lấy data-updated từ danh sách cuộc trò truyện
-      let receiverUpdated = $(`#receiver-${message.receiverId}`).attr(
-        'data-updated'
-      );
-      //tìm kiếm cuộc trò cũ và xóa
-      $('#conversation-list')
-        .find(`li[data-updated = ${receiverUpdated}]`)
-        .remove();
       //gửi socket từ client đến server
       socket.emit('add-new-text', {
         message: message,
@@ -142,21 +134,19 @@ socket.on('response-add-new-text', async function (data) {
       leftConversationText(receiver, message)
     );
     scrollMessageUserEnd();
+    $('#conversation-list').find(`li[id=receiver-${message.receiverId}]`).remove();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.receiverId, data.isChatGroup)
       .then(function (result) {
         $('#conversation-list').prepend(result);
+        if (message.isRead === false) {
+          $('.unread-message').html('');
+          $(`<span class="badge badge-soft-danger rounded-pill"></span>`).appendTo(
+            $('.unread-message')
+          );
+        }
         //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
       });
-
-    // lấy data-updated từ danh sách cuộc trò truyện
-    let receiverUpdated = $(`#receiver-${message.receiverId}`).attr(
-      'data-updated'
-    );
-    //tìm kiếm cuộc trò cũ và xóa
-    $('#conversation-list')
-      .find(`li[data-updated = ${receiverUpdated}]`)
-      .remove();
   }
   if (data.isChatGroup == false) {
     //thêm tin nhắn vừa gửi cho người nhận
@@ -164,20 +154,13 @@ socket.on('response-add-new-text', async function (data) {
       leftConversationText(receiver, message)
     );
     $(`#conversation-${message.senderId}`).find('#typing').remove();
+    $('#conversation-list').find(`li[id=receiver-${message.senderId}]`).remove();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
       scrollMessageUserEnd();
       //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
     });
-    // lấy data-updated từ danh sách cuộc trò truyện
-    let receiverUpdated = $(`#receiver-${message.senderId}`).attr(
-      'data-updated'
-    );
-    //tìm kiếm cuộc trò cũ và xóa
-    $('#conversation-list')
-      .find(`li[data-updated = ${receiverUpdated}]`)
-      .remove();
   }
 });
 
@@ -186,7 +169,7 @@ async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${receiver.user._id}?startFrom=0`);
+    let messages = await $.get(http + `/messages/SearchSenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
     return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
       receiver.user._id
     }')" id="receiver-${receiver.user._id}" 

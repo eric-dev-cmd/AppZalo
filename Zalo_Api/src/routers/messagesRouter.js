@@ -8,6 +8,7 @@ router.get('/SearchBySenderIdOrReceiverId/:id', messageController.getAPIBySender
 router.get('/SearchByText/:text', messageController.getAPIByText);
 router.get('/SearchByReceiverId/:receiverid', messageController.getAPIByReceiverId);
 router.get('/SearchBySenderIdAndReceiverId/:senderid/:receiverid', messageController.getAPIBySenderIdAndReceiverId);
+router.get('/SearchSenderIdAndReceiverId/:senderid/:receiverid', messageController.SearchSenderIdAndReceiverId);
 router.post('/', messageController.postAPI);
 router.put('/:id', messageController.putAPI);
 router.delete('/:id', messageController.deleteAPI);

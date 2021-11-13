@@ -31,6 +31,14 @@ class MessageController {
         });
     }
 
+    async updateIsRead(req, res) {
+        let message = req.body.message;
+        let request = await messageService.updateIsRead(message);
+        return res.send({
+            success: !!request
+        });
+    }
+
     async deleteText(req, res) {
         let messageId = req.body.messageId;
         let deleteResquest = await messageService.deleteText(messageId);

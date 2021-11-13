@@ -8,7 +8,6 @@ const Contact= new Schema({
     status: {type: Boolean, default: false},
     createdAt: {type: Number, default: Date.now},
     updatedAt: {type: Number, default: null},
-    deletedAt: {type: Number, default: null}
 });
 
 ContactStatic = {

@@ -8,10 +8,9 @@ const Message= new Schema({
     messageType: String,
     text: String,
     fileName: String,
-    file: {data: Buffer, contentType: String, fileName: String},
+    isRead: {type: Boolean, default: false},
     createdAt: {type: Number, default: Date.now},
-    updatedAt: {type: Number, default: null},
-    deletedAt: {type: Number, default: null}
+    updatedAt: {type: Number, default: null}
 });
 
 module.exports = mongoose.model('message', Message);

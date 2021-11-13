@@ -7,13 +7,13 @@ class ContactSocket {
     addNewContact(io) {
         let clients = {};
         io.on('connection', (socket) => {
+
             //let senderId = socket.request.user.data.user._id;
             // let cookie = decodeURIComponent(socket.request.headers.cookie);
             // let sender = JSON.parse(cookie.split('userCookie=')[1]);
             socket.on('send-user', (sender) => {
                 clients = addSocketId(clients, sender._id, socket.id);
                 socket.on('add-new-contact', (data) => {
-
                     let currentUser = {
                         id: sender._id,
                         userName: sender.userName,
@@ -38,7 +38,6 @@ class ContactSocket {
             // let cookie = decodeURIComponent(socket.request.headers.cookie);
             // let receiver = JSON.parse(cookie.split('userCookie=')[1]);
             socket.on('send-user', (receiver) => {
-                console.log(receiver);
                 clients = addSocketId(clients, receiver._id, socket.id);
                 socket.on('remove-request-contact', (data) => {
                     let currentUser = {

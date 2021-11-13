@@ -1,11 +1,7 @@
-const NOTIFICATION_TYPES = {
-  ADD_CONTACT: 'add_contact',
-};
-
 class NotificationUtil {
-  getContent(notification_type, isRead, userId, userName, userAvatar) {
+  getContent(notification_type, userId, userName, userAvatar) {
     var html = '';
-    if (notification_type === NOTIFICATION_TYPES.ADD_CONTACT) {
+    if (notification_type === 'add_contact') {
       html += `<li class="position-relative" data-uid = '${userId}'>
             <a  style="width: 100%;">
                 <div class="d-flex">
@@ -21,8 +17,6 @@ class NotificationUtil {
                         <p class="chat-user-message text-truncate mb-0">
                             Muốn kết bạn. "Xin chào, tôi là <span> ${userName}.
                         </p>
-        
-        
                     </div>
                 </div>
             </a>
@@ -38,6 +32,5 @@ class NotificationUtil {
   }
 }
 module.exports = {
-  NOTIFICATION_TYPES: NOTIFICATION_TYPES,
   NotifitionUtil: new NotificationUtil(),
 };

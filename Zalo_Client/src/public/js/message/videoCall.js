@@ -270,17 +270,17 @@ function playVideo(idVideo, stream) {
     const video = document.getElementById(idVideo);
     video.srcObject = stream;
     let playPromise = video.play();
-    // if (playPromise !== undefined) {
-    //     playPromise.then(_ => {
-    //         })
-    //         .catch(error => {});
-    // }
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            })
+            .catch(error => {});
+    }
 }
 
 function stopVideo() {
     const video = document.querySelector('video');
     const mediaStream = video.srcObject;
     const tracks = mediaStream.getTracks();
-    //tracks[0].stop();
+    tracks[0].stop();
     tracks.forEach(track => track.stop())
 }

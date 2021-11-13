@@ -105,5 +105,30 @@ class videoCallSocket {
             });
         });
     }
+
+    call(io) {
+        let clients = {};
+        io.on('connection', (socket) => {
+            //let sender = socket.request.user.data.user;
+
+            // let cookie = decodeURIComponent(socket.request.headers.cookie);
+            // let sender = JSON.parse(cookie.split('userCookie=')[1]);
+            socket.on('send-user', (sender) => {
+                clients = addSocketId(clients, sender._id, socket.id);
+
+                socket.on('call', (message) => {
+                    console.log('message: ' + message);
+                    io.sockets.emit('receiver_room', {
+                        data: message
+                    }); // message format "callerId/receiverId"
+                });
+
+                //xóa id socket mỗi khi socket disconnect
+                socket.on('disconnect', () => {
+                    clients = deleteSocketId(clients, sender._id, socket);
+                });
+            });
+        });
+    }
 }
 module.exports = new videoCallSocket;

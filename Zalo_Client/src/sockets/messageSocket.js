@@ -170,7 +170,6 @@ class MessageSocket {
       // clients = addSocketId(clients, sender._id, socket.id);
 
       socket.on('send-user', (sender) => {
-
         clients = addSocketId(clients, sender._id, socket.id);
         socket.on('typing', (data) => {
           let response = {
@@ -222,5 +221,7 @@ class MessageSocket {
       });
     });
   }
+
+
 }
 module.exports = new MessageSocket();

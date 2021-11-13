@@ -12,6 +12,21 @@ class UserService {
       }
     });
   }
+
+  checkOnlineOffline(listUserIdOnline) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        listUserIdOnline.forEach(async id => {
+          let user = await axios.get(http + '/users/' + id);
+          user.data.user.isOnline = 'true';
+          await axios.put(http + '/users/' + id, user.data.user);
+          resolve(true);
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
 }
 
 module.exports = new UserService();

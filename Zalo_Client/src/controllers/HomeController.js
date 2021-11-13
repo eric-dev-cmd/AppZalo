@@ -21,7 +21,7 @@ class HomeController {
       sumOfContact: contacts.sumOfContact,
       allConversationMessages: getAllConversationMessages,
       allConversationMessagesJson: JSON.stringify(getAllConversationMessages),
-      userJson: JSON.stringify(req.user.data.user)
+      userJson: JSON.stringify(req.user.data.user),
     });
   }
 }

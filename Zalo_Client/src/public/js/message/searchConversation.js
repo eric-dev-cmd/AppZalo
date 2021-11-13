@@ -6,7 +6,6 @@ $('#search-conversation').unbind('keyup').on('keyup', function (e) {
 
 function renderConversation() {
     let content = $('#search-conversation').val();
-    console.log(content)
     let listConversation = searchNameConversation(content);
     //tìm kiếm cuộc trò truyện
     listConversation.true.forEach(name => {
