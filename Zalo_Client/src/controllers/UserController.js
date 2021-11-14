@@ -5,6 +5,7 @@ const {
     transSuccess
 } = require('../../lang/vi');
 const FilesUtil = require('../utils/uploadAndDeleteFiles');
+const userService = require('../services/userService');
 const {
     v4: uuidv4
 } = require('uuid');
@@ -33,5 +34,21 @@ class UserController {
                 .catch(next);
         }
     }
+
+    async updateOnline(req, res) {
+       let user = req.body.user;
+       let request = await userService.updateOnline(user);
+       return res.send({
+           success: !!request
+       });
+    }
+
+    async updateBusy(req, res) {
+        let user = req.body.user;
+        let request = await userService.updateBusy(user);
+        return res.send({
+            success: !!request
+        });
+     }
 }
 module.exports = new UserController();

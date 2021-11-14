@@ -8,6 +8,7 @@ function deleteFriend(id) {
         },
         success: function (data) {
             if (data.success) {
+                $('#conversation-list').find(`li[id=receiver-${id}]`).remove();
                 $('#contact-list').find(`li[data-uid = ${id}]`).remove();
                 sumOfContactDes();
                 socket.emit('delete-friend', {
@@ -19,6 +20,7 @@ function deleteFriend(id) {
 }
 
 socket.on('response-delete-friend', function (user) {
+    $('#conversation-list').find(`li[id=receiver-${user.id}]`).remove();
     $('#contact-list').find(`li[data-uid = ${user.id}]`).remove();
     sumOfContactDes();
 });

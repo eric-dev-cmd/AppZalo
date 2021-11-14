@@ -240,17 +240,17 @@ function insertIdUserOnline(receiver) {
   if (receiver.members) {
     $('#info-conversation').html('');
     $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
-        <a id="name-conversation" class="text-reset user-profile-show">${receiver.name}</a>  
-        <i id="online-conversation-${receiver._id}"></i></h5>
-        <span style="padding-top: 3px" id="time-online"><i class="fa fa-user" aria-hidden="true"></i> ${receiver.members.length} thành viên</span>`).appendTo(
+          <a id="name-conversation" class="text-reset user-profile-show">${receiver.name}</a>  
+          <i id="online-conversation-${receiver._id}"></i></h5>
+          <span style="padding-top: 3px" id="time-online"><i class="fa fa-user" aria-hidden="true"></i> ${receiver.members.length} thành viên</span>`).appendTo(
       $('#info-conversation')
     );
   } else {
     $('#info-conversation').html('');
     $(`<h5 class="font-size-16 mb-0 text-truncate" id="info-conversation">
-        <a id="name-conversation" class="text-reset user-profile-show">${receiver.user.userName}</a>  
-        <i id="online-conversation-${receiver.user._id}"></i></h5>
-        <span style="padding-top: 3px" id="time-online-${receiver.user._id}"></span>`).appendTo(
+          <a id="name-conversation" class="text-reset user-profile-show">${receiver.user.userName}</a>  
+          <i id="online-conversation-${receiver.user._id}"></i></h5>
+          <span style="padding-top: 3px" id="time-online-${receiver.user._id}"></span>`).appendTo(
       $('#info-conversation')
     );
   }
@@ -909,8 +909,7 @@ function isRead(message) {
         message: message,
       },
       success: function (data) {
-        if(data.success){
-        }
+        if (data.success) {}
       },
     });
   }

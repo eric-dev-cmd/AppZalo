@@ -13,6 +13,32 @@ class UserService {
     });
   }
 
+  updateOnline(user) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        user.isOnline = 'true';
+        console.log(user)
+        await axios.put(http + '/users/' + user._id, user);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  updateBusy(user) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        user.isOnline = 'busy';
+        console.log(user)
+        await axios.put(http + '/users/' + user._id, user);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
   checkOnlineOffline(listUserIdOnline) {
     return new Promise(async (resolve, reject) => {
       try {

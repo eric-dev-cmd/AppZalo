@@ -15,11 +15,18 @@ function acceptFriendRequest() {
                     sumOfNotificationDes();
                     showBtnAddAndRemove(senderId);
                     $.get(http + `/users/${senderId}`, function (data, status) {
+                        let sender = data.user;
+                        let isChatGroup = false;
                         if (status === 'success') {
                             sumOfContactInc();
-                            $('#contact-list').prepend(contact(data.user));
+                            $('#contact-list').prepend(contact(sender));
+                            addConversation(sender._id, isChatGroup)
+                                .then(function (result) {
+                                    $('#conversation-list').prepend(result);
+                                });
                         }
                     });
+                    //emit id của người gửi cho server
                     socket.emit('accept-Friend-Request', {
                         senderId: senderId,
                     });
@@ -29,10 +36,17 @@ function acceptFriendRequest() {
     });
 }
 
-socket.on('response-accept-Friend-Request', function (user) {
+
+socket.on('response-accept-Friend-Request', async function (data) {
+    let isChatGroup = false;
     sumOfContactInc();
-    showBtnAddAndRemove(user._id);
-    $('#contact-list').prepend(contact(user));
+    showBtnAddAndRemove(data._id);
+    let getUser = await $.get(http + `/users/${data._id}`);
+    $('#contact-list').prepend(contact(data));
+    addConversation(getUser.user._id, isChatGroup)
+        .then(function (result) {
+            $('#conversation-list').prepend(result);
+        });
 });
 
 function sumOfContactInc() {
@@ -92,4 +106,4 @@ function sumOfNotificationDes() {
     $('#sumOfNotification').attr('data-sum', sum);
     $('#sumOfNotification').html('');
     $('<span>(' + sum + ')</span>').appendTo($('#sumOfNotification'));
-  }
+}

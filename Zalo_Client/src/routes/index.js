@@ -21,7 +21,7 @@ function route(app) {
   app.use('/login-register', authRouter);
   app.use('/contact', contactsRouter);
   app.use('/home', homeRouter);
-  app.use('/updateProfile', userRouter);
+  app.use('/user', userRouter);
   app.use('/message', messageRouter);
   app.use('/group', groupRouter);
 }

@@ -5,23 +5,23 @@ const {
 } = require('../utils/socket')
 class videoCallSocket {
     videoCall(io) {
-        let clients = {};
+        let listUsers = {};
         io.on('connection', (socket) => {
             //let senderId = socket.request.user.data.user._id;
             // let cookie = decodeURIComponent(socket.request.headers.cookie);
             // let sender = JSON.parse(cookie.split('userCookie=')[1]);
             socket.on('send-user', (sender) => {
-                clients = addSocketId(clients, sender._id, socket.id);
+                listUsers = addSocketId(listUsers, sender._id, socket.id);
 
                 socket.on('caller-check-listener-online', (data) => {
                     //online
-                    if (clients[data.listenerId]) {
+                    if (listUsers[data.listenerId]) {
                         let response = {
                             callerId: sender._id,
                             listenerId: data.listenerId,
                             callerName: data.callerName
                         }
-                        sendEvent(clients, data.listenerId, io, 'server-request-peerId-to-listener', response);
+                        sendEvent(listUsers, data.listenerId, io, 'server-request-peerId-to-listener', response);
                     }
                     //offline 
                     else {
@@ -37,8 +37,8 @@ class videoCallSocket {
                         listenerName: data.listenerName,
                         listenerPeerId: data.listenerPeerId
                     }
-                    if (clients[data.callerId]) {
-                        sendEvent(clients, data.callerId, io, 'server-send-peerId-of-listener-to-caller', response);
+                    if (listUsers[data.callerId]) {
+                        sendEvent(listUsers, data.callerId, io, 'server-send-peerId-of-listener-to-caller', response);
                     }
                 });
 
@@ -50,8 +50,8 @@ class videoCallSocket {
                         listenerName: data.listenerName,
                         listenerPeerId: data.listenerPeerId
                     }
-                    if (clients[data.listenerId]) {
-                        sendEvent(clients, data.listenerId, io, 'server-send-request-call-to-listener', response);
+                    if (listUsers[data.listenerId]) {
+                        sendEvent(listUsers, data.listenerId, io, 'server-send-request-call-to-listener', response);
                     }
                 });
 
@@ -63,8 +63,8 @@ class videoCallSocket {
                         listenerName: data.listenerName,
                         listenerPeerId: data.listenerPeerId
                     }
-                    if (clients[data.listenerId]) {
-                        sendEvent(clients, data.listenerId, io, 'server-send-cancel-request-call-to-listener', response);
+                    if (listUsers[data.listenerId]) {
+                        sendEvent(listUsers, data.listenerId, io, 'server-send-cancel-request-call-to-listener', response);
                     }
                 });
 
@@ -76,8 +76,8 @@ class videoCallSocket {
                         listenerName: data.listenerName,
                         listenerPeerId: data.listenerPeerId
                     }
-                    if (clients[data.callerId]) {
-                        sendEvent(clients, data.callerId, io, 'server-send-deny-call-to-caller', response);
+                    if (listUsers[data.callerId]) {
+                        sendEvent(listUsers, data.callerId, io, 'server-send-deny-call-to-caller', response);
                     }
                 });
 
@@ -89,32 +89,32 @@ class videoCallSocket {
                         listenerName: data.listenerName,
                         listenerPeerId: data.listenerPeerId
                     }
-                    if (clients[data.callerId]) {
-                        sendEvent(clients, data.callerId, io, 'server-send-accept-call-to-caller', response);
+                    if (listUsers[data.callerId]) {
+                        sendEvent(listUsers, data.callerId, io, 'server-send-accept-call-to-caller', response);
                     }
-                    if (clients[data.listenerId]) {
-                        sendEvent(clients, data.listenerId, io, 'server-send-accept-call-to-listener', response);
+                    if (listUsers[data.listenerId]) {
+                        sendEvent(listUsers, data.listenerId, io, 'server-send-accept-call-to-listener', response);
                     }
                 });
 
 
                 //xóa id socket mỗi khi socket disconnect
                 socket.on('disconnect', () => {
-                    clients = deleteSocketId(clients, sender._id, socket);
+                    listUsers = deleteSocketId(listUsers, sender._id, socket);
                 });
             });
         });
     }
 
     call(io) {
-        let clients = {};
+        let listUsers = {};
         io.on('connection', (socket) => {
             //let sender = socket.request.user.data.user;
 
             // let cookie = decodeURIComponent(socket.request.headers.cookie);
             // let sender = JSON.parse(cookie.split('userCookie=')[1]);
             socket.on('send-user', (sender) => {
-                clients = addSocketId(clients, sender._id, socket.id);
+                listUsers = addSocketId(listUsers, sender._id, socket.id);
 
                 socket.on('call', (message) => {
                     console.log('message: ' + message);
@@ -125,7 +125,7 @@ class videoCallSocket {
 
                 //xóa id socket mỗi khi socket disconnect
                 socket.on('disconnect', () => {
-                    clients = deleteSocketId(clients, sender._id, socket);
+                    listUsers = deleteSocketId(listUsers, sender._id, socket);
                 });
             });
         });

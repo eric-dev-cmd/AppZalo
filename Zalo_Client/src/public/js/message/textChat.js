@@ -139,12 +139,12 @@ socket.on('response-add-new-text', async function (data) {
     addConversation(message.receiverId, data.isChatGroup)
       .then(function (result) {
         $('#conversation-list').prepend(result);
-        if (message.isRead === false) {
-          $('.unread-message').html('');
-          $(`<span class="badge badge-soft-danger rounded-pill"></span>`).appendTo(
-            $('.unread-message')
-          );
-        }
+        // if (message.isRead === false) {
+        //   $('.unread-message').html('');
+        //   $(`<span class="badge badge-soft-danger rounded-pill"></span>`).appendTo(
+        //     $('.unread-message')
+        //   );
+        // }
         //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
       });
   }
@@ -214,6 +214,7 @@ async function addConversation(receiverId, isChatGroup) {
                     <img src="${s3}/${groupReceiver.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
+                    <i class="fas fa-circle font-size-10 text-warning me-1 ms-0"></i>
                 </div>
     
                 <div class="flex-1 overflow-hidden">
