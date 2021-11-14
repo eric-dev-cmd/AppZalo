@@ -2,14 +2,10 @@ function detailConversation(messages) {
   $('#list-file-conversation').html('');
   $('#list-image-conversation').html('');
   $.each(messages, (i, message) => {
-    console.log(message);
     if (message.messageType === 'file') {
-      console.log(message);
       $('#list-file-conversation').prepend(renderListFile(message));
     }
     if (message.messageType === 'image') {
-      console.log(message);
-
       $('#list-image-conversation').prepend(renderListImage(message));
     }
   });
@@ -17,7 +13,6 @@ function detailConversation(messages) {
 
 function renderListFile(message) {
   let fileName = message.fileName.split('.');
-  console.log(message.fileName);
   return `<div class="card p-2 border mb-2">
     <div class="d-flex align-items-center">
         <div class="avatar-sm me-3 ms-0">

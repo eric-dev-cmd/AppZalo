@@ -10,3 +10,4 @@ $('#user-profile-hide').on('click', function () {
 $('.user-profile-show').on('click', function () {
   $('#info-conversation').css('font-size', '13px');
 });
+
