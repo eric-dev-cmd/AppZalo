@@ -1574,3 +1574,6 @@ input[readonly]
   bottom: 10px;
   right: 14px;
   color: #15a85f; }
+
+.dropdown-menu-left-115 {
+  left: -115px !important; }

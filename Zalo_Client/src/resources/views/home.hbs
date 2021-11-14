@@ -4,8 +4,9 @@
         <!-- LOGO -->
         <div class="navbar-brand-box">
             <li class="nav-item btn-group dropend profile-user-dropdown">
-                <a class="nav-link dropdown-toggle position-relative avatar-online" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" style="margin-top: 15px;">
+                <a class="nav-link dropdown-toggle position-relative avatar-online" href="javascript:void(0)"
+                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="margin-top: 15px;">
                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/{{user.avatar}}"
                         alt="" class="profile-user rounded-circle" style="width: 100%; height: 100%">
                     <i class="fas fa-circle font-size-10 me-1 ms-0 position-absolute" id="busy"></i>
@@ -604,7 +605,7 @@
                                                         <a>
                                                             <div class="d-flex">
                                                                 <div
-                                                                    class="chat-user-img online align-self-center me-3 ms-0">
+                                                                    class="chat-user-img online align-self-center me-3 ms-0 ">
                                                                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/{{this.avatar}}"
                                                                         class="rounded-circle avatar-xs" alt="">
                                                                     <span class=""></span>
@@ -1184,7 +1185,7 @@
 
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="javascript:void(0)" id="btn-online-{{user._id}}">
-                                    <i class="fas fa-circle font-size-10 text-success me-1 ms-0" ></i> Có sẵn </a>
+                                    <i class="fas fa-circle font-size-10 text-success me-1 ms-0"></i> Có sẵn </a>
                                 <a class="dropdown-item" href="javascript:void(0)" id="btn-busy-{{user._id}}"><i
                                         class="fas fa-circle font-size-10 text-warning me-1 ms-0"></i> Bận </a>
                             </div>
@@ -2292,10 +2293,10 @@
                             <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
                                 <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
                                     <div class="simplebar-content" style="padding: 24px;">
-                                        <div class="text-muted">
+                                        {{!-- <div class="text-muted">
                                             <p class="mb-4">Mô tả</p>
-                                        </div>
-
+                                        </div> --}}
+                                        {{!-- Files --}}
                                         <div class="accordion" id="myprofile">
                                             <div class="accordion-item card border">
                                                 <div class="accordion-header" id="attachfile3">
@@ -2332,15 +2333,15 @@
                                                                 <div class="ms-4 me-0">
                                                                     <ul class="list-inline mb-0 font-size-18">
                                                                         <li class="list-inline-item">
-                                                                            <a href="https://themesbrand.com/chatvia/layouts/dark.html#"
+                                                                            <a href="javascript:void(0)"
                                                                                 class="text-muted px-1">
                                                                                 <i class="fal fa-download"></i>
                                                                             </a>
                                                                         </li>
-                                                                        <li class="list-inline-item dropdown">
+                                                                        {{!-- <li class="list-inline-item dropdown">
                                                                             <a class="dropdown-toggle text-muted px-1"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#"
-                                                                                role="button" data-bs-toggle="dropdown"
+                                                                                href="javascript:void(0)" role="button"
+                                                                                data-bs-toggle="dropdown"
                                                                                 aria-haspopup="true"
                                                                                 aria-expanded="false">
                                                                                 <i class="fal fa-ellipsis-h"></i>
@@ -2348,16 +2349,16 @@
                                                                             <div
                                                                                 class="dropdown-menu dropdown-menu-end">
                                                                                 <a class="dropdown-item"
-                                                                                    href="https://themesbrand.com/chatvia/layouts/dark.html#">Action</a>
+                                                                                    href="javascript:void(0)">Action</a>
                                                                                 <a class="dropdown-item"
-                                                                                    href="https://themesbrand.com/chatvia/layouts/dark.html#">Hành
+                                                                                    href="javascript:void(0)">Hành
                                                                                     động khác
                                                                                 </a>
                                                                                 <div class="dropdown-divider"></div>
                                                                                 <a class="dropdown-item"
-                                                                                    href="https://themesbrand.com/chatvia/layouts/dark.html#">Xoá</a>
+                                                                                    href="javascript:void(0)">Xoá</a>
                                                                             </div>
-                                                                        </li>
+                                                                        </li> --}}
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -2367,13 +2368,13 @@
                                             </div>
                                             <!-- end profile-user-accordion -->
                                         </div>
-
+                                        {{!-- Images --}}
                                         <div class="accordion" id="myprofile">
                                             <div class="accordion-item card border">
                                                 <div class="accordion-header" id="attachfile3">
                                                     <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#attachprofile"
-                                                        aria-expanded="false" aria-controls="attachprofile">
+                                                        data-bs-toggle="collapse" data-bs-target="#attachprofileImages"
+                                                        aria-expanded="false" aria-controls="attachprofileImages">
                                                         <h5 class="font-size-14 m-0">
                                                             <i
                                                                 class="fal fa-paperclip me-2 ms-0 align-middle d-inline-block"></i>
@@ -2381,7 +2382,82 @@
                                                         </h5>
                                                     </button>
                                                 </div>
-                                                <div id="attachprofile" class="accordion-collapse collapse"
+                                                <div id="attachprofileImages" class="accordion-collapse collapse"
+                                                    aria-labelledby="attachfile3" data-bs-parent="#myprofile">
+                                                    <div class="accordion-body" id="list-image-conversation"
+                                                        style="display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; height: 100%;">
+
+                                                        <div class="card p-2 border mb-2">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar-sm me-3 ms-0">
+                                                                    <div
+                                                                        class="avatar-title bg-soft-primary text-primary rounded font-size-20">
+                                                                        <i class="ri-file-text-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <div class="text-start">
+                                                                        <h5 class="font-size-14 mb-1">admin_v1.0.zip
+                                                                        </h5>
+                                                                        <p class="text-muted font-size-13 mb-0">12.5
+                                                                            MB</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="ms-4 me-0">
+                                                                    <ul class="list-inline mb-0 font-size-18">
+                                                                        <li class="list-inline-item">
+                                                                            <a href="javascript:void(0)"
+                                                                                class="text-muted px-1">
+                                                                                <i class="fal fa-download"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="list-inline-item dropdown">
+                                                                            <a class="dropdown-toggle text-muted px-1"
+                                                                                href="javascript:void(0)" role="button"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false">
+                                                                                <i class="fal fa-ellipsis-h"></i>
+                                                                            </a>
+                                                                            <div
+                                                                                class="dropdown-menu dropdown-menu-end">
+                                                                                <a class="dropdown-item"
+                                                                                    href="javascript:void(0)">Action</a>
+                                                                                <a class="dropdown-item"
+                                                                                    href="javascript:void(0)">Hành
+                                                                                    động khác
+                                                                                </a>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <a class="dropdown-item"
+                                                                                    href="javascript:void(0)">Xoá</a>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end profile-user-accordion -->
+                                        </div>
+                                        {{!-- Members --}}
+                                        <div class="accordion" id="myprofile">
+                                            <div class="accordion-item card border">
+                                                <div class="accordion-header" id="attachfile3">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#attachprofileMember"
+                                                        aria-expanded="false" aria-controls="attachprofileMember">
+                                                        <h5 class="font-size-14 m-0">
+                                                            <i
+                                                                class="fal fa-paperclip me-2 ms-0 align-middle d-inline-block"></i>
+                                                            Thành viên
+                                                        </h5>
+                                                    </button>
+                                                </div>
+                                                <div id="attachprofileMember" class="accordion-collapse collapse"
                                                     aria-labelledby="attachfile3" data-bs-parent="#myprofile">
                                                     <div class="accordion-body" id="list-image-conversation">
                                                         <div class="card p-2 border mb-2">
@@ -2404,15 +2480,15 @@
                                                                 <div class="ms-4 me-0">
                                                                     <ul class="list-inline mb-0 font-size-18">
                                                                         <li class="list-inline-item">
-                                                                            <a href="https://themesbrand.com/chatvia/layouts/dark.html#"
+                                                                            <a href="javascript:void(0)"
                                                                                 class="text-muted px-1">
                                                                                 <i class="fal fa-download"></i>
                                                                             </a>
                                                                         </li>
                                                                         <li class="list-inline-item dropdown">
                                                                             <a class="dropdown-toggle text-muted px-1"
-                                                                                href="https://themesbrand.com/chatvia/layouts/dark.html#"
-                                                                                role="button" data-bs-toggle="dropdown"
+                                                                                href="javascript:void(0)" role="button"
+                                                                                data-bs-toggle="dropdown"
                                                                                 aria-haspopup="true"
                                                                                 aria-expanded="false">
                                                                                 <i class="fal fa-ellipsis-h"></i>
@@ -2420,14 +2496,14 @@
                                                                             <div
                                                                                 class="dropdown-menu dropdown-menu-end">
                                                                                 <a class="dropdown-item"
-                                                                                    href="https://themesbrand.com/chatvia/layouts/dark.html#">Action</a>
+                                                                                    href="javascript:void(0)">Action</a>
                                                                                 <a class="dropdown-item"
-                                                                                    href="https://themesbrand.com/chatvia/layouts/dark.html#">Hành
+                                                                                    href="javascript:void(0)">Hành
                                                                                     động khác
                                                                                 </a>
                                                                                 <div class="dropdown-divider"></div>
                                                                                 <a class="dropdown-item"
-                                                                                    href="https://themesbrand.com/chatvia/layouts/dark.html#">Xoá</a>
+                                                                                    href="javascript:void(0)">Xoá</a>
                                                                             </div>
                                                                         </li>
                                                                     </ul>

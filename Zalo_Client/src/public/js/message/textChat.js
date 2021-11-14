@@ -38,7 +38,7 @@ function textChat(id, isChatGroup) {
       }
 
       if (element.which === 13) {
-        $(`#search-conversation`).val('')
+        $(`#search-conversation`).val('');
         let dataTextAndEmoji = {
           uid: id,
           messageVal: messageVal,
@@ -103,7 +103,9 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
       $(`#text-chat-${message.receiverId}`).val('');
       $('.emojionearea-editor').text('');
       //tìm kiếm cuộc trò cũ và xóa
-      $('#conversation-list').find(`li[id=receiver-${message.receiverId}]`).remove();
+      $('#conversation-list')
+        .find(`li[id=receiver-${message.receiverId}]`)
+        .remove();
       //tạo mới cuộc trò truyện trong danh sách trò truyện
       addConversation(message.receiverId, isChatGroup).then(function (result) {
         $('#conversation-list').prepend(result);
@@ -134,19 +136,22 @@ socket.on('response-add-new-text', async function (data) {
       leftConversationText(receiver, message)
     );
     scrollMessageUserEnd();
-    $('#conversation-list').find(`li[id=receiver-${message.receiverId}]`).remove();
+    $('#conversation-list')
+      .find(`li[id=receiver-${message.receiverId}]`)
+      .remove();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
-    addConversation(message.receiverId, data.isChatGroup)
-      .then(function (result) {
-        $('#conversation-list').prepend(result);
-        // if (message.isRead === false) {
-        //   $('.unread-message').html('');
-        //   $(`<span class="badge badge-soft-danger rounded-pill"></span>`).appendTo(
-        //     $('.unread-message')
-        //   );
-        // }
-        //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
-      });
+    addConversation(message.receiverId, data.isChatGroup).then(function (
+      result
+    ) {
+      $('#conversation-list').prepend(result);
+      // if (message.isRead === false) {
+      //   $('.unread-message').html('');
+      //   $(`<span class="badge badge-soft-danger rounded-pill"></span>`).appendTo(
+      //     $('.unread-message')
+      //   );
+      // }
+      //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
+    });
   }
   if (data.isChatGroup == false) {
     //thêm tin nhắn vừa gửi cho người nhận
@@ -154,7 +159,9 @@ socket.on('response-add-new-text', async function (data) {
       leftConversationText(receiver, message)
     );
     $(`#conversation-${message.senderId}`).find('#typing').remove();
-    $('#conversation-list').find(`li[id=receiver-${message.senderId}]`).remove();
+    $('#conversation-list')
+      .find(`li[id=receiver-${message.senderId}]`)
+      .remove();
     //tạo mới cuộc trò truyện trong danh sách trò truyện
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
@@ -169,7 +176,10 @@ async function addConversation(receiverId, isChatGroup) {
   let currentUserId = document.getElementById('id').value;
   if (isChatGroup === false || isChatGroup === 'false') {
     let receiver = await $.get(http + `/users/${receiverId}`);
-    let messages = await $.get(http + `/messages/SearchSenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`);
+    let messages = await $.get(
+      http +
+        `/messages/SearchSenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
+    );
     return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
       receiver.user._id
     }')" id="receiver-${receiver.user._id}" 
@@ -203,18 +213,24 @@ async function addConversation(receiverId, isChatGroup) {
   if (isChatGroup === true || isChatGroup === 'true') {
     let groupReceiver = await $.get(http + `/chatGroups/${receiverId}`);
     // lấy tin nhắn theo id nhóm
-    let messages = await $.get(http + `/messages/SearchByReceiverId/${groupReceiver._id}?startFrom=0`);
-    return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${groupReceiver._id}')" 
-    id="receiver-${groupReceiver._id}" data-updated="${groupReceiver.updatedAt}" 
+    let messages = await $.get(
+      http + `/messages/SearchByReceiverId/${groupReceiver._id}?startFrom=0`
+    );
+    return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${
+      groupReceiver._id
+    }')" 
+    id="receiver-${groupReceiver._id}" data-updated="${
+      groupReceiver.updatedAt
+    }" 
     data-name="${groupReceiver.name}">
         <a>
             <div class="d-flex">
                 <div
-                    class="chat-user-img online align-self-center me-3 ms-0">
+                    class="chat-user-img online align-self-center me-3 ms-0 position-relative">
                     <img src="${s3}/${groupReceiver.avatar}"
                         class="rounded-circle avatar-xs" alt="">
                     <span class=""></span>
-                    <i class="fas fa-circle font-size-10 text-warning me-1 ms-0"></i>
+                    <i class="fas fa-circle font-size-10 text-warning me-1 ms-0 position-absolute" style="bottom: 2px ; right: -1px ; font-size: 8px !important;"></i>
                 </div>
     
                 <div class="flex-1 overflow-hidden">
