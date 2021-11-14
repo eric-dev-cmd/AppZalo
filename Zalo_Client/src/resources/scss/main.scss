@@ -121,8 +121,8 @@
 }
 
 .avatar-camera {
-  right: 358px;
-  top: 27%;
+  right: 360px;
+  top: 31.5%;
   font-size: 13px;
   color: gray;
   background: white;
@@ -150,4 +150,9 @@
 }
 .contact-list-item-cl.active {
   background: #36404a;
+}
+.avatar-online i {
+  bottom: 10px;
+  right: 14px;
+  color: #15a85f;
 }

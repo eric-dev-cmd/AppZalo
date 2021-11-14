@@ -24,7 +24,9 @@ async function showConversationGroup(id) {
   let currentUserId = document.getElementById('id').value;
   let sender = await $.get(http + `/users/${currentUserId}`);
   // lấy tin nhắn theo id nhóm
-  let messages = await $.get(http + `/messages/SearchByReceiverId/${id}?startFrom=0`);
+  let messages = await $.get(
+    http + `/messages/SearchByReceiverId/${id}?startFrom=0`
+  );
   //hiển thị avatar
   $('#avatar-detail').attr('src', `${s3}/${group.avatar}`);
   $('#avatar-conversation').attr('src', `${s3}/${group.avatar}`);
@@ -61,14 +63,13 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
           leftConversationText(receiver, message)
         );
       }
-
     }
     if (message.messageType === 'image') {
       if (message.senderId === rightId) {
@@ -78,7 +79,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -92,7 +93,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -151,7 +152,8 @@ async function showConversationUser(id) {
   let receiver = await $.get(http + `/users/${id}`);
   let sender = await $.get(http + `/users/${currentUserId}`);
   let messages = await $.get(
-    http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}?startFrom=0`
+    http +
+      `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}?startFrom=0`
   );
   //hiển thị avatar
   $('#avatar-detail').attr('src', `${s3}/${receiver.user.avatar}`);
@@ -176,7 +178,6 @@ async function showConversationUser(id) {
   $(`#conversation-${id}`).html('');
   messages.forEach((message) => {
     //cập nhật đã đọc
-
 
     if (message.messageType === 'text') {
       if (message.senderId === rightId) {
@@ -284,8 +285,8 @@ function insertInputFile(id, isChatGroup) {
 }
 
 function renderTime(message) {
-  let formatedTime = moment(message.createdAt).format('LT');
-  console.log();
+  // let formatedTime = moment(message.createdAt).format('LT');
+  let formatedTime = moment(message.createdAt).format('h:mm A DD-MM-YYYY');
   return formatedTime;
 }
 
@@ -909,7 +910,8 @@ function isRead(message) {
         message: message,
       },
       success: function (data) {
-        if (data.success) {}
+        if (data.success) {
+        }
       },
     });
   }
