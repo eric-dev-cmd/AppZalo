@@ -33,7 +33,7 @@ socket.on('response-create-group', function (data) {
         .then(function (result) {
             $('#conversation-list').prepend(result);
         });
-    socket.emit('members-get-socketId', {group: group});
+    socket.emit('members-get-socketId', { group: group });
 });
 
 $('#seach-user-add-group').off('keyup').on('keyup', async function (e) {

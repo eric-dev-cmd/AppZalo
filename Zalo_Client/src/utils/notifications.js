@@ -7,7 +7,7 @@ class NotificationUtil {
                 <div class="d-flex">
                     <div
                         class="chat-user-img away align-self-center me-3 ms-0">
-                        <img src="images/${userAvatar}"
+                        <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${userAvatar}"
                             class="rounded-circle avatar-xs" alt="">
                         <span class="user-status"></span>
                     </div>

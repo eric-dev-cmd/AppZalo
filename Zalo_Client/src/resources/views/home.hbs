@@ -9,7 +9,12 @@
                     style="margin-top: 15px;">
                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/{{user.avatar}}"
                         alt="" class="profile-user rounded-circle" style="width: 100%; height: 100%">
-                    <i class="fas fa-circle font-size-10 me-1 ms-0 position-absolute" id="busy"></i>
+                    {{#ifOnline user.isOnline}}
+                    <i class="fas fa-circle font-size-10 me-1 ms-0 position-absolute" id="btn-change-online"></i>
+                    {{/ifOnline}}
+                    {{#ifBusy user.isOnline}}
+                    <i class="fas fa-circle font-size-10 text-warning me-1 ms-0 position-absolute" id="btn-change-online"></i>
+                    {{/ifBusy}}
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item d-flex align-items-center justify-content-between"
@@ -263,7 +268,7 @@
                                                             Kết quả gần nhất
                                                         </span>
                                                     </div>
-                                                    <div class="list-addfriend-wrapper" id="list-search-phone">
+                                                    <div class="list-addfriend-wrapper" id="list-search-phone" >
                                                         <div class="list-addfriend">
                                                             <div
                                                                 class="list-addfriend-item d-flex align-middle cursor-point">
@@ -299,7 +304,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="can-know-person mt-115">
+                                                    {{!-- <div class="can-know-person mt-115">
                                                         <div class="d-flex align-items-center text-white"
                                                             style="font-size: 13px; height: 30px; width: 100% ; padding-left: 3px">
                                                             <span>
@@ -437,7 +442,7 @@
                                                                 More
                                                             </span>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
 
                                             </div>
@@ -2313,56 +2318,7 @@
                                                 <div id="attachprofile" class="accordion-collapse collapse"
                                                     aria-labelledby="attachfile3" data-bs-parent="#myprofile">
                                                     <div class="accordion-body" id="list-file-conversation">
-                                                        <div class="card p-2 border mb-2">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar-sm me-3 ms-0">
-                                                                    <div
-                                                                        class="avatar-title bg-soft-primary text-primary rounded font-size-20">
-                                                                        <i class="ri-file-text-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="flex-1">
-                                                                    <div class="text-start">
-                                                                        <h5 class="font-size-14 mb-1">admin_v1.0.zip
-                                                                        </h5>
-                                                                        <p class="text-muted font-size-13 mb-0">12.5
-                                                                            MB</p>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="ms-4 me-0">
-                                                                    <ul class="list-inline mb-0 font-size-18">
-                                                                        <li class="list-inline-item">
-                                                                            <a href="javascript:void(0)"
-                                                                                class="text-muted px-1">
-                                                                                <i class="fal fa-download"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                        {{!-- <li class="list-inline-item dropdown">
-                                                                            <a class="dropdown-toggle text-muted px-1"
-                                                                                href="javascript:void(0)" role="button"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-haspopup="true"
-                                                                                aria-expanded="false">
-                                                                                <i class="fal fa-ellipsis-h"></i>
-                                                                            </a>
-                                                                            <div
-                                                                                class="dropdown-menu dropdown-menu-end">
-                                                                                <a class="dropdown-item"
-                                                                                    href="javascript:void(0)">Action</a>
-                                                                                <a class="dropdown-item"
-                                                                                    href="javascript:void(0)">Hành
-                                                                                    động khác
-                                                                                </a>
-                                                                                <div class="dropdown-divider"></div>
-                                                                                <a class="dropdown-item"
-                                                                                    href="javascript:void(0)">Xoá</a>
-                                                                            </div>
-                                                                        </li> --}}
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -2387,56 +2343,7 @@
                                                     <div class="accordion-body" id="list-image-conversation"
                                                         style="display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; height: 100%;">
 
-                                                        <div class="card p-2 border mb-2">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar-sm me-3 ms-0">
-                                                                    <div
-                                                                        class="avatar-title bg-soft-primary text-primary rounded font-size-20">
-                                                                        <i class="ri-file-text-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="flex-1">
-                                                                    <div class="text-start">
-                                                                        <h5 class="font-size-14 mb-1">admin_v1.0.zip
-                                                                        </h5>
-                                                                        <p class="text-muted font-size-13 mb-0">12.5
-                                                                            MB</p>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="ms-4 me-0">
-                                                                    <ul class="list-inline mb-0 font-size-18">
-                                                                        <li class="list-inline-item">
-                                                                            <a href="javascript:void(0)"
-                                                                                class="text-muted px-1">
-                                                                                <i class="fal fa-download"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="list-inline-item dropdown">
-                                                                            <a class="dropdown-toggle text-muted px-1"
-                                                                                href="javascript:void(0)" role="button"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-haspopup="true"
-                                                                                aria-expanded="false">
-                                                                                <i class="fal fa-ellipsis-h"></i>
-                                                                            </a>
-                                                                            <div
-                                                                                class="dropdown-menu dropdown-menu-end">
-                                                                                <a class="dropdown-item"
-                                                                                    href="javascript:void(0)">Action</a>
-                                                                                <a class="dropdown-item"
-                                                                                    href="javascript:void(0)">Hành
-                                                                                    động khác
-                                                                                </a>
-                                                                                <div class="dropdown-divider"></div>
-                                                                                <a class="dropdown-item"
-                                                                                    href="javascript:void(0)">Xoá</a>
-                                                                            </div>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                     
 
                                                     </div>
                                                 </div>

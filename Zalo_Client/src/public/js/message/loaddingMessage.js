@@ -50,6 +50,7 @@ function loadMessageForGroup(id, startFrom) {
                     }
                 }
             });
+            detailConversation(getMessages);
         }
     })
 }
@@ -99,6 +100,7 @@ function loadMessageForPresonal(id, startFrom) {
                     }
                 }
             });
+            detailConversation(getMessages);
         }
     })
 }

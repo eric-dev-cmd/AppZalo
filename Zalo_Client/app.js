@@ -72,6 +72,16 @@ app.engine('hbs',
           return options.fn(this);
         }
       },
+      ifOnline: function (text, options) {
+        if (text === 'true') {
+          return options.fn(this);
+        }
+      },
+      ifBusy: function (text, options) {
+        if (text === 'busy') {
+          return options.fn(this);
+        }
+      },
     }
   })
 );

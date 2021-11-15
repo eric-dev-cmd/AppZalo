@@ -26,7 +26,7 @@ function search(phone) {
         $('#image-search').html('');
         $('<strong>' + userName + '</strong>').appendTo($('#name-search'));
         $('<strong>' + local.phone + '</strong>').appendTo($('#phone-search'));
-        $('<img src="images/' + avatar + '">').appendTo($('#image-search'));
+        $(`<img src="${s3}/` + avatar + '">').appendTo($('#image-search'));
         $('#btn-add-friend').attr('data-uid', `${_id}`);
         $('#btn-cancel-friend').attr('data-uid', `${_id}`);
         showBtnAddAndRemove(_id);
