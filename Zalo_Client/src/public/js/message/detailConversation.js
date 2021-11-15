@@ -33,7 +33,7 @@ function renderListFile(message) {
         <div class="ms-4 me-0">
             <ul class="list-inline mb-0 font-size-18">
                 <li class="list-inline-item">
-                    <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                    <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                       message.fileName
                     }"
                         class="text-muted px-1">
@@ -71,14 +71,14 @@ function renderListImage(message) {
   return `<ul class="list-inline message-img  mb-0">
     <li class="list-inline-item message-img-list position-relative">
         <div>
-            <a class="popup-img d-inline-block m-1" href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${message.fileName}" target="_blank" title="Project 2">
-                <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${message.fileName}" width="150" class="rounded border file-image-hover" style="width: 87px ; height: 87px ;">
+            <a class="popup-img d-inline-block m-1" href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName}" target="_blank" title="Project 2">
+                <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName}" width="150" class="rounded border file-image-hover" style="width: 87px ; height: 87px ;">
             </a>
         </div>
         <div class="message-img-link" style="position: absolute; top: 9px ; color: white !important; right: 15px ;">
             <ul class="list-inline mb-0 list-inline-image-hover">
                 <li class="list-inline-item">
-                    <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${message.fileName}" target="_blank">
+                    <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName}" target="_blank">
                         <i class="fal fa-download"></i>
                     </a>
                 </li>

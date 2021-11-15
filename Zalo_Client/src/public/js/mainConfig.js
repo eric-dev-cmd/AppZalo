@@ -2,7 +2,7 @@ const socket = io();
 const http = `http://localhost:4000`;
 //các cuộc trò truyện
 let conversations;
-const s3 = 'https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com'
+const s3 = 'https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public'
 
 
 socket.emit('send-user', userJson);

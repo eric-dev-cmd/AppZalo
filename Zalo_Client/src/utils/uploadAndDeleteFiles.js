@@ -20,7 +20,7 @@ function upload(files, uuid) {
     files.forEach((file) => {
         const params = {
             Bucket: process.env.AWSBUCKETNAME,
-            Key: `${uuid}.${file.name}`,
+            Key: `public/${uuid}.${file.name}`,
             Body: file.data, //(buffer file)
             ACL: 'public-read',
             ContentType: file.mimetype

@@ -146,7 +146,7 @@ function insertListMember(group, sender) {
             <div class="avatar-sm me-3 ms-0">
                 <div
                     class="avatar-title text-primary rounded font-size-20 rounded-circle position-relative">
-                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${sender.user.avatar}"
+                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${sender.user.avatar}"
                         alt="" class="profile-user rounded-circle"
                         style="width: 100%; height: 100%">
                     <div style="position: absolute; bottom: -2px ; right: -3px ; color: white; background: black; border-radius: 50%; width: 18 px ; height: 18px ; font-size: 11px;">
@@ -368,7 +368,7 @@ function rightConversationText(user, message) {
   }" data-id="${user.user._id}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
               user.user.avatar
             }" alt="">
         </div>
@@ -428,7 +428,7 @@ function leftConversationText(user, message) {
   }"  data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
               user.user.avatar
             }"
                 alt="">
@@ -481,7 +481,7 @@ function rightConversationImage(user, message) {
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
               user.user.avatar
             }"
                 alt="">
@@ -494,11 +494,11 @@ function rightConversationImage(user, message) {
                         <li class="list-inline-item message-img-list me-2 ms-0">
                             <div>
                                 <a class="popup-img d-inline-block m-1"
-                                    href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                    href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                       message.fileName
                                     }"
                                     title="Project 1">
-                                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                       message.fileName
                                     }" alt=""
                                         class="rounded border">
@@ -507,7 +507,7 @@ function rightConversationImage(user, message) {
                             <div class="message-img-link">
                                 <ul class="list-inline mb-0">
                                     <li class="list-inline-item">
-                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                           message.fileName
                                         }">
                                             <i class="fal fa-download"></i>
@@ -600,7 +600,7 @@ function leftConversationImage(user, message) {
   }" data-content="${message.text}" data-messageId="${message._id}">
      <div class="conversation-list">
          <div class="chat-avatar">
-             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                user.user.avatar
              }"
                  alt="">
@@ -613,11 +613,11 @@ function leftConversationImage(user, message) {
                          <li class="list-inline-item message-img-list">
                              <div>
                                  <a class="popup-img d-inline-block m-1"
-                                     href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                     href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                        message.fileName
                                      }"
                                      title="Project 2">
-                                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                        message.fileName
                                      }" alt=""
                                          class="rounded border">
@@ -626,7 +626,7 @@ function leftConversationImage(user, message) {
                              <div class="message-img-link">
                                  <ul class="list-inline mb-0">
                                      <li class="list-inline-item">
-                                         <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                         <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                            message.fileName
                                          }">
                                              <i class="fal fa-download"></i>
@@ -718,7 +718,7 @@ function rightConversationFile(user, message) {
   }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
               user.user.avatar
             }" alt="">
         </div>
@@ -751,7 +751,7 @@ function rightConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                           message.fileName
                                         }"
                                             class="text-muted">
@@ -839,7 +839,7 @@ function leftConversationFile(user, message) {
   }" data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
               user.user.avatar
             }" alt="">
         </div>
@@ -872,7 +872,7 @@ function leftConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/${
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
                                           message.fileName
                                         }"
                                             class="text-muted">

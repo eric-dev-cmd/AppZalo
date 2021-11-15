@@ -130,7 +130,7 @@ socket.on('response-add-new-text', async function (data) {
   //lấy người nhận
   let receiver = await $.get(http + `/users/${message.senderId}`);
   // nếu là nhóm
-  if (data.isChatGroup == true && message.senderId !== currentUserId) {
+  if (data.isChatGroup == true || data.isChatGroup == 'true' && message.senderId !== currentUserId) {
     //thêm tin nhắn vừa gửi cho nhóm nhận
     $(`#conversation-${message.receiverId}`).append(
       leftConversationText(receiver, message)
@@ -153,7 +153,7 @@ socket.on('response-add-new-text', async function (data) {
       //  $('#conversation-list').find(`li[id = receiver-${message.receiverId}]`).css('color', 'red');
     });
   }
-  if (data.isChatGroup == false) {
+  if (data.isChatGroup == false || data.isChatGroup == 'false') {
     //thêm tin nhắn vừa gửi cho người nhận
     $(`#conversation-${message.senderId}`).append(
       leftConversationText(receiver, message)
