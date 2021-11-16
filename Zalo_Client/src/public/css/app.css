@@ -1636,12 +1636,7 @@ input[readonly]
     left: -400%; }
 
 .conversation-emoji::before {
-  content: '';
-  position: absolute;
-  width: 182px;
-  height: 15px;
-  top: -7px;
-  left: -100px; }
+  content: ''; position: absolute; width: 163px ; height: 67px ; top: -58px ; left: -19%; }
 
 .conversation-emoji:hover .list-emoji-hover {
   visibility: visible; }

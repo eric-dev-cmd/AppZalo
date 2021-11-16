@@ -208,7 +208,7 @@ async function showConversationUser(id) {
         );
       }
     }
-    // reaction(message);
+    renderReaction(message);
   });
   detailConversation(messages);
   // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
@@ -344,8 +344,8 @@ function rightConversationText(user, message) {
             </div>
             <div class="emoji-message-user">
               <div class="conversation-emoji">
-                  <div style="border-radius: 50%;" id="reaction" data-mid="${message._id}" onmouseover="reaction('${message._id}')">
-                    <span style="font-size: 14px;padding: 1px;">👍</span>
+                  <div style="border-radius: 50%;"  id="reaction-${message._id}" data-mid="${message._id}" onmouseover="reaction('${message._id}')">
+                    <span style="font-size: 14px;padding: 1px;"></span>
                   </div>
                   <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
                     <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${message._id}">

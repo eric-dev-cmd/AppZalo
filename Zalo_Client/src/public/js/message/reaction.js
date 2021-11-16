@@ -1,6 +1,7 @@
 
 
 function reaction(id) {
+    console.log(id);
     let currentUserId = document.getElementById('id').value;
     $(`#item-reaction-like-${id}`).off('click').on('click', function () {
         updateReaction(id, currentUserId, 'thich')
@@ -34,8 +35,8 @@ function updateReaction(messageId, currentUserId, icon) {
         data: data,
         success: function (data) {
             let message = data.message;
-            
-            console.log(message)
+            $(`#reaction-${message._id}`).css('display', 'inline-block')
+            renderReaction(message)
         },
     });
 }
@@ -47,22 +48,22 @@ function renderReaction(message) {
     if (message.reaction.length > 0) {
         message.reaction.forEach(reaction => {
             if (reaction.react == 'thich') {
-                $(`#reaction-${message._id}`).append('👍');
+                $(`#reaction-${message._id}`).find('span').html('').append('👍');
             }
             if (reaction.react == 'yeu') {
-                $(`#reaction-${message._id}`).append('😍');
+                $(`#reaction-${message._id}`).find('span').html('').append('😍');
             }
             if (reaction.react == 'cuoi') {
-                $(`#reaction-${message._id}`).append('😂');
+                $(`#reaction-${message._id}`).find('span').html('').append('😂');
             }
             if (reaction.react == 'wow') {
-                $(`#reaction-${message._id}`).append('😱');
+                $(`#reaction-${message._id}`).find('span').html('').append('😱');
             }
             if (reaction.react == 'khoc') {
-                $(`#reaction-${message._id}`).append('😭');
+                $(`#reaction-${message._id}`).find('span').html('').append('😭');
             }
             if (reaction.react == 'gian') {
-                $(`#reaction-${message._id}`).append('😡');
+                $(`#reaction-${message._id}`).find('span').html('').append('😡');
             }
         });
     }
