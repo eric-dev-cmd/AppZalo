@@ -109,6 +109,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
       //tạo mới cuộc trò truyện trong danh sách trò truyện
       addConversation(message.receiverId, isChatGroup).then(function (result) {
         $('#conversation-list').prepend(result);
+        getAllConversation()
       });
       scrollMessageUserEnd();
       //gửi socket từ client đến server
@@ -170,6 +171,9 @@ socket.on('response-add-new-text', async function (data) {
     addConversation(message.senderId, data.isChatGroup).then(function (result) {
       $('#conversation-list').prepend(result);
       scrollMessageUserEnd();
+      $('#conversation-list')
+        .find(`li[id = receiver-${message.senderId}]`)
+        .css('font-weight', 'bold');
       //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
     });
   }
@@ -182,14 +186,12 @@ async function addConversation(receiverId, isChatGroup) {
     let receiver = await $.get(http + `/users/${receiverId}`);
     let messages = await $.get(
       http +
-        `/messages/SearchSenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
+      `/messages/SearchSenderIdAndReceiverId/${currentUserId}/${receiver.user._id}`
     );
-    return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${
-      receiver.user._id
-    }')" id="receiver-${receiver.user._id}" 
-    data-updated="${receiver.user.updatedAt}" data-name="${
-      receiver.user.userName
-    }">
+    return `<li class="cursor-point chat-user-list-item" onclick="showConversationUser('${receiver.user._id
+      }')" id="receiver-${receiver.user._id}" 
+    data-updated="${receiver.user.updatedAt}" data-name="${receiver.user.userName
+      }">
         <a>
             <div class="d-flex">
                 <div
@@ -205,11 +207,10 @@ async function addConversation(receiverId, isChatGroup) {
                     <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
                         ${getLastEndMessageInConversation(messages)}</p>
                 </div>
-                <div class="font-size-11" id="updated-time-${
-                  receiver.user._id
-                }" data-uid="${receiver.user._id}">${renderTimeAgo(
-      messages
-    )}</div>
+                <div class="font-size-11" id="updated-time-${receiver.user._id
+      }" data-uid="${receiver.user._id}">${renderTimeAgo(
+        messages
+      )}</div>
             </div>
         </a>
     </li>`;
@@ -220,12 +221,10 @@ async function addConversation(receiverId, isChatGroup) {
     let messages = await $.get(
       http + `/messages/SearchByReceiverId/${groupReceiver._id}?startFrom=0`
     );
-    return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${
-      groupReceiver._id
-    }')" 
-    id="receiver-${groupReceiver._id}" data-updated="${
-      groupReceiver.updatedAt
-    }" 
+    return `<li class="cursor-point chat-user-list-item" onclick="showConversationGroup('${groupReceiver._id
+      }')" 
+    id="receiver-${groupReceiver._id}" data-updated="${groupReceiver.updatedAt
+      }" 
     data-name="${groupReceiver.name}">
         <a>
             <div class="d-flex">
@@ -242,11 +241,10 @@ async function addConversation(receiverId, isChatGroup) {
                     <p class="chat-user-message text-truncate mb-0" id="last-message-conversation">
                         ${getLastEndMessageInConversation(messages)}</p>
                 </div>
-                <div class="font-size-11" id="updated-time-${
-                  groupReceiver._id
-                }" data-uid="${groupReceiver._id}">${renderTimeAgoGroup(
-      messages
-    )}</div>
+                <div class="font-size-11" id="updated-time-${groupReceiver._id
+      }" data-uid="${groupReceiver._id}">${renderTimeAgoGroup(
+        messages
+      )}</div>
             </div>
         </a>
     </li>`;
