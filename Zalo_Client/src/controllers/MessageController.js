@@ -62,5 +62,15 @@ class MessageController {
             success: !!deleteResquest
         });
     }
+
+    async updateReaction(req, res) {
+        let messageId = req.body.messageId;
+        let userId = req.body.userId;
+        let icon = req.body.icon;
+        let message = await messageService.updateReaction(messageId, userId, icon);
+        return res.send({
+            message: message
+        });
+    }
 }
 module.exports = new MessageController;

@@ -1,41 +1,67 @@
-function reaction() {
-    var formData = new FormData(document.getElementById('create-group'));
+
+
+function reaction(id) {
     let currentUserId = document.getElementById('id').value;
+    $(`#item-reaction-like-${id}`).off('click').on('click', function () {
+        updateReaction(id, currentUserId, 'thich')
+    });
+    $(`#item-reaction-love-${id}`).off('click').on('click', function () {
+        updateReaction(id, currentUserId, 'yeu')
+    });
+    $(`#item-reaction-smile-${id}`).off('click').on('click', function () {
+        updateReaction(id, currentUserId, 'cuoi')
+    });
+    $(`#item-reaction-wow-${id}`).off('click').on('click', function () {
+        updateReaction(id, currentUserId, 'wow')
+    });
+    $(`#item-reaction-cry-${id}`).off('click').on('click', function () {
+        updateReaction(id, currentUserId, 'khoc')
+    });
+    $(`#item-reaction-angry-${id}`).off('click').on('click', function () {
+        updateReaction(id, currentUserId, 'gian')
+    });
+}
+
+function updateReaction(messageId, currentUserId, icon) {
+    let data = {
+        messageId: messageId,
+        userId: currentUserId,
+        icon: icon
+    }
     $.ajax({
-        url: '/message/reaction',
+        url: '/message/updateReaction',
         type: 'put',
-        data: formData,
-        contentType: false,
-        processData: false,
+        data: data,
         success: function (data) {
-            let group = data.group;
-            let isChatGroup = true;
-            socket.emit('create-group', {
-                group: group
-            });
+            let message = data.message;
+            
+            console.log(message)
         },
     });
 }
 
+
+
+
 function renderReaction(message) {
     if (message.reaction.length > 0) {
         message.reaction.forEach(reaction => {
-            if(reaction.react == 'thich'){
+            if (reaction.react == 'thich') {
                 $(`#reaction-${message._id}`).append('👍');
             }
-            if(reaction.react == 'yeu'){
+            if (reaction.react == 'yeu') {
                 $(`#reaction-${message._id}`).append('😍');
             }
-            if(reaction.react == 'cuoi'){
+            if (reaction.react == 'cuoi') {
                 $(`#reaction-${message._id}`).append('😂');
             }
-            if(reaction.react == 'wow'){
+            if (reaction.react == 'wow') {
                 $(`#reaction-${message._id}`).append('😱');
             }
-            if(reaction.react == 'khoc'){
+            if (reaction.react == 'khoc') {
                 $(`#reaction-${message._id}`).append('😭');
             }
-            if(reaction.react == 'gian'){
+            if (reaction.react == 'gian') {
                 $(`#reaction-${message._id}`).append('😡');
             }
         });

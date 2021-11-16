@@ -208,7 +208,7 @@ async function showConversationUser(id) {
         );
       }
     }
-    renderReaction(message);
+    // reaction(message);
   });
   detailConversation(messages);
   // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
@@ -225,7 +225,6 @@ async function showConversationUser(id) {
   loadMessageForPresonal(id, startFrom);
   removeListMemberOnUser();
   let test = $('.emoji-message-user');
-  console.log(test);
 }
 function removeListMemberOnUser() {
   $('#myprofileMember').html('');
@@ -336,8 +335,7 @@ function rightConversationText(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item" onclick="deleteText('${message._id
-    }')"
+                        <a class="dropdown-item" onclick="deleteText('${message._id}')"
                             href="javascript:void(0)">Thu hồi
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
@@ -346,27 +344,27 @@ function rightConversationText(user, message) {
             </div>
             <div class="emoji-message-user">
               <div class="conversation-emoji">
-                  <div style="border-radius: 50%;">
-                    <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+                  <div style="border-radius: 50%;" id="reaction" data-mid="${message._id}" onmouseover="reaction('${message._id}')">
+                    <span style="font-size: 14px;padding: 1px;">👍</span>
                   </div>
-                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill">
-                    <div class="emoji-hover d-flex justify-content-around">
-                        <i class="fas fa-thumbs-up text-warning"></i>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${message._id}">
+                    👍
                     </div>
-                    <div class="emoji-hover d-flex justify-content-around">
-                        <i class="fas fa-heart text-danger"></i>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${message._id}">
+                    😍
                     </div>
-                    <div class="emoji-hover d-flex justify-content-around">
-                        <i class="fas fa-grin-squint-tears text-warning"></i>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${message._id}">
+                    😂
                     </div>
-                    <div class="emoji-hover d-flex justify-content-around">
-                        <i class="fas fa-surprise text-danger"></i>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${message._id}">
+                    😱
                     </div>
-                    <div class="emoji-hover d-flex justify-content-around">
-                        <i class="fas fa-sad-cry text-danger"></i>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${message._id}">
+                    😭
                     </div>
-                    <div class="emoji-hover d-flex justify-content-around">
-                        <i class="fas fa-angry" style="color: #c72d26"></i>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${message._id}">
+                    😡
                     </div>
                   </div>
               </div>

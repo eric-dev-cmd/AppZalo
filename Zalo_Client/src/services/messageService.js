@@ -421,6 +421,23 @@ class MessageService {
     });
   }
 
+  async updateReaction(messageId, userId, icon) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let message = await axios.get(http + '/messages/' + messageId);
+        let reaction = {
+          userId: userId,
+          react: icon
+        }
+        message.data.reaction.push(reaction);
+        await axios.put(http + '/messages/' + messageId, message.data);
+        return resolve(message.data);
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+
   // cập nhật tin nhắn đã đọc
   async updateIsRead(message) {
     return new Promise(async (resolve, reject) => {
