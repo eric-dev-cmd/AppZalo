@@ -1584,3 +1584,64 @@ input[readonly]
 .message-img-list .message-img-link .list-inline-image-hover:hover {
   display: block;
   background: red; }
+
+.emoji-message-user {
+  position: absolute;
+  bottom: 18%;
+  left: 12%;
+  background: #c7b7b7;
+  border-radius: 50%;
+  padding: 1px 4px;
+  color: #f1efeb; }
+  .emoji-message-user:hover {
+    cursor: pointer;
+    opacity: 0.9; }
+  .emoji-message-user-image {
+    bottom: 10%;
+    left: 6%; }
+  .emoji-message-user-right {
+    bottom: 7%;
+    left: 84%; }
+  .emoji-message-user-file {
+    bottom: 13%;
+    left: 3%; }
+
+.emoji-message-user-left {
+  position: absolute;
+  bottom: 18%;
+  left: 81%;
+  background: #c7b7b7;
+  border-radius: 50%;
+  padding: 1px 4px;
+  color: #f1efeb; }
+  .emoji-message-user-left:hover {
+    cursor: pointer;
+    opacity: 0.9; }
+
+.list-emoji-hover {
+  box-shadow: 0 0 5px 0 #1d1818;
+  opacity: 0.95;
+  position: absolute;
+  bottom: 100%;
+  background: #fff;
+  width: 13rem;
+  right: -5%;
+  padding: 8px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  visibility: hidden; }
+  .list-emoji-hover-left {
+    bottom: 114%;
+    left: -400%; }
+
+.conversation-emoji::before {
+  content: '';
+  position: absolute;
+  width: 182px;
+  height: 15px;
+  top: -7px;
+  left: -100px; }
+
+.conversation-emoji:hover .list-emoji-hover {
+  visibility: visible; }

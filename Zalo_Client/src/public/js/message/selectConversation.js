@@ -20,7 +20,6 @@ let personalConversationJSON = getAllConversationJSON.filter((value) => {
   return !value.members;
 });
 groupConversation.addEventListener('click', () => {
-  console.log('Group');
   selectGroupActiveIcon();
   showTextSelectedMessage('Trò chuyện nhóm');
   let htmls = groupConversationJSON.map(
@@ -187,6 +186,5 @@ function selectAllActiveIcon() {
   groupConversationIcon.classList.remove('fa-check');
 }
 function showTextSelectedMessage(txtMessage) {
-  console.log(txtMessage);
   showTextSelected.innerHTML = txtMessage;
 }

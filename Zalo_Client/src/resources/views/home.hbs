@@ -75,7 +75,7 @@
                         role="tab" aria-Đã chọn="true">
                         <i class="fal fa-bell"></i>
                         <span id="sumOfNotification" class="badge badge-pill badge-info position-absolute"
-                            style="background: #bf0303; border-radius: 50%; top: 6px;left: 28px;font-size: 14px;"
+                            style="background: #bf0303; border-radius: 50%; top: 7px ; left: 28px ; font-size: 12px;"
                             data-sum={{sumOfNotification}}>
                             {{sumOfNotification}}
                         </span>
@@ -100,7 +100,7 @@
                         <div class="search-box mb-3">
                             <div class="input-wrapper">
                                 <i class="fal fa-search fs-14"></i>
-                                <input class="bg-light" type="text" placeholder="Tìm kiếm..." id="search-conversation">
+                                <input class="bg-light" type="text" id="search-conversation">
                             </div>
                             <div class="input-icon-plus d-flex">
                                 <i class="fal fa-user-plus px-3 fs-14 cursor-point" data-bs-toggle="modal"
@@ -460,8 +460,8 @@
                             style="cursor: pointer;">
                             <div class="d-flex cursor-point dropdown-toggle" data-bs-toggle="dropdown"
                                 aria-expanded="false" aria-haspopup="true">
-                                <span class="pe-2 fw-bold text-white" id="showTextSelected">Tất cả tin nhắn</span>
-                                <i class="fal fa-angle-down fs-24 text-white" style="line-height: 26px;"></i>
+                                <span class="pe-2 fw-bold text-dark" id="showTextSelected">Tất cả tin nhắn</span>
+                                <i class="fal fa-angle-down fs-24 text-dark" style="line-height: 26px;"></i>
                             </div>
                             <div class="dropdown-menu" id="select-type-chat">
                                 {{!-- <a class="dropdown-item d-flex align-items-center justify-content-between">Hiển
@@ -1098,7 +1098,7 @@
                         <div class="search-box mb-3">
                             <div class="input-wrapper">
                                 <i class="fal fa-search fs-14"></i>
-                                <input class="text-white" type="text" placeholder="Tìm kiếm tin nhắn...">
+                                <input class="text-white" type="text">
                             </div>
                             <div class="input-icon-plus d-flex">
                                 <i class="fal fa-user-plus px-3 fs-14 cursor-point"></i>
@@ -1645,7 +1645,7 @@
                                         <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-md">
                                             <div class="search-box p-2" id="search-message-in-conversation">
                                                 <input type="text" class="form-control bg-light border-0"
-                                                    placeholder="Tìm kiếm.." id="search-message">
+                                                    id="search-message">
                                             </div>
                                         </div>
                                     </div>
@@ -2524,16 +2524,15 @@
                                 </div>
                                 <label for="" class="pb-2 fs-14 text-white">Ngày sinh</label>
                                 <div class="col-3">
-                                    <select class="form-select mb-3 fs-14 text-white" id="ddlNgay">
+                                    <select class="form-select mb-3 fs-14 text-dark" id="ddlNgay">
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <select class="form-select mb-3 fs-14 text-white" id="ddlThang"
-                                        onchange="loadDay()">
+                                    <select class="form-select mb-3 fs-14 text-dark" id="ddlThang" onchange="loadDay()">
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <select class="form-select mb-3 fs-14 text-white" id="ddlNam" onchange="loadDay()">
+                                    <select class="form-select mb-3 fs-14 text-dark" id="ddlNam" onchange="loadDay()">
                                     </select>
                                     <input type="hidden" class="form-control fs-14" id="birthday" name="birthday"
                                         value="{{user.birthday}}" onchange="loadBirthday()" />
@@ -2549,11 +2548,11 @@
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" id="radio1" name="gender"
                                                     class="custom-control-input" value="male">
-                                                <label class="custom-control-label text-white" for="radio1">Nam</label>
+                                                <label class="custom-control-label" for="radio1">Nam</label>
 
                                                 <input type="radio" id="radio2" name="gender"
                                                     class="custom-control-input" value="female">
-                                                <label class="custom-control-label text-white" for="radio2">Nữ</label>
+                                                <label class="custom-control-label" for="radio2">Nữ</label>
                                             </div>
 
                                         </div>
@@ -2563,8 +2562,8 @@
                         </div>
                         <div class="col-md-12">
                             <div class="modal-footer d-block">
-                                <button type="submit" class="btn btn-danger form-control form-control-sm fs-14
-                                                                        text-white text-uppercase"
+                                <button type="submit" style="background: #0091ff"
+                                    class="btn form-control form-control-sm fs-14 text-white text-uppercase"
                                     onclick="loadBirthday()">Lưu</button>
                             </div>
                         </div>
