@@ -1448,7 +1448,7 @@ input[readonly]
   .search-box .input-wrapper {
     width: 82%;
     padding: 11px;
-    background-color: #36404a; }
+    background-color: #e6ebf5; }
     .search-box .input-wrapper input {
       width: 83%;
       margin-left: 10px;
@@ -1565,10 +1565,10 @@ input[readonly]
   margin: -15px; }
 
 .contact-list-item-cl:hover {
-  background: #36404a; }
+  background: #e6ebf5; }
 
 .contact-list-item-cl.active {
-  background: #36404a; }
+  background: #e6ebf5; }
 
 .avatar-online i {
   bottom: 10px;
@@ -1577,3 +1577,10 @@ input[readonly]
 
 .dropdown-menu-left-115 {
   left: -115px !important; }
+
+.list-inline-image-hover {
+  display: none; }
+
+.message-img-list .message-img-link .list-inline-image-hover:hover {
+  display: block;
+  background: red; }
