@@ -77,6 +77,7 @@ async function showConversationGroup(id) {
           rightConversationImage(sender, message)
         );
       }
+
       if (
         message.senderId ===
           $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
@@ -225,6 +226,8 @@ async function showConversationUser(id) {
   var startFrom = 0;
   loadMessageForPresonal(id, startFrom);
   removeListMemberOnUser();
+  let test = $('.emoji-message-user');
+  console.log(test);
 }
 function removeListMemberOnUser() {
   $('#myprofileMember').html('');
@@ -305,7 +308,7 @@ function rightConversationText(user, message) {
             }" alt="">
         </div>
 
-        <div class="user-chat-content">
+        <div class="user-chat-content position-relative">
             <div class="ctext-wrap">
                 <div class="ctext-wrap-content">
                     <p class="mb-0" id="chat-content" >
@@ -346,7 +349,33 @@ function rightConversationText(user, message) {
                     </div>
                 </div>
             </div>
-
+            <div class="emoji-message-user">
+              <div class="conversation-emoji">
+                  <div style="border-radius: 50%;">
+                    <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+                  </div>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill">
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-thumbs-up text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-heart text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-grin-squint-tears text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-surprise text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-sad-cry text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-angry" style="color: #c72d26"></i>
+                    </div>
+                  </div>
+              </div>
+            </div>
             <div class="conversation-name">Tôi</div>
         </div>
     </div>
@@ -399,6 +428,33 @@ function leftConversationText(user, message) {
                                 class="fal fa-share float-end text-muted"></i></a>
                     </div>
                 </div>
+            </div>
+            <div class="emoji-message-user-left">
+              <div class="conversation-emoji">
+                  <div style="border-radius: 50%;">
+                    <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+                  </div>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill">
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-thumbs-up text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-heart text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-grin-squint-tears text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-surprise text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-sad-cry text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-angry" style="color: #c72d26"></i>
+                    </div>
+                  </div>
+              </div>
             </div>
             <div class="conversation-name">${user.user.userName}</div>
         </div>
@@ -517,7 +573,33 @@ function rightConversationImage(user, message) {
                 </div>
 
             </div>
-
+          <div class="emoji-message-user emoji-message-user-image">
+              <div class="conversation-emoji">
+                  <div style="border-radius: 50%;">
+                    <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+                  </div>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill">
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-thumbs-up text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-heart text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-grin-squint-tears text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-surprise text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-sad-cry text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-angry" style="color: #c72d26"></i>
+                    </div>
+                  </div>
+              </div>
+            </div>               
             <div class="conversation-name">Tôi</div>
         </div>
 
@@ -634,7 +716,33 @@ function leftConversationImage(user, message) {
                  </div>
 
              </div>
-
+             <div class="emoji-message-user emoji-message-user-right emoji-message-user-image">
+              <div class="conversation-emoji">
+                  <div style="border-radius: 50%;">
+                    <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+                  </div>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill">
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-thumbs-up text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-heart text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-grin-squint-tears text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-surprise text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-sad-cry text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-angry" style="color: #c72d26"></i>
+                    </div>
+                  </div>
+              </div>
+            </div>                    
              <div class="conversation-name">${user.user.userName}</div>
          </div>
 
@@ -755,7 +863,33 @@ function rightConversationFile(user, message) {
                 </div>
 
             </div>
-
+<div class="emoji-message-user emoji-message-user-file">
+              <div class="conversation-emoji">
+                  <div style="border-radius: 50%;">
+                    <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+                  </div>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill">
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-thumbs-up text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-heart text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-grin-squint-tears text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-surprise text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-sad-cry text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-angry" style="color: #c72d26"></i>
+                    </div>
+                  </div>
+              </div>
+            </div>   
             <div class="conversation-name">Tôi</div>
         </div>
 
@@ -874,7 +1008,33 @@ function leftConversationFile(user, message) {
                 </div>
 
             </div>
-
+<div class="emoji-message-user emoji-message-user-image">
+              <div class="conversation-emoji">
+                  <div style="border-radius: 50%;">
+                    <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+                  </div>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill">
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-thumbs-up text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-heart text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-grin-squint-tears text-warning"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-surprise text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-sad-cry text-danger"></i>
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around">
+                        <i class="fas fa-angry" style="color: #c72d26"></i>
+                    </div>
+                  </div>
+              </div>
+            </div>   
             <div class="conversation-name">${user.user.userName}</div>
         </div>
 
