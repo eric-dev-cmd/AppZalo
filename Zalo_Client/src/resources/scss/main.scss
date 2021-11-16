@@ -223,8 +223,16 @@
     left: -400%;
   }
 }
+.conversation-emoji-item {
+  // display: none;
+}
 .conversation-emoji::before {
-  content: ''; position: absolute; width: 163px ; height: 67px ; top: -58px ; left: -19%; 
+  content: '';
+  position: absolute;
+  width: 113px;
+  height: 67px;
+  top: -58px;
+  left: -19%;
 }
 .conversation-emoji:hover .list-emoji-hover {
   visibility: visible;
