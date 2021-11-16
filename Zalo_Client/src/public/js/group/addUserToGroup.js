@@ -2,34 +2,33 @@ $('#btn-add-user-to-group').unbind('click').on('click', async function () {
     let groupId = $('#icon-add-user-to-group').attr('data-gid');
     var formData = new FormData(document.getElementById('add-user-to-group'));
     formData.append('groupId', groupId);
-    //group trước khi thêm user
-    let groupPre = await $.get(http + `/chatGroups/${groupId}`);
-    let membersPre = groupPre.members.map(member => member.userId);
-    $.ajax({
-        url: '/group/addUserToGroup',
-        type: 'put',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            //sau khi thêm
-            let group = data.group;
-            let isChatGroup = true;
-            $('#addUserToGroup-exampleModal').modal('hide');
-            $('#conversation-list').find(`li[id=receiver-${group._id}]`).remove();
-            $('.chat-user-list-item.active').removeClass('active');
-            addConversation(group._id, isChatGroup)
-                .then(function (result) {
-                    $('#conversation-list').prepend(result);
-                    getAllConversation();
+    if (formData.get('idUser') !== null) {
+        $.ajax({
+            url: '/group/addUserToGroup',
+            type: 'put',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                //sau khi thêm
+                let group = data.group;
+                let isChatGroup = true;
+                $('#addUserToGroup-exampleModal').modal('hide');
+                $('#conversation-list').find(`li[id=receiver-${group._id}]`).remove();
+                $('.chat-user-list-item.active').removeClass('active');
+                addConversation(group._id, isChatGroup)
+                    .then(function (result) {
+                        $('#conversation-list').prepend(result);
+                        getAllConversation();
+                    });
+                messageAddUserToGroup(group, membersPre);
+                socket.emit('add-user-to-group', {
+                    group: group,
+                    membersPre: membersPre
                 });
-            messageAddUserToGroup(group, membersPre);
-            socket.emit('add-user-to-group', {
-                group: group,
-                membersPre: membersPre
-            });
-        },
-    });
+            },
+        });
+    }
 });
 
 socket.on('response-add-user-to-group', function (data) {

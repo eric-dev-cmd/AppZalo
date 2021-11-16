@@ -9,36 +9,38 @@ function fileChat(id, isChatGroup) {
         //thêm dữu liệu vào formData
         formData.append('receiverId', id);
         formData.append('isChatGroup', isChatGroup);
-        $.ajax({
-            url: '/message/uploadFiles',
-            type: 'post',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                // { data : 
-                //     messages: 
-                //     {
-                //         { newFiles: [] },
-                //         { newMessages: [] }
-                //     }, 
-                //     isChatGroup: '' 
-                // }
-                $(`#fileChat-${id}`).val('')
-                $(`#search-conversation`).val('')
-                $('#conversation-list').prepend(conversations);
-                let messages = data.messages.newMessages;
-                let isChatGroup = data.isChatGroup;
-                setTimeout(function () {
-                    if (messages.length > 1) {
-                        addNewFileChat(messages, isChatGroup);
-                    } else {
-                        let message = [messages];
-                        addNewFileChat(message, isChatGroup);
-                    }
-                }, 500);
-            },
-        });
+        if (myFiles.files.length > 0) {
+            $.ajax({
+                url: '/message/uploadFiles',
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    // { data : 
+                    //     messages: 
+                    //     {
+                    //         { newFiles: [] },
+                    //         { newMessages: [] }
+                    //     }, 
+                    //     isChatGroup: '' 
+                    // }
+                    $(`#fileChat-${id}`).val('')
+                    $(`#search-conversation`).val('')
+                    $('#conversation-list').prepend(conversations);
+                    let messages = data.messages.newMessages;
+                    let isChatGroup = data.isChatGroup;
+                    setTimeout(function () {
+                        if (messages.length > 1) {
+                            addNewFileChat(messages, isChatGroup);
+                        } else {
+                            let message = [messages];
+                            addNewFileChat(message, isChatGroup);
+                        }
+                    }, 500);
+                },
+            });
+        }
     });
 }
 

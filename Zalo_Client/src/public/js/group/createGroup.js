@@ -2,28 +2,30 @@ $('#choose-user').click();
 $('#btn-create-group').unbind('click').on('click', function () {
     var formData = new FormData(document.getElementById('create-group'));
     let currentUserId = document.getElementById('id').value;
-    $.ajax({
-        url: '/group/createGroup',
-        type: 'post',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            let group = data.group;
-            let isChatGroup = true;
-            $('#addgroup-exampleModal').modal('hide');
-            $('.chat-user-list-item.active').removeClass('active');
-            addConversation(group._id, isChatGroup)
-                .then(function (result) {
-                    $('#conversation-list').prepend(result);
-                    getAllConversation();
+    if (formData.get('idUser') !== null) {
+        $.ajax({
+            url: '/group/createGroup',
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                let group = data.group;
+                let isChatGroup = true;
+                $('#addgroup-exampleModal').modal('hide');
+                $('.chat-user-list-item.active').removeClass('active');
+                addConversation(group._id, isChatGroup)
+                    .then(function (result) {
+                        $('#conversation-list').prepend(result);
+                        getAllConversation();
+                    });
+                messageCreateGroup(group, currentUserId);
+                socket.emit('create-group', {
+                    group: group
                 });
-            messageCreateGroup(group, currentUserId);
-            socket.emit('create-group', {
-                group: group
-            });
-        },
-    });
+            },
+        });
+    }
 });
 
 socket.on('response-create-group', function (data) {
