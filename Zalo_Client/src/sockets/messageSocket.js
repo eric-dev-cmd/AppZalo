@@ -188,6 +188,25 @@ class MessageSocket {
     });
   }
 
+  reaction(io) {
+    let listUsers = {};
+    io.on('connection', async (socket) => {
+      socket.on('send-user', (sender) => {
+        listUsers = addSocketId(listUsers, sender._id, socket.id);
+        socket.on('reaction', (data) => {
+          let response = {
+            message: data.message,
+          };
+          socket.broadcast.emit('response-reaction', response);
+        });
+        //xóa id socket mỗi khi socket disconnect
+        socket.on('disconnect', () => {
+          listUsers = deleteSocketId(listUsers, sender._id, socket);
+        });
+      });
+    });
+  }
+
   updateTime(io) {
     let listUsers = {};
     io.on('connection', (socket) => {

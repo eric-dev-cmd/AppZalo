@@ -35,21 +35,21 @@ function updateReaction(messageId, currentUserId, icon) {
         success: function (data) {
             let message = data.message;
             $(`#reaction-${message._id}`).css('display', 'inline-block')
-            renderReaction(message)
+            renderReaction(message);
+            socket.emit('reaction', {message: message});
         },
     });
 }
 
-
+socket.on('response-reaction',function(data){
+    let message = data.message;
+    renderReaction(message)
+})
 
 
 function renderReaction(message) {
     if (message.reaction.length > 0) {
-        console.log(message)
         message.reaction.forEach(reaction => {
-
-            console.log(reaction)
-            console.log("----------------------------------------------")
             if (reaction.react == 'thich') {
                 $(`#reaction-${message._id}`).css('display', 'inline-block')
                 $(`#reaction-${message._id}`).find('span').html('').append('👍');

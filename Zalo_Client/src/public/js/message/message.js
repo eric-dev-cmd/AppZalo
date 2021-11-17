@@ -63,7 +63,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -80,7 +80,7 @@ async function showConversationGroup(id) {
 
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -94,7 +94,7 @@ async function showConversationGroup(id) {
       }
       if (
         message.senderId ===
-        $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
+          $(`#left-conversation-${receiver.user._id}`).attr('data-id') &&
         message.senderId !== currentUserId
       ) {
         $(`#conversation-${id}`).append(
@@ -153,7 +153,10 @@ async function showConversationUser(id) {
   let currentUserId = document.getElementById('id').value;
   let receiver = await $.get(http + `/users/${id}`);
   let sender = await $.get(http + `/users/${currentUserId}`);
-  let messages = await $.get(http + `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}?startFrom=0`);
+  let messages = await $.get(
+    http +
+      `/messages/SearchBySenderIdAndReceiverId/${currentUserId}/${id}?startFrom=0`
+  );
   //hiển thị avatar
   $('#avatar-detail').attr('src', `${s3}/${receiver.user.avatar}`);
   $('#avatar-conversation').attr('src', `${s3}/${receiver.user.avatar}`);
@@ -303,7 +306,6 @@ function rightConversationText(user, message) {
             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${user.user.avatar
     }" alt="">
         </div>
-
         <div class="user-chat-content position-relative">
             <div class="ctext-wrap">
                 <div class="ctext-wrap-content">
@@ -316,7 +318,6 @@ function rightConversationText(user, message) {
       message
     )}</span></p>
                 </div>
-
                 <div class="dropdown align-self-start">
                     <a class="dropdown-toggle" href="javascript:void(0)"
                         role="button" data-bs-toggle="dropdown"
@@ -378,12 +379,14 @@ function rightConversationText(user, message) {
 
 //tạo tin nhắn text nhận
 function leftConversationText(user, message) {
-  return `<li id="left-conversation-${user.user._id}" data-id="${user.user._id
-    }"  data-content="${message.text}" data-messageId="${message._id}">
+  return `<li id="left-conversation-${user.user._id}" data-id="${
+    user.user._id
+  }"  data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${user.user.avatar
-    }"
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+              user.user.avatar
+            }"
                 alt="">
         </div>
 
@@ -396,8 +399,8 @@ function leftConversationText(user, message) {
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
                             class="align-middle">${renderTime(
-      message
-    )}</span></p>
+                              message
+                            )}</span></p>
                 </div>
                 <div class="dropdown align-self-start">
                     <a class="dropdown-toggle" href="javascript:void(0)"
@@ -445,9 +448,9 @@ function leftConversationText(user, message) {
                     <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${message._id}">
                     😡
                     </div>
-                  </div>
-              </div>
+               </div>
             </div>
+         </div>
             <div class="conversation-name">${user.user.userName}</div>
         </div>
     </div>
@@ -456,12 +459,14 @@ function leftConversationText(user, message) {
 
 //tạo tin nhắn image gửi đi
 function rightConversationImage(user, message) {
-  return `<li class="right" id="right-conversation" data-id="${user.user._id
-    }"  data-messageId="${message._id}">
+  return `<li class="right" id="right-conversation" data-id="${
+    user.user._id
+  }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${user.user.avatar
-    }"
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+              user.user.avatar
+            }"
                 alt="">
         </div>
 
@@ -472,19 +477,22 @@ function rightConversationImage(user, message) {
                         <li class="list-inline-item message-img-list me-2 ms-0">
                             <div>
                                 <a class="popup-img d-inline-block m-1"
-                                    href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }"
+                                    href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                      message.fileName
+                                    }"
                                     title="Project 1">
-                                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }" alt=""
+                                    <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                      message.fileName
+                                    }" alt=""
                                         class="rounded border">
                                 </a>
                             </div>
                             <div class="message-img-link">
                                 <ul class="list-inline mb-0">
                                     <li class="list-inline-item">
-                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }">
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                          message.fileName
+                                        }">
                                             <i class="fal fa-download"></i>
                                         </a>
                                     </li>
@@ -527,8 +535,8 @@ function rightConversationImage(user, message) {
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
                             class="align-middle">${renderTime(
-      message
-    )}</span></p>
+                              message
+                            )}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -550,8 +558,9 @@ function rightConversationImage(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item" onclick="deleteFile('${message._id
-    }')"
+                        <a class="dropdown-item" onclick="deleteFile('${
+                          message._id
+                        }')"
                             href="javascript:void(0)">Xoá 
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
@@ -586,6 +595,7 @@ function rightConversationImage(user, message) {
               </div>
              </div>
             </div>               
+
             <div class="conversation-name">Tôi</div>
         </div>
 
@@ -595,12 +605,14 @@ function rightConversationImage(user, message) {
 
 //tạo tin nhắn image nhận
 function leftConversationImage(user, message) {
-  return `<li id="left-conversation-${user.user._id}" data-id="${user.user._id
-    }" data-content="${message.text}" data-messageId="${message._id}">
+  return `<li id="left-conversation-${user.user._id}" data-id="${
+    user.user._id
+  }" data-content="${message.text}" data-messageId="${message._id}">
      <div class="conversation-list">
          <div class="chat-avatar">
-             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${user.user.avatar
-    }"
+             <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+               user.user.avatar
+             }"
                  alt="">
          </div>
 
@@ -611,19 +623,22 @@ function leftConversationImage(user, message) {
                          <li class="list-inline-item message-img-list">
                              <div>
                                  <a class="popup-img d-inline-block m-1"
-                                     href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }"
+                                     href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                       message.fileName
+                                     }"
                                      title="Project 2">
-                                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }" alt=""
+                                     <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                       message.fileName
+                                     }" alt=""
                                          class="rounded border">
                                  </a>
                              </div>
                              <div class="message-img-link">
                                  <ul class="list-inline mb-0">
                                      <li class="list-inline-item">
-                                         <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }">
+                                         <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                           message.fileName
+                                         }">
                                              <i class="fal fa-download"></i>
                                          </a>
                                      </li>
@@ -666,8 +681,8 @@ function leftConversationImage(user, message) {
                      <p class="chat-time mb-0"><i
                              class="fal fa-clock align-middle"></i> <span
                              class="align-middle">${renderTime(
-      message
-    )}</span></p>
+                               message
+                             )}</span></p>
                  </div>
 
                  <div class="dropdown align-self-start">
@@ -734,12 +749,14 @@ function leftConversationImage(user, message) {
 //tạo tin nhắn file gửi đi
 function rightConversationFile(user, message) {
   let fileName = message.fileName.split('.');
-  return `<li class="right"  id="right-conversation" data-id="${user.user._id
-    }"  data-messageId="${message._id}">
+  return `<li class="right"  id="right-conversation" data-id="${
+    user.user._id
+  }"  data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${user.user.avatar
-    }" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+              user.user.avatar
+            }" alt="">
         </div>
 
         <div class="user-chat-content">
@@ -770,8 +787,9 @@ function rightConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }"
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                          message.fileName
+                                        }"
                                             class="text-muted">
                                             <i class="fal
                                                     fa-download"></i>
@@ -808,8 +826,8 @@ function rightConversationFile(user, message) {
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
                             class="align-middle">${renderTime(
-      message
-    )}</span></p>
+                              message
+                            )}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">
@@ -831,8 +849,9 @@ function rightConversationFile(user, message) {
                             href="javascript:void(0)">Chuyển tiếp
                             <i
                                 class="fal fa-share float-end text-muted"></i></a>
-                        <a class="dropdown-item" onclick="deleteFile('${message._id
-    }')"
+                        <a class="dropdown-item" onclick="deleteFile('${
+                          message._id
+                        }')"
                             href="javascript:void(0)">Xoá
                             <i
                                 class="fal fa-trash-alt float-end text-muted"></i></a>
@@ -877,12 +896,14 @@ function rightConversationFile(user, message) {
 //tạo tin nhắn file nhận
 function leftConversationFile(user, message) {
   let fileName = message.fileName.split('.');
-  return `<li id="left-conversation-${user.user._id}" data-id="${user.user._id
-    }" data-content="${message.text}" data-messageId="${message._id}">
+  return `<li id="left-conversation-${user.user._id}" data-id="${
+    user.user._id
+  }" data-content="${message.text}" data-messageId="${message._id}">
     <div class="conversation-list">
         <div class="chat-avatar">
-            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${user.user.avatar
-    }" alt="">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+              user.user.avatar
+            }" alt="">
         </div>
 
         <div class="user-chat-content">
@@ -913,8 +934,9 @@ function leftConversationFile(user, message) {
                                 <div
                                     class="d-flex gap-2 font-size-20 d-flex align-items-start">
                                     <div>
-                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${message.fileName
-    }"
+                                        <a href="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+                                          message.fileName
+                                        }"
                                             class="text-muted">
                                             <i class="fal
                                                     fa-download"></i>
@@ -951,8 +973,8 @@ function leftConversationFile(user, message) {
                     <p class="chat-time mb-0"><i
                             class="fal fa-clock align-middle"></i> <span
                             class="align-middle">${renderTime(
-      message
-    )}</span></p>
+                              message
+                            )}</span></p>
                 </div>
 
                 <div class="dropdown align-self-start">

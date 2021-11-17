@@ -6,19 +6,6 @@ const groupSocket = require('./groupSocket');
 
 function initSockets(io) {
 
-    // function onUser(io) {
-    //     return new Promise((resolve, reject) => {
-    //         io.on('connection', (socket) => {
-    //             console.log(socket.id);
-    //             socket.on('send-user', (user) => {
-    //                 if (user) {
-    //                     return resolve(user);
-    //                 }
-    //             })
-    //         });
-    //     });
-    // }
-
     contactSocket.addNewContact(io);
     contactSocket.removeFriendRequest(io);
     contactSocket.removeFriendRequestFromReceiver(io);
@@ -30,6 +17,7 @@ function initSockets(io) {
     messageSocket.updateTime(io);
     messageSocket.deleteText(io);
     messageSocket.typing(io);
+    messageSocket.reaction(io);
     videoCallSocket.call(io);
 
     videoCallSocket.videoCall(io);

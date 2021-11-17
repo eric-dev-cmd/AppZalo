@@ -1626,7 +1626,7 @@ input[readonly]
   background: #fff;
   width: 13rem;
   right: -5%;
-  padding: 8px 3px;
+  padding: 10px 5px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -1636,7 +1636,12 @@ input[readonly]
     left: -400%; }
 
 .conversation-emoji::before {
-  content: ''; position: absolute; width: 163px ; height: 67px ; top: -58px ; left: -19%; }
+  content: '';
+  position: absolute;
+  width: 113px;
+  height: 67px;
+  top: -58px;
+  left: -19%; }
 
 .conversation-emoji:hover .list-emoji-hover {
   visibility: visible; }
