@@ -1,8 +1,4 @@
-const {
-  addSocketId,
-  sendEvent,
-  deleteSocketId,
-} = require('../utils/socket');
+const { addSocketId, sendEvent, deleteSocketId } = require('../utils/socket');
 const messageService = require('../services/messageService');
 const message = require('../utils/message');
 const axios = require('axios');
@@ -47,8 +43,18 @@ class MessageSocket {
           //gửi socket đến cho client
           //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
           if (listUsers[data.message.receiverId]) {
-            sendEvent(listUsers, data.message.receiverId, io, 'response-add-new-text', respone);
+            sendEvent(
+              listUsers,
+              data.message.receiverId,
+              io,
+              'response-add-new-text',
+              respone
+            );
           }
+        });
+        socket.on('trungvinh-emit', (data) => {
+          console.log(sender._id);
+          console.log(data);
         });
         //xóa id socket mỗi khi socket disconnect
         socket.on('disconnect', () => {
@@ -97,7 +103,13 @@ class MessageSocket {
           //gửi socket đến cho client
           //nếu user nhận tin nhắn đang đăng nhập thì sẽ gửi đi
           if (listUsers[data.messages[0].receiverId]) {
-            sendEvent(listUsers, data.messages[0].receiverId, io, 'response-add-new-file', response);
+            sendEvent(
+              listUsers,
+              data.messages[0].receiverId,
+              io,
+              'response-add-new-file',
+              response
+            );
           }
         });
         //xóa id socket mỗi khi socket disconnect
@@ -177,7 +189,13 @@ class MessageSocket {
             typing: data.typing,
           };
           if (listUsers[data.receiverId]) {
-            sendEvent(listUsers, data.receiverId, io, 'response-typing', response);
+            sendEvent(
+              listUsers,
+              data.receiverId,
+              io,
+              'response-typing',
+              response
+            );
           }
         });
         //xóa id socket mỗi khi socket disconnect
@@ -207,10 +225,18 @@ class MessageSocket {
         });
 
         setInterval(async function () {
-          let getAllConversation = await messageService.getListItemContacts(sender._id);
+          let getAllConversation = await messageService.getListItemContacts(
+            sender._id
+          );
           let allConversation = getAllConversation.allConversationMessages;
           if (listUsers[sender._id]) {
-            sendEvent(listUsers, sender._id, io, 'response-update-time', allConversation);
+            sendEvent(
+              listUsers,
+              sender._id,
+              io,
+              'response-update-time',
+              allConversation
+            );
           }
         }, 50000);
 
@@ -221,7 +247,5 @@ class MessageSocket {
       });
     });
   }
-
-
 }
 module.exports = new MessageSocket();

@@ -308,7 +308,7 @@ function rightConversationText(user, message) {
            user.user.avatar
          }" alt="">
       </div>
-      <div class="user-chat-content position-relative">
+      <div class="user-chat-content position-relative" style="">
          <div class="ctext-wrap">
             <div class="ctext-wrap-content">
                <p class="mb-0" id="chat-content" >
