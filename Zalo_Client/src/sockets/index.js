@@ -18,6 +18,7 @@ function initSockets(io) {
     messageSocket.deleteText(io);
     messageSocket.typing(io);
     messageSocket.reaction(io);
+    messageSocket.removeReaction(io);
     videoCallSocket.call(io);
 
     videoCallSocket.videoCall(io);

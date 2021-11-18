@@ -429,7 +429,21 @@ class MessageService {
           userId: userId,
           react: icon
         }
+        message.data.reaction = [];
         message.data.reaction.push(reaction);
+        await axios.put(http + '/messages/' + messageId, message.data);
+        return resolve(message.data);
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+
+  async removeReaction(messageId) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let message = await axios.get(http + '/messages/' + messageId);
+        message.data.reaction = [];
         await axios.put(http + '/messages/' + messageId, message.data);
         return resolve(message.data);
       } catch (error) {
