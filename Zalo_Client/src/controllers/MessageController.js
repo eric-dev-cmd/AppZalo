@@ -72,5 +72,13 @@ class MessageController {
             message: message
         });
     }
+
+    async removeReaction(req, res) {
+        let messageId = req.body.messageId;
+        let message = await messageService.removeReaction(messageId);
+        return res.send({
+            message: message
+        });
+    }
 }
 module.exports = new MessageController;

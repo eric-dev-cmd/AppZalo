@@ -20,6 +20,9 @@ function reaction(id) {
     $(`#item-reaction-angry-${id}`).off('click').on('click', function () {
         updateReaction(id, currentUserId, 'gian')
     });
+    $(`#item-reaction-remove-${id}`).off('click').on('click', function () {
+        removeReaction(id)
+    });
 }
 
 function updateReaction(messageId, currentUserId, icon) {
@@ -46,6 +49,26 @@ socket.on('response-reaction',function(data){
     renderReaction(message)
 })
 
+function removeReaction(messageId) {
+    let data = {
+        messageId: messageId,
+    }
+    $.ajax({
+        url: '/message/removeReaction',
+        type: 'put',
+        data: data,
+        success: function (data) {
+            let message = data.message;
+            $(`#reaction-${message._id}`).css('display', 'none')
+            socket.emit('remove-reaction', {message: message});
+        },
+    });
+}
+
+socket.on('response-remove-reaction',function(data){
+    let message = data.message;
+    $(`#reaction-${message._id}`).css('display', 'none')
+})
 
 function renderReaction(message) {
     if (message.reaction.length > 0) {

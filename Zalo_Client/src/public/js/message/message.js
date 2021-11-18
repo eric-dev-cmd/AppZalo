@@ -368,6 +368,9 @@ function rightConversationText(user, message) {
                     <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${message._id}">
                     😡
                     </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-remove-${message._id}">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
                   </div>
               </div>
             </div>

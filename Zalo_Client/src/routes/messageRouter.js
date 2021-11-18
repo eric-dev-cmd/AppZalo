@@ -11,4 +11,5 @@ router.delete('/deleteText', authController.checkLoggedIn, messageController.del
 router.delete('/deleteFile', authController.checkLoggedIn, messageController.deleteFile);
 router.delete('/deleteConversation', authController.checkLoggedIn, messageController.deleteConversation);
 router.put('/updateReaction', authController.checkLoggedIn, messageController.updateReaction);
+router.put('/removeReaction', authController.checkLoggedIn, messageController.removeReaction);
 module.exports = router;
