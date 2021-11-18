@@ -306,3 +306,5 @@ function resendOTP() {
   resetReCaptcha();
   console.log('Resend OTP');
 }
+
+console.log('Trung Vinh Reset');

@@ -104,6 +104,7 @@ async function showConversationGroup(id) {
     }
     $(`#conversation-${id}`).find(`li[data-content = null]`).remove();
     scrollMessageUserEnd();
+    renderReaction(message);
   });
   detailConversation(messages);
   //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
@@ -298,103 +299,102 @@ function renderTime(message) {
 
 //tạo tin nhắn text gửi đi
 function rightConversationText(user, message) {
-  return `
-  <li class="right" id="right-conversation" data-content="${
+  return `<li class="right" id="right-conversation" data-content="${
     message.text
   }" data-id="${user.user._id}" data-messageId="${message._id}">
-   <div class="conversation-list">
-      <div class="chat-avatar">
-         <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
-           user.user.avatar
-         }" alt="">
-      </div>
-      <div class="user-chat-content position-relative" style="">
-         <div class="ctext-wrap">
-            <div class="ctext-wrap-content">
-               <p class="mb-0" id="chat-content" >
-                  ${message.text} 
-               </p>
-               <p class="chat-time mb-0"><i
-                  class="fal fa-clock align-middle"></i> <span
-                  class="align-middle">${renderTime(message)}</span>
-               </p>
+    <div class="conversation-list">
+        <div class="chat-avatar">
+            <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${
+              user.user.avatar
+            }" alt="">
+        </div>
+        <div class="user-chat-content position-relative">
+            <div class="ctext-wrap">
+                <div class="ctext-wrap-content">
+                    <p class="mb-0" id="chat-content" >
+                        ${message.text} 
+                    </p>
+                    <p class="chat-time mb-0"><i
+                            class="fal fa-clock align-middle"></i> <span
+                            class="align-middle">${renderTime(
+                              message
+                            )}</span></p>
+                </div>
+                <div class="dropdown align-self-start">
+                    <a class="dropdown-toggle" href="javascript:void(0)"
+                        role="button" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fal fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"
+                            href="javascript:void(0)">Sao chép
+                            <i
+                                class="fal fa-copy float-end text-muted"></i></a>
+                        <a class="dropdown-item"
+                            href="javascript:void(0)">Lưu
+                            <i
+                                class="fal fa-save float-end text-muted"></i></a>
+                        <a class="dropdown-item"
+                            href="javascript:void(0)">Chuyển tiếp
+                            <i
+                                class="fal fa-share float-end text-muted"></i></a>
+                        <a class="dropdown-item" onclick="deleteText('${
+                          message._id
+                        }')"
+                            href="javascript:void(0)">Thu hồi
+                            <i
+                                class="fal fa-trash-alt float-end text-muted"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="dropdown align-self-start">
-               <a class="dropdown-toggle" href="javascript:void(0)"
-                  role="button" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-               <i class="fal fa-ellipsis-v"></i>
-               </a>
-               <div class="dropdown-menu">
-                  <a class="dropdown-item"
-                     href="javascript:void(0)">Sao chép
-                  <i
-                     class="fal fa-copy float-end text-muted"></i></a>
-                  <a class="dropdown-item"
-                     href="javascript:void(0)">Lưu
-                  <i
-                     class="fal fa-save float-end text-muted"></i></a>
-                  <a class="dropdown-item"
-                     href="javascript:void(0)">Chuyển tiếp
-                  <i
-                     class="fal fa-share float-end text-muted"></i></a>
-                  <a class="dropdown-item" onclick="deleteText('${
+            <div class="emoji-message-user" onmouseover="reaction('${
+              message._id
+            }')">
+              <div class="conversation-emoji">
+                  <div style="border-radius: 50%; display: none;"  id="reaction-${
                     message._id
-                  }')"
-                     href="javascript:void(0)">Thu hồi
-                  <i
-                     class="fal fa-trash-alt float-end text-muted"></i></a>
-               </div>
+                  }" data-mid="${message._id}" >
+                    <span style="font-size: 14px;padding: 1px;"></span>
+                  </div>
+                  <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
+                      message._id
+                    }">
+                    👍
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
+                      message._id
+                    }">
+                    😍
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
+                      message._id
+                    }">
+                    😂
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
+                      message._id
+                    }">
+                    😱
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
+                      message._id
+                    }">
+                    😭
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
+                      message._id
+                    }">
+                    😡
+                    </div>
+                  </div>
+              </div>
             </div>
-         </div>
-         <div class="emoji-message-user">
-            <div class="conversation-emoji">
-               <div class="conversation-emoji-item" style="border-radius: 50%;"  id="reaction-${
-                 message._id
-               }" data-mid="${message._id}" onmouseover="reaction('${
-    message._id
-  }')">
-                  <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
-               </div>
-               <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
-                    message._id
-                  }">
-                     👍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
-                    message._id
-                  }">
-                     😍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
-                    message._id
-                  }">
-                     😂
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
-                    message._id
-                  }">
-                     😱
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
-                    message._id
-                  }">
-                     😭
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
-                    message._id
-                  }">
-                     😡
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="conversation-name">Tôi</div>
-      </div>
-   </div>
-</li>
-  `;
+            <div class="conversation-name">Tôi</div>
+        </div>
+    </div>
+</li>`;
 }
 
 //tạo tin nhắn text nhận
@@ -444,46 +444,46 @@ function leftConversationText(user, message) {
                     </div>
                 </div>
             </div>
-            <div class="emoji-message-user-left">
+            <div class="emoji-message-user-left" onmouseover="reaction('${
+              message._id
+            }')">
             <div class="conversation-emoji">
-               <div class="conversation-emoji-item" style="border-radius: 50%;"  id="reaction-${
-                 message._id
-               }" data-mid="${message._id}" onmouseover="reaction('${
-    message._id
-  }')">
-                  <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
-               </div>
-               <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
+                  <div style="border-radius: 50%; display: none;"  id="reaction-${
                     message._id
-                  }">
-                     👍
+                  }" data-mid="${message._id}" >
+                    <span style="font-size: 14px;padding: 1px;"></span>
                   </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
-                    message._id
-                  }">
-                     😍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
-                    message._id
-                  }">
-                     😂
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
-                    message._id
-                  }">
-                     😱
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
-                    message._id
-                  }">
-                     😭
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
-                    message._id
-                  }">
-                     😡
-                  </div>
+              <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
+                      message._id
+                    }">
+                    👍
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
+                      message._id
+                    }">
+                    😍
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
+                      message._id
+                    }">
+                    😂
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
+                      message._id
+                    }">
+                    😱
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
+                      message._id
+                    }">
+                    😭
+                    </div>
+                    <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
+                      message._id
+                    }">
+                    😡
+                    </div>
                </div>
             </div>
          </div>
@@ -604,49 +604,50 @@ function rightConversationImage(user, message) {
                 </div>
 
             </div>
-         <div class="emoji-message-user emoji-message-user-image">
-            <div class="conversation-emoji">
-               <div class="conversation-emoji-item" style="border-radius: 50%;"  id="reaction-${
-                 message._id
-               }" data-mid="${message._id}" onmouseover="reaction('${
-    message._id
-  }')">
-                  <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
-               </div>
-               <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
-                    message._id
-                  }">
-                     👍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
-                    message._id
-                  }">
-                     😍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
-                    message._id
-                  }">
-                     😂
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
-                    message._id
-                  }">
-                     😱
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
-                    message._id
-                  }">
-                     😭
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
-                    message._id
-                  }">
-                     😡
-                  </div>
-               </div>
+          <div class="emoji-message-user emoji-message-user-image" onmouseover="reaction('${
+            message._id
+          }')">
+          <div class="conversation-emoji">
+            <div style="border-radius: 50%; display: none;"  id="reaction-${
+              message._id
+            }" data-mid="${message._id}" >
+              <span style="font-size: 14px;padding: 1px;"></span>
             </div>
-         </div>             
+              <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
+                <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
+                  message._id
+                }">
+                👍
+                </div>
+                <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
+                  message._id
+                }">
+                😍
+                </div>
+                <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
+                  message._id
+                }">
+                😂
+                </div>
+                <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
+                  message._id
+                }">
+                😱
+                </div>
+                <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
+                  message._id
+                }">
+                😭
+                </div>
+                <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
+                  message._id
+                }">
+                😡
+                </div>
+              </div>
+             </div>
+            </div>               
+
             <div class="conversation-name">Tôi</div>
         </div>
 
@@ -763,49 +764,49 @@ function leftConversationImage(user, message) {
                  </div>
 
              </div>
-             <div class="emoji-message-user emoji-message-user-right emoji-message-user-image">
-            <div class="conversation-emoji">
-               <div class="conversation-emoji-item" style="border-radius: 50%;"  id="reaction-${
+             <div class="emoji-message-user emoji-message-user-right emoji-message-user-image" onmouseover="reaction('${
+               message._id
+             }')">
+             <div class="conversation-emoji">
+             <div style="border-radius: 50%; display: none;"  id="reaction-${
+               message._id
+             }" data-mid="${message._id}" >
+               <span style="font-size: 14px;padding: 1px;"></span>
+             </div>
+             <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
+               <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
                  message._id
-               }" data-mid="${message._id}" onmouseover="reaction('${
-    message._id
-  }')">
-                  <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
+               }">
+               👍
                </div>
-               <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
-                    message._id
-                  }">
-                     👍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
-                    message._id
-                  }">
-                     😍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
-                    message._id
-                  }">
-                     😂
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
-                    message._id
-                  }">
-                     😱
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
-                    message._id
-                  }">
-                     😭
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
-                    message._id
-                  }">
-                     😡
-                  </div>
+               <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
+                 message._id
+               }">
+               😍
                </div>
-            </div>
-         </div>               
+               <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
+                 message._id
+               }">
+               😂
+               </div>
+               <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
+                 message._id
+               }">
+               😱
+               </div>
+               <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
+                 message._id
+               }">
+               😭
+               </div>
+               <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
+                 message._id
+               }">
+               😡
+               </div>
+             </div>
+         </div>
+            </div>                    
              <div class="conversation-name">${user.user.userName}</div>
          </div>
 
@@ -926,49 +927,49 @@ function rightConversationFile(user, message) {
                 </div>
 
             </div>
-<div class="emoji-message-user emoji-message-user-file">
-            <div class="conversation-emoji">
-               <div class="conversation-emoji-item" style="border-radius: 50%;"  id="reaction-${
-                 message._id
-               }" data-mid="${message._id}" onmouseover="reaction('${
+<div class="emoji-message-user emoji-message-user-file" onmouseover="reaction('${
     message._id
   }')">
-                  <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
-               </div>
-               <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
-                    message._id
-                  }">
-                     👍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
-                    message._id
-                  }">
-                     😍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
-                    message._id
-                  }">
-                     😂
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
-                    message._id
-                  }">
-                     😱
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
-                    message._id
-                  }">
-                     😭
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
-                    message._id
-                  }">
-                     😡
-                  </div>
-               </div>
-            </div>
-         </div> 
+<div class="conversation-emoji">
+<div style="border-radius: 50%; display: none;"  id="reaction-${
+    message._id
+  }" data-mid="${message._id}" >
+  <span style="font-size: 14px;padding: 1px;"></span>
+</div>
+<div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
+    message._id
+  }">
+  👍
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
+    message._id
+  }">
+  😍
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
+    message._id
+  }">
+  😂
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
+    message._id
+  }">
+  😱
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
+    message._id
+  }">
+  😭
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
+    message._id
+  }">
+  😡
+  </div>
+</div>
+</div>
+            </div>   
             <div class="conversation-name">Tôi</div>
         </div>
 
@@ -1087,49 +1088,49 @@ function leftConversationFile(user, message) {
                 </div>
 
             </div>
-<div class="emoji-message-user emoji-message-user-left emoji-message-user-file">
-            <div class="conversation-emoji">
-               <div class="conversation-emoji-item" style="border-radius: 50%;"  id="reaction-${
-                 message._id
-               }" data-mid="${message._id}" onmouseover="reaction('${
+<div class="emoji-message-user emoji-message-user-file emoji-message-user-file-left" onmouseover="reaction('${
     message._id
   }')">
-                  <span style="font-size: 14px;padding: 1px;"><i class="fal fa-thumbs-up"></i></span>
-               </div>
-               <div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
-                    message._id
-                  }">
-                     👍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
-                    message._id
-                  }">
-                     😍
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
-                    message._id
-                  }">
-                     😂
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
-                    message._id
-                  }">
-                     😱
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
-                    message._id
-                  }">
-                     😭
-                  </div>
-                  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
-                    message._id
-                  }">
-                     😡
-                  </div>
-               </div>
-            </div>
-         </div>
+<div class="conversation-emoji">
+<div style="border-radius: 50%; display: none;"  id="reaction-${
+    message._id
+  }" data-mid="${message._id}" >
+  <span style="font-size: 14px;padding: 1px;"></span>
+</div>
+<div class="list-emoji-hover list-emoji-hover-left rounded-pill" >
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-like-${
+    message._id
+  }">
+  👍
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-love-${
+    message._id
+  }">
+  😍
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-smile-${
+    message._id
+  }">
+  😂
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-wow-${
+    message._id
+  }">
+  😱
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-cry-${
+    message._id
+  }">
+  😭
+  </div>
+  <div class="emoji-hover d-flex justify-content-around" id="item-reaction-angry-${
+    message._id
+  }">
+  😡
+  </div>
+</div>
+</div>
+            </div>   
             <div class="conversation-name">${user.user.userName}</div>
         </div>
 

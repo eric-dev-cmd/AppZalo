@@ -1,0 +1,92 @@
+/* Add friend */
+.bg-white {
+  background: white;
+}
+
+.txt-black {
+  color: black !important;
+}
+
+.list-addfriend-wrapper {
+  width: 100%;
+  height: 55px;
+}
+
+.list-addfriend {
+  background-color: transparent;
+  -webkit-transition: background-color 1s ease;
+  transition: background-color 1s ease;
+  height: 100%;
+  padding: 6px 0;
+  /* display: flex; */
+}
+
+.list-addfriend .list-addfriend-item {
+  width: 100%;
+}
+
+.list-addfriend .list-addfriend-item.list-addfriend-item-add {
+  display: inline-block;
+}
+
+.list-addfriend:hover {
+  cursor: pointer;
+  display: block !important;
+  opacity: 0.8;
+}
+
+.list-addfriend:hover
+.list-addfriend-item
+.list-addfriend-item-close
+.list-addfriend-item-close-i {
+  display: block !important;
+}
+
+.list-addfriend .list-addfriend-item .list-addfriend-item-image {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  background: transparent;
+  margin-left: 6px;
+}
+
+.list-addfriend-item .list-addfriend-item-image img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.list-addfriend-item .list-addfriend-item-info {
+  width: calc(100% - 82px);
+}
+
+.list-addfriend-item .list-addfriend-item-info.list-addfriend-item-add {
+  width: calc(100% - 118px) !important;
+}
+
+.list-addfriend-item .list-addfriend-item-close:hover {
+  color: #0068ff;
+}
+
+.mt-115 {
+  margin-top: 115px;
+}
+
+.btn-add-friend {
+  font-size: 13px;
+  background: #c5c3d626;
+  color: #0068ff;
+  border-color: #3989ff !important;
+  border-radius: 3px;
+  width: 70px;
+  min-width: 100%;
+  text-align: center;
+  padding: 2px 8px;
+  color: black;
+}
+
+#more {
+  display: none;
+}
+/*# sourceMappingURL=modeladdfriend.css.map */

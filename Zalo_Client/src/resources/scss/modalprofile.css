@@ -1,0 +1,74 @@
+.popup-body-avatar .popup-body-avatar-wrapper {
+  background: transparent;
+  margin: 12px auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -57px;
+  -webkit-box-shadow: 0 0 0 2px #fff;
+          box-shadow: 0 0 0 2px #fff;
+  width: 96px;
+  height: 96px;
+  font-size: 48px;
+  line-height: 96px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-shadow: 0 0 0 1px #fff;
+          box-shadow: 0 0 0 1px #fff;
+}
+
+.popup-body-avatar .popup-body-avatar-wrapper .avatar-profile {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.popup-body-avatar .avatar-banner {
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
+.layout-wrapper#blur.active {
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+
+#popup-tv {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 350px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  background: #fff !important;
+  color: black !important;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#popup-tv.active {
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+/*# sourceMappingURL=modalprofile.css.map */
