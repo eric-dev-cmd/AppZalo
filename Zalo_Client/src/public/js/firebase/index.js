@@ -57,7 +57,7 @@ const onSignInSubmit = (e) => {
   console.log(phoneSplit.trim());
   const phoneEntered = '0' + phoneSplit.trim();
   console.log(phoneEntered.trim());
-  fetch('http://localhost:4000/users/searchPhone/' + phoneEntered)
+  fetch('http://ec2-54-179-162-179.ap-southeast-1.compute.amazonaws.com:4000/users/searchPhone/' + phoneEntered)
     .then((response) => response.json())
     .then((data) => {
       // Tai khoan nay co the dang ky
