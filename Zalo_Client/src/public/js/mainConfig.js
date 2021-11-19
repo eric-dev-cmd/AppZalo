@@ -1,5 +1,5 @@
 const socket = io();
-const http = `http://ec2-54-179-162-179.ap-southeast-1.compute.amazonaws.com:4000`;
+const http = `http://ec2-52-221-232-72.ap-southeast-1.compute.amazonaws.com:4000`;
 //các cuộc trò truyện
 let conversations;
 const s3 = 'https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public'
