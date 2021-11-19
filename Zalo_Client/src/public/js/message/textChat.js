@@ -59,6 +59,7 @@ socket.on('response-typing', async function (data) {
   }
 });
 
+
 function typing(receiver) {
   return `<li id="typing">
   <div class="conversation-list">
