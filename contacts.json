@@ -1,4 +1,4 @@
-[{
+{
   "_id": {
     "$oid": "61924208688f314fadeb592a"
   },
@@ -8,7 +8,7 @@
   "updatedAt": null,
   "createdAt": 1636975112201,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "6192420a688f314fadeb5933"
   },
@@ -18,7 +18,7 @@
   "updatedAt": null,
   "createdAt": 1636975114541,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924212688f314fadeb5943"
   },
@@ -28,7 +28,7 @@
   "updatedAt": null,
   "createdAt": 1636975122385,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924214688f314fadeb594c"
   },
@@ -38,7 +38,7 @@
   "updatedAt": null,
   "createdAt": 1636975124563,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924218688f314fadeb5955"
   },
@@ -48,7 +48,7 @@
   "updatedAt": null,
   "createdAt": 1636975128263,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924220688f314fadeb5962"
   },
@@ -58,7 +58,7 @@
   "updatedAt": null,
   "createdAt": 1636975136417,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924222688f314fadeb596b"
   },
@@ -68,7 +68,7 @@
   "updatedAt": null,
   "createdAt": 1636975138723,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924225688f314fadeb5974"
   },
@@ -78,7 +78,7 @@
   "updatedAt": null,
   "createdAt": 1636975141049,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924228688f314fadeb597e"
   },
@@ -88,7 +88,7 @@
   "updatedAt": null,
   "createdAt": 1636975144626,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "6192422a688f314fadeb5987"
   },
@@ -98,7 +98,7 @@
   "updatedAt": null,
   "createdAt": 1636975146660,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "6192422c688f314fadeb5990"
   },
@@ -108,7 +108,7 @@
   "updatedAt": null,
   "createdAt": 1636975148637,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924233688f314fadeb599f"
   },
@@ -118,7 +118,7 @@
   "updatedAt": null,
   "createdAt": 1636975155679,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "61924236688f314fadeb59a8"
   },
@@ -128,7 +128,7 @@
   "updatedAt": null,
   "createdAt": 1636975158322,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243c1688f314fadeb66fb"
   },
@@ -138,7 +138,7 @@
   "updatedAt": null,
   "createdAt": 1636975553381,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243c3688f314fadeb6707"
   },
@@ -148,7 +148,7 @@
   "updatedAt": null,
   "createdAt": 1636975555202,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243c5688f314fadeb6714"
   },
@@ -158,7 +158,7 @@
   "updatedAt": null,
   "createdAt": 1636975557027,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243cd688f314fadeb6731"
   },
@@ -168,7 +168,7 @@
   "updatedAt": null,
   "createdAt": 1636975565788,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243cf688f314fadeb673e"
   },
@@ -178,7 +178,7 @@
   "updatedAt": null,
   "createdAt": 1636975567751,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243d1688f314fadeb674c"
   },
@@ -188,7 +188,7 @@
   "updatedAt": null,
   "createdAt": 1636975569960,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243d4688f314fadeb67d7"
   },
@@ -198,7 +198,7 @@
   "updatedAt": null,
   "createdAt": 1636975572103,
   "__v": 0
-},{
+}{
   "_id": {
     "$oid": "619243d6688f314fadeb67e4"
   },
@@ -208,4 +208,4 @@
   "updatedAt": null,
   "createdAt": 1636975574359,
   "__v": 0
-}]
+}

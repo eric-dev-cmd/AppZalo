@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const URL_DB =
-    //'mongodb+srv://admin:DHKTPM14@cluster0.lxnwb.mongodb.net/appzalo?retryWrites=true&w=majority';
-    'mongodb+srv://admin:DHKTPM14@cluster0.lxnwb.mongodb.net/appzalo?retryWrites=true&w=majority';
+    //'mongodb://localhost:27017/appzalo';
+    'mongodb://localhost:27017/appzalo';
 async function connect() {
     try {
         await mongoose.connect(URL_DB, {

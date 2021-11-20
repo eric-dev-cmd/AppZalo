@@ -2,7 +2,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
 let sessionStore = MongoStore.create({
-    mongoUrl: 'mongodb+srv://admin:DHKTPM14@cluster0.lxnwb.mongodb.net/appzalo?retryWrites=true&w=majority',
+    mongoUrl: 'mongodb://localhost:27017/appzalo',
     autoRemove: 'native'
 })
 
