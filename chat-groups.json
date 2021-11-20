@@ -1,0 +1,94 @@
+[{
+  "_id": {
+    "$oid": "6192449f688f314fadeb755f"
+  },
+  "name": "nhom 1",
+  "userAmount": 7,
+  "userId": "619240db487ab6f741c01d9a",
+  "members": [
+    {
+      "userId": "619240e6487ab6f741c01d9b",
+      "_id": {
+        "$oid": "6192449f688f314fadeb7560"
+      }
+    },
+    {
+      "userId": "6192416c487ab6f741c01da4",
+      "_id": {
+        "$oid": "6192449f688f314fadeb7561"
+      }
+    },
+    {
+      "userId": "6192414d487ab6f741c01da2",
+      "_id": {
+        "$oid": "6192449f688f314fadeb7562"
+      }
+    },
+    {
+      "userId": "619240f2487ab6f741c01d9c",
+      "_id": {
+        "$oid": "6192449f688f314fadeb7563"
+      }
+    },
+    {
+      "userId": "619240fe487ab6f741c01d9d",
+      "_id": {
+        "$oid": "6192449f688f314fadeb7564"
+      }
+    },
+    {
+      "userId": "6192415c487ab6f741c01da3",
+      "_id": {
+        "$oid": "6192449f688f314fadeb7565"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "_id": {
+        "$oid": "6192449f688f314fadeb7566"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "_id": {
+        "$oid": "619244c5688f314fadeb7b00"
+      }
+    },
+    {
+      "userId": "619241a2487ab6f741c01da7",
+      "_id": {
+        "$oid": "61926178688f314fadec7a1c"
+      }
+    }
+  ],
+  "avatar": "group-avatar.png",
+  "createdAt": 1636975775782,
+  "updatedAt": 1637129721384,
+  "__v": 0,
+  "background": "background-default.jpg"
+},{
+  "_id": {
+    "$oid": "619246da688f314fadebc3a6"
+  },
+  "name": "test nhóm",
+  "userAmount": 2,
+  "userId": "61921b9f21cc2620cc721fc9",
+  "members": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "_id": {
+        "$oid": "619246da688f314fadebc3a7"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "_id": {
+        "$oid": "619246da688f314fadebc3a8"
+      }
+    }
+  ],
+  "avatar": "group-avatar.png",
+  "createdAt": 1636976346980,
+  "updatedAt": 1636976468461,
+  "__v": 0
+}]

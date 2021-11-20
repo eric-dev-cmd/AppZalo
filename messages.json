@@ -1,0 +1,2686 @@
+[{
+  "_id": {
+    "$oid": "6192428e688f314fadeb5a29"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào vinh",
+  "isRead": false,
+  "createdAt": 1636975246491,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924293688f314fadeb5a3c"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975251259,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192429a688f314fadeb5a53"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240e6487ab6f741c01d9b",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào huy",
+  "isRead": false,
+  "createdAt": 1636975258104,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192429b688f314fadeb5a5e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240e6487ab6f741c01d9b",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975259803,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242a2688f314fadeb5a6d"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240f2487ab6f741c01d9c",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào hải",
+  "isRead": false,
+  "createdAt": 1636975266351,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242a4688f314fadeb5a78"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240f2487ab6f741c01d9c",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975268237,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242a8688f314fadeb5a87"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240fe487ab6f741c01d9d",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào trực",
+  "isRead": false,
+  "createdAt": 1636975272606,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242ab688f314fadeb5a92"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240fe487ab6f741c01d9d",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975275279,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242b2688f314fadeb5aa1"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192410d487ab6f741c01d9e",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975282520,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242b7688f314fadeb5ae3"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192414d487ab6f741c01da2",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975287444,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "yeu",
+      "_id": {
+        "$oid": "61949d9f6174597defd7d659"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "gian",
+      "_id": {
+        "$oid": "61949da36174597defd7d66b"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "619242bd688f314fadeb5b38"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192416c487ab6f741c01da4",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975293713,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242bf688f314fadeb5b47"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975295953,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242c2688f314fadeb5b56"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "61924190487ab6f741c01da6",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975298069,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242c4688f314fadeb5b65"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241a2487ab6f741c01da7",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975300154,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242c6688f314fadeb5b74"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975302833,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242c9688f314fadeb5b83"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975305179,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242de688f314fadeb5bf0"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "làm  gì v",
+  "isRead": false,
+  "createdAt": 1636975326240,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f1688f314fadeb5c73"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "1",
+  "isRead": false,
+  "createdAt": 1636975345683,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f2688f314fadeb5c7e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "2",
+  "isRead": false,
+  "createdAt": 1636975346291,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f2688f314fadeb5c89"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "3",
+  "isRead": false,
+  "createdAt": 1636975346688,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f3688f314fadeb5c94"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "4",
+  "isRead": false,
+  "createdAt": 1636975347135,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f5688f314fadeb5ca1"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "5",
+  "isRead": false,
+  "createdAt": 1636975349728,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f6688f314fadeb5cac"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "6",
+  "isRead": false,
+  "createdAt": 1636975350427,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f7688f314fadeb5cb7"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "7",
+  "isRead": false,
+  "createdAt": 1636975351248,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f7688f314fadeb5cc2"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "8",
+  "isRead": false,
+  "createdAt": 1636975351905,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f8688f314fadeb5ccd"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "9",
+  "isRead": false,
+  "createdAt": 1636975352706,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242f9688f314fadeb5cd8"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "10",
+  "isRead": false,
+  "createdAt": 1636975353917,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242fa688f314fadeb5ce3"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "11",
+  "isRead": false,
+  "createdAt": 1636975354766,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242fb688f314fadeb5cee"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "12",
+  "isRead": false,
+  "createdAt": 1636975355568,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242fc688f314fadeb5cf9"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "13",
+  "isRead": false,
+  "createdAt": 1636975356383,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242fd688f314fadeb5d04"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "14",
+  "isRead": false,
+  "createdAt": 1636975357222,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242fe688f314fadeb5d0f"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "15",
+  "isRead": false,
+  "createdAt": 1636975358008,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242fe688f314fadeb5d1a"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "16",
+  "isRead": false,
+  "createdAt": 1636975358837,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619242ff688f314fadeb5d25"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "17",
+  "isRead": false,
+  "createdAt": 1636975359659,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924300688f314fadeb5d30"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "18",
+  "isRead": false,
+  "createdAt": 1636975360965,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924302688f314fadeb5d3b"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "19",
+  "isRead": false,
+  "createdAt": 1636975362355,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924304688f314fadeb5d46"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "20",
+  "isRead": false,
+  "createdAt": 1636975364443,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924320688f314fadeb5e41"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "3ed76a34-475c-48fc-9f83-8327cdff5716.SE_NOI DUNG PRETEST(1).docx",
+  "isRead": false,
+  "createdAt": 1636975392160,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924320688f314fadeb5e43"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "3ed76a34-475c-48fc-9f83-8327cdff5716.Spring Boot With JavaServer Pages Note.docx",
+  "isRead": false,
+  "createdAt": 1636975392161,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924320688f314fadeb5e45"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241e2487ab6f741c01daa",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "3ed76a34-475c-48fc-9f83-8327cdff5716.google-services.json",
+  "isRead": false,
+  "createdAt": 1636975392162,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924330688f314fadeb5e76"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "1",
+  "isRead": false,
+  "createdAt": 1636975408264,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924330688f314fadeb5e81"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "2",
+  "isRead": false,
+  "createdAt": 1636975408714,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924331688f314fadeb5e8c"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "3",
+  "isRead": false,
+  "createdAt": 1636975409244,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924332688f314fadeb5e97"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "4",
+  "isRead": false,
+  "createdAt": 1636975410191,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924332688f314fadeb5ea2"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "5",
+  "isRead": false,
+  "createdAt": 1636975410767,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924333688f314fadeb5ead"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "6",
+  "isRead": false,
+  "createdAt": 1636975411379,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924335688f314fadeb5eb8"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "7",
+  "isRead": false,
+  "createdAt": 1636975413134,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924335688f314fadeb5ec3"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "8",
+  "isRead": false,
+  "createdAt": 1636975413781,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924336688f314fadeb5ece"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "9",
+  "isRead": false,
+  "createdAt": 1636975414480,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924337688f314fadeb5ed9"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "10",
+  "isRead": false,
+  "createdAt": 1636975415394,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924338688f314fadeb5ee4"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "11",
+  "isRead": false,
+  "createdAt": 1636975416913,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924339688f314fadeb5eef"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "12",
+  "isRead": false,
+  "createdAt": 1636975417834,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192433a688f314fadeb5efa"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "13",
+  "isRead": false,
+  "createdAt": 1636975418799,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192433b688f314fadeb5f05"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "14",
+  "isRead": false,
+  "createdAt": 1636975419678,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192433c688f314fadeb5f1e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "15",
+  "isRead": false,
+  "createdAt": 1636975420517,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192433d688f314fadeb5f7d"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "16",
+  "isRead": false,
+  "createdAt": 1636975421542,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192433f688f314fadeb5f88"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "17",
+  "isRead": false,
+  "createdAt": 1636975423099,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924341688f314fadeb5f93"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "làm gì v",
+  "isRead": false,
+  "createdAt": 1636975425548,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924342688f314fadeb5f9e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975426744,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924346688f314fadeb5fa9"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241d0487ab6f741c01da9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "ăn gì chưa",
+  "isRead": false,
+  "createdAt": 1636975430588,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924357688f314fadeb60aa"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe",
+  "isRead": false,
+  "createdAt": 1636975447243,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924358688f314fadeb60c1"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "sao v",
+  "isRead": false,
+  "createdAt": 1636975448807,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192435d688f314fadeb60ee"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "ko",
+  "isRead": false,
+  "createdAt": 1636975453405,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924363688f314fadeb610f"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "alo",
+  "isRead": false,
+  "createdAt": 1636975459302,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924365688f314fadeb6138"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào bạn",
+  "isRead": false,
+  "createdAt": 1636975461448,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "cuoi",
+      "_id": {
+        "$oid": "619383232cf751c6a248fd10"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "cuoi",
+      "_id": {
+        "$oid": "619383242cf751c6a248fd22"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61924368688f314fadeb6164"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào lại",
+  "isRead": false,
+  "createdAt": 1636975464778,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192436b688f314fadeb618d"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "cám ơn",
+  "isRead": false,
+  "createdAt": 1636975467796,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192436e688f314fadeb61b3"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "có gì ko",
+  "isRead": false,
+  "createdAt": 1636975470265,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924371688f314fadeb6249"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "ko có gì",
+  "isRead": false,
+  "createdAt": 1636975473334,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192437e688f314fadeb630c"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "nối chuyện v 😁😁😁",
+  "isRead": false,
+  "createdAt": 1636975486161,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924381688f314fadeb6324"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636975489371,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924383688f314fadeb6338"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636975491363,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192438a688f314fadeb63f0"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "gửi bt",
+  "isRead": false,
+  "createdAt": 1636975498192,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6193826e2cf751c6a248f813"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "khoc",
+      "_id": {
+        "$oid": "6193827b2cf751c6a248f825"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6192438d688f314fadeb642e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "bt vè nhà",
+  "isRead": false,
+  "createdAt": 1636975501813,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924390688f314fadeb644c"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "bt gì",
+  "isRead": false,
+  "createdAt": 1636975504362,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924393688f314fadeb647a"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chấm hỏi",
+  "isRead": false,
+  "createdAt": 1636975507404,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924394688f314fadeb648e"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "??",
+  "isRead": false,
+  "createdAt": 1636975508380,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "61937fda2cf751c6a248eb63"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "yeu",
+      "_id": {
+        "$oid": "61937fea2cf751c6a248eb75"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "cuoi",
+      "_id": {
+        "$oid": "61937ff42cf751c6a248eb8a"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "619380072cf751c6a248eba2"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "619243a4688f314fadeb6534"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "8a685cb3-7e7a-46a1-a26f-0dc5639c533f.SE_NOI DUNG PRETEST(1).docx",
+  "isRead": false,
+  "createdAt": 1636975524627,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619243a4688f314fadeb6536"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "8a685cb3-7e7a-46a1-a26f-0dc5639c533f.MẪU LÀM BÀI TỰ LUẬN.docx",
+  "isRead": false,
+  "createdAt": 1636975524628,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619243a4688f314fadeb6538"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "8a685cb3-7e7a-46a1-a26f-0dc5639c533f.LTWWWJava_BTL_NoiDung.docx",
+  "isRead": false,
+  "createdAt": 1636975524628,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619243a4688f314fadeb653a"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "8a685cb3-7e7a-46a1-a26f-0dc5639c533f.Spring Boot With JavaServer Pages Note.docx",
+  "isRead": false,
+  "createdAt": 1636975524628,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619243a4688f314fadeb653c"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "8a685cb3-7e7a-46a1-a26f-0dc5639c533f.google-services.json",
+  "isRead": false,
+  "createdAt": 1636975524631,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a0456174597defd7f500"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61924406688f314fadeb6a63"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "hi",
+  "isRead": false,
+  "createdAt": 1636975622871,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924407688f314fadeb6a70"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "alo",
+  "isRead": false,
+  "createdAt": 1636975623763,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192440a688f314fadeb6a80"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "đức",
+  "isRead": false,
+  "createdAt": 1636975626033,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192440b688f314fadeb6a8e"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "làm gì v",
+  "isRead": false,
+  "createdAt": 1636975627748,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192440c688f314fadeb6a9b"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "lp",
+  "isRead": false,
+  "createdAt": 1636975628927,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924412688f314fadeb6b36"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192416c487ab6f741c01da4",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào bạn",
+  "isRead": false,
+  "createdAt": 1636975634358,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924413688f314fadeb6b44"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192416c487ab6f741c01da4",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636975635898,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924416688f314fadeb6b59"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192415c487ab6f741c01da3",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe",
+  "isRead": false,
+  "createdAt": 1636975638931,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924417688f314fadeb6b66"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192415c487ab6f741c01da3",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "true",
+  "isRead": false,
+  "createdAt": 1636975639837,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192441a688f314fadeb6bf8"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192414d487ab6f741c01da2",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "true",
+  "isRead": false,
+  "createdAt": 1636975642307,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192441c688f314fadeb6c07"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192414d487ab6f741c01da2",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "hihi",
+  "isRead": false,
+  "createdAt": 1636975644194,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192441f688f314fadeb6c5b"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "619240fe487ab6f741c01d9d",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "abc",
+  "isRead": false,
+  "createdAt": 1636975647184,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924421688f314fadeb6c6a"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "619240fe487ab6f741c01d9d",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "làm gì á",
+  "isRead": false,
+  "createdAt": 1636975649531,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924425688f314fadeb6cc2"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "619240f2487ab6f741c01d9c",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "làm gi",
+  "isRead": false,
+  "createdAt": 1636975653550,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192442c688f314fadeb6cfb"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "chào",
+  "isRead": false,
+  "createdAt": 1636975660972,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192442e688f314fadeb6d18"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "tạm ",
+  "isRead": false,
+  "createdAt": 1636975662551,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6195a539b6bac627240640c4"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61924445688f314fadeb6ecb"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619241a2487ab6f741c01da7",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "ko tl",
+  "isRead": false,
+  "createdAt": 1636975685087,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192444c688f314fadeb6f6c"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "61924190487ab6f741c01da6",
+  "chatType": "personal",
+  "messageType": "image",
+  "fileName": "f23b179a-4dd7-410d-8e0a-65d6b1ba720e.Screenshot (206) - Copy.png",
+  "isRead": false,
+  "createdAt": 1636975692919,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192444c688f314fadeb6f6e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "61924190487ab6f741c01da6",
+  "chatType": "personal",
+  "messageType": "image",
+  "fileName": "f23b179a-4dd7-410d-8e0a-65d6b1ba720e.Screenshot (206).png",
+  "isRead": false,
+  "createdAt": 1636975692920,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924459688f314fadeb702d"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "nè",
+  "isRead": false,
+  "createdAt": 1636975705209,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "wow",
+      "_id": {
+        "$oid": "61949dac6174597defd7d750"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "619244a9688f314fadeb767a"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chào nhóm",
+  "isRead": false,
+  "createdAt": 1636975785720,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244b2688f314fadeb7845"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chào nhóm",
+  "isRead": false,
+  "createdAt": 1636975794455,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244b5688f314fadeb78d8"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636975797938,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244be688f314fadeb7a19"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "lỗi",
+  "isRead": false,
+  "createdAt": 1636975806501,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244c9688f314fadeb7b7b"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "bị gì",
+  "isRead": false,
+  "createdAt": 1636975817311,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244ce688f314fadeb7ccd"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ko biết",
+  "isRead": false,
+  "createdAt": 1636975822150,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244d3688f314fadeb7d1e"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "bị gì",
+  "isRead": false,
+  "createdAt": 1636975827474,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244d5688f314fadeb7d62"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "gì",
+  "isRead": false,
+  "createdAt": 1636975829677,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244d7688f314fadeb7da7"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "gì",
+  "isRead": false,
+  "createdAt": 1636975831775,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244d9688f314fadeb7e78"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636975833277,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244db688f314fadeb7ebb"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636975835201,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244dc688f314fadeb7f8c"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636975836496,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619244ed688f314fadeb8381"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "alo",
+  "isRead": false,
+  "createdAt": 1636975853038,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924503688f314fadeb870f"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "gì",
+  "isRead": false,
+  "createdAt": 1636975875637,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924509688f314fadeb8763"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ko",
+  "isRead": false,
+  "createdAt": 1636975881732,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192456b688f314fadeb9525"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chào nhóm",
+  "isRead": false,
+  "createdAt": 1636975979021,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192458b688f314fadeb9a99"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chào",
+  "isRead": false,
+  "createdAt": 1636976011890,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619245af688f314fadeba056"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "file",
+  "fileName": "c3b492cc-4c31-476e-88e6-77d453cfaa63.SE_NOI DUNG PRETEST(1).docx",
+  "isRead": false,
+  "createdAt": 1636976047426,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619245ba688f314fadeba15e"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "image",
+  "fileName": "6f9ea7c1-f00a-4a96-9cb0-be2280d2364c.Screenshot (206) - Copy.png",
+  "isRead": false,
+  "createdAt": 1636976058311,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a07d6174597defd7fc0a"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a0906174597defd7ffed"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "619245ba688f314fadeba160"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "image",
+  "fileName": "6f9ea7c1-f00a-4a96-9cb0-be2280d2364c.Screenshot (206).png",
+  "isRead": false,
+  "createdAt": 1636976058312,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a08d6174597defd7fe53"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61924627688f314fadebb11a"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192417e487ab6f741c01da5",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "alo",
+  "isRead": false,
+  "createdAt": 1636976167502,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192467f688f314fadebbd6e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok bạn",
+  "isRead": false,
+  "createdAt": 1636976255352,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924681688f314fadebbdaf"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "gì",
+  "isRead": false,
+  "createdAt": 1636976257446,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924687688f314fadebbe2a"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636976263185,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192468c688f314fadebbe72"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "hihi",
+  "isRead": false,
+  "createdAt": 1636976268908,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924695688f314fadebbf59"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chào nhóm",
+  "isRead": false,
+  "createdAt": 1636976277103,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192469a688f314fadebbfa1"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "có gì ko",
+  "isRead": false,
+  "createdAt": 1636976282875,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192469d688f314fadebbfe3"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ko",
+  "isRead": false,
+  "createdAt": 1636976285292,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": []
+},{
+  "_id": {
+    "$oid": "619246e0688f314fadebc4c9"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619246da688f314fadebc3a6",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "nhóm ít v",
+  "isRead": false,
+  "createdAt": 1636976352365,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619246e6688f314fadebc510"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "619246da688f314fadebc3a6",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "sao mà tít",
+  "isRead": false,
+  "createdAt": 1636976358480,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924712688f314fadebc6e0"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619246da688f314fadebc3a6",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "😍😍😍",
+  "isRead": false,
+  "createdAt": 1636976402282,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924717688f314fadebc6fb"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619246da688f314fadebc3a6",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "alo",
+  "isRead": false,
+  "createdAt": 1636976407586,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192471e688f314fadebc725"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "619246da688f314fadebc3a6",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "gì",
+  "isRead": false,
+  "createdAt": 1636976414059,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924748688f314fadebca46"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619246da688f314fadebc3a6",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok bạn",
+  "isRead": false,
+  "createdAt": 1636976456222,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924754688f314fadebcc08"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619246da688f314fadebc3a6",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "ok",
+  "isRead": false,
+  "createdAt": 1636976468446,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924765688f314fadebcd59"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chán quuas",
+  "isRead": false,
+  "createdAt": 1636976485363,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924769688f314fadebcdf1"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "sao v",
+  "isRead": false,
+  "createdAt": 1636976489975,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619247a3688f314fadebd2c9"
+  },
+  "senderId": "6192410d487ab6f741c01d9e",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khỏe",
+  "isRead": false,
+  "createdAt": 1636976547181,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619247ad688f314fadebd338"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192410d487ab6f741c01d9e",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "alo nhung",
+  "isRead": false,
+  "createdAt": 1636976557339,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949d576174597defd7ce0d"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "619247b4688f314fadebd42c"
+  },
+  "senderId": "6192410d487ab6f741c01d9e",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "gì v",
+  "isRead": false,
+  "createdAt": 1636976564772,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949d236174597defd7cb0e"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "wow",
+      "_id": {
+        "$oid": "61949d256174597defd7cb20"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61924e9d688f314fadec1676"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "file",
+  "fileName": "db78e668-dab6-48c6-bd6a-286c1820517f.SE_NOI DUNG PRETEST(1).docx",
+  "isRead": false,
+  "createdAt": 1636978333238,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "gian",
+      "_id": {
+        "$oid": "6195d278b6bac62724068439"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61924eb2688f314fadec1859"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "image",
+  "fileName": "a21504d2-fabe-4775-8e95-74336a2512ce.Screenshot (206) - Copy.png",
+  "isRead": false,
+  "createdAt": 1636978354515,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61924eb2688f314fadec185b"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "image",
+  "fileName": "a21504d2-fabe-4775-8e95-74336a2512ce.Screenshot (206).png",
+  "isRead": false,
+  "createdAt": 1636978354516,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61925233688f314fadec306c"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chào bạn",
+  "isRead": false,
+  "createdAt": 1636979251662,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61925235688f314fadec30a0"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "khỏe ko",
+  "isRead": false,
+  "createdAt": 1636979253191,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192523a688f314fadec30e2"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "nhóm 1",
+  "isRead": false,
+  "createdAt": 1636979258068,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192523c688f314fadec319d"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "1",
+  "isRead": false,
+  "createdAt": 1636979260208,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192523c688f314fadec31d1"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "2",
+  "isRead": false,
+  "createdAt": 1636979260794,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192523d688f314fadec3205"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "3",
+  "isRead": false,
+  "createdAt": 1636979261619,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192523e688f314fadec3239"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "4",
+  "isRead": false,
+  "createdAt": 1636979262499,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6192523f688f314fadec326d"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "5",
+  "isRead": false,
+  "createdAt": 1636979263136,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61925240688f314fadec32a1"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "6",
+  "isRead": false,
+  "createdAt": 1636979264034,
+  "updatedAt": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61925247688f314fadec32d5"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "image",
+  "fileName": "f5a63700-865d-452a-9a2c-bbafc37ff1d4.group-avatar.png",
+  "isRead": false,
+  "createdAt": 1636979271169,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a0ca6174597defd8079a"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a10c6174597defd81317"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a1646174597defd818a9"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a2526174597defd82914"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a27a6174597defd82d7e"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a2826174597defd82fb4"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "gian",
+      "_id": {
+        "$oid": "6194a2d66174597defd835fc"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61925247688f314fadec32d7"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "image",
+  "fileName": "f5a63700-865d-452a-9a2c-bbafc37ff1d4.user-avatar.png",
+  "isRead": false,
+  "createdAt": 1636979271170,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "wow",
+      "_id": {
+        "$oid": "6194a0326174597defd7f28e"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "gian",
+      "_id": {
+        "$oid": "6194a2476174597defd8274d"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "yeu",
+      "_id": {
+        "$oid": "6194a2716174597defd82c1a"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "gian",
+      "_id": {
+        "$oid": "6194aa8c6174597defd8783f"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6192600a688f314fadec70f3"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192414d487ab6f741c01da2",
+  "chatType": "personal",
+  "messageType": "file",
+  "fileName": "bcb9774a-8d3e-43c7-999e-74d5151515a8.Spring Boot With JavaServer Pages Note.docx",
+  "isRead": false,
+  "createdAt": 1636982794642,
+  "updatedAt": null,
+  "__v": 0,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a0576174597defd7f6dc"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "619348849dd23852c2e712eb"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "chaof",
+  "isRead": false,
+  "createdAt": 1637042308059,
+  "updatedAt": null,
+  "reaction": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619348989dd23852c2e71469"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "hi",
+  "isRead": false,
+  "createdAt": 1637042328122,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949f7c6174597defd7eafd"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619348f99dd23852c2e71840"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "hi",
+  "isRead": false,
+  "createdAt": 1637042425122,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949d916174597defd7d556"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "wow",
+      "_id": {
+        "$oid": "61949d936174597defd7d62b"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "khoc",
+      "_id": {
+        "$oid": "61949d956174597defd7d640"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6193496b9dd23852c2e71c5e"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "hi",
+  "isRead": false,
+  "createdAt": 1637042539434,
+  "updatedAt": null,
+  "reaction": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619349a89dd23852c2e71f2a"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "sao v",
+  "isRead": false,
+  "createdAt": 1637042600634,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "619240e6487ab6f741c01d9b",
+      "react": "yeu",
+      "_id": {
+        "$oid": "6194b14f6174597defd8a1a1"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619349ec9dd23852c2e722f5"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "uh",
+  "isRead": false,
+  "createdAt": 1637042668628,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949f606174597defd7eada"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949f6c6174597defd7eaec"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "619349fb9dd23852c2e7239a"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "sao v",
+  "isRead": false,
+  "createdAt": 1637042683603,
+  "updatedAt": null,
+  "reaction": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61934a2a9dd23852c2e72679"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "haha",
+  "isRead": false,
+  "createdAt": 1637042730732,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "gian",
+      "_id": {
+        "$oid": "6194aa776174597defd877ee"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61949ccf6174597defd7c864"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192415c487ab6f741c01da3",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "s",
+  "isRead": false,
+  "createdAt": 1637129423840,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949cd36174597defd7c87f"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "cuoi",
+      "_id": {
+        "$oid": "61949cd56174597defd7c891"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61949cd86174597defd7c8a1"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192415c487ab6f741c01da3",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "hi",
+  "isRead": false,
+  "createdAt": 1637129432775,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "61949cf06174597defd7c910"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "gian",
+      "_id": {
+        "$oid": "61949e986174597defd7e899"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61949df96174597defd7e287"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "6192449f688f314fadeb755f",
+  "chatType": "group",
+  "messageType": "text",
+  "text": "he",
+  "isRead": false,
+  "createdAt": 1637129721346,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194aa736174597defd877d4"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6194a0546174597defd7f6a0"
+  },
+  "senderId": "61921b9f21cc2620cc721fc9",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "a",
+  "isRead": false,
+  "createdAt": 1637130324391,
+  "updatedAt": null,
+  "reaction": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6194a1db6174597defd81d28"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "image",
+  "fileName": "adadd03a-83a4-4913-87a9-c6a209835d7d.Screenshot (206).png",
+  "isRead": false,
+  "createdAt": 1637130715452,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194a1fd6174597defd81f1f"
+      }
+    },
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "gian",
+      "_id": {
+        "$oid": "6194a2176174597defd821f0"
+      }
+    },
+    {
+      "userId": "61921b9f21cc2620cc721fc9",
+      "react": "yeu",
+      "_id": {
+        "$oid": "6194a2396174597defd82597"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6194a7e06174597defd86a46"
+  },
+  "senderId": "619240e6487ab6f741c01d9b",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "khoer",
+  "isRead": false,
+  "createdAt": 1637132256979,
+  "updatedAt": null,
+  "reaction": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6194a8946174597defd87093"
+  },
+  "senderId": "619240e6487ab6f741c01d9b",
+  "receiverId": "619240db487ab6f741c01d9a",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "sao",
+  "isRead": false,
+  "createdAt": 1637132436022,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6194aa6a6174597defd87710"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6194ae326174597defd890e2"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "619240e6487ab6f741c01d9b",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "hi",
+  "isRead": false,
+  "createdAt": 1637133874667,
+  "updatedAt": null,
+  "reaction": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6195a574b6bac6272406449c"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "hi",
+  "isRead": false,
+  "createdAt": 1637197172309,
+  "updatedAt": null,
+  "reaction": [
+    {
+      "userId": "619240db487ab6f741c01d9a",
+      "react": "thich",
+      "_id": {
+        "$oid": "6195a6a9b6bac627240651bd"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6195a6b4b6bac6272406532e"
+  },
+  "senderId": "619240db487ab6f741c01d9a",
+  "receiverId": "61921b9f21cc2620cc721fc9",
+  "chatType": "personal",
+  "messageType": "text",
+  "text": "a",
+  "isRead": false,
+  "createdAt": 1637197492551,
+  "updatedAt": null,
+  "reaction": [],
+  "__v": 0
+}]
