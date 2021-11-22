@@ -110,7 +110,7 @@ function addNewText(dataTextAndEmoji, isChatGroup) {
       //tạo mới cuộc trò truyện trong danh sách trò truyện
       addConversation(message.receiverId, isChatGroup).then(function (result) {
         $('#conversation-list').prepend(result);
-        getAllConversation()
+        //getAllConversation()
       });
       scrollMessageUserEnd();
       //gửi socket từ client đến server
@@ -147,12 +147,6 @@ socket.on('response-add-new-text', async function (data) {
         result
       ) {
         $('#conversation-list').prepend(result);
-        // if (message.isRead === false) {
-        //   $('.unread-message').html('');
-        //   $(`<span class="badge badge-soft-danger rounded-pill"></span>`).appendTo(
-        //     $('.unread-message')
-        //   );
-        // }
         $('#conversation-list')
           .find(`li[id = receiver-${message.receiverId}]`)
           .css('font-weight', 'bold');
@@ -175,7 +169,7 @@ socket.on('response-add-new-text', async function (data) {
       $('#conversation-list')
         .find(`li[id = receiver-${message.senderId}]`)
         .css('font-weight', 'bold');
-      //  $('#conversation-list').find(`li[id = receiver-${message.senderId}]`).css('color', 'red');
+      
     });
   }
 });
@@ -307,3 +301,4 @@ function scrollMessageUserEnd() {
     top: listHeight,
   });
 }
+

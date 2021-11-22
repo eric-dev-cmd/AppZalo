@@ -5,7 +5,6 @@ function videoCall(id) {
             listenerId: id,
             callerName: callerName
         }
-        //01
         socket.emit('caller-check-listener-online', dataToEmit);
     });
 }

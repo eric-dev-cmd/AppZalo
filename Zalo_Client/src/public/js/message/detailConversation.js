@@ -1,5 +1,4 @@
 function detailConversation(messages) {
-
     $.each(messages, (i, message) => {
         if (message.messageType === 'file') {
             $('#list-file-conversation').prepend(renderListFile(message));
@@ -24,8 +23,6 @@ function renderListFile(message) {
             <div class="text-start">
                 <h5 class="font-size-14 mb-1">${fileName[1] + '.' + fileName[2]}
                 </h5>
-                <p class="text-muted font-size-13 mb-0">12.5
-                    MB</p>
             </div>
         </div>
 
