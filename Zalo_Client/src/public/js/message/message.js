@@ -106,8 +106,10 @@ async function showConversationGroup(id) {
     scrollMessageUserEnd();
     renderReaction(message);
   });
-  detailConversation(messages);
-  //$('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
+  $('#list-file-conversation').html('')
+  $('#list-image-conversation').html('')
+  detailConversation(messages);  
+  $('#conversation-list').find(`li[id = receiver-${id}]`).css('font-weight', 'normal');
   insertInput(id, true);
   insertInputFile(id, true);
   insertIdForVideoCall(id);
@@ -167,12 +169,12 @@ async function showConversationUser(id) {
   $('.message-list').attr('id', `conversation-${id}`);
   $(`#conversation-${id}`).append(
     leftConversationText(receiver, {
-      text: '',
+      text: null,
     })
   );
   $(`#conversation-${id}`).append(
     rightConversationText(receiver, {
-      text: '',
+      text: null,
     })
   );
   let rightId = $('#right-conversation').attr('data-id');
@@ -214,8 +216,10 @@ async function showConversationUser(id) {
     }
     renderReaction(message);
   });
+  $('#list-file-conversation').html('')
+  $('#list-image-conversation').html('')
   detailConversation(messages);
-  // $('#conversation-list').find(`li[id = receiver-${id}]`).css('background-color', '#3e4a56');
+  $('#conversation-list').find(`li[id = receiver-${id}]`).css('font-weight', 'normal');
   insertInput(id, false);
   insertInputFile(id, false);
   insertIdForVideoCall(id);
@@ -849,9 +853,6 @@ function rightConversationFile(user, message) {
                                     <h5
                                         class="font-size-14 text-truncate mb-1">
                                         ${fileName[1] + '.' + fileName[2]}</h5>
-                                    <p
-                                        class="text-muted text-truncate font-size-13 mb-0">
-                                        12.5 MB</p>
                                 </div>
                             </div>
                             <div class="ms-4 me-0">
@@ -1012,9 +1013,6 @@ function leftConversationFile(user, message) {
                                     <h5
                                         class="font-size-14 text-truncate mb-1">
                                         ${fileName[1] + '.' + fileName[2]}</h5>
-                                    <p
-                                        class="text-muted text-truncate font-size-13 mb-0">
-                                        12.5 MB</p>
                                 </div>
                             </div>
                             <div class="ms-4 me-0">
