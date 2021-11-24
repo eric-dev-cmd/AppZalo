@@ -1,10 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap");
 * {
   padding: 0;
   margin: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 html {
+  font-family: 'Outfit', sans-serif;
   overflow: scroll;
   overflow-x: hidden; }
 
@@ -37,6 +40,7 @@ body {
   display: inline-block; }
 
 .iti * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -moz-box-sizing: border-box; }
 
@@ -66,7 +70,11 @@ body {
 .iti__selected-flag {
   z-index: 1;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   height: 100%;
   padding: 0 6px 0 8px; }
@@ -91,6 +99,7 @@ body {
   padding: 0;
   border-radius: 4px;
   margin: 11px 0 0 -1px;
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   background-color: white;
   border: 1px solid #ccc;
@@ -1264,6 +1273,7 @@ input[readonly]
 
 .iti__flag {
   height: 15px;
+  -webkit-box-shadow: 0px 0px 1px 0px #888;
   box-shadow: 0px 0px 1px 0px #888;
   background-image: url("/images/flags.png");
   background-repeat: no-repeat;
@@ -1291,8 +1301,6 @@ input[readonly]
 .list-addfriend {
   background-color: transparent;
   -webkit-transition: background-color 1s ease;
-  -moz-transition: background-color 1s ease;
-  -o-transition: background-color 1s ease;
   transition: background-color 1s ease;
   height: 100%;
   padding: 6px 0;
@@ -1362,6 +1370,7 @@ input[readonly]
   left: 0;
   right: 0;
   bottom: -57px;
+  -webkit-box-shadow: 0 0 0 2px #fff;
   box-shadow: 0 0 0 2px #fff;
   width: 96px;
   height: 96px;
@@ -1371,20 +1380,29 @@ input[readonly]
   color: #fff;
   text-align: center;
   border-radius: 50%;
+  -webkit-box-flex: 0;
+  -ms-flex: none;
   flex: none;
+  -webkit-box-shadow: 0 0 0 1px #fff;
   box-shadow: 0 0 0 1px #fff; }
-  .popup-body-avatar .popup-body-avatar-wrapper .avatar-profile {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%; }
+
+.popup-body-avatar .popup-body-avatar-wrapper .avatar-profile {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; }
 
 .popup-body-avatar .avatar-banner {
   height: 180px;
+  -o-object-fit: cover;
   object-fit: cover;
   width: 100%; }
 
 .layout-wrapper#blur.active {
+  -webkit-filter: blur(1px);
   filter: blur(1px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   pointer-events: none; }
 
@@ -1392,21 +1410,25 @@ input[readonly]
   position: fixed;
   top: 40%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: 350px;
   border-radius: 8px;
+  -webkit-box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   background: #fff !important;
   color: black !important;
   z-index: 100;
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: 0.5s;
   transition: 0.5s; }
 
 #popup-tv.active {
   top: 50%;
   visibility: visible;
   opacity: 1;
+  -webkit-transition: 0.5s;
   transition: 0.5s; }
 
 #seachByPhone {
@@ -1416,9 +1438,10 @@ input[readonly]
   background: #800040;
   color: white;
   border: 1px solid #800040; }
-  #seachByPhone:hover {
-    background: #9c1458;
-    border-color: #9c1458; }
+
+#seachByPhone:hover {
+  background: #9c1458;
+  border-color: #9c1458; }
 
 #btnSeachPhone {
   border: none;
@@ -1442,28 +1465,54 @@ input[readonly]
   color: white !important; }
 
 .search-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between; }
-  .search-box .input-wrapper {
-    width: 82%;
-    padding: 11px;
-    background-color: #e6ebf5; }
-    .search-box .input-wrapper input {
-      width: 83%;
-      margin-left: 10px;
-      border: none;
-      background: #36404a;
-      color: #a6a8ba; }
-    .search-box .input-wrapper i {
-      color: #a6a8ba; }
-    .search-box .input-wrapper .input-icon-plus {
-      display: flex; }
-    .search-box .input-wrapper input::placeholder {
-      background: #36404a;
-      border: none; }
-    .search-box .input-wrapper input:focus {
-      outline: none; }
+
+.search-box .input-wrapper {
+  width: 82%;
+  padding: 11px;
+  background-color: #e6ebf5; }
+
+.search-box .input-wrapper input {
+  width: 83%;
+  margin-left: 10px;
+  border: none;
+  background: #36404a;
+  color: #a6a8ba; }
+
+.search-box .input-wrapper i {
+  color: #a6a8ba; }
+
+.search-box .input-wrapper .input-icon-plus {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.search-box .input-wrapper input::-webkit-input-placeholder {
+  background: #36404a;
+  border: none; }
+
+.search-box .input-wrapper input:-ms-input-placeholder {
+  background: #36404a;
+  border: none; }
+
+.search-box .input-wrapper input::-ms-input-placeholder {
+  background: #36404a;
+  border: none; }
+
+.search-box .input-wrapper input::placeholder {
+  background: #36404a;
+  border: none; }
+
+.search-box .input-wrapper input:focus {
+  outline: none; }
 
 .fs-20 {
   font-size: 20px; }
@@ -1480,14 +1529,21 @@ input[readonly]
   font-size: 28px;
   color: #ffcc00;
   background: rgba(17, 17, 17, 0.7); }
-  .glot-sub-clzz:hover {
-    color: #1296ba !important; }
+
+.glot-sub-clzz:hover {
+  color: #1296ba !important; }
 
 .ej-trans-sub {
   position: absolute;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   z-index: 9999999;
   cursor: move; }
@@ -1508,8 +1564,14 @@ input[readonly]
 .ej-main-sub {
   position: absolute;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   z-index: 99999999;
   cursor: move;
@@ -1593,23 +1655,26 @@ input[readonly]
   border-radius: 50%;
   padding: 1px 4px;
   color: #f1efeb; }
-  .emoji-message-user:hover {
-    cursor: pointer;
-    opacity: 0.9; }
-  .emoji-message-user-image {
-    bottom: 10%;
-    left: 6%; }
-  .emoji-message-user-right {
-    bottom: 7%;
-    left: 84%; }
-  .emoji-message-user-file {
-    bottom: 13%;
-    left: 3%; 
-  }
-  .emoji-message-user-file-left{
-    bottom: 12% !important;
-    left: 91% !important;
-  }
+
+.emoji-message-user:hover {
+  cursor: pointer;
+  opacity: 0.9; }
+
+.emoji-message-user-image {
+  bottom: 10%;
+  left: 6%; }
+
+.emoji-message-user-right {
+  bottom: 7%;
+  left: 84%; }
+
+.emoji-message-user-file {
+  bottom: 13%;
+  left: 3%; }
+
+.emoji-message-user-file-left {
+  bottom: 12% !important;
+  left: 91% !important; }
 
 .emoji-message-user-left {
   position: absolute;
@@ -1619,11 +1684,13 @@ input[readonly]
   border-radius: 50%;
   padding: 1px 4px;
   color: #f1efeb; }
-  .emoji-message-user-left:hover {
-    cursor: pointer;
-    opacity: 0.9; }
+
+.emoji-message-user-left:hover {
+  cursor: pointer;
+  opacity: 0.9; }
 
 .list-emoji-hover {
+  -webkit-box-shadow: 0 0 5px 0 #1d1818;
   box-shadow: 0 0 5px 0 #1d1818;
   opacity: 0.95;
   position: absolute;
@@ -1632,13 +1699,19 @@ input[readonly]
   width: 13rem;
   right: -5%;
   padding: 10px 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
   visibility: hidden; }
-  .list-emoji-hover-left {
-    bottom: 114%;
-    left: -400%; }
+
+.list-emoji-hover-left {
+  bottom: 114%;
+  left: -400%; }
 
 .conversation-emoji::before {
   content: '';
@@ -1650,3 +1723,5 @@ input[readonly]
 
 .conversation-emoji:hover .list-emoji-hover {
   visibility: visible; }
+
+/*# sourceMappingURL=app.css.map */

@@ -51,7 +51,6 @@ class LoginController {
           password: passHash,
         },
       });
-      console.log(newUser);
       req.flash('success', 'Tài khoản đăng ký thành công ');
       res.redirect('/login-register');
     }
