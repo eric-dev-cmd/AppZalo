@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -20,7 +21,8 @@ html {
 // }
 body {
   // display: flex;
-  font-family: 'Roboto', sans-serif !important;
+  // font-family: 'Roboto', sans-serif !important;
+  font-family: 'Outfit', sans-serif;
 }
 .fs-24 {
   font-size: 24px;
@@ -41,4 +43,15 @@ body {
 }
 .cursor-point {
   cursor: pointer;
+}
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
