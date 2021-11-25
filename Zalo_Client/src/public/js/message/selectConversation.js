@@ -1,4 +1,3 @@
-console.log('Select Trung Vinh');
 const allConversation = document.querySelector('#allConversation');
 const personalConversation = document.querySelector('#personalConversation');
 const groupConversation = document.querySelector('#groupConversation');

@@ -1,3 +1,4 @@
+const http = 'http://localhost:4000';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
 import {
   getAuth,
@@ -14,17 +15,11 @@ const firebaseApp = initializeApp({
   measurementId: 'G-YP67FPLW9H',
 });
 const auth = getAuth(firebaseApp);
-console.log('Firebase OTP');
-// let phoneNumberT = document.querySelector('#getPhoneNumber');
-// Lấy Form Verify
+
 let form = document.querySelector('[name="verify"]');
-// Lấy Input
 let inputs = form.querySelectorAll('.inputs input');
 let phoneParent = document.querySelector('#phoneParent');
-let yourInputNumber = '';
 let btnVerify = document.getElementById('btnRegister');
-
-// Xác minh robot
 const setUpRecaptcha = () => {
   window.recaptchaVerifier = new RecaptchaVerifier(
     'recaptcha-container',
@@ -38,9 +33,7 @@ const setUpRecaptcha = () => {
     auth
   );
 };
-let phoneNumberT;
 handleValidationPhone();
-
 const onSignInSubmit = (e) => {
   e.preventDefault();
   setUpRecaptcha();
@@ -57,12 +50,13 @@ const onSignInSubmit = (e) => {
   console.log(phoneSplit.trim());
   const phoneEntered = '0' + phoneSplit.trim();
   console.log(phoneEntered.trim());
-  fetch('http://localhost:4000/users/searchPhone/' + phoneEntered)
+  fetch(`${http}/users/searchPhone/` + phoneEntered)
     .then((response) => response.json())
     .then((data) => {
       // Tai khoan nay co the dang ky
-      console.log(data.user);
+
       if (data.user == null) {
+        console.log(data.user);
         console.log(phoneEntered);
         console.log(phoneNumberT);
         console.log('Khong ton tai tai khoan');
@@ -101,8 +95,6 @@ const onSignInSubmit = (e) => {
               const code = otp;
               const boxVerify = document.querySelector('.box-verify');
               const icon = boxVerify.querySelector('.fas');
-              console.log(boxVerify);
-              console.log(icon);
               confirmationResult
                 .confirm(code)
                 .then((result) => {
@@ -125,7 +117,6 @@ const onSignInSubmit = (e) => {
                   icon.classList.remove('fa-check-circle');
                   icon.classList.add('fa-times-circle');
                   icon.classList.add('text-danger');
-
                   boxVerify.querySelector(
                     'p'
                   ).innerHTML = `<span class="text-danger">Xác minh thất bại.</span><br/><span style="color: #000">Vui lòng&nbsp;<span class='btn-return' style="color: red;">Thử lại</span></span>`;
@@ -216,10 +207,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
 // Validation when click
 
 function handleValidationPhone() {
-  console.log('Validation Phone Number');
   const phoneNumber = document.querySelector('#phoneNumber');
   let btnVerify = document.getElementById('btnRegister');
-  console.log(phoneNumber);
   phoneNumber.addEventListener('blur', () => {
     handleValidation();
   });
@@ -278,9 +267,7 @@ function handleCountDown() {
   const expireEle = document.querySelector('.expire');
   // OTP
   let expire = 60;
-  let OTP;
   let countdown;
-  console.log(expireEle);
   countdown = setInterval(() => {
     expire--;
     if (expire === 0) {
@@ -301,10 +288,3 @@ let btnResendOTP = document.querySelector('#btnResendOTP');
 btnResendOTP.addEventListener('click', () => {
   resendOTP();
 });
-resendOTP();
-function resendOTP() {
-  resetReCaptcha();
-  console.log('Resend OTP');
-}
-
-console.log('Trung Vinh Reset');

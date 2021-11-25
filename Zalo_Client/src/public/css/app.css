@@ -6,13 +6,14 @@
 
 html {
   overflow: scroll;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  font-family: 'Outfit', sans-serif !important; }
 
 ::-webkit-scrollbar {
   width: 0px; }
 
 body {
-  font-family: 'Outfit', sans-serif; }
+  font-family: 'Outfit', sans-serif !important; }
 
 .fs-24 {
   font-size: 24px; }
@@ -39,6 +40,43 @@ body {
   to {
     opacity: 1;
     transform: translateY(0); } }
+
+.bg-svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; }
+
+.btn-main-reset {
+  background: #0190f3 !important;
+  border-color: #0190f3 !important;
+  color: white !important; }
+
+.card-verify-reset {
+  width: 400px;
+  border: none;
+  height: 100%;
+  box-shadow: 0px 1px 5px 0px #041a7a59;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.validate-reset {
+  border-radius: 12px;
+  height: 40px;
+  background-color: #7269ef;
+  border: 1px solid #fff;
+  width: 140px; }
+
+.otp-input-reset .form-control {
+  border-color: #7269ef; }
+
+.otp-input-reset .form-control:focus {
+  box-shadow: none;
+  border: 2px solid #7269ef; }
 
 .iti {
   position: relative;
