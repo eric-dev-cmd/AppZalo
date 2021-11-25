@@ -5,6 +5,9 @@
   right: 0;
   bottom: 0;
   z-index: -1;
+  & svg {
+    height: 100%;
+  }
 }
 .btn-main-reset {
   background: #0190f3 !important;

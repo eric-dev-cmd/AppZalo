@@ -164,9 +164,10 @@ const onSignInSubmit = (e) => {
         // Tai khoan da ton tai, khong cho dang ky
         console.log('Tai khoan da ton tai!');
         const show = document.getElementById('showNotification');
+        console.log(show);
         show.classList.remove('active');
         show.style.visibility = 'visible';
-        phoneParent.style.borderColor = '#721c24';
+        phoneParent.style.borderColor = '#0190f3';
         show.classList.add('unactive');
         show.innerHTML =
           'Tài khoản đã tồn tại. Vui lòng nhập số điện thoại khác!';

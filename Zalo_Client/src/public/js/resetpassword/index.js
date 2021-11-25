@@ -44,28 +44,34 @@ const onResetPassword = (e) => {
   // console.log(phoneNumberT);
   // console.log(submitOTP);
   const appVerifier = window.recaptchaVerifier;
-  console.log('SDT da dang ky');
   const phoneSplit = phoneNumberT.slice(phoneNumberT.length - 9);
   console.log(phoneSplit.trim());
   const phoneEntered = '0' + phoneSplit.trim();
   console.log(phoneEntered.trim());
-  console.log('Reset');
-  fetch(`${http}/users/searchPhone/` + phoneEntered)
-    .then((response) => {
-      console.log(response);
-      response.json();
-    })
+
+  fetch('http://localhost:4000/users/searchPhone/' + phoneEntered)
+    .then((response) => response.json())
     .then((data) => {
+      console.log(data);
+      const show = document.getElementById('showNotificationReset');
+
       // Tai khoan nay co the dang ky
       if (data.user == null) {
         console.log(phoneEntered);
         console.log(phoneNumberT);
-        console.log('Khong ton tai tai khoan');
+        show.classList.remove('alert-danger');
+        show.classList.add('alert-success');
+        show.innerHTML = 'Đang gửi mã xác nhận...';
+        console.log('Not account. Lets register');
         // Gửi OTP
       } else {
         console.log(data.user);
         // Tai khoan da ton tai, khong cho dang ky
-        console.log('Tai khoan da ton tai!');
+        show.classList.remove('alert-success');
+        show.classList.add('alert-danger');
+        show.innerHTML =
+          'Tài khoản đã tồn tại. Vui lòng nhập số điện thoại khác!';
+        console.log('Account already exists');
       }
     });
 };
