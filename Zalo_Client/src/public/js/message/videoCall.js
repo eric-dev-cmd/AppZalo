@@ -23,7 +23,19 @@ var MediaStream;
 $(document).ready(function () {
     //02
     socket.on('server-send-listener-is-offline', function () {
-        console.log('offline')
+        Swal.fire({
+            title: $('#name-conversation').text() + ` đang offline`,
+            timer: 1000,
+            allowOutsideClick: false,
+            willOpen: (ele) => {
+                $(ele).find('button.swal2-confirm.swal2-styled').hide();
+                $('#btn-cancel-call').off('click').on('click', function () {
+                    Swal.close();
+                });
+            }
+        }).then((result) => {
+            return false;
+        })
     });
 
     peer.on('open', function (id) {
