@@ -9,8 +9,16 @@ function videoCall(id) {
     });
 }
 
-let getPeerId = '';
-const peer = new Peer();
+let iceList = JSON.parse(IceList).v;
+
+let peerId = '';
+const peer = new Peer({
+    key: 'peerjs',
+    host: '0.peerjs.com',
+    secure: true,
+    port: 443,
+    config: iceList
+});
 var MediaStream;
 $(document).ready(function () {
     //02
@@ -18,8 +26,8 @@ $(document).ready(function () {
         console.log('offline')
     });
 
-    peer.on('open', function (peerId) {
-        getPeerId = peerId;
+    peer.on('open', function (id) {
+        peerId = id;
     });
     //03
     socket.on('server-request-peerId-to-listener', function (response) {
@@ -28,7 +36,7 @@ $(document).ready(function () {
             listenerId: response.listenerId,
             callerName: response.callerName,
             listenerName: $('#userName').val(),
-            listenerPeerId: getPeerId
+            listenerPeerId: peerId
         }
         //04
         socket.emit('listener-emit-peerId-to-server', dataToEmit);
@@ -82,6 +90,7 @@ async function showModalOfCaller(dataToEmit) {
             $(ele).find('button.swal2-confirm.swal2-styled').hide();
             $('#btn-cancel-call').off('click').on('click', function () {
                 socket.emit('caller-cancel-request-call-to-server', dataToEmit);
+                stopVideo();
                 Swal.close();
                 clearInterval(timerInterval);
             });
@@ -91,11 +100,13 @@ async function showModalOfCaller(dataToEmit) {
             //12
             socket.on('server-send-deny-call-to-caller', function (response) {
                 Swal.close();
+                stopVideo();
                 clearInterval(timerInterval);
                 Swal.fire({
                     type: 'info',
                     title: `${response.listenerName} đã từ chối cuộc gọi.`
-                })
+                });
+                stopVideo();
             });
 
             //13
@@ -271,15 +282,16 @@ function playVideo(idVideo, stream) {
     let playPromise = video.play();
     if (playPromise !== undefined) {
         playPromise.then(_ => {
-            })
-            .catch(error => {});
+        })
+            .catch(error => { });
     }
 }
 
 function stopVideo() {
-    const video = document.querySelector('video');
-    const mediaStream = video.srcObject;
-    const tracks = mediaStream.getTracks();
-    tracks[0].stop();
-    tracks.forEach(track => track.stop())
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+        const mediaStream = video.srcObject;
+        const tracks = mediaStream.getTracks();
+        tracks.forEach(track => track.stop())
+    })
 }
