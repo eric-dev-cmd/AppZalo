@@ -8,6 +8,7 @@ function videoCall(id) {
         socket.emit('caller-check-listener-online', dataToEmit);
     });
 }
+console.log(JSON.parse(IceList).v.iceServers);
 
 let getPeerId = '';
 const peer = new Peer();
@@ -271,8 +272,8 @@ function playVideo(idVideo, stream) {
     let playPromise = video.play();
     if (playPromise !== undefined) {
         playPromise.then(_ => {
-            })
-            .catch(error => {});
+        })
+            .catch(error => { });
     }
 }
 
