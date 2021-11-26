@@ -49,7 +49,8 @@ body {
   bottom: 0;
   z-index: -1; }
   .bg-svg svg {
-    height: 100%; }
+    height: 100%;
+    width: 100%; }
 
 .btn-main-reset {
   background: #0190f3 !important;
@@ -69,22 +70,91 @@ body {
 .validate-reset {
   border-radius: 12px;
   height: 40px;
-  background-color: #7269ef;
+  background-color: #aad6ff;
   border: 1px solid #fff;
   width: 140px; }
 
 .otp-input-reset .form-control {
-  border-color: #7269ef; }
+  border-color: #aad6ff; }
 
 .otp-input-reset .form-control:focus {
   box-shadow: none;
-  border: 2px solid #7269ef; }
+  border: 2px solid #aad6ff; }
 
 .reset-box-2 {
   display: none; }
 
-.box-verify-reset {
-  display: none !important; }
+.overlay-reset {
+  position: fixed;
+  z-index: 10;
+  background: #06060654;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none; }
+
+.modal-btn-verify {
+  position: fixed;
+  top: 34vh;
+  left: 35.5%;
+  width: 29%;
+  z-index: 100;
+  overflow: hidden;
+  color: black;
+  background: white;
+  box-shadow: 0 2px 8px rgba(56, 51, 51, 0.603);
+  border-radius: 6px;
+  animation: modal-appear-verify 0.3s ease-out forwards;
+  display: none; }
+  .modal-btn-verify .header {
+    background: #7467ef;
+    padding: 1rem;
+    position: relative;
+    margin: 0;
+    color: white; }
+  .modal-btn-verify .header i {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateX(-50%) translateY(-50%); }
+    .modal-btn-verify .header i:hover {
+      cursor: pointer;
+      opacity: 0.7; }
+
+.modal-content-verify {
+  padding: 1rem; }
+
+.actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end; }
+  .actions .action-btn {
+    min-width: 6rem;
+    font: inherit;
+    background-color: #c42222;
+    color: white;
+    padding: 0.65rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 5px 5px -3px rgba(231, 219, 219, 0.527), 0px 8px 10px 1px rgba(204, 196, 196, 0.527), 0px 3px 14px 2px rgba(131, 125, 125, 0.527);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; }
+    .actions .action-btn:hover, .actions .action-btn:active {
+      background-color: #c42222;
+      border-color: #c42222;
+      opacity: 0.9; }
+    .actions .action-btn:focus {
+      outline: none; }
+
+@keyframes modal-appear-verify {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem); }
+  to {
+    opacity: 1;
+    transform: translateY(0); } }
 
 .iti {
   position: relative;

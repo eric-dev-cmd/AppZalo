@@ -1,7 +1,8 @@
 const User = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
-const axios = require('axios');
+// const userService = require('../services/userService');
 const http = require('./http');
+const axios = require('axios');
 
 class LoginController {
   showLogin(req, res) {
@@ -53,6 +54,32 @@ class LoginController {
       });
       req.flash('success', 'Tài khoản đăng ký thành công ');
       res.redirect('/login-register');
+    }
+  }
+  async showResetNewPassword(req, res) {
+    let phone = req.query.phone;
+    let phoneReset = phone.slice(phone.length - 9);
+    res.render('./updatenewpassword', {
+      phone: '0' + phoneReset,
+    });
+  }
+  async updateResetNewPassword(req, res) {
+    try {
+      // Password new
+      console.log(req.body.passwordReset);
+      // Phone need update password
+      let phoneReset = req.body.phoneReset;
+      console.log(phoneReset);
+      let userPhone = await axios.get(
+        http + '/users/searchPhone/' + phoneReset
+      );
+      const { user } = userPhone.data;
+      console.log(user);
+      user.local.password = req.body.passwordReset;
+      
+    } catch (err) {
+      console.log(err);
+      console.log('ERROR Vinh');
     }
   }
 }

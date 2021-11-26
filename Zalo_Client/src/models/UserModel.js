@@ -22,7 +22,7 @@ const User = new Schema({
   },
   avatar: {
     type: String,
-    default: "user-avatar.png",
+    default: 'user-avatar.png',
   },
   role: {
     type: String,
@@ -69,5 +69,6 @@ User.methods.correctPassword = async function (
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
+
 
 module.exports = mongoose.model('user', User);

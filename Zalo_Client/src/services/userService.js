@@ -12,6 +12,7 @@ class UserService {
       }
     });
   }
+  putAPIById
 
   updateOnline(user) {
     return new Promise(async (resolve, reject) => {

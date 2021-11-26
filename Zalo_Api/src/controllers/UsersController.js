@@ -73,6 +73,8 @@ class UsersController {
   }
 
   deleteAPI(req, res, next) {
+    const password = req.body;
+    console.log(password);
     User.findByIdAndRemove(req.params.id)
       .then((users) => {
         res.status(200).json({

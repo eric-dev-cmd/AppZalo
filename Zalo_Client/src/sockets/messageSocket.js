@@ -87,6 +87,7 @@ class MessageSocket {
 
         //lắng nghe socket từ client gửi
         socket.on('add-new-file', (data) => {
+          // console.log(data);
           let response = {
             messages: data.messages,
             isChatGroup: data.isChatGroup,
