@@ -39,6 +39,11 @@ const User = new Schema({
       // select: false,
     },
   },
+  // Tai khoan co bi khoa hay k
+  isActive: {
+    type: String,
+    default: true,
+  },
   createAt: {
     type: Number,
     default: Date.now,

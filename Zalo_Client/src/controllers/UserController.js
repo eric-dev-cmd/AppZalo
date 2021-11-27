@@ -14,6 +14,7 @@ class UserController {
         let uuid = uuidv4();
         let newFiles = await FilesUtil.uploadFiles(file, uuid);
         let user = req.body;
+        console.log(user);
         user.avatar = `${uuid}.${fileName}`; //gan user.avatar
         axios
           .put(http + '/users/' + req.body.id, user)
@@ -57,6 +58,5 @@ class UserController {
       success: !!request,
     });
   }
-
 }
 module.exports = new UserController();

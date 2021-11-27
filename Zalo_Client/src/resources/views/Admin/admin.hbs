@@ -8,7 +8,7 @@
     <link href="/css/admin.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <title>Admin Zalo</title>
+    <title>Admin Zolo</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <div class="header-item">
                 <div class="header-item-logo">
                     <img src="http://egret-react.ui-lib.com/assets/images/logo.svg" alt="Logo admin" />
-                    <h1>Zalo</h1>
+                    <h1>Zolo</h1>
                 </div>
             </div>
             <div class="header-item-info">
@@ -96,6 +96,11 @@
                 </div>
 
                 <div class="main-admin-table-wrapper">
+                    {{#if success}}
+                    <div class="alert alert-success text-center d-flex align-items-center justify-content-center"
+                        style="margin-bottom: 4px">
+                        {{success}}</div>
+                    {{/if}}
                     <table class="main-admin-table">
                         <thead class="main-admin-table-theaed">
                             <tr>
@@ -209,9 +214,9 @@
                 <h3>Tạo tài khoản</h3>
                 <i class="far fa-times admin-header-close"></i>
             </header>
-            <form action="">
+            <form action="/home/admin/created" method="POST">
                 <div class="admin-modal-content">
-                    <div class="input-wrapper input-wrapper-avatar">
+                    {{!-- <div class="input-wrapper input-wrapper-avatar">
                         <div class="wrapper">
                             <label for="admin-avatar" name="admin-upload-file">
                                 <div class="image">
@@ -221,40 +226,40 @@
                             </label>
                         </div>
                         <input id="admin-avatar" type="file" name="myfile" hidden />
-                    </div>
+                    </div> --}}
                     <div class="input-wrapper">
                         <div class="input-wrapper-item">
-                            <input type="text" id="adminUsername" class="form__input" autocomplete="off"
-                                placeholder="Trung Vinh" autofocus>
+                            <input type="text" id="adminUsername" name="adminUsername" class="form__input"
+                                autocomplete="off" placeholder="Trung Vinh" autofocus>
                             <label for="adminUsername" class="form__label">Username</label>
                         </div>
                         <div class="input-wrapper-item">
-                            <input type="number" id="adminPhone" class="form__input" autocomplete="off"
-                                placeholder="0987059059">
+                            <input type="number" id="adminPhone" name="adminPhone" class="form__input"
+                                autocomplete="off" placeholder="0987059059">
                             <label for="adminPhone" class="form__label">Số điện thoại</label>
                         </div>
                     </div>
                     <div class="input-wrapper">
                         <div class="input-wrapper-item">
-                            <input type="date" id="adminBirthDay" class="form__input" autocomplete="off"
-                                placeholder="03-Nov-2021">
+                            <input type="date" id="adminBirthDay" name="adminBirthDay" class="form__input"
+                                autocomplete="off" placeholder="03-Nov-2021">
                             <label for="adminBirthDay" class="form__label">Ngày sinh</label>
                         </div>
                         <div class="input-wrapper-item">
-                            <input type="password" id="adminPassword" class="form__input" autocomplete="off"
-                                placeholder="********">
+                            <input type="password" id="adminPassword" name="adminPassword" class="form__input"
+                                autocomplete="off" placeholder="********">
                             <label for="adminPassword" class="form__label">Mật khẩu</label>
                         </div>
                     </div>
                     <div class="input-wrapper">
                         <div class="input-wrapper-item input-wrapper-item-radio">
-                            <input type="radio" name="gender" id="gender-male" checked="true">
-                            <label for="gender-male" class="gender-male">
+                            <input type="radio" name="gender" id="radio1" value='male' checked="true">
+                            <label for="radio1" class="gender-male">
                                 <div class="dot"></div>
                                 <span>Nam</span>
                             </label>
-                            <input type="radio" name="gender" id="gender-female">
-                            <label for="gender-female" class="gender-female">
+                            <input type="radio" name="gender" id="radio2" value="female">
+                            <label for="radio2" class="gender-female">
                                 <div class="dot"></div>
                                 <span>Nữ</span>
                             </label>
@@ -269,7 +274,7 @@
                 <footer class="actions">
                     <button class="action-btn action-btn-close " type="button">Đóng</button>
                     <button class="action-btn action-btn-reset " type="reset">Xoá trắng</button>
-                    <button class="action-btn action-btn-save" type="button">Lưu</button>
+                    <button class="action-btn action-btn-save" type="sumit">Lưu</button>
                 </footer>
             </form>
         </div>

@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 class UsersController {
   getAPI(req, res, next) {
     User.find({})
+      .sort({ createAt: -1 })
       .then((users) => {
         res.status(200).json({
           status: "Success",

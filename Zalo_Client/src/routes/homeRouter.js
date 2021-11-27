@@ -5,6 +5,7 @@ const authController = require('../controllers/AuthController');
 const adminController = require('../controllers/AdminController');
 
 router.get('/', authController.checkLoggedIn, homeController.index);
+router.post('/admin/created', adminController.addAccount);
 router.get('/admin', authController.showPageAdmin);
 router.put('/updateIsActiveAdmin', adminController.updateIsActiveAdmin);
 router.put('/updateIsBlockAdmin', adminController.updateIsBlockAdmin);
