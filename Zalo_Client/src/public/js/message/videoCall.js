@@ -17,7 +17,7 @@ let peerId = '';
 const peer = new Peer({
   key: 'peerjs',
   secure: true,
-  host: 'localhost',
+  host: 'ec2-54-255-140-114.ap-southeast-1.compute.amazonaws.com',
   port: 9000,
   path: '/myapp',
   config: iceList,
