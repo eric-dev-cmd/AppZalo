@@ -75,11 +75,17 @@ class LoginController {
       );
       const { user } = userPhone.data;
       console.log(user);
-      user.local.password = req.body.passwordReset;
-      
+      console.log(user._id);
+      let userPhoneReset = await User.findById(user._id).select('+password');
+      console.log(userPhoneReset);
+      userPhoneReset.user.local.password = phoneReset;
+      res.status(200).json({
+        message: 'Success',
+        user: userPhoneReset,
+      });
     } catch (err) {
       console.log(err);
-      console.log('ERROR Vinh');
+      console.log('ERROR');
     }
   }
 }

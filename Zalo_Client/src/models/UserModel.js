@@ -36,7 +36,7 @@ const User = new Schema({
     password: {
       type: String,
       required: [true, 'Please provide a password'],
-      select: false,
+      // select: false,
     },
   },
   createAt: {
@@ -69,6 +69,5 @@ User.methods.correctPassword = async function (
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
-
 
 module.exports = mongoose.model('user', User);

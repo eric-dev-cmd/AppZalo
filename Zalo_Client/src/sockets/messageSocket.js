@@ -84,7 +84,6 @@ class MessageSocket {
         socket.on('members-get-socketId', (data) => {
           listUsers = addSocketId(listUsers, data.group._id, socket.id);
         });
-
         //lắng nghe socket từ client gửi
         socket.on('add-new-file', (data) => {
           // console.log(data);
