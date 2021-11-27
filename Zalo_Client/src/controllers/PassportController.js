@@ -2,10 +2,7 @@ const passport = require('passport');
 const passportLocal = require('passport-local');
 const axios = require('axios');
 const http = require('./http');
-const {
-  transErrors,
-  transSuccess
-} = require('../../lang/vi');
+const { transErrors, transSuccess } = require('../../lang/vi');
 const chatGroupService = require('../services/chatGroupService');
 const bcrypt = require('bcryptjs');
 
@@ -15,27 +12,45 @@ const LocalStrategy = passportLocal.Strategy;
  * Kiem tra tai khoan
  */
 function initPassportLocal() {
-  passport.use(new LocalStrategy({
-      usernameField: 'phone',
-      passwordField: 'password',
-      passReqToCallback: true,
-    },
-    async (req, phone, password, done) => {
-      try {
-        const user = await axios.get(http + '/users/searchPhone/' + phone);
-        if (!user.data.user) {
-          return done(null, false, req.flash('errors', transErrors.login_failed));
+  passport.use(
+    new LocalStrategy(
+      {
+        usernameField: 'phone',
+        passwordField: 'password',
+        passReqToCallback: true,
+      },
+      async (req, phone, password, done) => {
+        try {
+          const user = await axios.get(http + '/users/searchPhone/' + phone);
+          if (user.data.user.role == 'user') {
+            if (!user.data.user) {
+              return done(
+                null,
+                false,
+                req.flash('errors', transErrors.login_failed)
+              );
+            }
+            let isPassword = await bcrypt.compare(
+              password,
+              user.data.user.local.password
+            );
+            if (isPassword == false) {
+              return done(
+                null,
+                false,
+                req.flash('errors', transErrors.login_failed)
+              );
+            }
+            return done(null, user);
+          } else {
+            return done(null, user);
+          }
+        } catch (error) {
+          return done(null, false);
         }
-        let isPassword = await bcrypt.compare(password, user.data.user.local.password);
-        if (isPassword == false) {
-          return done(null, false, req.flash('errors', transErrors.login_failed));
-        }
-        return done(null, user);
-      } catch (error) {
-        return done(null, false);
       }
-    }
-  ));
+    )
+  );
 
   //đc gọi khi đăng nhập thành công để lưu thông tin user vào session
   passport.serializeUser((user, done) => {
@@ -57,7 +72,6 @@ function initPassportLocal() {
       return done(error, null);
     }
   });
-
 }
 
 module.exports = initPassportLocal;

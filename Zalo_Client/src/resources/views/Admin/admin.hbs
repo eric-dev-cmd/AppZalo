@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>Admin Zalo</title>
+</head>
+
+<body>
+    <div class="app-admin">
+        <header class="header-admin">
+            <div class="header-item">
+                <div class="header-item-logo">
+                    <img src="http://egret-react.ui-lib.com/assets/images/logo.svg" alt="Logo admin" />
+                    <h1>Zalo</h1>
+                </div>
+            </div>
+            <div class="header-item-info">
+                <div class="header-item-avatar">
+                    <img src="https://s120-ava-talk.zadn.vn/d/0/3/b/2/120/a55201f957810146b2cad203852b3854.jpg"
+                        alt="Avatar admin" />
+                </div>
+                <span class="header-item-username-span">Trung Vinh</span>
+                <div class="header-item-menu">
+                    <i class="fas fa-cog"></i>
+                    <i class="fas fa-user"></i>
+                    <i class="fal fa-sign-out-alt"></i>
+                </div>
+            </div>
+            <div class="header-item-home active">
+                <div class="header-item-home-icon-text">
+                    <i class="fal fa-stream"></i>
+                    <span>Trang chủ</span>
+                </div>
+                <div>
+                    <i class="far fa-angle-right"></i>
+                </div>
+            </div>
+            <div class="overlay-header-admin"></div>
+        </header>
+        <nav class="nav-admin">
+            <div class="nav-admin-wrapper">
+                <div class="nav-admin-left">
+                    <div>
+                        <div id="btn-close-layout">
+                            <button class="nav-admin-left-menu">
+                                <i class="far fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="nav-admin-left-hide-mobile">
+                            <button>
+                                <i class="fal fa-envelope"></i>
+                            </button>
+                            <button>
+                                <i class="fal fa-calendar"></i>
+                            </button>
+                            <button>
+                                <i class="fal fa-star"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-admin-right">
+                    <div>
+                        <img class="nav-admin-right-avatar"
+                            src="https://s120-ava-talk.zadn.vn/d/0/3/b/2/120/a55201f957810146b2cad203852b3854.jpg"
+                            alt="Avatar admin" />
+                        <div class="nav-admin-right-menu">
+                            <ul>
+                                <li> <a href="#"> <span><i class="fas fa-home-lg-alt"></i></span> Trang chủ</a></li>
+                                <li><a href="#"><span><i class="fas fa-user-alt"></i></span>Hồ sơ</a></li>
+                                <li><a href="#"><span><i class="fas fa-cog"></i></span>Cài đặt</a></li>
+                                <li><a href="#"><span><i class="far fa-power-off"></i></span>Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="main-admin">
+            <div class="main-admin-wrapper">
+                <div class="main-admin-title">
+                    <div class="pr-16">
+                        <h4>Xin chào Trung Vinh</h4>
+                    </div>
+                    <img src="http://egret-react.ui-lib.com/assets/images/illustrations/designer.svg" alt="QLND">
+                </div>
+                <div class="main-admin-btn-add">
+                    <button type="button" class="main-admin-btn-add-"><i class="fas fa-users-medical"></i> &nbsp;Tạo tài
+                        khoản</button>
+                </div>
+
+                <div class="main-admin-table-wrapper">
+                    <table class="main-admin-table">
+                        <thead class="main-admin-table-theaed">
+                            <tr>
+                                <th>Username</th>
+                                <th>Số điện thoại</th>
+                                <th>Giới tính</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody class="main-admin-table-tbody">
+                            {{#each listRoleByUser}}
+                            <tr>
+                                <td>{{this.userName}}</td>
+                                <td>{{this.local.phone}}</td>
+                                <td>{{this.gender}}</td>
+                                <td>
+                                    <div style="display: block; float: left;">
+                                        {{#ifActive this.isActive}}
+                                        <p class="status status-active" id="isActive-{{this._id}}">Active</p>
+                                        {{/ifActive}}
+                                        {{#ifBlock this.isActive}}
+                                        <p class="status status-inactive" id="isBlock-{{this._id}}">Block</p>
+                                        {{/ifBlock}}
+                                    </div>
+                                </td>
+                                <td style="display: flex; float: left">
+                                    <p class="action action-update action-block">
+                                        <i class="fas fa-user-slash action-block-icon"
+                                            onclick="showModalBlock('{{this._id}}')"></i>
+                                    </p>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            {{!-- <tr>
+                                <td>Trung Vinh</td>
+                                <td>0987059059</td>
+                                <td>Nam</td>
+                                <td>
+                                    <div style="display: block; float: left;">
+                                        <p class="status status-active">Active</p>
+
+                                    </div>
+                                </td>
+                                <td style="display: flex; float: left">
+                                    <p class="action action-update">
+                                        <i class="fas fa-user-slash action-block-icon"></i>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Trung Vinh</td>
+                                <td>0987059059</td>
+                                <td>Nam</td>
+                                <td>
+                                    <div style="display: block; float: left;">
+                                        <p class="status status-active">Active</p>
+
+                                    </div>
+                                </td>
+                                <td style="display: flex; float: left">
+                                    <p class="action action-update">
+                                        <i class="fas fa-user-slash action-block-icon"></i>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Trung Vinh</td>
+                                <td>0987059059</td>
+                                <td>Nam</td>
+                                <td>
+                                    <div style="display: block; float: left;">
+                                        <p class="status status-active">Active</p>
+
+                                    </div>
+                                </td>
+                                <td style="display: flex; float: left">
+                                    <p class="action action-update">
+                                        <i class="fas fa-user-slash action-block-icon"></i>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Trung Vinh</td>
+                                <td>0987059059</td>
+                                <td>Nam</td>
+                                <td>
+                                    <div style="display: block; float: left;">
+                                        <p class="status status-inactive">Inactive</p>
+
+                                    </div>
+                                </td>
+                                <td style="display: flex; float: left">
+                                    <p class="action action-update">
+                                        <i class="fas fa-user-slash action-block-icon"></i>
+                                    </p>
+                                </td>
+                            </tr> --}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+    </div>
+    <!-- Start Add Member -->
+    <div class="admin-backdrop">
+        <div class="admin-modal-btn-add">
+            <header class="header">
+                <h3>Tạo tài khoản</h3>
+                <i class="far fa-times admin-header-close"></i>
+            </header>
+            <form action="">
+                <div class="admin-modal-content">
+                    <div class="input-wrapper input-wrapper-avatar">
+                        <div class="wrapper">
+                            <label for="admin-avatar" name="admin-upload-file">
+                                <div class="image">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa81NT0cfFGI-geFewuerTzRtpcj-PalEsnA&usqp=CAU"
+                                        alt="">
+                                </div>
+                            </label>
+                        </div>
+                        <input id="admin-avatar" type="file" name="myfile" hidden />
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-wrapper-item">
+                            <input type="text" id="adminUsername" class="form__input" autocomplete="off"
+                                placeholder="Trung Vinh" autofocus>
+                            <label for="adminUsername" class="form__label">Username</label>
+                        </div>
+                        <div class="input-wrapper-item">
+                            <input type="number" id="adminPhone" class="form__input" autocomplete="off"
+                                placeholder="0987059059">
+                            <label for="adminPhone" class="form__label">Số điện thoại</label>
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-wrapper-item">
+                            <input type="date" id="adminBirthDay" class="form__input" autocomplete="off"
+                                placeholder="03-Nov-2021">
+                            <label for="adminBirthDay" class="form__label">Ngày sinh</label>
+                        </div>
+                        <div class="input-wrapper-item">
+                            <input type="password" id="adminPassword" class="form__input" autocomplete="off"
+                                placeholder="********">
+                            <label for="adminPassword" class="form__label">Mật khẩu</label>
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-wrapper-item input-wrapper-item-radio">
+                            <input type="radio" name="gender" id="gender-male" checked="true">
+                            <label for="gender-male" class="gender-male">
+                                <div class="dot"></div>
+                                <span>Nam</span>
+                            </label>
+                            <input type="radio" name="gender" id="gender-female">
+                            <label for="gender-female" class="gender-female">
+                                <div class="dot"></div>
+                                <span>Nữ</span>
+                            </label>
+                        </div>
+                        <div class="input-wrapper-item">
+                            <input type="password" id="adminConfirmPassword" class="form__input" autocomplete="off"
+                                placeholder="********">
+                            <label for="adminConfirmPassword" class="form__label">Xác nhận mật khẩu</label>
+                        </div>
+                    </div>
+                </div>
+                <footer class="actions">
+                    <button class="action-btn action-btn-close " type="button">Đóng</button>
+                    <button class="action-btn action-btn-reset " type="reset">Xoá trắng</button>
+                    <button class="action-btn action-btn-save" type="button">Lưu</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+    <!-- End Add Member -->
+
+    <!-- Start Update Member -->
+    <div class="admin-backdrop-block">
+        <div class="admin-modal-btn-block">
+            <header class="header">
+                <h3>Khoá tài khoản</h3>
+                <i class="far fa-times admin-header-close admin-header-close-block"></i>
+            </header>
+            <form action="">
+                <div class="admin-modal-content">
+                    <p style="text-align: center;">Bạn chắc chắn muốn khoá tài khoản này?</p>
+                </div>
+                <footer class="actions" id="btn-block">
+                    <button class="action-btn action-btn-close-block " type="button">Đóng</button>
+                    <button class="action-btn action-btn-block" type="button">Block</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+    <!-- End Update Member -->
+    <script type="text/javascript" src="/js/admin.js"></script>
+
+
+</body>
+
+</html>

@@ -20,7 +20,6 @@ const { PeerServer } = require('peer');
 
 const { fail } = require('assert');
 const AWS = require('aws-sdk');
-const peerServer = PeerServer({ port: 9000, path: '/myapp' });
 //init app
 const app = express();
 
@@ -79,6 +78,16 @@ app.engine(
       },
       ifBusy: function (text, options) {
         if (text === 'busy') {
+          return options.fn(this);
+        }
+      },
+      ifActive: function (text, options) {
+        if (text === 'true' || text == true) {
+          return options.fn(this);
+        }
+      },
+      ifBlock: function (text, options) {
+        if (text === 'false' || text == false) {
           return options.fn(this);
         }
       },

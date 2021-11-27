@@ -66,27 +66,49 @@ class LoginController {
   async updateResetNewPassword(req, res) {
     try {
       // Password new
-      console.log(req.body.passwordReset);
       // Phone need update password
       let phoneReset = req.body.phoneReset;
-      console.log(phoneReset);
       let userPhone = await axios.get(
         http + '/users/searchPhone/' + phoneReset
       );
       const { user } = userPhone.data;
-      console.log(user);
-      console.log(user._id);
       let userPhoneReset = await User.findById(user._id).select('+password');
-      console.log(userPhoneReset);
-      userPhoneReset.user.local.password = phoneReset;
-      res.status(200).json({
-        message: 'Success',
-        user: userPhoneReset,
-      });
+      const passResetHash = await bcrypt.hash(req.body.passwordReset, 10);
+      userPhoneReset.local.password = passResetHash;
+      await userPhoneReset.save();
+      req.flash('success', 'Đổi mật khẩu thành công');
+      res.redirect('/login-register');
     } catch (err) {
       console.log(err);
       console.log('ERROR');
     }
+  }
+
+  async showHomeAdmin(req, res, next) {
+    let phone = req.body.phone;
+    let password = req.body.password;
+    let user = await axios.get(http + '/users/searchPhone/' + phone);
+    // userList.data.data.users;
+    let isPassword = await bcrypt.compare(
+      password,
+      user.data.user.local.password
+    );
+    if (user.data.user.role == 'admin' && isPassword) {
+      res.redirect('/home/admin');
+    } else {
+      next();
+    }
+  }
+  async showPageAdmin(req, res, next) {
+    let userList = await axios.get(http + '/users');
+    let users = userList.data.data.users;
+    let listRoleByUser = [];
+    users.forEach((user) => {
+      if (user.role == 'user') {
+        listRoleByUser.push(user);
+      }
+    });
+    res.render('Admin/admin', { listRoleByUser: listRoleByUser });
   }
 }
 

@@ -6,9 +6,10 @@ const initPassportLocal = require('../../controllers/PassportController');
 
 initPassportLocal();
 
-
 router.get('/', authController.checkLoggedOut, authController.showLogin);
-router.post('/login',
+router.post(
+  '/login',
+  authController.showHomeAdmin,
   passport.authenticate('local', {
     successRedirect: '/home',
     failureRedirect: '/login-register',

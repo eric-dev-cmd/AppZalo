@@ -7,4 +7,5 @@ router.post('/updateProfile', authController.checkLoggedIn, userController.updat
 router.put('/updateOnline', authController.checkLoggedIn, userController.updateOnline);
 router.put('/updateBusy', authController.checkLoggedIn, userController.updateBusy);
 
+
 module.exports = router;
