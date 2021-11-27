@@ -30,6 +30,18 @@ function initPassportLocal() {
                 req.flash('errors', transErrors.login_failed)
               );
             }
+            if (
+              user.data.user.isActive == 'false' ||
+              user.data.user.isActive == false
+            ) {
+              return done(
+                null,
+                false,
+                req.flash('errors', 'Tài khoản của bạn đã bị khoá.')
+              );
+            }
+            console.log('Vinh Vinh Block');
+            console.log(user.data.user);
             let isPassword = await bcrypt.compare(
               password,
               user.data.user.local.password

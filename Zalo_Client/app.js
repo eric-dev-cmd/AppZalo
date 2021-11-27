@@ -122,7 +122,10 @@ app.use(passport.session());
  */
 
 app.use(upload());
-
+app.use((req, res, next) => {
+  console.log('Trung Vinh User');
+  next();
+});
 //init route
 route(app, io);
 
