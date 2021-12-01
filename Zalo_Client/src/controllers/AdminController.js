@@ -59,7 +59,7 @@ class AdminController {
     };
     let user = await axios.post(http + '/users', newUser);
     req.flash('success', 'Tạo tài khoản thành công');
-    res.redirect('/home/admin');
+    res.redirect('/admin');
   }
 }
 module.exports = new AdminController();
