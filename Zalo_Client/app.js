@@ -16,7 +16,6 @@ const initSockets = require('./src/sockets/index');
 const cookieParser = require('cookie-parser');
 const passportSocketIo = require('passport.socketio');
 const events = require('events');
-var ConnectRoles = require('connect-roles');
 
 const { fail } = require('assert');
 const AWS = require('aws-sdk');
@@ -114,19 +113,7 @@ app.use(cookieParser());
 /**
  * Config passport
  */
-var user = new ConnectRoles({
-  failureHandler: function (req, res, action) {
-    // optional function to customise code that runs when
-    // user fails authorisation
-    var accept = req.headers.accept || '';
-    res.status(403);
-    if (~accept.indexOf('html')) {
-      res.render('access-denied', { action: action });
-    } else {
-      res.send('Access Denied - You don\'t have permission to: ' + action);
-    }
-  }
-});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
