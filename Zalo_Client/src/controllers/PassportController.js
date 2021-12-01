@@ -22,41 +22,35 @@ function initPassportLocal() {
       async (req, phone, password, done) => {
         try {
           const user = await axios.get(http + '/users/searchPhone/' + phone);
-          if (user.data.user.role == 'user') {
-            if (!user.data.user) {
-              return done(
-                null,
-                false,
-                req.flash('errors', transErrors.login_failed)
-              );
-            }
-            if (
-              user.data.user.isActive == 'false' ||
-              user.data.user.isActive == false
-            ) {
-              return done(
-                null,
-                false,
-                req.flash('errors', 'Tài khoản của bạn đã bị khoá.')
-              );
-            }
-            console.log('Vinh Vinh Block');
-            console.log(user.data.user);
-            let isPassword = await bcrypt.compare(
-              password,
-              user.data.user.local.password
+          if (!user.data.user) {
+            return done(
+              null,
+              false,
+              req.flash('errors', transErrors.login_failed)
             );
-            if (isPassword == false) {
-              return done(
-                null,
-                false,
-                req.flash('errors', transErrors.login_failed)
-              );
-            }
-            return done(null, user);
-          } else {
-            return done(null, user);
           }
+          if (
+            user.data.user.isActive == 'false' ||
+            user.data.user.isActive == false
+          ) {
+            return done(
+              null,
+              false,
+              req.flash('errors', 'Tài khoản của bạn đã bị khoá.')
+            );
+          }
+          let isPassword = await bcrypt.compare(
+            password,
+            user.data.user.local.password
+          );
+          if (isPassword == false) {
+            return done(
+              null,
+              false,
+              req.flash('errors', transErrors.login_failed)
+            );
+          }
+          return done(null, user);
         } catch (error) {
           return done(null, false);
         }
@@ -84,6 +78,7 @@ function initPassportLocal() {
       return done(error, null);
     }
   });
+
 }
 
 module.exports = initPassportLocal;

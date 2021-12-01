@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const http = require('./http');
 const axios = require('axios');
 
+
 class LoginController {
   showLogin(req, res) {
     res.locals.message = req.flash('errors');
@@ -23,12 +24,16 @@ class LoginController {
     next();
   }
 
-  checkLoggedOut(req, res, next) {
-    if (req.isAuthenticated()) {
+  checkRole(req, res, next) {
+    if (req.isAuthenticated() && req.user.data.user.role == 'user') {
       return res.redirect('/home');
+    }
+    if (req.isAuthenticated() && req.user.data.user.role == 'admin') {
+      return res.redirect('/admin');
     }
     next();
   }
+
   showRegister(req, res) {
     res.render('register');
   }
@@ -82,33 +87,6 @@ class LoginController {
       console.log(err);
       console.log('ERROR');
     }
-  }
-
-  async showHomeAdmin(req, res, next) {
-    let phone = req.body.phone;
-    let password = req.body.password;
-    let user = await axios.get(http + '/users/searchPhone/' + phone);
-    // userList.data.data.users;
-    let isPassword = await bcrypt.compare(
-      password,
-      user.data.user.local.password
-    );
-    if (user.data.user.role == 'admin' && isPassword) {
-      res.redirect('/home/admin');
-    } else {
-      next();
-    }
-  }
-  async showPageAdmin(req, res, next) {
-    let userList = await axios.get(http + '/users');
-    let users = userList.data.data.users;
-    let listRoleByUser = [];
-    users.forEach((user) => {
-      if (user.role == 'user') {
-        listRoleByUser.push(user);
-      }
-    });
-    res.render('Admin/admin', { listRoleByUser: listRoleByUser });
   }
 }
 

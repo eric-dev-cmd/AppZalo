@@ -1,7 +1,6 @@
 const http = require('./http');
 const axios = require('axios');
 const adminService = require('../services/adminService');
-const User = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
 
 class AdminController {
@@ -20,6 +19,25 @@ class AdminController {
       success: !!isActive,
     });
   }
+
+  async showPageAdmin(req, res, next) {
+    let getUser = req.user.data.user;
+    if (getUser.role == 'admin') {
+      let userList = await axios.get(http + '/users');
+      let users = userList.data.data.users;
+      let listRoleByUser = [];
+      users.forEach((user) => {
+        if (user.role == 'user') {
+          listRoleByUser.push(user);
+        }
+      });
+      return res.render('Admin/admin', { listRoleByUser: listRoleByUser });
+    }
+    if (getUser.role == 'user') {
+      return res.redirect('/home');
+    }
+  }
+
   async addAccount(req, res) {
     const { adminUsername, adminPhone, adminBirthDay, adminPassword, gender } =
       req.body;
@@ -39,7 +57,7 @@ class AdminController {
       birthday: birthDay,
       gender: gender,
     };
-    let user = await User.create(newUser);
+    let user = await axios.post(http + '/users', newUser);
     req.flash('success', 'Tạo tài khoản thành công');
     res.redirect('/home/admin');
   }

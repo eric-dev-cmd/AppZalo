@@ -34,7 +34,7 @@ async function showModalBlock(userId) {
       .off('click')
       .on('click', () => {
         $.ajax({
-          url: '/home/updateIsActiveAdmin',
+          url: '/admin/updateIsActiveAdmin',
           type: 'put',
           data: {
             userId: userId,
@@ -60,7 +60,7 @@ async function showModalBlock(userId) {
       .off('click')
       .on('click', () => {
         $.ajax({
-          url: '/home/updateIsBlockAdmin',
+          url: '/admin/updateIsBlockAdmin',
           type: 'put',
           data: {
             userId: userId,
