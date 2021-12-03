@@ -1,3 +1,4 @@
+let iceList;
 function videoCall(id) {
   $(`#video-${id}`)
     .off('click')
@@ -9,19 +10,29 @@ function videoCall(id) {
       };
       socket.emit('caller-check-listener-online', dataToEmit);
     });
+  $.ajax({
+    url: "https://global.xirsys.net/_turn/appChat",
+    type: "PUT",
+    dataType: 'json',
+    headers: {
+      "Authorization": "Basic " + "Y2F0bHV5bmg6MzJlNjgyYzYtNGI3My0xMWVjLWI5NDUtMDI0MmFjMTMwMDAz",
+    },
+    success: function (data, status) {
+      iceList = data.v;
+    },
+    async: false,
+  });
 }
 
-let iceList = JSON.parse(IceList).v;
-
-let peerId = '';
+let peerId;
 const peer = new Peer({
   key: 'peerjs',
-  secure: true,
   host: 'localhost',
   port: 9000,
   path: '/myapp',
-  config: iceList,
+  config: iceList
 });
+
 var MediaStream;
 $(document).ready(function () {
   //02
@@ -308,7 +319,7 @@ function playVideo(idVideo, stream) {
   video.srcObject = stream;
   let playPromise = video.play();
   if (playPromise !== undefined) {
-    playPromise.then((_) => {}).catch((error) => {});
+    playPromise.then((_) => { }).catch((error) => { });
   }
 }
 

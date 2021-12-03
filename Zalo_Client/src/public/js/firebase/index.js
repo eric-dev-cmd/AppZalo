@@ -1,4 +1,4 @@
-const http = 'http://localhost:4000';
+const http = 'http://ec2-54-255-142-50.ap-southeast-1.compute.amazonaws.com:4000';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
 import {
   getAuth,
