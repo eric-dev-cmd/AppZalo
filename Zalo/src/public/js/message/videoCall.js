@@ -307,8 +307,9 @@ function showModalVideoListener(dataToEmit) {
 }
 
 function openVideo() {
+  navigator.getUserMedia = navigator.getUserMedia ||navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   const config = {
-    audio: false,
+    audio: true,
     video: true,
   };
   return navigator.mediaDevices.getUserMedia(config);

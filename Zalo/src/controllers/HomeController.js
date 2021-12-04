@@ -12,8 +12,8 @@ class HomeController {
       res.locals.message = req.flash('success');
       let notifications = await notificationService.getNotifications(req.user.data.user._id);
       let contacts = await contactService.getContacts(req.user.data.user._id);
-      let getAllConversationItem = await messageService.getListItemContacts(req.user.data.user._id);
-      let getAllConversationMessages = getAllConversationItem.allConversationMessages;
+      let listContacts = await messageService.getListItemContacts(req.user.data.user._id);
+      let getConversations = listContacts.allConversationMessages;
 
       return res.render('home', {
         user: getUser,
@@ -21,8 +21,8 @@ class HomeController {
         sumOfNotification: notifications.sumOfNotification,
         contacts: sortJsonArray(contacts.getContacts, 'userName', 'asc'),
         sumOfContact: contacts.sumOfContact,
-        allConversationMessages: getAllConversationMessages,
-        allConversationMessagesJson: JSON.stringify(getAllConversationMessages),
+        allConversationMessages: getConversations,
+        allConversationMessagesJson: JSON.stringify(getConversations),
         userJson: JSON.stringify(getUser),
       });
     } else {

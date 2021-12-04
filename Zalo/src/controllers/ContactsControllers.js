@@ -1,10 +1,10 @@
 const contactService = require('../services/contactService');
 
 class ContactController {
-    async addNew(req, res) {
+    async addNewFriend(req, res) {
         const senderId = req.user.data.user._id; // id cua user dang nhap
         const receiverId = req.body.userId; // id cua user muon ket ban
-        const newContact = await contactService.addNew(senderId, receiverId);
+        const newContact = await contactService.addNewFriend(senderId, receiverId);
         return res.send({
             success: !!newContact
         });
@@ -19,7 +19,7 @@ class ContactController {
         });
     }
 
-    async removeFriendRequestFromReceiver(req, res) {
+    async denyRequestFriend(req, res) {
         const receiverId = req.user.data.user._id;
         const senderId = req.body.userId;
         const removeRequest = await contactService.remove(senderId, receiverId);
@@ -28,10 +28,10 @@ class ContactController {
         });
     }
 
-    async accept(req, res) {
+    async acceptRequestFriend(req, res) {
         const receiverId = req.user.data.user._id;
         const senderId = req.body.userId;
-        const acceptRequest = await contactService.accept(senderId, receiverId);
+        const acceptRequest = await contactService.acceptRequestFriend(senderId, receiverId);
         return res.send({
             success: !!acceptRequest
         });

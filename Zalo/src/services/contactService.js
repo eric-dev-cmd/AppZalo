@@ -3,7 +3,7 @@ const http = require('../controllers/http');
 
 class ContactService {
     // gửi lời mời kết bạn
-    addNew(senderId, receiverId) {
+    addNewFriend(senderId, receiverId) {
         return new Promise(async (resolve, reject) => {
             // kiểm tra tồn tại
             let contactExists = await this.checkExistsContact(senderId, receiverId);
@@ -52,7 +52,7 @@ class ContactService {
     }
 
     // đồng ý lời mời kết bạn
-    accept(senderId, receiverId) {
+    acceptRequestFriend(senderId, receiverId) {
         return new Promise(async (resolve, reject) => {
             let findContact = await this.checkExistsContact(senderId, receiverId);
             let contact = findContact;
