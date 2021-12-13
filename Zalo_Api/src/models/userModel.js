@@ -22,7 +22,7 @@ const User = new Schema({
   avatar: {
     type: String,
     //default: "https://i.stack.imgur.com/dr5qp.jpg",
-     default: "user-avatar.png",
+    default: "user-avatar.png",
   },
   role: {
     type: String,
@@ -44,7 +44,7 @@ const User = new Schema({
   // Tai khoan co bi khoa hay k
   isActive: {
     type: String,
-    default: false,
+    default: true,
   },
   // Anh bia ben trang ca nhan
   background: {
