@@ -23,7 +23,7 @@ socket.on('response-add-new-contact', function (user) {
         <div class="d-flex">
             <div
                 class="chat-user-img away align-self-center me-3 ms-0">
-                <img src="images/${user.avatar}"
+                <img src="https://stores3appchatmobile152130-dev.s3.ap-southeast-1.amazonaws.com/public/${user.avatar}"
                     class="rounded-circle avatar-xs" alt="">
                 <span class="user-status"></span>
             </div>
@@ -46,7 +46,7 @@ socket.on('response-add-new-contact', function (user) {
   </li>`;
   $('#notification-contact').prepend(notification);
   sumOfNotificationInc();
-  removeFriendRequestFromReceiver();
+  denyFriendRequest();
   acceptFriendRequest();
 });
 

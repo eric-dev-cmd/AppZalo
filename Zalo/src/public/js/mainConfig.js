@@ -1,5 +1,5 @@
 const socket = io();
-const http = `http://ec2-13-251-157-126.ap-southeast-1.compute.amazonaws.com:4000`;
+const http = `http://localhost:4000`;
 //các cuộc trò truyện
 let conversations;
 const s3 =
@@ -53,7 +53,7 @@ function showChat() {
 
 $(document).ready(function () {
   searchPhone();
-  removeFriendRequestFromReceiver();
+  denyFriendRequest();
   acceptFriendRequest();
   getAllConversation();
   showChat();

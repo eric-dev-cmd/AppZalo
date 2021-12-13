@@ -55,7 +55,7 @@ class ContactSocket {
         });
     }
 
-    removeFriendRequestFromReceiver(io) {
+    denyFriendRequest(io) {
         let listUsers = {};
         io.on('connection', (socket) => {
             //let receiverId = socket.request.user.data.user._id;
@@ -63,12 +63,12 @@ class ContactSocket {
             // let receiver = JSON.parse(cookie.split('userCookie=')[1]);
             socket.on('send-user', (receiver) => {
                 listUsers = addSocketId(listUsers, receiver._id, socket.id);
-                socket.on('remove-request-contact-receiver', (data) => {
+                socket.on('deny-friend-request', (data) => {
                     let currentUser = {
                         id: receiver._id
                     }
                     if (listUsers[data.senderId]) {
-                        sendEvent(listUsers, data.senderId, io, 'response-remove-request-contact-receiver', currentUser);
+                        sendEvent(listUsers, data.senderId, io, 'response-deny-friend-request', currentUser);
                     }
                 });
                 socket.on('disconnect', () => {
@@ -78,7 +78,7 @@ class ContactSocket {
         });
     }
 
-    acceptContact(io) {
+    acceptFriendRequest(io) {
         let listUsers = {};
         io.on('connection', (socket) => {
             // let receiverId = socket.request.user.data.user._id;

@@ -65,7 +65,7 @@ const onResetPassword = (e) => {
   const phoneEntered = '0' + phoneSplit.trim();
   console.log(phoneEntered.trim());
 
-  fetch('http://ec2-13-251-157-126.ap-southeast-1.compute.amazonaws.com:4000/users/searchPhone/' + phoneEntered)
+  fetch('http://localhost:4000/users/searchPhone/' + phoneEntered)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);

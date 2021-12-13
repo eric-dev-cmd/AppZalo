@@ -8,8 +8,8 @@ function initSockets(io) {
 
     contactSocket.addNewContact(io);
     contactSocket.removeFriendRequest(io);
-    contactSocket.removeFriendRequestFromReceiver(io);
-    contactSocket.acceptContact(io);
+    contactSocket.denyFriendRequest(io);
+    contactSocket.acceptFriendRequest(io);
     contactSocket.deleteFriend(io);
 
     messageSocket.addNewText(io);

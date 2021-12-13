@@ -1,10 +1,10 @@
 //xu ly tu choi ket ban
-function removeFriendRequestFromReceiver() {
+function denyFriendRequest() {
     $('#btn-cancel-friend-receiver').on('click', function (e) {
         e.preventDefault();
         let senderId = $(this).data('uid');
         $.ajax({
-            url: '/contact/removeFriendRequestFromReceiver',
+            url: '/contact/denyFriendRequest',
             type: 'delete',
             data: {
                 userId: senderId,
@@ -13,7 +13,7 @@ function removeFriendRequestFromReceiver() {
                 if (data.success) {
                     $('#notification-contact').find(`li[data-uid = ${senderId}]`).remove();
                     sumOfNotificationDes();
-                    socket.emit('remove-request-contact-receiver', {
+                    socket.emit('deny-friend-request', {
                         senderId: senderId,
                     });
                 }
@@ -22,7 +22,7 @@ function removeFriendRequestFromReceiver() {
     });
 }
 
-socket.on('response-remove-request-contact-receiver', function (user) {
+socket.on('response-deny-friend-request', function (user) {
     $('#btn-add-cancel-friend').find(`div#btn-cancel-friend[data-uid = ${user.id}]`).hide();
     $('#btn-add-cancel-friend').find(`div#btn-add-friend[data-uid = ${user.id}]`).css('display', 'inline-block');
     addNewContact();

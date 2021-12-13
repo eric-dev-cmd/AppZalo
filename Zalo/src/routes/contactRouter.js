@@ -5,7 +5,7 @@ const authController = require('../controllers/AuthController');
 
 router.post('/addNewContact', authController.checkLoggedIn, contactController.addNewFriend);
 router.delete('/removeFriend', authController.checkLoggedIn, contactController.removeFriend);
-router.delete('/removeFriendRequestFromReceiver', authController.checkLoggedIn, contactController.denyRequestFriend);
+router.delete('/denyFriendRequest', authController.checkLoggedIn, contactController.denyRequestFriend);
 router.put('/accept', authController.checkLoggedIn, contactController.acceptRequestFriend);
 
 module.exports = router;
