@@ -21,10 +21,8 @@ $('#btn-add-user-to-group').unbind('click').on('click', async function () {
                         $('#conversation-list').prepend(result);
                         getAllConversation();
                     });
-                messageAddUserToGroup(group, membersPre);
                 socket.emit('add-user-to-group', {
                     group: group,
-                    membersPre: membersPre
                 });
             },
         });

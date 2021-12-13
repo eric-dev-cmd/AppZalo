@@ -174,19 +174,19 @@ class MessageSocket {
 
       socket.on('send-user', (sender) => {
         listUsers = addSocketId(listUsers, sender._id, socket.id);
+
+        sender.chatGroupIds.forEach((groupId) => {
+          listUsers = addSocketId(listUsers, groupId, socket.id);
+        });
         socket.on('typing', (data) => {
           let response = {
             receiverId: sender._id,
             typing: data.typing,
+            isChatGroup: data.isChatGroup,
+            groupId: data.receiverId
           };
           if (listUsers[data.receiverId]) {
-            sendEvent(
-              listUsers,
-              data.receiverId,
-              io,
-              'response-typing',
-              response
-            );
+            sendEvent(listUsers,data.receiverId,io,'response-typing',response);
           }
         });
         //xóa id socket mỗi khi socket disconnect

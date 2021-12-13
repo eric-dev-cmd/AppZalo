@@ -28,12 +28,14 @@ function textChat(id, isChatGroup) {
           receiverId: id,
           senderId: currentUserId,
           typing: true,
+          isChatGroup: isChatGroup
         });
       }
       if (messageVal.length == 0) {
         socket.emit('typing', {
           receiverId: id,
           typing: false,
+          isChatGroup: isChatGroup
         });
       }
 
@@ -51,11 +53,21 @@ function textChat(id, isChatGroup) {
 
 socket.on('response-typing', async function (data) {
   let receiver = await $.get(http + `/users/${data.receiverId}`);
-  if (data.typing == true) {
-    $(`#conversation-${data.receiverId}`).find('#typing').remove();
-    $(`#conversation-${data.receiverId}`).append(typing(receiver));
+  let currentId = document.getElementById('id').value;
+  if (data.isChatGroup == true || data.isChatGroup == 'true') {
+    if (data.typing == true && currentId != data.receiverId) {
+      $(`#conversation-${data.groupId}`).find('#typing').remove();
+      $(`#conversation-${data.groupId}`).append(typing(receiver));
+    } else {
+      $(`#conversation-${data.groupId}`).find('#typing').remove();
+    }
   } else {
-    $(`#conversation-${data.receiverId}`).find('#typing').remove();
+    if (data.typing == true) {
+      $(`#conversation-${data.receiverId}`).find('#typing').remove();
+      $(`#conversation-${data.receiverId}`).append(typing(receiver));
+    } else {
+      $(`#conversation-${data.receiverId}`).find('#typing').remove();
+    }
   }
 });
 
@@ -169,7 +181,7 @@ socket.on('response-add-new-text', async function (data) {
       $('#conversation-list')
         .find(`li[id = receiver-${message.senderId}]`)
         .css('font-weight', 'bold');
-      
+
     });
   }
 });
