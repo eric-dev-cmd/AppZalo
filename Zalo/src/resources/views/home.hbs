@@ -602,6 +602,7 @@
                                                     <script>
                                                         const userJson = {{{ userJson }}};
                                                         const allConversationMessagesJson = {{{ allConversationMessagesJson }}};
+                                                        const contactsJson = {{{ contactsJson }}};
                                                     </script>
                                                     {{#each allConversationMessages}}
                                                     {{#if this.members}}
@@ -998,7 +999,8 @@
                                         <i class="fal fa-search search-icon font-size-18"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control bg-light" placeholder="Tìm kiếm tên người dùng">
+                                <input type="text" class="form-control bg-light" placeholder="Tìm kiếm tên người dùng"
+                                    id="search-contact">
                             </div>
                         </div>
                         <!-- End search-box -->

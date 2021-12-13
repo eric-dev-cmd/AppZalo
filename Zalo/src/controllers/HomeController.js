@@ -24,6 +24,7 @@ class HomeController {
         allConversationMessages: getConversations,
         allConversationMessagesJson: JSON.stringify(getConversations),
         userJson: JSON.stringify(getUser),
+        contactsJson: JSON.stringify(contacts.getContacts),
       });
     } else {
       return res.redirect('/admin');
