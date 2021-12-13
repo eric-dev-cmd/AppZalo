@@ -1,15 +1,6 @@
 const messageService = require('../services/messageService');
 
 class MessageController {
-    async addInfoMessage(req, res) {
-        let senderId = req.user.data.user._id;
-        let receiverId = req.body.uid;
-        let messageVal = req.body.messageVal;
-        let messageType = req.body.messageType;
-        let newMessage = await messageService.addInfoMessage(senderId, receiverId, messageVal, messageType);
-        return res.send(newMessage);
-    }
-
     async addNewText(req, res) {
         let senderId = req.user.data.user._id; // id cua user dang nhap
         let receiverId = req.body.uid; // id cua user muon ket ban
@@ -79,6 +70,15 @@ class MessageController {
         return res.send({
             message: message
         });
+    }
+
+    async addInfoMessage(req, res) {
+        let senderId = req.user.data.user._id;
+        let receiverId = req.body.uid;
+        let messageVal = req.body.messageVal;
+        let messageType = req.body.messageType;
+        let newMessage = await messageService.addInfoMessage(senderId, receiverId, messageVal, messageType);
+        return res.send(newMessage);
     }
 }
 module.exports = new MessageController;
