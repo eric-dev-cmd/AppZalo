@@ -27,7 +27,7 @@ function videoCall(id) {
 let peerId;
 const peer = new Peer({
   key: 'peerjs',
-  host: 'localhost',
+  host: 'ec2-13-251-157-126.ap-southeast-1.compute.amazonaws.com',
   port: 9000,
   path: '/myapp',
   config: iceList
