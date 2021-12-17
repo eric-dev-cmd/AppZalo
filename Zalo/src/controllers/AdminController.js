@@ -24,7 +24,7 @@ class AdminController {
     let getUser = req.user.data.user;
     if (getUser.role == 'admin') {
       let userSize = await axios.get(http + `/users`);
-      let userList = await axios.get(http + `/users/page?starForm=0`);
+      let userList = await axios.get(http + `/users/page?startFrom=0`);
       let users = userList.data.data.users;
       let listRoleByUser = [];
       users.forEach((user) => {
