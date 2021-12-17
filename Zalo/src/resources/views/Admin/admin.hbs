@@ -8,6 +8,7 @@
     <link href="/css/admin.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="dist/pagination.min.css">
     <title>Admin Zolo</title>
 </head>
 
@@ -203,6 +204,10 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="box mt-3">
+                    <ul id="example-1" class="pagination"></ul>
+                    <div class="show" current="1"></div>
+                </div>
             </div>
         </main>
         <footer></footer>
@@ -300,9 +305,17 @@
         </div>
     </div>
     <!-- End Update Member -->
-    <script type="text/javascript" src="/js/admin.js"></script>
 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="dist/pagination.min.js"></script>
+    <script type="text/javascript">
+        let userSize = {{{ userSize }}}
+    </script>
+    
+    <script src="/js/admin.js"> </script>
 </body>
 
 </html>

@@ -23,7 +23,8 @@ class AdminController {
   async showPageAdmin(req, res, next) {
     let getUser = req.user.data.user;
     if (getUser.role == 'admin') {
-      let userList = await axios.get(http + '/users');
+      let userSize = await axios.get(http + `/users`);
+      let userList = await axios.get(http + `/users/page?starForm=0`);
       let users = userList.data.data.users;
       let listRoleByUser = [];
       users.forEach((user) => {
@@ -31,7 +32,12 @@ class AdminController {
           listRoleByUser.push(user);
         }
       });
-      return res.render('Admin/admin', { listRoleByUser: listRoleByUser });
+      return res.render('Admin/admin',
+        {
+          listRoleByUser: listRoleByUser,
+          listRoleByUserJson: JSON.stringify(listRoleByUser),
+          userSize: JSON.stringify(userSize.data.result)
+        });
     }
     if (getUser.role == 'user') {
       return res.redirect('/home');

@@ -1,3 +1,4 @@
+
 let btnOpenModalAddMember = document.querySelector('.main-admin-btn-add-');
 let contentModalAddMember = document.querySelector('.admin-backdrop');
 let btnOpenModalBlockMember = document.querySelector('.admin-backdrop-block');
@@ -22,6 +23,7 @@ btnOpenModalAddMember.addEventListener('click', () => {
     contentModalAddMember.style.display = 'none';
   });
 });
+
 
 async function showModalBlock(userId) {
   $('.action-btn-block').attr('id', userId);
@@ -80,6 +82,7 @@ async function showModalBlock(userId) {
   }
 }
 
+
 contentListModalBlockMember.forEach((item) => {
   item.addEventListener('click', () => {
     btnOpenModalBlockMember.style.display = 'block';
@@ -93,4 +96,68 @@ contentListModalBlockMember.forEach((item) => {
     });
   });
 });
+
+$('#example-1').pagination({
+  total: userSize,
+  current: 1,
+  length: 4,
+  size: 2,
+  click: function (options, $target) {
+      $(".show").attr('current', options.current),
+          $.ajax({
+              url: `http://localhost:4000/users/page?startFrom=${(options.current - 1) * 4}`
+          }).done(function (rs) {
+              $('.main-admin-table-tbody').html('');
+              rs.data.users.forEach(user => {
+                  $('.main-admin-table-tbody').append(renderUsers(user));
+              });
+          }).fail(function (error) {
+
+          });
+  }
+});
+function renderUsers(user) {
+  if (user.isActive == 'true') {
+    return `
+    <tr>
+       <td>${user.userName}</td>
+       <td>${user.local.phone}</td>
+       <td>${user.gender}</td>
+       <td>
+           <div style="display: block; float: left;">
+               <p class="status status-active" id="isActive-${user._id}">Active</p>
+           </div>
+       </td>
+       <td style="display: flex; float: left">
+           <p class="action action-update action-block">
+               <i class="fas fa-user-slash action-block-icon"
+                   onclick="showModalBlock('${user._id}')"></i>
+           </p>
+       </td>
+    </tr>
+    `
+  } else {
+    return `
+  <tr>
+     <td>${user.userName}</td>
+     <td>${user.local.phone}</td>
+     <td>${user.gender}</td>
+     <td>
+         <div style="display: block; float: left;">
+             <p class="status status-inactive" id="isBlock-${user._id}">Block</p>
+         </div>
+     </td>
+     <td style="display: flex; float: left">
+         <p class="action action-update action-block">
+             <i class="fas fa-user-slash action-block-icon"
+                 onclick="showModalBlock('${user._id}')"></i>
+         </p>
+     </td>
+  </tr>
+  `
+  }
+
+}
+
+
 

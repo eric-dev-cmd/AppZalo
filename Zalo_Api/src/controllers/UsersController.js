@@ -16,6 +16,23 @@ class UsersController {
       .catch(next);
   }
 
+  getAPIByPage(req, res, next) {
+    let limit = 4;
+    let startFrom = req.query.startFrom;
+    let start = Number(startFrom);
+    User.find({'role': 'user'}).limit(limit).skip(start)
+      .then((users) => {
+        res.status(200).json({
+          status: "Success",
+          result: users.length,
+          data: {
+            users,
+          },
+        });
+      })
+      .catch(next);
+  }
+
   getAPIByPhone(req, res, next) {
     User.findOne({ "local.phone": req.params.phone })
       .then((user) => {
