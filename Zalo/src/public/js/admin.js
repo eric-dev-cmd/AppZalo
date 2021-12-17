@@ -1,8 +1,7 @@
 let btnOpenModalAddMember = document.querySelector('.main-admin-btn-add-');
 let contentModalAddMember = document.querySelector('.admin-backdrop');
 let btnOpenModalBlockMember = document.querySelector('.admin-backdrop-block');
-let contentListModalBlockMember =
-  document.querySelectorAll('.action-block-icon');
+let contentListModalBlockMember = document.querySelectorAll('.action-block-icon');
 let closeModalAddMember = document.querySelector('.action-btn-close');
 let closeModalBlockMember = document.querySelector('.action-btn-close-block');
 let wrapperModalAddMember = document.querySelector('.admin-modal-btn-add');
@@ -117,6 +116,7 @@ $('#example-1').pagination({
         .fail(function (error) {});
   },
 });
+
 function renderUsers(user) {
   if (user.isActive == 'true') {
     return `
