@@ -1,4 +1,3 @@
-
 let btnOpenModalAddMember = document.querySelector('.main-admin-btn-add-');
 let contentModalAddMember = document.querySelector('.admin-backdrop');
 let btnOpenModalBlockMember = document.querySelector('.admin-backdrop-block');
@@ -24,8 +23,8 @@ btnOpenModalAddMember.addEventListener('click', () => {
   });
 });
 
-
 async function showModalBlock(userId) {
+  $('.admin-backdrop-block').show();
   $('.action-btn-block').attr('id', userId);
   let getUser = await $.get(http + `/users/${userId}`);
   if (getUser.user.isActive == 'false') {
@@ -82,9 +81,9 @@ async function showModalBlock(userId) {
   }
 }
 
-
 contentListModalBlockMember.forEach((item) => {
   item.addEventListener('click', () => {
+    console.log('Trung Vinh Block');
     btnOpenModalBlockMember.style.display = 'block';
     closeModalBlockMember.style.color = '#000';
     closeModalBlockMember.style.backgroundColor = 'rgba(0, 0, 0, 0.08)';
@@ -103,18 +102,20 @@ $('#example-1').pagination({
   length: 4,
   size: 2,
   click: function (options, $target) {
-      $(".show").attr('current', options.current),
-          $.ajax({
-              url: `http://localhost:4000/users/page?startFrom=${(options.current - 1) * 4}`
-          }).done(function (rs) {
-              $('.main-admin-table-tbody').html('');
-              rs.data.users.forEach(user => {
-                  $('.main-admin-table-tbody').append(renderUsers(user));
-              });
-          }).fail(function (error) {
-
+    $('.show').attr('current', options.current),
+      $.ajax({
+        url: `http://localhost:4000/users/page?startFrom=${
+          (options.current - 1) * 4
+        }`,
+      })
+        .done(function (rs) {
+          $('.main-admin-table-tbody').html('');
+          rs.data.users.forEach((user) => {
+            $('.main-admin-table-tbody').append(renderUsers(user));
           });
-  }
+        })
+        .fail(function (error) {});
+  },
 });
 function renderUsers(user) {
   if (user.isActive == 'true') {
@@ -135,7 +136,7 @@ function renderUsers(user) {
            </p>
        </td>
     </tr>
-    `
+    `;
   } else {
     return `
   <tr>
@@ -154,10 +155,6 @@ function renderUsers(user) {
          </p>
      </td>
   </tr>
-  `
+  `;
   }
-
 }
-
-
-

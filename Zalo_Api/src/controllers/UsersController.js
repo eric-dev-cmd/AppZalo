@@ -20,7 +20,10 @@ class UsersController {
     let limit = 4;
     let startFrom = req.query.startFrom;
     let start = Number(startFrom);
-    User.find({'role': 'user'}).limit(limit).skip(start)
+    User.find({ role: "user" })
+      .limit(limit)
+      .skip(start)
+      .exec()
       .then((users) => {
         res.status(200).json({
           status: "Success",
