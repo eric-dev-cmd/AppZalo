@@ -1,7 +1,8 @@
 let btnOpenModalAddMember = document.querySelector('.main-admin-btn-add-');
 let contentModalAddMember = document.querySelector('.admin-backdrop');
 let btnOpenModalBlockMember = document.querySelector('.admin-backdrop-block');
-let contentListModalBlockMember = document.querySelectorAll('.action-block-icon');
+let contentListModalBlockMember =
+  document.querySelectorAll('.action-block-icon');
 let closeModalAddMember = document.querySelector('.action-btn-close');
 let closeModalBlockMember = document.querySelector('.action-btn-close-block');
 let wrapperModalAddMember = document.querySelector('.admin-modal-btn-add');
@@ -103,7 +104,7 @@ $('#example-1').pagination({
   click: function (options, $target) {
     $('.show').attr('current', options.current),
       $.ajax({
-        url: `http://localhost:4000/users/page?startFrom=${
+        url: `http://http://ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com:4000/users/page?startFrom=${
           (options.current - 1) * 4
         }`,
       })
