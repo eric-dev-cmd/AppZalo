@@ -6,9 +6,9 @@
     "phone": "0903589164",
     "password": "$2a$10$G6cZrN1jRd78eGE0lWLJoOJe5vQMLRZcc2uiMZLuXhw/p80zYMKoW"
   },
-  "userName": "cat luynh",
+  "userName": "Cát Luynh",
   "gender": "female",
-  "birthday": "1/1/1950",
+  "birthday": "20/11/1990",
   "address": "",
   "avatar": "1c8207d1-463e-4fe6-acb2-6608497a8f67.IMG_5700.JPG",
   "role": "user",
@@ -20,7 +20,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1637197492581
 }
@@ -46,7 +46,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1637197492581
 }
@@ -72,7 +72,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1637133874698
 }
@@ -98,7 +98,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636975653572
 }
@@ -124,7 +124,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636975649549
 }
@@ -150,7 +150,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636976564987
 }
@@ -176,7 +176,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636972612922
 }
@@ -202,7 +202,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636972612922
 }
@@ -228,7 +228,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636972612922
 }
@@ -254,7 +254,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1637035923162
 }
@@ -280,7 +280,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1637129731297
 }
@@ -306,7 +306,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636975635917
 }
@@ -332,7 +332,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636976167528
 }
@@ -358,7 +358,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636975693170
 }
@@ -384,7 +384,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636975685111
 }
@@ -410,7 +410,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636972612922
 }
@@ -436,7 +436,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636975430612
 }
@@ -462,7 +462,7 @@
   "createdAt": 1636967650592,
   "deletedAt": null,
   "description": "This is my description",
-  "isActive": "false",
+  "isActive": "true",
   "isOnline": "true",
   "updatedAt": 1636975392301
 }
