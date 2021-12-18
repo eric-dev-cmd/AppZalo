@@ -104,7 +104,7 @@ $('#example-1').pagination({
   click: function (options, $target) {
     $('.show').attr('current', options.current),
       $.ajax({
-        url: `http://http://ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com:4000/users/page?startFrom=${
+        url: `http://ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com:4000/users/page?startFrom=${
           (options.current - 1) * 4
         }`,
       })
