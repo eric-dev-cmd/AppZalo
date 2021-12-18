@@ -466,3 +466,27 @@
   "isOnline": "true",
   "updatedAt": 1636975392301
 }
+{
+  "_id": {
+    "$oid": "619241e2487ab6f741c01dbb"
+  },
+  "local": {
+    "phone": "0987000999",
+    "password": "$2a$10$G6cZrN1jRd78eGE0lWLJoOJe5vQMLRZcc2uiMZLuXhw/p80zYMKoW"
+  },
+  "userName": "Admin",
+  "gender": "male",
+  "birthday": "1/2/1992",
+  "address": "",
+  "avatar": "user-avatar.png",
+  "role": "admin",
+  "createAt": 1636965279633,
+  "__v": 0,
+  "background": "background-default.jpg",
+  "createdAt": 1636967650592,
+  "deletedAt": null,
+  "description": "This is my description",
+  "isActive": "true",
+  "isOnline": "true",
+  "updatedAt": 1636975392301
+}
