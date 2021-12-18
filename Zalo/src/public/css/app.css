@@ -1580,7 +1580,7 @@ input[readonly]
       width: 83%;
       margin-left: 10px;
       border: none;
-      background: #36404a;
+      background: transparent;
       color: #a6a8ba; }
     .search-box .input-wrapper i {
       color: #a6a8ba; }
