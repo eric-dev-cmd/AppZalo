@@ -83,7 +83,6 @@ async function showModalBlock(userId) {
 
 contentListModalBlockMember.forEach((item) => {
   item.addEventListener('click', () => {
-    console.log('Trung Vinh Block');
     btnOpenModalBlockMember.style.display = 'block';
     closeModalBlockMember.style.color = '#000';
     closeModalBlockMember.style.backgroundColor = 'rgba(0, 0, 0, 0.08)';

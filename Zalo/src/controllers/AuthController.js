@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const http = require('./http');
 const axios = require('axios');
 
-
 class LoginController {
   showLogin(req, res) {
     res.locals.message = req.flash('errors');
@@ -50,14 +49,17 @@ class LoginController {
   async createInDatabase(req, res) {
     if (req.body.password == req.body.passwordConfirm) {
       const passHash = await bcrypt.hash(req.body.password, 10);
-      let newUser = await User.create({
+
+      let user = await axios.post(http + '/users', {
         userName: req.body.userName,
         local: {
           phone: req.body.phone,
           password: passHash,
         },
       });
-      req.flash('success', 'Tài khoản đăng ký thành công ');
+      console.log(user);
+      console.log('Thanh cong dang kys');
+      req.flash('success', 'Tài khoản đăng ký thành công!');
       res.redirect('/login-register');
     }
   }
@@ -77,12 +79,15 @@ class LoginController {
         http + '/users/searchPhone/' + phoneReset
       );
       const { user } = userPhone.data;
-      let userPhoneReset = await User.findById(user._id).select('+password');
-      const passResetHash = await bcrypt.hash(req.body.passwordReset, 10);
-      userPhoneReset.local.password = passResetHash;
-      await userPhoneReset.save();
-      req.flash('success', 'Đổi mật khẩu thành công');
-      res.redirect('/login-register');
+      let userPhoneReset = await axios.get(http + `/users/` + user._id);
+      console.log('Vinh PASS');
+      console.log(userPhoneReset);
+      console.log(http + `/users/` + user._id);
+      // const passResetHash = await bcrypt.hash(req.body.passwordReset, 10);
+      // userPhoneReset.local.password = passResetHash;
+      // await userPhoneReset.save();
+      // req.flash('success', 'Đổi mật khẩu thành công');
+      // res.redirect('/login-register');
     } catch (err) {
       console.log(err);
       console.log('ERROR');
