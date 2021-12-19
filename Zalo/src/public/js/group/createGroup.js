@@ -50,6 +50,7 @@ $('#seach-user-add-group')
           let user = await $.get(http + `/users/searchPhone/${content}`);
           $('#list-contact-add-group').find(`li[id=${user.user._id}]`).remove();
           $('#list-contact-add-group').prepend(getUser(user));
+          $('#joined-group').text('');
         } catch (error) {
           console.log(error);
         }
@@ -62,6 +63,7 @@ $('#seach-user-add-group')
                 .find(`li[id=${user.user._id}]`)
                 .remove();
               $('#list-contact-add-group').prepend(getUser(user));
+              $('#joined-group').text('');
             });
           });
         } catch (error) {

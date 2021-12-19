@@ -54,9 +54,6 @@ async function showConversationGroup(id) {
         text: null,
       })
     );
-    if (message.messageType === 'info') {
-      addInfo(group, message);
-    }
     if (message.messageType === 'text') {
       if (message.senderId === rightId) {
         $(`#conversation-${id}`).append(rightConversationText(sender, message));

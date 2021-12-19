@@ -58,7 +58,7 @@ socket.on('response-typing', async function (data) {
     if (data.typing == true && currentId != data.receiverId) {
       $(`#conversation-${data.groupId}`).find('#typing').remove();
       $(`#conversation-${data.groupId}`).append(typing(receiver));
-    } else {
+    } if (data.typing == false) {
       $(`#conversation-${data.groupId}`).find('#typing').remove();
     }
   } else {
@@ -150,6 +150,7 @@ socket.on('response-add-new-text', async function (data) {
       $(`#conversation-${message.receiverId}`).append(
         leftConversationText(receiver, message)
       );
+      $(`#conversation-${message.receiverId}`).find('#typing').remove();
       scrollMessageUserEnd();
       $('#conversation-list')
         .find(`li[id=receiver-${message.receiverId}]`)

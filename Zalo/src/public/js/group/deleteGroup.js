@@ -64,4 +64,5 @@ socket.on('response-leave-group', function (data) {
         });
     insertIdUserOnline(group);
     showUser(group._id);
+    getAllConversation();
 });
