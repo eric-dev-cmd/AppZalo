@@ -23,7 +23,7 @@ const AWS = require('aws-sdk');
 const app = express();
 const { PeerServer } = require('peer');
 
-const peerServer = PeerServer({ port: 9000, path: '/myapp' });
+// const peerServer = PeerServer({ port: 9000, path: '/myapp' });
 
 events.EventEmitter.defaultMaxListeners = 50;
 

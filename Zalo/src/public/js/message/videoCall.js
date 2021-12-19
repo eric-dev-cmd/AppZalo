@@ -28,11 +28,11 @@ function videoCall(id) {
 
 let peerId;
 const peer = new Peer({
-  key: 'peerjs',
-  host: 'ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com',
-  port: 9000,
-  path: '/myapp',
-  config: iceList,
+  // key: 'peerjs',
+  // host: 'ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com',
+  // port: 9000,
+  // path: '/myapp',
+  // config: iceList,
 });
 
 var MediaStream;
