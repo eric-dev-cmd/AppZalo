@@ -24,6 +24,7 @@ function acceptFriendRequest() {
                                 .then(function (result) {
                                     $('#conversation-list').prepend(result);
                                 });
+                            window.location.href = `/home`;
                         }
                     });
                     //emit id của người gửi cho server
@@ -47,6 +48,7 @@ socket.on('response-accept-Friend-Request', async function (data) {
         .then(function (result) {
             $('#conversation-list').prepend(result);
         });
+        window.location.href = `/home`;
 });
 
 function sumOfContactInc() {

@@ -10,29 +10,29 @@ function videoCall(id) {
       };
       socket.emit('caller-check-listener-online', dataToEmit);
     });
-  // $.ajax({
-  //   url: "https://global.xirsys.net/_turn/appChat",
-  //   type: "PUT",
-  //   dataType: 'json',
-  //   headers: {
-  //     "Authorization": "Basic " + "Y2F0bHV5bmg6MzJlNjgyYzYtNGI3My0xMWVjLWI5NDUtMDI0MmFjMTMwMDAz",
-  //   },
-  //   success: function (data, status) {
-  //     iceList = data.v;
-  //   },
-  //   async: false,
-  // });
+  $.ajax({
+    url: "https://global.xirsys.net/_turn/appChat",
+    type: "PUT",
+    dataType: 'json',
+    headers: {
+      "Authorization": "Basic " + "Y2F0bHV5bmg6MzJlNjgyYzYtNGI3My0xMWVjLWI5NDUtMDI0MmFjMTMwMDAz",
+    },
+    success: function (data, status) {
+      iceList = data.v;
+    },
+    async: false,
+  });
 }
 
 let peerId;
 const peer = new Peer(
-//   {
-//   key: 'peerjs',
-//   host: 'localhost',
-//   port: 9000,
-//   path: '/myapp',
-//   config: iceList
-// }
+  {
+  key: 'peerjs',
+  host: 'localhost',
+  port: 9000,
+  path: '/myapp',
+  config: iceList
+}
 );
 
 var MediaStream;
