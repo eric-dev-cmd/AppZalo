@@ -78,7 +78,7 @@ class LoginController {
       );
       const { user } = userPhone.data;
       let userPhoneReset = await axios.get(http + `/users/` + user._id);
-      const passResetHash = await bcrypt.hash(req.body.passwordReset, 10);
+      const passResetHash = await bcrypt.hash(req.body.passwordInforReset, 10);
       userPhoneReset.data.user.local.password = passResetHash;
       let putPassword = await axios.put(
         http + `/users/` + user._id,
