@@ -11,11 +11,13 @@ function videoCall(id) {
       socket.emit('caller-check-listener-online', dataToEmit);
     });
   $.ajax({
-    url: "https://global.xirsys.net/_turn/appChat",
-    type: "PUT",
+    url: 'https://global.xirsys.net/_turn/appChat',
+    type: 'PUT',
     dataType: 'json',
     headers: {
-      "Authorization": "Basic " + "Y2F0bHV5bmg6MzJlNjgyYzYtNGI3My0xMWVjLWI5NDUtMDI0MmFjMTMwMDAz",
+      Authorization:
+        'Basic ' +
+        'Y2F0bHV5bmg6MzJlNjgyYzYtNGI3My0xMWVjLWI5NDUtMDI0MmFjMTMwMDAz',
     },
     success: function (data, status) {
       iceList = data.v;
@@ -25,15 +27,13 @@ function videoCall(id) {
 }
 
 let peerId;
-const peer = new Peer(
-  {
+const peer = new Peer({
   key: 'peerjs',
-  host: 'localhost',
+  host: 'ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com',
   port: 9000,
   path: '/myapp',
-  config: iceList
-}
-);
+  config: iceList,
+});
 
 var MediaStream;
 $(document).ready(function () {
@@ -309,7 +309,10 @@ function showModalVideoListener(dataToEmit) {
 }
 
 function openVideo() {
-  navigator.getUserMedia = navigator.getUserMedia ||navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+  navigator.getUserMedia =
+    navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia;
   const config = {
     audio: true,
     video: true,
@@ -322,7 +325,7 @@ function playVideo(idVideo, stream) {
   video.srcObject = stream;
   let playPromise = video.play();
   if (playPromise !== undefined) {
-    playPromise.then((_) => { }).catch((error) => { });
+    playPromise.then((_) => {}).catch((error) => {});
   }
 }
 
