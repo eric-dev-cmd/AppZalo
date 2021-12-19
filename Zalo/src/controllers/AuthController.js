@@ -72,22 +72,20 @@ class LoginController {
   }
   async updateResetNewPassword(req, res) {
     try {
-      // Password new
-      // Phone need update password
       let phoneReset = req.body.phoneReset;
       let userPhone = await axios.get(
         http + '/users/searchPhone/' + phoneReset
       );
       const { user } = userPhone.data;
       let userPhoneReset = await axios.get(http + `/users/` + user._id);
-      console.log('Vinh PASS');
-      console.log(userPhoneReset);
-      console.log(http + `/users/` + user._id);
-      // const passResetHash = await bcrypt.hash(req.body.passwordReset, 10);
-      // userPhoneReset.local.password = passResetHash;
-      // await userPhoneReset.save();
-      // req.flash('success', 'Đổi mật khẩu thành công');
-      // res.redirect('/login-register');
+      const passResetHash = await bcrypt.hash(req.body.passwordReset, 10);
+      userPhoneReset.data.user.local.password = passResetHash;
+      let putPassword = await axios.put(
+        http + `/users/` + user._id,
+        userPhoneReset.data.user
+      );
+      req.flash('success', 'Đổi mật khẩu thành công');
+      res.redirect('/login-register');
     } catch (err) {
       console.log(err);
       console.log('ERROR');

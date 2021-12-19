@@ -83,8 +83,6 @@ const onResetPassword = (e) => {
         show.innerHTML = 'Tài khoản này không tồn tại!';
         console.log('Account already exists');
       } else {
-        console.log(phoneEntered);
-        console.log(phoneNumberT);
         show.classList.remove('alert-danger');
         show.classList.add('alert-success');
         show.innerHTML = 'Đang gửi mã xác nhận...';
@@ -143,6 +141,7 @@ const onResetPassword = (e) => {
             console.log(error.message);
             console.log('Not send OTP');
           });
+
         function handleInput(e) {
           // Check data đã được nhập và nếu có dữ liệu đầu vào thì đi tiếp
           const input = e.target;
