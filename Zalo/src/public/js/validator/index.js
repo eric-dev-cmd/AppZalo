@@ -197,7 +197,6 @@ const form = document.getElementById('formInfo');
 const username = document.getElementById('username');
 const password = document.getElementById('passwordInfor');
 const password2 = document.getElementById('passwordInforConfirm');
-
 // Nhan value tu input
 const show = document.getElementById('showNotification');
 let error = '';

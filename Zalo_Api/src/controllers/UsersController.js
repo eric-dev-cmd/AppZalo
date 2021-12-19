@@ -17,7 +17,7 @@ class UsersController {
   }
 
   getAPIByPage(req, res, next) {
-    let limit = 4;
+    let limit = 6;
     let startFrom = req.query.startFrom;
     let start = Number(startFrom);
     User.find({ role: "user" })

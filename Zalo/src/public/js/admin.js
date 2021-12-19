@@ -98,13 +98,13 @@ contentListModalBlockMember.forEach((item) => {
 $('#example-1').pagination({
   total: userSize,
   current: 1,
-  length: 4,
+  length: 6,
   size: 2,
   click: function (options, $target) {
     $('.show').attr('current', options.current),
       $.ajax({
         url: `http://ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com:4000/users/page?startFrom=${
-          (options.current - 1) * 4
+          (options.current - 1) * 6
         }`,
       })
         .done(function (rs) {

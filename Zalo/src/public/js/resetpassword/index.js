@@ -1,4 +1,3 @@
-console.log('Reset password');
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
 import {
   getAuth,
@@ -17,7 +16,7 @@ const firebaseApp = initializeApp({
 const auth = getAuth(firebaseApp);
 let formReset = document.querySelector('[name="resetPassword"]');
 let inputsReset = formReset.querySelectorAll('.inputsReset input');
-console.log(auth);
+
 const setUpRecaptcha = () => {
   window.recaptchaVerifier = new RecaptchaVerifier(
     'recaptcha-container',
@@ -44,6 +43,7 @@ function handleCountDown() {
     expireEle.textContent = expire < 10 ? '0' + expire + 's' : expire + 's';
   }, 1000);
 }
+
 const onResetPassword = (e) => {
   e.preventDefault();
   setUpRecaptcha();
@@ -64,7 +64,50 @@ const onResetPassword = (e) => {
   console.log(phoneSplit.trim());
   const phoneEntered = '0' + phoneSplit.trim();
   console.log(phoneEntered.trim());
-
+  function sendOTP(phoneNumberT) {
+    signInWithPhoneNumber(auth, phoneNumberT, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        console.log('Sent OTP Success');
+        const lastPhone = phoneNumberT.slice(phoneNumberT.length - 4);
+        const setPhoneForVerify = document.getElementById('lastPhone-reset');
+        setPhoneForVerify.innerHTML = lastPhone;
+        handleCountDown();
+        submitOTPReset.addEventListener('click', function (e) {
+          e.preventDefault();
+          let arr = [];
+          let otp;
+          inputsReset.forEach((input, i) => {
+            arr.push(input.value);
+            // console.log(arr.join());
+            otp = arr.join('');
+            // console.log(input.value);
+          });
+          console.log(otp);
+          console.log('Click xác minh OTP');
+          const code = otp;
+          confirmationResult
+            .confirm(code)
+            .then((result) => {
+              const user = result.user;
+              console.log(user);
+              // ...
+              setTimeout(() => {
+                window.location.href = `/accounts/password/reset/new_password?phone=${phoneNumberT}`;
+              }, 500);
+            })
+            .catch((error) => {
+              showNotificationFail();
+              console.log(error);
+            });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.message);
+        console.log('Not send OTP');
+      });
+  }
   fetch(
     'http://ec2-54-251-168-170.ap-southeast-1.compute.amazonaws.com:4000/users/searchPhone/' +
       phoneEntered
@@ -80,7 +123,7 @@ const onResetPassword = (e) => {
         // Tai khoan da ton tai, khong cho dang ky
         show.classList.remove('alert-success');
         show.classList.add('alert-danger');
-        show.innerHTML = 'Tài khoản này không tồn tại!';
+        show.innerHTML = 'Số điện thoại chưa được đăng ký!';
         console.log('Account already exists');
       } else {
         show.classList.remove('alert-danger');
@@ -94,54 +137,7 @@ const onResetPassword = (e) => {
         }, 1500);
         console.log('Not account. Lets register');
         // Gửi OTP
-        signInWithPhoneNumber(auth, phoneNumberT, appVerifier)
-          .then((confirmationResult) => {
-            // SMS sent. Prompt user to type the code from the message, then sign the
-            // user in with confirmationResult.confirm(code).
-            window.confirmationResult = confirmationResult;
-            // ...
-            console.log(phoneNumberT);
-            console.log('Sent OTP Success');
-            const lastPhone = phoneNumberT.slice(phoneNumberT.length - 4);
-            const setPhoneForVerify =
-              document.getElementById('lastPhone-reset');
-            setPhoneForVerify.innerHTML = lastPhone;
-            handleCountDown();
-            submitOTPReset.addEventListener('click', function (e) {
-              e.preventDefault();
-              let arr = [];
-              let otp;
-              inputsReset.forEach((input, i) => {
-                arr.push(input.value);
-                // console.log(arr.join());
-                otp = arr.join('');
-                // console.log(input.value);
-              });
-              console.log(otp);
-              console.log('Click xác minh OTP');
-              const code = otp;
-              confirmationResult
-                .confirm(code)
-                .then((result) => {
-                  const user = result.user;
-                  console.log(user);
-                  // ...
-                  setTimeout(() => {
-                    window.location.href = `/accounts/password/reset/new_password?phone=${phoneNumberT}`;
-                  }, 500);
-                })
-                .catch((error) => {
-                  showNotificationFail();
-                  console.log(error);
-                });
-            });
-          })
-          .catch((error) => {
-            console.log(error);
-            console.log(error.message);
-            console.log('Not send OTP');
-          });
-
+        sendOTP(phoneNumberT);
         function handleInput(e) {
           // Check data đã được nhập và nếu có dữ liệu đầu vào thì đi tiếp
           const input = e.target;
