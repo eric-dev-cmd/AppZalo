@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 class UserController {
   async updateProfile(req, res, next) {
     if (req.files) {
+      console.log(req.files);
       var file = req.files.avatar; //file {avatar: {object}}
       var fileName = file.name;
       if (file.mimetype.split('/')[0] === 'image' && file.size < 10485760) {
